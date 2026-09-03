@@ -265,12 +265,84 @@ def _confidence_histogram(samples, fail_idx):
     }
 
 
+def _load_session_metadata(metadata_dir):
+    """Index target-camera session metadata as ``{session_id: {field: value}}``.
+
+    Scans ``<metadata_dir>/<class>/<session_id>/metadata.json`` (Layout A).
+    Returns an empty dict (never raising) if the directory is absent or the
+    metadata is incomplete, so provenance enrichment is best-effort.
+    """
+    index = {}
+    root = Path(metadata_dir)
+    if root is None or not root.is_dir():
+        return index
+    for meta_file in sorted(root.rglob("metadata.json")):
+        try:
+            import json as jsonmod
+            with open(meta_file) as f:
+                meta = jsonmod.load(f)
+        except Exception:
+            continue
+        sid = meta.get("session_id") or meta_file.parent.name
+        if not sid:
+            continue
+        index[sid] = {
+            k: meta.get(k)
+            for k in ("session_id", "class", "failure_type", "object", "printer")
+            if meta.get(k) is not None
+        }
+    return index
+
+
+def _pooled_metrics_by_field(samples, fail_idx, meta_index, field):
+    """Pool binary failing-vs-normal metrics grouped by a metadata field.
+
+    ``samples`` carry ``recording``; ``meta_index`` maps recording -> provenance
+    dict. Only recordings present in the metadata with a non-empty ``field``
+    value contribute, so this is best-effort (empty when labels don't permit).
+    """
+    groups = defaultdict(list)
+    for s in samples:
+        meta = meta_index.get(s["recording"])
+        if not meta:
+            continue
+        value = meta.get(field)
+        if value is None or str(value).strip() == "":
+            continue
+        groups[str(value)].append(s)
+
+    out = {}
+    for value, items in groups.items():
+        y_true = np.array([s["true_idx"] for s in items])
+        y_pred = np.array([s["pred_idx"] for s in items])
+        m = _binary_metrics(y_true, y_pred, pos_integer=fail_idx)
+        m["n"] = int(len(items))
+        out[value] = {
+            k: m[k] for k in ("n", "precision", "recall", "f1", "fnr", "fpr",
+                              "accuracy", "tp", "fp", "fn", "tn")
+        }
+    return out
+
+
+def _enrich_recording_metrics(recording_metrics, meta_index):
+    """Attach provenance (failure_type, object, printer) to per-session metrics."""
+    for sid, entry in recording_metrics.items():
+        meta = meta_index.get(sid)
+        if not meta:
+            continue
+        for key in ("class", "failure_type", "object", "printer"):
+            if meta.get(key) is not None:
+                entry.setdefault("metadata", {})[key] = meta[key]
+    return recording_metrics
+
+
 def deep_evaluate(
     config: ExperimentConfig,
     checkpoint_path=None,
     base_dir="experiments",
     split="test",
     output_json=None,
+    metadata_dir=None,
 ) -> dict:
     """Run the full error-analysis evaluation for a split."""
     import torch
@@ -331,6 +403,20 @@ def deep_evaluate(
     report["recording_metrics"] = _recording_metrics(
         samples, class_names, fail_idx
     )
+    # Optional provenance enrichment + grouping when session metadata is present.
+    report["metadata_dir"] = str(Path(metadata_dir)) if metadata_dir else None
+    if metadata_dir:
+        meta_index = _load_session_metadata(metadata_dir)
+        _enrich_recording_metrics(report["recording_metrics"], meta_index)
+        report["metrics_by_failure_type"] = _pooled_metrics_by_field(
+            samples, fail_idx, meta_index, "failure_type"
+        )
+        report["metrics_by_object"] = _pooled_metrics_by_field(
+            samples, fail_idx, meta_index, "object"
+        )
+    else:
+        report["metrics_by_failure_type"] = {}
+        report["metrics_by_object"] = {}
     report["example_excerpts"] = _example_excerpts(
         samples, class_names, fail_idx, k=6
     )
@@ -416,3 +502,9 @@ def print_report(report: dict) -> None:
             if k.startswith("recall_")
         )
         print(f"  {rec:24s} n={r['n']:5d} acc={r['accuracy']:.3f} {extra}")
+
+    if report.get("metrics_by_failure_type"):
+        print("\n--- Metrics by failure type (failing-as-positive) ---")
+        for ftype, m in sorted(report["metrics_by_failure_type"].items()):
+            print(f"  {ftype:18s} n={m['n']:5d} prec={m['precision']} "
+                  f"rec={m['recall']} f1={m['f1']} fpr={m['fpr']} fnr={m['fnr']}")

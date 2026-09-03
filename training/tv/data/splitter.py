@@ -59,8 +59,12 @@ def _discover_sources(data_dir: Path) -> dict[str, dict[str, list[str]]]:
             # Source ID uses only the directory name (not label prefix)
             # so the same recording is identified across classes.
             for src_dir in sorted(subdirs):
+                # Frames may live directly in the source dir, or in a nested
+                # "frames/" subdirectory (session-oriented Layout A used by
+                # target-camera capture). Either way they belong to this source.
+                image_root = src_dir / "frames" if (src_dir / "frames").is_dir() else src_dir
                 src_files = sorted(
-                    f for f in src_dir.iterdir()
+                    f for f in image_root.iterdir()
                     if f.is_file() and f.suffix.lower() in {".jpg", ".jpeg", ".png", ".bmp", ".tiff"}
                 )
                 if src_files:
@@ -191,5 +195,65 @@ def split_dataset(
             for label, files in split_data.items():
                 for fp in files:
                     writer.writerow([fp, label])
+
+    return result
+
+
+def build_holdout(
+    data_dir: str | Path,
+    output_dir: str | Path | None = None,
+    session_id: str = "holdout",
+) -> SplitResult:
+    """Build a single held-out ``test`` manifest containing every session.
+
+    Intended for evaluating a FROZEN model on a freshly collected dataset where
+    conventional train/val/test splitting is not meaningful (there is no
+    training). Every session is placed in one held-out ``test`` split, keeping
+    session-level isolation: no session can appear in more than one split because
+    there is exactly one split.
+
+    Writes ``splits.json`` and ``test.csv`` into ``<data_dir>/splits/`` so the
+    existing loaders and deep-eval pipeline work unchanged. The ``train``/``val``
+    splits are left empty.
+
+    Args:
+        data_dir: Root dataset directory in Layout A
+            (``<class>/<session_id>/[frames/]<file>.jpg``).
+        output_dir: Where to write the manifest (default ``<data_dir>/splits``).
+        session_id: Label on the created test split (informational only).
+
+    Returns:
+        SplitResult with all files in ``test``.
+    """
+    data_dir = Path(data_dir).resolve()
+    output_dir = Path(output_dir) if output_dir else data_dir / "splits"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    sources = _discover_sources(data_dir)
+
+    test: dict[str, list[str]] = {}
+    for label, label_sources in sources.items():
+        files = [f for files in label_sources.values() for f in files]
+        test[label] = [str(Path(f).relative_to(data_dir)) for f in sorted(files)]
+
+    result = SplitResult(train={}, val={}, test=test)
+
+    manifest = {
+        "data_dir": str(data_dir),
+        "mode": session_id,
+        "split": "holdout",
+        "stats": result.stats,
+        "splits": {"train": {}, "val": {}, "test": {label: files for label, files in test.items()}},
+    }
+    with open(output_dir / "splits.json", "w") as f:
+        json.dump(manifest, f, indent=2)
+
+    csv_path = output_dir / "test.csv"
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["path", "label"])
+        for label, files in test.items():
+            for fp in files:
+                writer.writerow([fp, label])
 
     return result

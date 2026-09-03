@@ -9,7 +9,6 @@ import pytest
 
 from tv.data.splitter import split_dataset
 
-
 @pytest.fixture
 def sample_dataset(tmp_path: Path) -> Path:
     """Create a small synthetic dataset for testing."""
@@ -170,3 +169,64 @@ def test_cross_class_source_atomicity(tmp_path: Path) -> None:
             for f in split_data.get(label, []):
                 rec = Path(f).parent.name
                 assert recording_split[rec] == split_name
+
+
+def test_split_discovers_nested_frames_subdir(tmp_path: Path) -> None:
+    """Layout A with a nested frames/ subdir (target-camera capture) must split
+    at the session level and discover frames inside each session's frames/ dir."""
+    from tv.data.splitter import build_holdout, split_dataset
+
+    data = tmp_path / "data"
+    # normal: frames directly under session dir (legacy) AND under frames/
+    src = data / "normal" / "session_legacy"
+    src.mkdir(parents=True)
+    for i in range(3):
+        (src / f"{i}.jpg").write_bytes(b"\xff")
+    # failing: session with a frames/ subdir + metadata.json that must be ignored
+    for s in range(1, 6):
+        sess = data / "failing" / f"session_{s:03d}"
+        (sess / "frames").mkdir(parents=True)
+        for i in range(4):
+            (sess / "frames" / f"{i}.jpg").write_bytes(b"\xff")
+        (sess / "metadata.json").write_text('{"session_id": "x"}')
+
+    result = split_dataset(data, tmp_path / "splits", seed=0)
+    # 3 normal + 5*4 failing = 23 image files total
+    assert sum(result.stats.values()) == 23
+    # metadata.json must never be treated as a frame
+    assert not any("metadata.json" in f for f in result.train["failing"])
+    assert not any("metadata.json" in f for f in result.test["failing"])
+
+    # session-level isolation: every failing session stays in one split
+    from collections import defaultdict
+    sess_splits = defaultdict(set)
+    for split_name, sd in [("train", result.train), ("val", result.val), ("test", result.test)]:
+        for f in sd.get("failing", []):
+            sess_splits[Path(f).parts[-3]].add(split_name)  # label/session/frames/file
+    assert all(len(s) == 1 for s in sess_splits.values())
+
+    # holdout puts everything into a single test set
+    hold = build_holdout(data, tmp_path / "holdout")
+    assert sum(hold.stats.values()) == 23
+    assert hold.train == {} and hold.val == {}
+    assert sum(len(v) for v in hold.test.values()) == 23
+    assert (tmp_path / "holdout" / "test.csv").exists()
+    assert (tmp_path / "holdout" / "splits.json").exists()
+
+
+def test_holdout_relative_paths(tmp_path: Path) -> None:
+    from tv.data.splitter import build_holdout
+
+    data = tmp_path / "data"
+    for label in ("normal", "failing"):
+        sess = data / label / "session_001"
+        (sess / "frames").mkdir(parents=True)
+        for i in range(2):
+            (sess / "frames" / f"{i}.jpg").write_bytes(b"\xff")
+
+    result = build_holdout(data, tmp_path / "out")
+    # paths must be relative to data_dir so loaders resolve against splits.json
+    for f in result.test["normal"] + result.test["failing"]:
+        assert not Path(f).is_absolute()
+        assert str(Path(data / f).resolve()).startswith(str(data.resolve()))
+

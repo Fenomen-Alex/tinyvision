@@ -31,6 +31,7 @@ cmake-build-*/
 datasets/raw/
 datasets/processed/
 datasets/Printing_Errors/
+datasets/target-camera/
 
 # Experiment artifacts
 experiments/*/artifacts/
