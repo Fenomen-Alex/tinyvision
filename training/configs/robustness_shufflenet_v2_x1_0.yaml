@@ -1,0 +1,23 @@
+experiment_id: shufflenet_v2_x1_0_printing-errors_cdc9e2cad4
+model: shufflenet_v2_x1_0
+task: classification
+
+dataset:
+  name: printing-errors
+  version: "1.0"
+  data_dir: datasets/processed/printing-errors
+  image_size: 224
+  source_mode: "directory"
+
+data:
+  num_workers: 0
+  batch_size: 64
+  pin_memory: false
+
+evaluation:
+  decision_threshold: 0.5
+
+notes: >-
+  Stage 2B robustness eval. DO NOT TRAIN. This config pins the FROZEN
+  Experiment 1 ShuffleNetV2 baseline and evaluates offline perturbation
+  robustness on the held-out printing-errors test split.

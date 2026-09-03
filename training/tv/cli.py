@@ -141,6 +141,25 @@ def cmd_eval_deep(args: argparse.Namespace) -> None:
     print_report(report)
 
 
+def cmd_robustness(args: argparse.Namespace) -> None:
+    from tv.config import load_config
+    from tv.robustness import evaluate_robustness, print_report
+
+    config = load_config(Path(args.config))
+    ckpt = Path(args.checkpoint) if args.checkpoint else None
+    perturbations = args.perturbations.split(",") if args.perturbations else None
+    report = evaluate_robustness(
+        config,
+        checkpoint_path=ckpt,
+        base_dir=args.experiments_dir,
+        split=args.split,
+        output_json=args.output_json,
+        perturbations=perturbations,
+        seed=args.seed,
+    )
+    print_report(report)
+
+
 def cmd_audit_dataset(args: argparse.Namespace) -> None:
     from tv.data.audit import audit_dataset, print_report
 
@@ -267,6 +286,28 @@ def build_parser() -> argparse.ArgumentParser:
         help="Target-camera root with <class>/<session>/metadata.json for provenance + failure-type grouping",
     )
     p_deep.set_defaults(func=cmd_eval_deep)
+
+    p_rob = sub.add_parser(
+        "robustness",
+        help="Offline robustness/generalization eval of a frozen model "
+             "(perturbation severity sweep, no training)",
+    )
+    p_rob.add_argument("--config", required=True, help="Experiment config YAML")
+    p_rob.add_argument("--checkpoint", default=None, help="Path to model checkpoint")
+    p_rob.add_argument(
+        "--experiments-dir", default="experiments", help="Base dir for experiments"
+    )
+    p_rob.add_argument(
+        "--split", default="test", choices=["train", "val", "test"], help="Split to evaluate"
+    )
+    p_rob.add_argument("--output-json", default=None, help="Write JSON report to file")
+    p_rob.add_argument(
+        "--perturbations",
+        default=None,
+        help="Comma-separated list of perturbations (default: all)",
+    )
+    p_rob.add_argument("--seed", type=int, default=0, help="Seed for stochastic perturbations")
+    p_rob.set_defaults(func=cmd_robustness)
 
     p_list = sub.add_parser("list-models", help="List available model architectures")
     p_list.add_argument("--task", default=None, help="Filter by task (classification/detection)")
