@@ -89,11 +89,6 @@ def test_flat_layout(tmp_path: Path) -> None:
 
 
 def test_source_atomicity_layout_a(tmp_path: Path) -> None:
-    """All frames of one source directory must stay in the same split.
-
-    This is the core leakage guarantee: a print/capture session's frames must
-    never straddle train/val/test.
-    """
     data = tmp_path / "data"
     # 6 sources per class so each split can be populated
     for label in ("normal", "failing"):
@@ -134,3 +129,44 @@ def test_source_atomicity_layout_a(tmp_path: Path) -> None:
                 source_splits[source_of(f)].add(split_name)
     for src, splits in source_splits.items():
         assert len(splits) == 1, f"Source {src} leaked across splits {splits}"
+
+
+def test_cross_class_source_atomicity(tmp_path: Path) -> None:
+    """The same source must stay in the same split even across classes.
+
+    A recording may contain frames of both classes (e.g. a print that starts
+    normal then fails). The source ID (subdirectory name) is identical across
+    label dirs, so the splitter must assign it to exactly one split.
+    """
+    data = tmp_path / "data"
+    recordings = ["recA", "recB", "recC", "recD"]
+    for rec in recordings:
+        for label in ("normal", "failing"):
+            src = data / label / rec
+            src.mkdir(parents=True)
+            for i in range(4):
+                (src / f"{i}.jpg").write_bytes(b"\xff")
+
+    result = split_dataset(data, tmp_path / "splits", seed=7)
+
+    recording_split: dict[str, str] = {}
+    for split_name, split_data in [
+        ("train", result.train), ("val", result.val), ("test", result.test),
+    ]:
+        for label, files in split_data.items():
+            for f in files:
+                rec = Path(f).parent.name
+                if rec in recording_split:
+                    assert recording_split[rec] == split_name, \
+                        f"Recording {rec} leaked across splits"
+                else:
+                    recording_split[rec] = split_name
+
+    # Every class's files must follow the same recording->split assignment
+    for label in ("normal", "failing"):
+        for split_name, split_data in [
+            ("train", result.train), ("val", result.val), ("test", result.test),
+        ]:
+            for f in split_data.get(label, []):
+                rec = Path(f).parent.name
+                assert recording_split[rec] == split_name

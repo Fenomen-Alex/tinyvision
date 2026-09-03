@@ -44,10 +44,12 @@ def _build_transforms(
 class CSVImageDataset(Dataset):
     """Dataset that reads image paths and labels from a CSV file."""
 
-    def __init__(self, csv_path: Path, transform: transforms.Compose | None = None):
+    def __init__(self, csv_path: Path, data_dir: Path | None = None,
+                 transform: transforms.Compose | None = None):
         self.samples: list[tuple[str, int]] = []
         self.class_to_idx: dict[str, int] = {}
         self.transform = transform
+        self.data_dir = data_dir
         self._load(csv_path)
 
     def _load(self, csv_path: Path) -> None:
@@ -61,7 +63,11 @@ class CSVImageDataset(Dataset):
         with open(csv_path) as f:
             reader = csvmod.DictReader(f)
             for row in reader:
-                self.samples.append((row["path"], self.class_to_idx[row["label"]]))
+                path = row["path"]
+                # Resolve relative paths against data_dir
+                if self.data_dir and not Path(path).is_absolute():
+                    path = str(self.data_dir / path)
+                self.samples.append((path, self.class_to_idx[row["label"]]))
 
     def __len__(self) -> int:
         return len(self.samples)
@@ -107,9 +113,18 @@ def get_classification_loaders(
     if not csv_path.exists():
         raise FileNotFoundError(f"Split CSV not found: {csv_path}")
 
+    # Read data_dir from splits.json to resolve relative paths
+    import json as jsonmod
+    splits_json = split_dir / "splits.json"
+    data_dir = None
+    if splits_json.exists():
+        with open(splits_json) as f:
+            manifest = jsonmod.load(f)
+        data_dir = Path(manifest["data_dir"])
+
     is_train = split == "train"
     tfm = _build_transforms(image_size, augmentation or {}, is_train=is_train)
-    dataset = CSVImageDataset(csv_path, transform=tfm)
+    dataset = CSVImageDataset(csv_path, data_dir=data_dir, transform=tfm)
 
     loader = DataLoader(
         dataset,

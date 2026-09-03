@@ -13,6 +13,7 @@ structured Markdown file.
 - [roboflow-seprinder.md](./roboflow-seprinder.md) — "detect-failure-in-3d-printing" Roboflow object-detection dataset (~3.6k images, CC BY 4.0).
 - [roboflow-sylucauc.md](./roboflow-sylucauc.md) — "3d-printing-failure-detection" Roboflow object-detection dataset (~5.8k images, CC BY 4.0).
 - [huggingface-javiai.md](./huggingface-javiai.md) — "failures-3D-print" (Hugging Face, 73 rows, license unknown).
+- [nilshagenbeyer-3d-printing-errors.md](./nilshagenbeyer-3d-printing-errors.md) — "3d printing errors" (NilsHagenBeyer / nimbus200, ~10.9k–16.3k images, Apache 2.0). **Used for Experiment 1.**
 
 ## Caveats
 

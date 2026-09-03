@@ -30,12 +30,11 @@ cmake-build-*/
 # Dataset contents
 datasets/raw/
 datasets/processed/
+datasets/Printing_Errors/
 
 # Experiment artifacts
 experiments/*/artifacts/
-
-# Logs
-*.log
+experiments/logs/
 
 # Environment
 .env

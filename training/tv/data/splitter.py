@@ -56,13 +56,15 @@ def _discover_sources(data_dir: Path) -> dict[str, dict[str, list[str]]]:
 
         if subdirs:
             # Layout A: source directories
+            # Source ID uses only the directory name (not label prefix)
+            # so the same recording is identified across classes.
             for src_dir in sorted(subdirs):
                 src_files = sorted(
                     f for f in src_dir.iterdir()
                     if f.is_file() and f.suffix.lower() in {".jpg", ".jpeg", ".png", ".bmp", ".tiff"}
                 )
                 if src_files:
-                    sources[label][f"{label}/{src_dir.name}"] = [str(f) for f in src_files]
+                    sources[label][src_dir.name] = [str(f) for f in src_files]
         elif files:
             # Layout B: flat files, each is its own source
             for f in files:
@@ -76,35 +78,53 @@ def _stratified_source_split(
     ratios: tuple[float, float, float],
     seed: int,
 ) -> tuple[dict[str, list[str]], dict[str, list[str]], dict[str, list[str]]]:
-    """Split sources into train/val/test while maintaining class balance.
+    """Split sources into train/val/test at the recording level.
 
-    For each class, sources are shuffled and split according to ratios.
+    Each recording (source ID) is assigned to exactly one split, across all
+    classes. This prevents leakage where the same print session appears in
+    train for one class and test for another.
     """
     rng = random.Random(seed)
-    train, val, test = {}, {}, {}
 
+    # Collect all unique source IDs across all classes
+    all_source_ids: dict[str, dict[str, list[str]]] = {}  # source_id -> {label: [files]}
     for label, label_sources in sources.items():
-        source_ids = list(label_sources.keys())
-        rng.shuffle(source_ids)
+        for source_id, files in label_sources.items():
+            if source_id not in all_source_ids:
+                all_source_ids[source_id] = {}
+            all_source_ids[source_id][label] = files
 
-        n = len(source_ids)
-        n_train = max(1, int(n * ratios[0])) if n > 2 else n
-        n_val = max(1, int(n * ratios[1])) if n > 2 else 0
-        # Ensure test gets the remainder, but at least 0
-        n_test = max(0, n - n_train - n_val)
-        # Adjust if test is 0 but there are enough sources
-        if n_test == 0 and n >= 3 and ratios[2] > 0:
-            if n_train > 1:
-                n_train -= 1
-                n_test = 1
+    source_ids = list(all_source_ids.keys())
+    rng.shuffle(source_ids)
 
-        train_ids = source_ids[:n_train]
-        val_ids = source_ids[n_train : n_train + n_val]
-        test_ids = source_ids[n_train + n_val :]
+    n = len(source_ids)
+    n_train = max(1, int(n * ratios[0])) if n > 2 else n
+    n_val = max(1, int(n * ratios[1])) if n > 2 else 0
+    n_test = max(0, n - n_train - n_val)
+    if n_test == 0 and n >= 3 and ratios[2] > 0:
+        if n_train > 1:
+            n_train -= 1
+            n_test = 1
 
-        train[label] = [f for sid in train_ids for f in label_sources[sid]]
-        val[label] = [f for sid in val_ids for f in label_sources[sid]]
-        test[label] = [f for sid in test_ids for f in label_sources[sid]]
+    train_ids = set(source_ids[:n_train])
+    val_ids = set(source_ids[n_train : n_train + n_val])
+    test_ids = set(source_ids[n_train + n_val :])
+
+    train, val, test = {}, {}, {}
+    for label in sources:
+        train[label] = []
+        val[label] = []
+        test[label] = []
+
+    for source_id, label_files in all_source_ids.items():
+        if source_id in train_ids:
+            target = train
+        elif source_id in val_ids:
+            target = val
+        else:
+            target = test
+        for label, files in label_files.items():
+            target[label].extend(files)
 
     return train, val, test
 
@@ -130,12 +150,21 @@ def split_dataset(
     Returns:
         SplitResult with file lists per split and label.
     """
-    data_dir = Path(data_dir)
+    data_dir = Path(data_dir).resolve()
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     sources = _discover_sources(data_dir)
     train, val, test = _stratified_source_split(sources, tuple(ratios), seed)
+
+    # Make all paths relative to data_dir for portability
+    def _relativize(file_lists: dict[str, list[str]]) -> dict[str, list[str]]:
+        return {label: [str(Path(f).relative_to(data_dir)) for f in files]
+                for label, files in file_lists.items()}
+
+    train = _relativize(train)
+    val = _relativize(val)
+    test = _relativize(test)
 
     result = SplitResult(train=train, val=val, test=test)
 

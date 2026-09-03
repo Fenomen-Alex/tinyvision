@@ -1,0 +1,57 @@
+experiment_id: mobilenet_v3_large_printing-errors_fe02d643ef
+model: mobilenet_v3_large
+task: classification
+dataset:
+  name: printing-errors
+  version: '1.0'
+  data_dir: datasets/processed/printing-errors
+  image_size: 224
+  source_mode: directory
+  split_ratios:
+  - 0.7
+  - 0.15
+  - 0.15
+data:
+  num_workers: 4
+  batch_size: 32
+  pin_memory: true
+train:
+  epochs: 30
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  augmentation:
+    horizontal_flip: true
+    random_rotation: 15
+    color_jitter: 0.2
+    random_crop: false
+    normalize: true
+  precision: fp32
+  seed: 42
+  early_stopping_patience: 10
+evaluation:
+  metrics:
+  - precision
+  - recall
+  - f1
+  - fnr
+  - fpr
+  - auroc
+  decision_threshold: 0.5
+export:
+  format: onnx
+  quantization: int8
+  dynamic_axes: true
+hardware:
+  machine: arm64 (arm)
+  gpu: None
+software:
+  python: 3.11.15
+  torch: !!python/object/new:torch.torch_version.TorchVersion
+  - 2.14.0
+  torchvision: 0.29.0
+  ultralytics: 8.4.138
+  opencv: 5.0.0
+  os: Darwin 25.6.0
+created_at: '2026-09-03T16:27:23.062093'
+notes: 'Experiment 1: binary classifier across all torchvision candidates'

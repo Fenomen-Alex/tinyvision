@@ -1,0 +1,55 @@
+# TinyVision Experiment 1: Binary classifier across all candidates
+# Dataset: 3d-print-errors (NilsHagenBeyer) — Apache 2.0
+# Task: Binary classification (normal vs failing)
+
+experiment_id: ""  # Auto-generated
+
+model: efficientnet_b0
+task: classification
+
+dataset:
+  name: printing-errors
+  version: "1.0"
+  data_dir: datasets/processed/printing-errors
+  image_size: 224
+  source_mode: "directory"
+  split_ratios: [0.7, 0.15, 0.15]
+
+data:
+  num_workers: 4
+  batch_size: 32
+  pin_memory: true
+
+train:
+  epochs: 30
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  augmentation:
+    horizontal_flip: true
+    random_rotation: 15
+    color_jitter: 0.2
+    random_crop: false
+    normalize: true
+  precision: fp32
+  seed: 42
+  early_stopping_patience: 10
+
+evaluation:
+  metrics:
+    - precision
+    - recall
+    - f1
+    - fnr
+    - fpr
+    - auroc
+  decision_threshold: 0.5
+
+export:
+  format: onnx
+  quantization: int8
+  dynamic_axes: true
+
+hardware: {}
+software: {}
+notes: "Experiment 1: binary classifier across all torchvision candidates"

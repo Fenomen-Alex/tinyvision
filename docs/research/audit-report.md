@@ -256,3 +256,27 @@ No fabricated results. All evidence produced by running commands in this session
 The pipeline is ready for **Stage 1: Dataset Collection** (`tv capture`).
 The substantive bugs that would cause silent data loss (ID collision, seed non-reproducibility)
 or crashes (multiclass metrics) have all been fixed. The 35 tests pass.
+
+---
+
+## Addendum: Stage 1 fixes (dataset preparation + Experiment 1)
+
+Fixes made while running dataset preparation and Experiment 1 (2026-09-03):
+
+| File | Change | Why |
+|---|---|---|
+| `tv/data/splitter.py` | Source ID now `/path/to/name` → `name` (drop the label prefix) | Same recording (e.g. `Recording_...`) appears under both `normal/` and `failing/`; as a label-prefixed ID it was split independently per class, causing cross-class leakage. |
+| `tv/data/splitter.py` | Split is now computed over all unique source IDs across classes (recording assigned to exactly one split) | Guarantees a print session never straddles train/val/test even when it contains both classes. |
+| `tv/data/splitter.py` | Paths written to split CSVs are relativized against `data_dir` | Previously emitted CWD-relative paths (`../datasets/...`) that broke when training ran from a different directory. |
+| `tv/data/loaders.py` | `CSVImageDataset(data_dir=...)` resolves relative paths against `data_dir` read from `splits.json` | Loader now finds files regardless of the caller's CWD. |
+| `tv/train.py` | Device selection: CPU → CUDA/MPS/CPU fallback | Previously hardcoded CUDA-vs-CPU, so Apple Silicon (MPS) silently trained on CPU (~5× slower). |
+| `tv/train.py` | `_WorkerInit` picklable class replaces closure `make_worker_init` | Closure with `base_seed` captured was not picklable, DataLoader workers crashed on macOS spawn. |
+| New `tv/data/audit.py` + `tv audit-dataset` CLI | Dataset integrity audit | Reports class distribution, resolutions, corruption, exact duplicates (SHA-256), min-size violations. |
+| New `scripts/prepare_dataset.py` | CSV→Layout A reorganization | Converts the raw aggregated 3d-print-errors download into `label/recording/*.png` so the splitter groups by recording. |
+
+Test coverage: +1 test (`test_cross_class_source_atomicity`). Total: **36 tests passing**.
+
+Stage 1 verification on the prepared dataset (16,287 images, 151 recordings):
+- Audit: 0 corrupted, 0 exact duplicates, uniform 256×256.
+- Split (70/15/15, seed 42): train 11,254 / val 2,174 / test 2,859.
+- Verified zero recording overlap across splits (leakage-free).

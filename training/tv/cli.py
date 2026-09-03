@@ -87,6 +87,23 @@ def cmd_capture(args: argparse.Namespace) -> None:
     print(json.dumps(result, indent=2))
 
 
+def cmd_audit_dataset(args: argparse.Namespace) -> None:
+    from tv.data.audit import audit_dataset, print_report
+
+    report = audit_dataset(
+        data_dir=Path(args.data_dir),
+        min_width=args.min_width,
+        min_height=args.min_height,
+    )
+    print_report(report)
+
+    if args.output_json:
+        import json as jsonmod
+        with open(args.output_json, "w") as f:
+            jsonmod.dump(report.to_dict(), f, indent=2)
+        print(f"\nJSON report written to {args.output_json}")
+
+
 def cmd_list_models(args: argparse.Namespace) -> None:
     from tv.models.factory import get_model_spec, list_models
 
@@ -147,6 +164,13 @@ def build_parser() -> argparse.ArgumentParser:
     p_capture.add_argument("--fps", type=float, default=2.0, help="Target frames per second")
     p_capture.add_argument("--camera", type=int, default=0, help="Camera device index")
     p_capture.set_defaults(func=cmd_capture)
+
+    p_audit = sub.add_parser("audit-dataset", help="Audit a dataset for integrity and statistics")
+    p_audit.add_argument("--data-dir", required=True, help="Root data directory (Layout A or B)")
+    p_audit.add_argument("--min-width", type=int, default=32, help="Minimum image width")
+    p_audit.add_argument("--min-height", type=int, default=32, help="Minimum image height")
+    p_audit.add_argument("--output-json", default=None, help="Write JSON report to file")
+    p_audit.set_defaults(func=cmd_audit_dataset)
 
     p_list = sub.add_parser("list-models", help="List available model architectures")
     p_list.add_argument("--task", default=None, help="Filter by task (classification/detection)")

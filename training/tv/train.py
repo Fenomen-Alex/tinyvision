@@ -31,16 +31,22 @@ def set_seed(seed: int) -> torch.Generator:
     return torch.Generator().manual_seed(seed)
 
 
+class _WorkerInit:
+    """Picklable worker_init_fn that seeds each DataLoader worker deterministically."""
+
+    def __init__(self, base_seed: int):
+        self.base_seed = base_seed
+
+    def __call__(self, worker_id: int) -> None:
+        import random
+        np.random.seed(self.base_seed + worker_id)
+        random.seed(self.base_seed + worker_id)
+        torch.manual_seed(self.base_seed + worker_id)
+
+
 def make_worker_init(base_seed: int):
     """Return a worker_init_fn that seeds each DataLoader worker deterministically."""
-    import random
-
-    def _worker_init(worker_id: int) -> None:
-        np.random.seed(base_seed + worker_id)
-        random.seed(base_seed + worker_id)
-        torch.manual_seed(base_seed + worker_id)
-
-    return _worker_init
+    return _WorkerInit(base_seed)
 
 
 def train_classification(
@@ -86,7 +92,12 @@ def train_classification(
     )
 
     num_classes = len(class_to_idx)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")
+    else:
+        device = torch.device("cpu")
 
     # Model
     model = build_classifier(config.model, num_classes, pretrained=True)

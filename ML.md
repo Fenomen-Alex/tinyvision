@@ -32,17 +32,27 @@ Multi-class and detection are secondary paths for later experiments.
 every experiment selects its architecture from the registry, and measured results
 (not the research table) decide the winner.
 
-Research candidates for Experiment 1 (all available in the registry):
+#### Experiment 1 measured result (Sept 2026)
 
-| Model | Accuracy | RPi5 latency | Size (INT8) | License |
-|---|---|---|---|---|
-| EfficientNet-Lite0 | 75.1% (ImageNet) | ~49ms | 5.1MB | Apache 2.0 |
-| YOLOv11n-cls | 70.0% (ImageNet) | ~10ms | 1.6MB | AGPL-3.0 |
-| ShuffleNetV2 | 69.4% (ImageNet) | ~30ms | 1.47MB | MIT |
+All torchvision classification candidates trained on 3d-print-errors binary task
+(normal vs failing), evaluated on held-out test set. Full details in
+`docs/research/experiment1-results.md`.
 
-Under AGPL-3.0/GPL-2.0 licensing (UL principle 6), a copyleft model as the winner
-would constrain how the project may be distributed/relicensed; favor permissive
-architectures where results are comparable.
+| Model | Accuracy | F1 | AUROC | fp32 size | int8 size |
+|---|---|---|---|---|---|
+| **mobilenet_v3_small** | 0.823 | **0.761** | **0.925** | 6.09 MB | 1.69 MB |
+| shufflenet_v2_x1_0 | **0.836** | 0.757 | 0.900 | 5.05 MB | 1.45 MB |
+| mobilenet_v3_large | 0.821 | 0.726 | 0.906 | 16.8 MB | 4.42 MB |
+| efficientnet_b0 | 0.789 | 0.695 | 0.897 | 16.0 MB | 4.36 MB |
+| resnet18 | 0.740 | 0.685 | 0.871 | 44.7 MB | 11.2 MB |
+
+**Provisional winner: mobilenet_v3_small** (best F1 + AUROC, small, fast).
+**Runner-up: shufflenet_v2_x1_0** (comparable F1, smallest footprint).
+
+Shadow candidate set (2 models) carried to env experiments. Final selection
+confirmed by edge latency/memory benchmarking and temporal-smoothing results.
+
+Original research table (pre-measurement) is preserved below for reference.
 
 ### Temporal decision logic (decided)
 
@@ -54,16 +64,18 @@ architectures where results are comparable.
 - Sensitivity exposed as user setting
 - ~100 lines of C++, O(1) per frame
 
-### Datasets (decided)
+### Datasets (status)
 
-**Own data collection is essential.** No existing dataset provides both normal and failure
-classes with clean licensing.
+**Own data collection is essential** for deployment-time validation on real
+hardware/camera. Experiment 1 used the NilsHagenBeyer "3d printing errors"
+dataset (Apache 2.0) as the binary-classification training set.
 
 | Dataset | Role | License | Status |
 |---|---|---|---|
-| Own collection (normal) | Normal class | N/A | Must collect |
+| **NilsHagenBeyer 3d printing errors** | Experiment 1 binary classification | Apache 2.0 | ✅ Used |
+| Own collection (normal) | Normal class, deployment validation | N/A | Must collect |
 | Own collection (failures) | Failure class | N/A | Must collect + inject |
-| wengmhu FDM defect | Failure supplement | MIT | Usable |
+| wengmhu FDM defect | Failure supplement (multi-class) | MIT | Usable |
 | Roboflow/seprinder | Detection experiments | CC BY 4.0 (provenance caution) | Usable with caveat |
 | Roboflow/syLucauc | Detection experiments | CC BY 4.0 (provenance caution) | Usable with caveat |
 | Caxton (Cambridge) | Not for classification | CC BY 4.0 | Not suitable (continuous params only) |
@@ -92,16 +104,19 @@ End-to-end smoke test (train → evaluate → export → INT8) passed on CPU.
 
 ### Next steps
 
-1. Collect own dataset (`tv capture`) for normal + failure classes.
-2. Add `wengmhu` FDM defect set as failure supplement.
-3. Run Experiment 1 across all classification candidates in the registry.
-4. Declare winner from measured results, then build the C++ runtime.
+1. ✅ Run Experiment 1 across all classification candidates in the registry (done).
+2. Collect own dataset (`tv capture`) for normal + failure classes to supplement
+   and validate on real hardware/camera.
+3. Run the temporal-smoothing experiment (Experiment 4) on the shadow candidate set
+   (mobilenet_v3_small, shufflenet_v2_x1_0).
+4. Benchmark edge latency / memory on Raspberry Pi (see `EDGE.md`).
+5. Declare the winner from measured edge + accuracy results, then build the C++ runtime.
 
 ## Experiment plan
 
 | # | Task | Model | Dataset | Timeline |
 |---|---|---|---|---|
-| 1 | Binary classification | EfficientNet-Lite0, YOLOv11n-cls, ShuffleNetV2 | wengmhu + own | Week 1–2 |
+| 1 | Binary classification (✅ done) | mobilenet_v3_small, shufflenet_v2_x1_0 (winner + runner-up) | 3d-print-errors + own | Week 1–2 |
 | 4 | Temporal smoothing | Experiment 1 model outputs | Video sequences | Week 2–3 |
 | 2 | Object detection | YOLOv11n | Roboflow datasets | Week 3–4 |
 | 3 | Anomaly detection | EfficientAD-S | Own normal prints | Week 4–5 |
