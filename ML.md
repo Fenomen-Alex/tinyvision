@@ -89,6 +89,16 @@ defensible task is **per-frame binary classification**; false alarms should be m
 on all-good recordings, and temporal "onset" is **not verified ground truth** (class-flip does
 not reliably equal physical failure onset).
 
+**Stage 5 update (see `docs/research/stage5-corrected-evaluation.md`):** corrected baseline
+and temporal evaluation against per-frame labels. Exp 1 frame-level metrics are confirmed
+identical (not superseded). The preserved FSM (use_delta=True, abs 0.65) is catastrophically
+broken on corrected labels: recall 0.007 on test. EWMA does not improve frame-level metrics;
+its only benefit is smoothing false-alarm runs (80→20 on test). Corrected "catastrophic"
+recordings analysis: 3 of 4 were missed-detection problems, not false-alarm problems. Val
+threshold sweep shows F1 peaks at 0.7 (0.911 vs 0.908 at frozen 0.5). Key priorities:
+(1) own data collection, (2) threshold tuning for deployment, (3) failure-type-specific
+analysis, (4) deferred temporal logic redesign.
+
 ### Datasets (status)
 
 **Own data collection is essential** for deployment-time validation on real
@@ -167,6 +177,7 @@ End-to-end smoke test (train → evaluate → export → INT8) passed on CPU.
 | Anomaly detection research | `docs/research/anomaly-detection-for-3d-print.md` |
 | Stage 3 temporal evaluation | `docs/research/stage3-temporal-evaluation.md` |
 | Stage 4 dataset forensics | `docs/research/stage4-dataset-forensics.md` |
+| Stage 5 corrected evaluation | `docs/research/stage5-corrected-evaluation.md` |
 | Open-source projects | `docs/research/open-source-projects.md` |
 | Lightweight models | `docs/research/lightweight-models-comparison.md` |
 | Dataset records | `docs/research/datasets/` |
