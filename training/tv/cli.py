@@ -87,6 +87,22 @@ def cmd_capture(args: argparse.Namespace) -> None:
     print(json.dumps(result, indent=2))
 
 
+def cmd_eval_deep(args: argparse.Namespace) -> None:
+    from tv.config import load_config
+    from tv.deepeval import deep_evaluate, print_report
+
+    config = load_config(Path(args.config))
+    ckpt = Path(args.checkpoint) if args.checkpoint else None
+    report = deep_evaluate(
+        config,
+        checkpoint_path=ckpt,
+        base_dir=args.experiments_dir,
+        split=args.split,
+        output_json=args.output_json,
+    )
+    print_report(report)
+
+
 def cmd_audit_dataset(args: argparse.Namespace) -> None:
     from tv.data.audit import audit_dataset, print_report
 
@@ -171,6 +187,18 @@ def build_parser() -> argparse.ArgumentParser:
     p_audit.add_argument("--min-height", type=int, default=32, help="Minimum image height")
     p_audit.add_argument("--output-json", default=None, help="Write JSON report to file")
     p_audit.set_defaults(func=cmd_audit_dataset)
+
+    p_deep = sub.add_parser("eval-deep", help="Deep error analysis on a split")
+    p_deep.add_argument("--config", required=True, help="Experiment config YAML")
+    p_deep.add_argument("--checkpoint", default=None, help="Path to model checkpoint")
+    p_deep.add_argument(
+        "--experiments-dir", default="experiments", help="Base dir for experiments"
+    )
+    p_deep.add_argument(
+        "--split", default="test", choices=["train", "val", "test"], help="Split to evaluate"
+    )
+    p_deep.add_argument("--output-json", default=None, help="Write JSON report to file")
+    p_deep.set_defaults(func=cmd_eval_deep)
 
     p_list = sub.add_parser("list-models", help="List available model architectures")
     p_list.add_argument("--task", default=None, help="Filter by task (classification/detection)")

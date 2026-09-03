@@ -1,0 +1,514 @@
+{
+  "model": "mobilenet_v3_small",
+  "experiment_id": "mobilenet_v3_small_printing-errors_b7ac0cdc2e",
+  "split": "test",
+  "checkpoint": "experiments/mobilenet_v3_small_printing-errors_b7ac0cdc2e/artifacts/best.pt",
+  "class_to_idx": {
+    "failing": 0,
+    "normal": 1
+  },
+  "failing_class_idx": 0,
+  "sample_count": 2859,
+  "recordings": 24,
+  "threshold": 0.5,
+  "metrics_failing_positive": {
+    "positive_class": 0,
+    "precision": 0.955,
+    "recall": 0.7814,
+    "f1": 0.8595,
+    "accuracy": 0.823,
+    "fnr": 0.2186,
+    "fpr": 0.0831,
+    "tn": 805,
+    "fp": 73,
+    "fn": 433,
+    "tp": 1548
+  },
+  "metrics_normal_positive": {
+    "positive_class": 1,
+    "precision": 0.6502,
+    "recall": 0.9169,
+    "f1": 0.7609,
+    "accuracy": 0.823,
+    "fnr": 0.0831,
+    "fpr": 0.2186,
+    "tn": 1548,
+    "fp": 433,
+    "fn": 73,
+    "tp": 805
+  },
+  "per_class": {
+    "failing": {
+      "precision": 0.955,
+      "recall": 0.7814,
+      "f1": 0.8595,
+      "support": 1981
+    },
+    "normal": {
+      "precision": 0.6502,
+      "recall": 0.9169,
+      "f1": 0.7609,
+      "support": 878
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "failing",
+      "normal"
+    ],
+    "matrix": [
+      [
+        1548,
+        433
+      ],
+      [
+        73,
+        805
+      ]
+    ]
+  },
+  "threshold_sweep": [
+    {
+      "threshold_p_failing": 0.1,
+      "positive_class": 0,
+      "precision": 0.8971,
+      "recall": 0.8804,
+      "f1": 0.8887,
+      "accuracy": 0.8471,
+      "fnr": 0.1196,
+      "fpr": 0.2278,
+      "tn": 678,
+      "fp": 200,
+      "fn": 237,
+      "tp": 1744
+    },
+    {
+      "threshold_p_failing": 0.2,
+      "positive_class": 0,
+      "precision": 0.9264,
+      "recall": 0.8455,
+      "f1": 0.8841,
+      "accuracy": 0.8464,
+      "fnr": 0.1545,
+      "fpr": 0.1515,
+      "tn": 745,
+      "fp": 133,
+      "fn": 306,
+      "tp": 1675
+    },
+    {
+      "threshold_p_failing": 0.3,
+      "positive_class": 0,
+      "precision": 0.9402,
+      "recall": 0.8253,
+      "f1": 0.879,
+      "accuracy": 0.8426,
+      "fnr": 0.1747,
+      "fpr": 0.1185,
+      "tn": 774,
+      "fp": 104,
+      "fn": 346,
+      "tp": 1635
+    },
+    {
+      "threshold_p_failing": 0.4,
+      "positive_class": 0,
+      "precision": 0.9487,
+      "recall": 0.8021,
+      "f1": 0.8693,
+      "accuracy": 0.8328,
+      "fnr": 0.1979,
+      "fpr": 0.0979,
+      "tn": 792,
+      "fp": 86,
+      "fn": 392,
+      "tp": 1589
+    },
+    {
+      "threshold_p_failing": 0.5,
+      "positive_class": 0,
+      "precision": 0.955,
+      "recall": 0.7814,
+      "f1": 0.8595,
+      "accuracy": 0.823,
+      "fnr": 0.2186,
+      "fpr": 0.0831,
+      "tn": 805,
+      "fp": 73,
+      "fn": 433,
+      "tp": 1548
+    },
+    {
+      "threshold_p_failing": 0.6,
+      "positive_class": 0,
+      "precision": 0.9596,
+      "recall": 0.7562,
+      "f1": 0.8458,
+      "accuracy": 0.809,
+      "fnr": 0.2438,
+      "fpr": 0.0718,
+      "tn": 815,
+      "fp": 63,
+      "fn": 483,
+      "tp": 1498
+    },
+    {
+      "threshold_p_failing": 0.7,
+      "positive_class": 0,
+      "precision": 0.9632,
+      "recall": 0.7259,
+      "f1": 0.8279,
+      "accuracy": 0.7908,
+      "fnr": 0.2741,
+      "fpr": 0.0626,
+      "tn": 823,
+      "fp": 55,
+      "fn": 543,
+      "tp": 1438
+    },
+    {
+      "threshold_p_failing": 0.8,
+      "positive_class": 0,
+      "precision": 0.9696,
+      "recall": 0.6916,
+      "f1": 0.8073,
+      "accuracy": 0.7712,
+      "fnr": 0.3084,
+      "fpr": 0.049,
+      "tn": 835,
+      "fp": 43,
+      "fn": 611,
+      "tp": 1370
+    },
+    {
+      "threshold_p_failing": 0.9,
+      "positive_class": 0,
+      "precision": 0.9792,
+      "recall": 0.6421,
+      "f1": 0.7756,
+      "accuracy": 0.7426,
+      "fnr": 0.3579,
+      "fpr": 0.0308,
+      "tn": 851,
+      "fp": 27,
+      "fn": 709,
+      "tp": 1272
+    }
+  ],
+  "recording_metrics": {
+    "Recording_01122022_16_06_44": {
+      "recording": "Recording_01122022_16_06_44",
+      "n": 86,
+      "accuracy": 0.7674,
+      "recall_failing": 0.7561,
+      "recall_normal": 1.0
+    },
+    "Recording_03012023_15_32_58": {
+      "recording": "Recording_03012023_15_32_58",
+      "n": 124,
+      "accuracy": 0.9194,
+      "recall_failing": 0.9082,
+      "recall_normal": 0.9615
+    },
+    "Recording_03012023_15_48_43": {
+      "recording": "Recording_03012023_15_48_43",
+      "n": 126,
+      "accuracy": 0.9921,
+      "recall_failing": 0.9912,
+      "recall_normal": 1.0
+    },
+    "Recording_03012023_19_32_03": {
+      "recording": "Recording_03012023_19_32_03",
+      "n": 119,
+      "accuracy": 0.916,
+      "recall_failing": 0.9074,
+      "recall_normal": 1.0
+    },
+    "Recording_06012023_12_17_19": {
+      "recording": "Recording_06012023_12_17_19",
+      "n": 179,
+      "accuracy": 0.3464,
+      "recall_failing": 0.0168,
+      "recall_normal": 1.0
+    },
+    "Recording_06012023_12_43_32": {
+      "recording": "Recording_06012023_12_43_32",
+      "n": 126,
+      "accuracy": 0.8492,
+      "recall_failing": 0.8319,
+      "recall_normal": 1.0
+    },
+    "Recording_06122022_14_49_53": {
+      "recording": "Recording_06122022_14_49_53",
+      "n": 164,
+      "accuracy": 0.6037,
+      "recall_failing": 0.5667,
+      "recall_normal": 1.0
+    },
+    "Recording_08012023_13_31_14": {
+      "recording": "Recording_08012023_13_31_14",
+      "n": 147,
+      "accuracy": 0.7551,
+      "recall_failing": 0.7551
+    },
+    "Recording_10012023_20_09_14": {
+      "recording": "Recording_10012023_20_09_14",
+      "n": 166,
+      "accuracy": 1.0,
+      "recall_failing": 1.0,
+      "recall_normal": 1.0
+    },
+    "Recording_10012023_22_39_52": {
+      "recording": "Recording_10012023_22_39_52",
+      "n": 104,
+      "accuracy": 1.0,
+      "recall_failing": 1.0,
+      "recall_normal": 1.0
+    },
+    "Recording_14.02.2023_17_38_44": {
+      "recording": "Recording_14.02.2023_17_38_44",
+      "n": 72,
+      "accuracy": 0.6944,
+      "recall_failing": 0.6944
+    },
+    "Recording_14.02.2023_20_17_41": {
+      "recording": "Recording_14.02.2023_20_17_41",
+      "n": 46,
+      "accuracy": 0.9783,
+      "recall_failing": 0.9783
+    },
+    "Recording_14.02.2023_21_04_55": {
+      "recording": "Recording_14.02.2023_21_04_55",
+      "n": 94,
+      "accuracy": 1.0,
+      "recall_failing": 1.0
+    },
+    "Recording_14.02.2023_21_24_41": {
+      "recording": "Recording_14.02.2023_21_24_41",
+      "n": 118,
+      "accuracy": 0.9746,
+      "recall_failing": 0.9746
+    },
+    "Recording_15.02.2023_13_19_52": {
+      "recording": "Recording_15.02.2023_13_19_52",
+      "n": 127,
+      "accuracy": 0.1496,
+      "recall_failing": 0.1496
+    },
+    "Recording_16.02.2023_17_27_18": {
+      "recording": "Recording_16.02.2023_17_27_18",
+      "n": 98,
+      "accuracy": 0.8163,
+      "recall_failing": 0.8163
+    },
+    "Recording_17.02.2023_14_11_25": {
+      "recording": "Recording_17.02.2023_14_11_25",
+      "n": 80,
+      "accuracy": 1.0,
+      "recall_failing": 1.0
+    },
+    "Recording_17.02.2023_15_18_59": {
+      "recording": "Recording_17.02.2023_15_18_59",
+      "n": 190,
+      "accuracy": 0.9789,
+      "recall_failing": 0.9789
+    },
+    "Recording_05012023_13_10_42": {
+      "recording": "Recording_05012023_13_10_42",
+      "n": 68,
+      "accuracy": 0.8088,
+      "recall_normal": 0.8088
+    },
+    "Recording_05012023_17_24_05": {
+      "recording": "Recording_05012023_17_24_05",
+      "n": 84,
+      "accuracy": 0.6429,
+      "recall_normal": 0.6429
+    },
+    "Recording_06122022_19_29_09": {
+      "recording": "Recording_06122022_19_29_09",
+      "n": 97,
+      "accuracy": 1.0,
+      "recall_normal": 1.0
+    },
+    "Recording_07122022_20_17_29": {
+      "recording": "Recording_07122022_20_17_29",
+      "n": 187,
+      "accuracy": 1.0,
+      "recall_normal": 1.0
+    },
+    "Recording_20122022_17_05_36": {
+      "recording": "Recording_20122022_17_05_36",
+      "n": 110,
+      "accuracy": 0.7364,
+      "recall_normal": 0.7364
+    },
+    "Recording_29112022_22_13_20": {
+      "recording": "Recording_29112022_22_13_20",
+      "n": 147,
+      "accuracy": 1.0,
+      "recall_normal": 1.0
+    }
+  },
+  "example_excerpts": {
+    "false_positive": [
+      {
+        "path": "normal/Recording_20122022_17_05_36/ELP_12MP_20.12.2022_167155869603.png",
+        "recording": "Recording_20122022_17_05_36",
+        "true": "normal",
+        "pred": "failing",
+        "fail_score": 0.9983,
+        "conf": 0.9983
+      },
+      {
+        "path": "normal/Recording_05012023_17_24_05/ELP_12MP_05.01.2023_167294050220.png",
+        "recording": "Recording_05012023_17_24_05",
+        "true": "normal",
+        "pred": "failing",
+        "fail_score": 0.9858,
+        "conf": 0.9858
+      },
+      {
+        "path": "normal/Recording_05012023_13_10_42/ELP_12MP_05.01.2023_167292526082.png",
+        "recording": "Recording_05012023_13_10_42",
+        "true": "normal",
+        "pred": "failing",
+        "fail_score": 0.9814,
+        "conf": 0.9814
+      },
+      {
+        "path": "normal/Recording_05012023_17_24_05/ELP_12MP_05.01.2023_167294045163.png",
+        "recording": "Recording_05012023_17_24_05",
+        "true": "normal",
+        "pred": "failing",
+        "fail_score": 0.9787,
+        "conf": 0.9787
+      },
+      {
+        "path": "normal/Recording_20122022_17_05_36/ELP_12MP_20.12.2022_167155844883.png",
+        "recording": "Recording_20122022_17_05_36",
+        "true": "normal",
+        "pred": "failing",
+        "fail_score": 0.977,
+        "conf": 0.977
+      },
+      {
+        "path": "normal/Recording_05012023_17_24_05/ELP_12MP_05.01.2023_167294048532.png",
+        "recording": "Recording_05012023_17_24_05",
+        "true": "normal",
+        "pred": "failing",
+        "fail_score": 0.9765,
+        "conf": 0.9765
+      }
+    ],
+    "false_negative": [
+      {
+        "path": "failing/Recording_01122022_16_06_44/ELP_12MP_01.12.2022_166991174927.png",
+        "recording": "Recording_01122022_16_06_44",
+        "true": "failing",
+        "pred": "normal",
+        "fail_score": 0.0,
+        "conf": 1.0
+      },
+      {
+        "path": "failing/Recording_01122022_16_06_44/ELP_12MP_01.12.2022_166991174923.png",
+        "recording": "Recording_01122022_16_06_44",
+        "true": "failing",
+        "pred": "normal",
+        "fail_score": 0.0005,
+        "conf": 0.9995
+      },
+      {
+        "path": "failing/Recording_01122022_16_06_44/ELP_12MP_01.12.2022_166991166824.png",
+        "recording": "Recording_01122022_16_06_44",
+        "true": "failing",
+        "pred": "normal",
+        "fail_score": 0.0007,
+        "conf": 0.9993
+      },
+      {
+        "path": "failing/Recording_06012023_12_17_19/ELP_12MP_06.01.2023_167300855902.png",
+        "recording": "Recording_06012023_12_17_19",
+        "true": "failing",
+        "pred": "normal",
+        "fail_score": 0.0008,
+        "conf": 0.9992
+      },
+      {
+        "path": "failing/Recording_06012023_12_17_19/ELP_12MP_06.01.2023_167300859113.png",
+        "recording": "Recording_06012023_12_17_19",
+        "true": "failing",
+        "pred": "normal",
+        "fail_score": 0.001,
+        "conf": 0.999
+      },
+      {
+        "path": "failing/Recording_14.02.2023_17_38_44/ELP_12MP_14.02.2023_167639706319.png",
+        "recording": "Recording_14.02.2023_17_38_44",
+        "true": "failing",
+        "pred": "normal",
+        "fail_score": 0.001,
+        "conf": 0.999
+      }
+    ]
+  },
+  "confidence_histogram": {
+    "max_confidence": {
+      "edges": [
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "counts": [
+        58,
+        56,
+        64,
+        68,
+        69,
+        80,
+        117,
+        133,
+        246,
+        1968
+      ]
+    },
+    "failing_score": {
+      "edges": [
+        0.0,
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9,
+        1.0
+      ],
+      "counts": [
+        915,
+        136,
+        69,
+        64,
+        54,
+        60,
+        68,
+        80,
+        114,
+        1299
+      ]
+    },
+    "mean_conf": 0.9289,
+    "mean_fail_score": 0.5665
+  },
+  "auroc_failing": 0.9254
+}
