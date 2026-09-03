@@ -64,6 +64,20 @@ Original research table (pre-measurement) is preserved below for reference.
 - Sensitivity exposed as user setting
 - ~100 lines of C++, O(1) per frame
 
+**Stage 3 update (see `docs/research/stage3-temporal-evaluation.md`):** evaluated on the
+frozen ShuffleNetV2 baseline over the frozen val/test splits. Findings:
+- EWMA smoothing robustly cuts sequence-level false alarms vs. raw (halved on holdout,
+  eliminated on dev) with no detection loss — justified.
+- The full FSM adds operational semantics but did **not** beat plain EWMA on frame metrics
+  on this synthetic dataset.
+- The **baseline-relative delta path failed** here (constant-high failure signals absorb
+  into their own baseline, missing 5/7 dev recordings); an **absolute-score latch (~0.65)**
+  is required alongside any delta guard.
+- **Detection-delay is not measurable** on the current synthetic dataset (no verified
+  failure-onset ground truth); a real, hand-annotated video experiment is required.
+- Dominant bottleneck is **frame-classifier miscalibration** (sustained over-confidence on
+  source-labeled-good prints), which temporal logic cannot fix.
+
 ### Datasets (status)
 
 **Own data collection is essential** for deployment-time validation on real

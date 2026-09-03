@@ -160,6 +160,49 @@ def cmd_robustness(args: argparse.Namespace) -> None:
     print_report(report)
 
 
+def cmd_temporal(args: argparse.Namespace) -> None:
+    from tv.config import load_config
+    from tv.temporaleval import run_frozen_inference, evaluate_split
+
+    config = load_config(Path(args.config))
+    ckpt = Path(args.checkpoint) if args.checkpoint else None
+    ckpt = ckpt or (
+        Path(args.experiments_dir) / config.experiment_id / "artifacts" / "best.pt"
+    )
+    cache = Path(args.cache)
+
+    print(f"Running frozen inference on split '{args.split}' -> {cache}")
+    result = run_frozen_inference(
+        config, ckpt, args.split, output_json=cache if args.write_cache else None
+    )
+
+    variants = {
+        "raw": {"threshold": 0.5},
+        "ewma": {"alpha": 0.15, "threshold": 0.5},
+        "fsm": {
+            "alpha": 0.15,
+            "use_delta": False,
+            "fail_threshold_abs": 0.65,
+            "fail_threshold": 0.30,
+            "confirm": 3,
+            "warmup": 30,
+            "suspect_threshold": 0.05,
+            "recover_threshold": 0.01,
+        },
+    }
+    if args.variant and args.variant != "all":
+        variants = {args.variant: variants[args.variant]}
+
+    for name, params in variants.items():
+        r = evaluate_split(result, params, name)
+        print(
+            f"[{name}] det={r['sequence_detection_rate']} missed={r['missed_failure_events']} "
+            f"seqFA={r['sequence_false_alarm_rate']} nFA={r['n_false_trigger_seq']} "
+            f"meanFNR={r['mean_seq_fnr']} meanFPR={r['mean_seq_fpr']} "
+            f"delay_frames={r['proxy_delay_frames_median']}"
+        )
+
+
 def cmd_audit_dataset(args: argparse.Namespace) -> None:
     from tv.data.audit import audit_dataset, print_report
 
@@ -308,6 +351,30 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_rob.add_argument("--seed", type=int, default=0, help="Seed for stochastic perturbations")
     p_rob.set_defaults(func=cmd_robustness)
+
+    p_temp = sub.add_parser(
+        "temporal",
+        help="Offline temporal decision-system eval (raw/EWMA/FSM) on a frozen model",
+    )
+    p_temp.add_argument("--config", required=True, help="Experiment config YAML")
+    p_temp.add_argument("--checkpoint", default=None, help="Path to model checkpoint")
+    p_temp.add_argument(
+        "--experiments-dir", default="experiments", help="Base dir for experiments"
+    )
+    p_temp.add_argument(
+        "--split", default="test", choices=["train", "val", "test"], help="Split to evaluate"
+    )
+    p_temp.add_argument("--cache", default=None, help="Cache JSON path")
+    p_temp.add_argument(
+        "--write-cache", action="store_true", help="Write the frozen-inference cache to --cache"
+    )
+    p_temp.add_argument(
+        "--variant",
+        default="all",
+        choices=["all", "raw", "ewma", "fsm"],
+        help="Decision variant(s) to evaluate",
+    )
+    p_temp.set_defaults(func=cmd_temporal)
 
     p_list = sub.add_parser("list-models", help="List available model architectures")
     p_list.add_argument("--task", default=None, help="Filter by task (classification/detection)")

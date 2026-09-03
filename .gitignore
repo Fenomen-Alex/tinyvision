@@ -37,6 +37,9 @@ datasets/target-camera/
 experiments/*/artifacts/
 experiments/logs/
 
+# Generated model-inference trajectory caches (regenerable)
+docs/research/evalcaches/
+
 # Environment
 .env
 .env.*

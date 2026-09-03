@@ -1,0 +1,60 @@
+{
+  "val": {
+    "raw": {
+      "sequence_detection_rate": 1.0,
+      "missed_failure_events": 0,
+      "sequence_false_alarm_rate": 0.5,
+      "n_false_trigger_seq": 2,
+      "mean_seq_fnr": 0.013,
+      "mean_seq_fpr": 0.0069,
+      "proxy_delay_frames_median": null
+    },
+    "ewma": {
+      "sequence_detection_rate": 1.0,
+      "missed_failure_events": 0,
+      "sequence_false_alarm_rate": 0.0,
+      "n_false_trigger_seq": 0,
+      "mean_seq_fnr": 0.065,
+      "mean_seq_fpr": 0.0,
+      "proxy_delay_frames_median": null
+    },
+    "fsm": {
+      "sequence_detection_rate": 1.0,
+      "missed_failure_events": 0,
+      "sequence_false_alarm_rate": 0.0,
+      "n_false_trigger_seq": 0,
+      "mean_seq_fnr": 0.4354,
+      "mean_seq_fpr": 0.0,
+      "proxy_delay_frames_median": null
+    }
+  },
+  "test": {
+    "raw": {
+      "sequence_detection_rate": 1.0,
+      "missed_failure_events": 0,
+      "sequence_false_alarm_rate": 0.8333,
+      "n_false_trigger_seq": 5,
+      "mean_seq_fnr": 0.1084,
+      "mean_seq_fpr": 0.1731,
+      "proxy_delay_frames_median": null
+    },
+    "ewma": {
+      "sequence_detection_rate": 1.0,
+      "missed_failure_events": 0,
+      "sequence_false_alarm_rate": 0.5,
+      "n_false_trigger_seq": 3,
+      "mean_seq_fnr": 0.1551,
+      "mean_seq_fpr": 0.1281,
+      "proxy_delay_frames_median": null
+    },
+    "fsm": {
+      "sequence_detection_rate": 1.0,
+      "missed_failure_events": 0,
+      "sequence_false_alarm_rate": 0.5,
+      "n_false_trigger_seq": 3,
+      "mean_seq_fnr": 0.3972,
+      "mean_seq_fpr": 0.2488,
+      "proxy_delay_frames_median": null
+    }
+  }
+}
