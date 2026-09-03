@@ -1,0 +1,57 @@
+# TinyVision experiment config template
+# Copy this file and adjust for each experiment.
+
+experiment_id: ""  # Auto-generated if empty
+
+model: efficientnet_b0  # Options: efficientnet_b0, resnet18, mobilenet_v3_small,
+                        #          mobilenet_v3_large, shufflenet_v2_x1_0,
+                        #          yolov8n-cls, yolov11n-cls,
+                        #          yolov8n, yolov11n
+task: classification   # "classification" or "detection"
+
+dataset:
+  name: ""
+  version: "1.0"
+  data_dir: datasets/processed/default
+  image_size: 224
+  source_mode: "directory"  # "directory" (source subdirs) or "filename" (flat)
+  split_ratios: [0.7, 0.15, 0.15]
+
+data:
+  num_workers: 4
+  batch_size: 32
+  pin_memory: true
+
+train:
+  epochs: 50
+  optimizer: adam      # "adam" or "sgd"
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  augmentation:
+    horizontal_flip: true
+    random_rotation: 15
+    color_jitter: 0.2
+    random_crop: false
+    normalize: true
+  precision: fp32     # "fp32", "fp16", "bf16"
+  seed: 42
+  early_stopping_patience: 10
+
+evaluation:
+  metrics:
+    - precision
+    - recall
+    - f1
+    - fnr
+    - fpr
+    - auroc
+  decision_threshold: 0.5
+
+export:
+  format: onnx
+  quantization: int8  # "none" or "int8"
+  dynamic_axes: true
+
+hardware: {}   # Auto-filled at runtime
+software: {}   # Auto-filled at runtime
+notes: ""

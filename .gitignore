@@ -1,0 +1,42 @@
+# OS
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+
+# CMake
+build/
+cmake-build-*/
+
+# ML artifacts
+*.pt
+*.pth
+*.onnx
+*.engine
+*.tflite
+
+# Dataset contents
+datasets/raw/
+datasets/processed/
+
+# Experiment artifacts
+experiments/*/artifacts/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*

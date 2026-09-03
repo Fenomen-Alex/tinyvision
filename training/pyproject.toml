@@ -1,7 +1,7 @@
 [project]
-name = "training"
+name = "tinyvision-training"
 version = "0.1.0"
-description = "Add your description here"
+description = "TinyVision training pipeline"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -9,10 +9,28 @@ dependencies = [
     "numpy>=2.4.6",
     "onnx>=1.22.0",
     "onnxruntime>=1.29.0",
+    "onnxscript>=0.2.0",
     "opencv-python>=5.0.0.93",
     "pandas>=3.0.5",
+    "pyyaml>=6.0",
     "scikit-learn>=1.9.0",
     "torch>=2.14.0",
     "torchvision>=0.29.0",
     "ultralytics>=8.4.138",
 ]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+tv = "tv.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["tv*"]
