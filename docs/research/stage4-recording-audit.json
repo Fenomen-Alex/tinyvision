@@ -1,0 +1,2899 @@
+{
+  "generated_by": "tv.forensics.build_recording_audit",
+  "seed_name": "origin",
+  "source": {
+    "raw_csv": "../datasets/Printing_Errors/general_data/all_images_no_filter.csv",
+    "split_dir": "../datasets/processed/printing-errors/splits"
+  },
+  "recording_label_note": "The source dataset has no recording-level label; binary labels are per-frame. Composition describes each recording's frame mix.",
+  "recordings": {
+    "Recording_01122022_15_27_47": {
+      "split": "train",
+      "frames": 82,
+      "fine_counts": {
+        "under_extrusion": 32,
+        "good": 50
+      },
+      "binary_counts": {
+        "failing": 32,
+        "normal": 50
+      },
+      "composition": "MIXED_NORMAL_LABEL",
+      "first_ts": 166990882982,
+      "last_ts": 166990988891,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_01122022_16_06_44": {
+      "split": "test",
+      "frames": 86,
+      "fine_counts": {
+        "under_extrusion": 82,
+        "good": 4
+      },
+      "binary_counts": {
+        "failing": 82,
+        "normal": 4
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 166991151737,
+      "last_ts": 166991244786,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_01122022_16_34_17": {
+      "split": "train",
+      "frames": 91,
+      "fine_counts": {
+        "good": 91
+      },
+      "binary_counts": {
+        "normal": 91
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 166991301023,
+      "last_ts": 166991339719,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_01122022_16_50_08": {
+      "split": "train",
+      "frames": 16,
+      "fine_counts": {
+        "good": 16
+      },
+      "binary_counts": {
+        "normal": 16
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 166991649833,
+      "last_ts": 166991657787,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_01122022_17_44_58": {
+      "split": "val",
+      "frames": 152,
+      "fine_counts": {
+        "good": 152
+      },
+      "binary_counts": {
+        "normal": 152
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 166992843887,
+      "last_ts": 166992955686,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_02012023_15_03_00": {
+      "split": "train",
+      "frames": 38,
+      "fine_counts": {
+        "under_extrusion": 38
+      },
+      "binary_counts": {
+        "failing": 38
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167267242914,
+      "last_ts": 167267255774,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_02012023_15_38_24": {
+      "split": "train",
+      "frames": 128,
+      "fine_counts": {
+        "under_extrusion": 128
+      },
+      "binary_counts": {
+        "failing": 128
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167267412883,
+      "last_ts": 167267472363,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_02122022_14_23_06": {
+      "split": "train",
+      "frames": 162,
+      "fine_counts": {
+        "good": 162
+      },
+      "binary_counts": {
+        "normal": 162
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 166999141309,
+      "last_ts": 166999229890,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_02122022_14_45_08": {
+      "split": "train",
+      "frames": 167,
+      "fine_counts": {
+        "under_extrusion": 140,
+        "good": 27
+      },
+      "binary_counts": {
+        "failing": 140,
+        "normal": 27
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 166999502667,
+      "last_ts": 166999848128,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_03012023_15_07_03": {
+      "split": "val",
+      "frames": 131,
+      "fine_counts": {
+        "under_extrusion": 112,
+        "spaghetti": 9,
+        "good": 10
+      },
+      "binary_counts": {
+        "failing": 121,
+        "normal": 10
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167275867202,
+      "last_ts": 167275927335,
+      "n_transitions": 2,
+      "fine_runs": [
+        "good",
+        "under_extrusion",
+        "spaghetti"
+      ],
+      "starts_good": true
+    },
+    "Recording_03012023_15_32_58": {
+      "split": "test",
+      "frames": 124,
+      "fine_counts": {
+        "under_extrusion": 98,
+        "good": 26
+      },
+      "binary_counts": {
+        "failing": 98,
+        "normal": 26
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167276022852,
+      "last_ts": 167276082051,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_03012023_15_48_43": {
+      "split": "test",
+      "frames": 126,
+      "fine_counts": {
+        "under_extrusion": 113,
+        "good": 13
+      },
+      "binary_counts": {
+        "failing": 113,
+        "normal": 13
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167276672212,
+      "last_ts": 167276732060,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_03012023_19_32_03": {
+      "split": "test",
+      "frames": 119,
+      "fine_counts": {
+        "under_extrusion": 108,
+        "good": 11
+      },
+      "binary_counts": {
+        "failing": 108,
+        "normal": 11
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167277456594,
+      "last_ts": 167277515865,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_04012023_15_02_41": {
+      "split": "train",
+      "frames": 176,
+      "fine_counts": {
+        "good": 176
+      },
+      "binary_counts": {
+        "normal": 176
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167284494251,
+      "last_ts": 167284579140,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_04012023_15_23_23": {
+      "split": "train",
+      "frames": 99,
+      "fine_counts": {
+        "under_extrusion": 67,
+        "good": 32
+      },
+      "binary_counts": {
+        "failing": 67,
+        "normal": 32
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167284610008,
+      "last_ts": 167284693209,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_04012023_16_03_49": {
+      "split": "train",
+      "frames": 137,
+      "fine_counts": {
+        "under_extrusion": 122,
+        "good": 15
+      },
+      "binary_counts": {
+        "failing": 122,
+        "normal": 15
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167284852550,
+      "last_ts": 167284950479,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_04012023_16_25_12": {
+      "split": "val",
+      "frames": 48,
+      "fine_counts": {
+        "spaghetti": 26,
+        "good": 22
+      },
+      "binary_counts": {
+        "failing": 26,
+        "normal": 22
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167284976320,
+      "last_ts": 167285026110,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "spaghetti"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_11_08_00": {
+      "split": "val",
+      "frames": 165,
+      "fine_counts": {
+        "under_extrusion": 144,
+        "good": 21
+      },
+      "binary_counts": {
+        "failing": 144,
+        "normal": 21
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167291717547,
+      "last_ts": 167291802660,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_11_27_16": {
+      "split": "val",
+      "frames": 68,
+      "fine_counts": {
+        "under_extrusion": 51,
+        "good": 17
+      },
+      "binary_counts": {
+        "failing": 51,
+        "normal": 17
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167291854197,
+      "last_ts": 167291916980,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_11_49_39": {
+      "split": "train",
+      "frames": 144,
+      "fine_counts": {
+        "under_extrusion": 129,
+        "good": 15
+      },
+      "binary_counts": {
+        "failing": 129,
+        "normal": 15
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167291970254,
+      "last_ts": 167292066350,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_12_11_14": {
+      "split": "train",
+      "frames": 143,
+      "fine_counts": {
+        "good": 143
+      },
+      "binary_counts": {
+        "normal": 143
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167292325558,
+      "last_ts": 167292422875,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_13_10_42": {
+      "split": "test",
+      "frames": 68,
+      "fine_counts": {
+        "good": 68
+      },
+      "binary_counts": {
+        "normal": 68
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167292497419,
+      "last_ts": 167292536256,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_13_33_01": {
+      "split": "train",
+      "frames": 88,
+      "fine_counts": {
+        "under_extrusion": 38,
+        "good": 50
+      },
+      "binary_counts": {
+        "failing": 38,
+        "normal": 50
+      },
+      "composition": "MIXED_NORMAL_LABEL",
+      "first_ts": 167292622515,
+      "last_ts": 167292684712,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_13_54_18": {
+      "split": "train",
+      "frames": 37,
+      "fine_counts": {
+        "under_extrusion": 37
+      },
+      "binary_counts": {
+        "failing": 37
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167292785088,
+      "last_ts": 167292812730,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_05012023_14_15_36": {
+      "split": "train",
+      "frames": 56,
+      "fine_counts": {
+        "under_extrusion": 36,
+        "good": 20
+      },
+      "binary_counts": {
+        "failing": 36,
+        "normal": 20
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167292851691,
+      "last_ts": 167292915193,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_14_32_45": {
+      "split": "train",
+      "frames": 37,
+      "fine_counts": {
+        "under_extrusion": 37
+      },
+      "binary_counts": {
+        "failing": 37
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167293113578,
+      "last_ts": 167293129573,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_05012023_15_08_31": {
+      "split": "val",
+      "frames": 80,
+      "fine_counts": {
+        "under_extrusion": 62,
+        "good": 18
+      },
+      "binary_counts": {
+        "failing": 62,
+        "normal": 18
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167293163139,
+      "last_ts": 167293219375,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_15_23_21": {
+      "split": "train",
+      "frames": 68,
+      "fine_counts": {
+        "under_extrusion": 50,
+        "good": 18
+      },
+      "binary_counts": {
+        "failing": 50,
+        "normal": 18
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167293871345,
+      "last_ts": 167293943534,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_17_24_05": {
+      "split": "test",
+      "frames": 84,
+      "fine_counts": {
+        "good": 84
+      },
+      "binary_counts": {
+        "normal": 84
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167294015034,
+      "last_ts": 167294081551,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_17_47_06": {
+      "split": "train",
+      "frames": 96,
+      "fine_counts": {
+        "good": 96
+      },
+      "binary_counts": {
+        "normal": 96
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167294171907,
+      "last_ts": 167294243271,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_05012023_18_14_03": {
+      "split": "train",
+      "frames": 65,
+      "fine_counts": {
+        "under_extrusion": 65
+      },
+      "binary_counts": {
+        "failing": 65
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167294367723,
+      "last_ts": 167294422930,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_06012023_12_17_19": {
+      "split": "test",
+      "frames": 179,
+      "fine_counts": {
+        "under_extrusion": 119,
+        "good": 60
+      },
+      "binary_counts": {
+        "failing": 119,
+        "normal": 60
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167300781798,
+      "last_ts": 167300900112,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_06012023_12_43_32": {
+      "split": "test",
+      "frames": 126,
+      "fine_counts": {
+        "under_extrusion": 113,
+        "good": 13
+      },
+      "binary_counts": {
+        "failing": 113,
+        "normal": 13
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167300987303,
+      "last_ts": 167301190881,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_06012023_13_33_16": {
+      "split": "train",
+      "frames": 72,
+      "fine_counts": {
+        "good": 72
+      },
+      "binary_counts": {
+        "normal": 72
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167301568440,
+      "last_ts": 167301644723,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06012023_15_16_40": {
+      "split": "train",
+      "frames": 124,
+      "fine_counts": {
+        "under_extrusion": 89,
+        "good": 35
+      },
+      "binary_counts": {
+        "failing": 89,
+        "normal": 35
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167301943989,
+      "last_ts": 167302101406,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_14_16_00": {
+      "split": "train",
+      "frames": 247,
+      "fine_counts": {
+        "spaghetti": 56,
+        "good": 191
+      },
+      "binary_counts": {
+        "failing": 56,
+        "normal": 191
+      },
+      "composition": "MIXED_NORMAL_LABEL",
+      "first_ts": 167033640358,
+      "last_ts": 167033761393,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "spaghetti"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_14_49_53": {
+      "split": "test",
+      "frames": 164,
+      "fine_counts": {
+        "stringing": 150,
+        "good": 14
+      },
+      "binary_counts": {
+        "failing": 150,
+        "normal": 14
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167033842075,
+      "last_ts": 167033889143,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "stringing"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_16_11_00": {
+      "split": "train",
+      "frames": 141,
+      "fine_counts": {
+        "good": 141
+      },
+      "binary_counts": {
+        "normal": 141
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167034336085,
+      "last_ts": 167034431327,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_18_34_46": {
+      "split": "train",
+      "frames": 173,
+      "fine_counts": {
+        "good": 173
+      },
+      "binary_counts": {
+        "normal": 173
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167035197389,
+      "last_ts": 167035282004,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_18_53_57": {
+      "split": "train",
+      "frames": 178,
+      "fine_counts": {
+        "good": 178
+      },
+      "binary_counts": {
+        "normal": 178
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167035387732,
+      "last_ts": 167035493844,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_19_29_09": {
+      "split": "test",
+      "frames": 97,
+      "fine_counts": {
+        "good": 97
+      },
+      "binary_counts": {
+        "normal": 97
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167035572577,
+      "last_ts": 167035634824,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_19_52_40": {
+      "split": "train",
+      "frames": 211,
+      "fine_counts": {
+        "good": 211
+      },
+      "binary_counts": {
+        "normal": 211
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167035780225,
+      "last_ts": 167035919499,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_20_40_07": {
+      "split": "train",
+      "frames": 80,
+      "fine_counts": {
+        "good": 80
+      },
+      "binary_counts": {
+        "normal": 80
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167036000622,
+      "last_ts": 167036056529,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_21_09_50": {
+      "split": "train",
+      "frames": 128,
+      "fine_counts": {
+        "good": 128
+      },
+      "binary_counts": {
+        "normal": 128
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167036123736,
+      "last_ts": 167036181184,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_21_23_44": {
+      "split": "train",
+      "frames": 83,
+      "fine_counts": {
+        "good": 83
+      },
+      "binary_counts": {
+        "normal": 83
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167036311505,
+      "last_ts": 167036383888,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_21_57_28": {
+      "split": "train",
+      "frames": 159,
+      "fine_counts": {
+        "good": 159
+      },
+      "binary_counts": {
+        "normal": 159
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167036570056,
+      "last_ts": 167036666095,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_22_44_33": {
+      "split": "train",
+      "frames": 96,
+      "fine_counts": {
+        "good": 96
+      },
+      "binary_counts": {
+        "normal": 96
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167036699830,
+      "last_ts": 167036771151,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_06122022_23_02_05": {
+      "split": "train",
+      "frames": 64,
+      "fine_counts": {
+        "good": 64
+      },
+      "binary_counts": {
+        "normal": 64
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167036801894,
+      "last_ts": 167036865714,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_07122022_08_06_58": {
+      "split": "train",
+      "frames": 80,
+      "fine_counts": {
+        "good": 80
+      },
+      "binary_counts": {
+        "normal": 80
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167040069451,
+      "last_ts": 167040134803,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_07122022_08_22_41": {
+      "split": "train",
+      "frames": 80,
+      "fine_counts": {
+        "good": 80
+      },
+      "binary_counts": {
+        "normal": 80
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167040314955,
+      "last_ts": 167040365532,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_07122022_09_01_08": {
+      "split": "val",
+      "frames": 95,
+      "fine_counts": {
+        "good": 95
+      },
+      "binary_counts": {
+        "normal": 95
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167040556430,
+      "last_ts": 167040638975,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_07122022_09_46_44": {
+      "split": "train",
+      "frames": 94,
+      "fine_counts": {
+        "good": 94
+      },
+      "binary_counts": {
+        "normal": 94
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167040694175,
+      "last_ts": 167040771313,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_07122022_10_08_49": {
+      "split": "train",
+      "frames": 77,
+      "fine_counts": {
+        "good": 77
+      },
+      "binary_counts": {
+        "normal": 77
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167040936942,
+      "last_ts": 167041034734,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_07122022_10_52_44": {
+      "split": "train",
+      "frames": 143,
+      "fine_counts": {
+        "good": 143
+      },
+      "binary_counts": {
+        "normal": 143
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167041293256,
+      "last_ts": 167041390786,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_07122022_12_18_42": {
+      "split": "train",
+      "frames": 175,
+      "fine_counts": {
+        "good": 175
+      },
+      "binary_counts": {
+        "normal": 175
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167041903973,
+      "last_ts": 167042012001,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_07122022_20_17_29": {
+      "split": "test",
+      "frames": 187,
+      "fine_counts": {
+        "good": 187
+      },
+      "binary_counts": {
+        "normal": 187
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167044469662,
+      "last_ts": 167044703728,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_08012023_13_05_05": {
+      "split": "val",
+      "frames": 181,
+      "fine_counts": {
+        "under_extrusion": 172,
+        "good": 9
+      },
+      "binary_counts": {
+        "failing": 172,
+        "normal": 9
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167318353234,
+      "last_ts": 167318466421,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_08012023_13_31_14": {
+      "split": "test",
+      "frames": 147,
+      "fine_counts": {
+        "under_extrusion": 147
+      },
+      "binary_counts": {
+        "failing": 147
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167318580632,
+      "last_ts": 167318762950,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_08012023_15_03_53": {
+      "split": "train",
+      "frames": 170,
+      "fine_counts": {
+        "under_extrusion": 170
+      },
+      "binary_counts": {
+        "failing": 170
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167319126821,
+      "last_ts": 167319311853,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_08122022_19_51_23": {
+      "split": "train",
+      "frames": 121,
+      "fine_counts": {
+        "good": 121
+      },
+      "binary_counts": {
+        "normal": 121
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167052945591,
+      "last_ts": 167053069014,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_10012023_15_02_20": {
+      "split": "train",
+      "frames": 128,
+      "fine_counts": {
+        "under_extrusion": 128
+      },
+      "binary_counts": {
+        "failing": 128
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167336345986,
+      "last_ts": 167336480426,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_10012023_15_33_34": {
+      "split": "train",
+      "frames": 152,
+      "fine_counts": {
+        "under_extrusion": 152
+      },
+      "binary_counts": {
+        "failing": 152
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167336754692,
+      "last_ts": 167336926700,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_10012023_16_47_55": {
+      "split": "train",
+      "frames": 38,
+      "fine_counts": {
+        "good": 38
+      },
+      "binary_counts": {
+        "normal": 38
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167337201619,
+      "last_ts": 167337381299,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_10012023_18_16_22": {
+      "split": "train",
+      "frames": 134,
+      "fine_counts": {
+        "under_extrusion": 112,
+        "good": 22
+      },
+      "binary_counts": {
+        "failing": 112,
+        "normal": 22
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167337487359,
+      "last_ts": 167337637277,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_10012023_18_46_21": {
+      "split": "val",
+      "frames": 119,
+      "fine_counts": {
+        "under_extrusion": 119
+      },
+      "binary_counts": {
+        "failing": 119
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167337846086,
+      "last_ts": 167337896029,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_10012023_19_39_45": {
+      "split": "train",
+      "frames": 139,
+      "fine_counts": {
+        "under_extrusion": 139
+      },
+      "binary_counts": {
+        "failing": 139
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167338021685,
+      "last_ts": 167338091228,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_10012023_20_09_14": {
+      "split": "test",
+      "frames": 166,
+      "fine_counts": {
+        "under_extrusion": 140,
+        "good": 26
+      },
+      "binary_counts": {
+        "failing": 140,
+        "normal": 26
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167338160422,
+      "last_ts": 167338268636,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_10012023_20_31_36": {
+      "split": "train",
+      "frames": 162,
+      "fine_counts": {
+        "under_extrusion": 115,
+        "good": 47
+      },
+      "binary_counts": {
+        "failing": 115,
+        "normal": 47
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167338301168,
+      "last_ts": 167338386284,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_10012023_20_51_12": {
+      "split": "train",
+      "frames": 89,
+      "fine_counts": {
+        "under_extrusion": 74,
+        "good": 15
+      },
+      "binary_counts": {
+        "failing": 74,
+        "normal": 15
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167338669859,
+      "last_ts": 167338752684,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_10012023_21_52_16": {
+      "split": "train",
+      "frames": 132,
+      "fine_counts": {
+        "under_extrusion": 132
+      },
+      "binary_counts": {
+        "failing": 132
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167338821597,
+      "last_ts": 167338888974,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_10012023_22_14_59": {
+      "split": "train",
+      "frames": 143,
+      "fine_counts": {
+        "under_extrusion": 123,
+        "good": 20
+      },
+      "binary_counts": {
+        "failing": 123,
+        "normal": 20
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167338940715,
+      "last_ts": 167339038104,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_10012023_22_39_52": {
+      "split": "test",
+      "frames": 104,
+      "fine_counts": {
+        "under_extrusion": 86,
+        "good": 18
+      },
+      "binary_counts": {
+        "failing": 86,
+        "normal": 18
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167339083430,
+      "last_ts": 167339142791,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_11012023_10_32_58": {
+      "split": "train",
+      "frames": 92,
+      "fine_counts": {
+        "spaghetti": 20,
+        "good": 72
+      },
+      "binary_counts": {
+        "failing": 20,
+        "normal": 72
+      },
+      "composition": "MIXED_NORMAL_LABEL",
+      "first_ts": 167343346165,
+      "last_ts": 167343408720,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "spaghetti"
+      ],
+      "starts_good": true
+    },
+    "Recording_11012023_10_48_13": {
+      "split": "train",
+      "frames": 86,
+      "fine_counts": {
+        "spaghetti": 86
+      },
+      "binary_counts": {
+        "failing": 86
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167343433599,
+      "last_ts": 167343499580,
+      "n_transitions": 0,
+      "fine_runs": [
+        "spaghetti"
+      ],
+      "starts_good": false
+    },
+    "Recording_11012023_11_03_20": {
+      "split": "val",
+      "frames": 59,
+      "fine_counts": {
+        "under_extrusion": 37,
+        "good": 22
+      },
+      "binary_counts": {
+        "failing": 37,
+        "normal": 22
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167343637957,
+      "last_ts": 167343701422,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_11012023_11_37_07": {
+      "split": "train",
+      "frames": 16,
+      "fine_counts": {
+        "good": 16
+      },
+      "binary_counts": {
+        "normal": 16
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167343790475,
+      "last_ts": 167343807147,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_11012023_11_58_26": {
+      "split": "val",
+      "frames": 77,
+      "fine_counts": {
+        "under_extrusion": 65,
+        "good": 12
+      },
+      "binary_counts": {
+        "failing": 65,
+        "normal": 12
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167343954628,
+      "last_ts": 167344010296,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_11012023_12_28_37": {
+      "split": "val",
+      "frames": 78,
+      "fine_counts": {
+        "under_extrusion": 68,
+        "good": 10
+      },
+      "binary_counts": {
+        "failing": 68,
+        "normal": 10
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167344079459,
+      "last_ts": 167344151401,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_11012023_12_52_06": {
+      "split": "train",
+      "frames": 92,
+      "fine_counts": {
+        "under_extrusion": 80,
+        "good": 12
+      },
+      "binary_counts": {
+        "failing": 80,
+        "normal": 12
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167344289858,
+      "last_ts": 167344367069,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_11012023_13_28_03": {
+      "split": "train",
+      "frames": 96,
+      "fine_counts": {
+        "good": 96
+      },
+      "binary_counts": {
+        "normal": 96
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167344442875,
+      "last_ts": 167344514099,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_11012023_13_52_33": {
+      "split": "train",
+      "frames": 98,
+      "fine_counts": {
+        "good": 98
+      },
+      "binary_counts": {
+        "normal": 98
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167344597644,
+      "last_ts": 167344699067,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_11012023_14_23_46": {
+      "split": "train",
+      "frames": 169,
+      "fine_counts": {
+        "under_extrusion": 147,
+        "good": 22
+      },
+      "binary_counts": {
+        "failing": 147,
+        "normal": 22
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 167344792500,
+      "last_ts": 167344900624,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_13012023_14_29_56": {
+      "split": "train",
+      "frames": 8,
+      "fine_counts": {
+        "good": 8
+      },
+      "binary_counts": {
+        "normal": 8
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167362049825,
+      "last_ts": 167362057269,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_13012023_14_38_10": {
+      "split": "train",
+      "frames": 228,
+      "fine_counts": {
+        "good": 228
+      },
+      "binary_counts": {
+        "normal": 228
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167362180091,
+      "last_ts": 167362740627,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_13122022_14_51_28": {
+      "split": "val",
+      "frames": 167,
+      "fine_counts": {
+        "spaghetti": 14,
+        "good": 153
+      },
+      "binary_counts": {
+        "failing": 14,
+        "normal": 153
+      },
+      "composition": "MIXED_NORMAL_LABEL",
+      "first_ts": 167094412883,
+      "last_ts": 167094865724,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "spaghetti"
+      ],
+      "starts_good": true
+    },
+    "Recording_13122022_16_24_29": {
+      "split": "train",
+      "frames": 152,
+      "fine_counts": {
+        "spaghetti": 19,
+        "good": 133
+      },
+      "binary_counts": {
+        "failing": 19,
+        "normal": 133
+      },
+      "composition": "MIXED_NORMAL_LABEL",
+      "first_ts": 167096906973,
+      "last_ts": 167097105478,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "spaghetti"
+      ],
+      "starts_good": true
+    },
+    "Recording_13122022_22_37_48": {
+      "split": "train",
+      "frames": 30,
+      "fine_counts": {
+        "good": 30
+      },
+      "binary_counts": {
+        "normal": 30
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167097148021,
+      "last_ts": 167097158580,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_14.02.2023_17_38_44": {
+      "split": "test",
+      "frames": 72,
+      "fine_counts": {
+        "stringing": 72
+      },
+      "binary_counts": {
+        "failing": 72
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167639706315,
+      "last_ts": 167639722060,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_14.02.2023_17_53_55": {
+      "split": "train",
+      "frames": 181,
+      "fine_counts": {
+        "stringing": 181
+      },
+      "binary_counts": {
+        "failing": 181
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167639775578,
+      "last_ts": 167639843420,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_14.02.2023_18_15_37": {
+      "split": "train",
+      "frames": 85,
+      "fine_counts": {
+        "stringing": 85
+      },
+      "binary_counts": {
+        "failing": 85
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167639959455,
+      "last_ts": 167639997582,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_14.02.2023_18_39_51": {
+      "split": "train",
+      "frames": 94,
+      "fine_counts": {
+        "stringing": 94
+      },
+      "binary_counts": {
+        "failing": 94
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167640436760,
+      "last_ts": 167640487916,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_14.02.2023_20_02_21": {
+      "split": "val",
+      "frames": 40,
+      "fine_counts": {
+        "stringing": 40
+      },
+      "binary_counts": {
+        "failing": 40
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167640572061,
+      "last_ts": 167640584558,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_14.02.2023_20_17_41": {
+      "split": "test",
+      "frames": 46,
+      "fine_counts": {
+        "stringing": 46
+      },
+      "binary_counts": {
+        "failing": 46
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167640855467,
+      "last_ts": 167640868472,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_14.02.2023_21_04_55": {
+      "split": "test",
+      "frames": 94,
+      "fine_counts": {
+        "stringing": 94
+      },
+      "binary_counts": {
+        "failing": 94
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167640972701,
+      "last_ts": 167640986738,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_14.02.2023_21_24_41": {
+      "split": "test",
+      "frames": 118,
+      "fine_counts": {
+        "stringing": 118
+      },
+      "binary_counts": {
+        "failing": 118
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167641273658,
+      "last_ts": 167641341040,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_14.02.2023_22_23_42": {
+      "split": "val",
+      "frames": 94,
+      "fine_counts": {
+        "stringing": 94
+      },
+      "binary_counts": {
+        "failing": 94
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167641414153,
+      "last_ts": 167641450911,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_15.02.2023_13_19_52": {
+      "split": "test",
+      "frames": 127,
+      "fine_counts": {
+        "stringing": 127
+      },
+      "binary_counts": {
+        "failing": 127
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167646905236,
+      "last_ts": 167647054084,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_15.02.2023_14_15_54": {
+      "split": "train",
+      "frames": 52,
+      "fine_counts": {
+        "stringing": 52
+      },
+      "binary_counts": {
+        "failing": 52
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167647351758,
+      "last_ts": 167647377374,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_16.02.2023_16_55_10": {
+      "split": "train",
+      "frames": 94,
+      "fine_counts": {
+        "under_extrusion": 94
+      },
+      "binary_counts": {
+        "failing": 94
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167656737661,
+      "last_ts": 167656842559,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_16.02.2023_17_27_18": {
+      "split": "test",
+      "frames": 98,
+      "fine_counts": {
+        "under_extrusion": 98
+      },
+      "binary_counts": {
+        "failing": 98
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167656910454,
+      "last_ts": 167657004524,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_16.02.2023_17_54_17": {
+      "split": "train",
+      "frames": 133,
+      "fine_counts": {
+        "under_extrusion": 133
+      },
+      "binary_counts": {
+        "failing": 133
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167657075914,
+      "last_ts": 167657142045,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_16.02.2023_18_17_11": {
+      "split": "train",
+      "frames": 142,
+      "fine_counts": {
+        "under_extrusion": 142
+      },
+      "binary_counts": {
+        "failing": 142
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167658177552,
+      "last_ts": 167658249544,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_16.02.2023_21_21_46": {
+      "split": "train",
+      "frames": 96,
+      "fine_counts": {
+        "under_extrusion": 96
+      },
+      "binary_counts": {
+        "failing": 96
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167658434523,
+      "last_ts": 167658470517,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_16.02.2023_21_58_36": {
+      "split": "train",
+      "frames": 55,
+      "fine_counts": {
+        "under_extrusion": 55
+      },
+      "binary_counts": {
+        "failing": 55
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167658623271,
+      "last_ts": 167658664579,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_17.02.2023_12_07_38": {
+      "split": "train",
+      "frames": 101,
+      "fine_counts": {
+        "under_extrusion": 101
+      },
+      "binary_counts": {
+        "failing": 101
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167663703009,
+      "last_ts": 167663805686,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_17.02.2023_12_53_20": {
+      "split": "val",
+      "frames": 70,
+      "fine_counts": {
+        "under_extrusion": 70
+      },
+      "binary_counts": {
+        "failing": 70
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167663914535,
+      "last_ts": 167663972114,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_17.02.2023_13_15_33": {
+      "split": "train",
+      "frames": 108,
+      "fine_counts": {
+        "under_extrusion": 108
+      },
+      "binary_counts": {
+        "failing": 108
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167664225785,
+      "last_ts": 167664303825,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_17.02.2023_14_11_25": {
+      "split": "test",
+      "frames": 80,
+      "fine_counts": {
+        "under_extrusion": 80
+      },
+      "binary_counts": {
+        "failing": 80
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167664383166,
+      "last_ts": 167664413932,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_17.02.2023_15_18_59": {
+      "split": "test",
+      "frames": 190,
+      "fine_counts": {
+        "stringing": 190
+      },
+      "binary_counts": {
+        "failing": 190
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167664744774,
+      "last_ts": 167664768106,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_20122022_13_39_27": {
+      "split": "train",
+      "frames": 138,
+      "fine_counts": {
+        "stringing": 138
+      },
+      "binary_counts": {
+        "failing": 138
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167154397390,
+      "last_ts": 167154422293,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_20122022_13_53_11": {
+      "split": "train",
+      "frames": 3,
+      "fine_counts": {
+        "stringing": 3
+      },
+      "binary_counts": {
+        "failing": 3
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167154549961,
+      "last_ts": 167154569112,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_20122022_14_15_06": {
+      "split": "train",
+      "frames": 2,
+      "fine_counts": {
+        "stringing": 2
+      },
+      "binary_counts": {
+        "failing": 2
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167154775970,
+      "last_ts": 167154775974,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_20122022_14_53_56": {
+      "split": "train",
+      "frames": 148,
+      "fine_counts": {
+        "good": 148
+      },
+      "binary_counts": {
+        "normal": 148
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167155004804,
+      "last_ts": 167155256531,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_20122022_16_09_41": {
+      "split": "train",
+      "frames": 3,
+      "fine_counts": {
+        "stringing": 3
+      },
+      "binary_counts": {
+        "failing": 3
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167155511220,
+      "last_ts": 167155512931,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_20122022_16_55_38": {
+      "split": "train",
+      "frames": 21,
+      "fine_counts": {
+        "stringing": 21
+      },
+      "binary_counts": {
+        "failing": 21
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167155587808,
+      "last_ts": 167155592435,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_20122022_17_05_36": {
+      "split": "test",
+      "frames": 110,
+      "fine_counts": {
+        "good": 110
+      },
+      "binary_counts": {
+        "normal": 110
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167155844879,
+      "last_ts": 167155970012,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_20122022_18_08_37": {
+      "split": "train",
+      "frames": 72,
+      "fine_counts": {
+        "good": 72
+      },
+      "binary_counts": {
+        "normal": 72
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167156535984,
+      "last_ts": 167156564620,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_20122022_20_06_10": {
+      "split": "val",
+      "frames": 92,
+      "fine_counts": {
+        "good": 92
+      },
+      "binary_counts": {
+        "normal": 92
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167159365532,
+      "last_ts": 167159402654,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_21122022_19_03_19": {
+      "split": "val",
+      "frames": 143,
+      "fine_counts": {
+        "stringing": 143
+      },
+      "binary_counts": {
+        "failing": 143
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167164977927,
+      "last_ts": 167165049676,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_21122022_19_21_52": {
+      "split": "train",
+      "frames": 113,
+      "fine_counts": {
+        "stringing": 113
+      },
+      "binary_counts": {
+        "failing": 113
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167165118043,
+      "last_ts": 167165238151,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_21122022_19_53_17": {
+      "split": "train",
+      "frames": 174,
+      "fine_counts": {
+        "stringing": 174
+      },
+      "binary_counts": {
+        "failing": 174
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167165741328,
+      "last_ts": 167165849786,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_22122022_11_00_38": {
+      "split": "train",
+      "frames": 146,
+      "fine_counts": {
+        "stringing": 146
+      },
+      "binary_counts": {
+        "failing": 146
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167170766091,
+      "last_ts": 167170917162,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_22122022_11_49_58": {
+      "split": "train",
+      "frames": 165,
+      "fine_counts": {
+        "stringing": 165
+      },
+      "binary_counts": {
+        "failing": 165
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167171028516,
+      "last_ts": 167171060323,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_22122022_12_03_39": {
+      "split": "train",
+      "frames": 174,
+      "fine_counts": {
+        "stringing": 174
+      },
+      "binary_counts": {
+        "failing": 174
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167171105087,
+      "last_ts": 167171134636,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_22122022_12_19_15": {
+      "split": "train",
+      "frames": 93,
+      "fine_counts": {
+        "stringing": 93
+      },
+      "binary_counts": {
+        "failing": 93
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167171229195,
+      "last_ts": 167171261425,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_22122022_12_37_10": {
+      "split": "train",
+      "frames": 140,
+      "fine_counts": {
+        "stringing": 140
+      },
+      "binary_counts": {
+        "failing": 140
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167171337025,
+      "last_ts": 167171408757,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_22122022_15_18_40": {
+      "split": "train",
+      "frames": 158,
+      "fine_counts": {
+        "stringing": 158
+      },
+      "binary_counts": {
+        "failing": 158
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167172284276,
+      "last_ts": 167172389274,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_22122022_15_50_18": {
+      "split": "train",
+      "frames": 102,
+      "fine_counts": {
+        "stringing": 102
+      },
+      "binary_counts": {
+        "failing": 102
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167172584159,
+      "last_ts": 167172686745,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_22122022_16_35_52": {
+      "split": "train",
+      "frames": 119,
+      "fine_counts": {
+        "stringing": 119
+      },
+      "binary_counts": {
+        "failing": 119
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167172831445,
+      "last_ts": 167172902095,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_22122022_18_04_20": {
+      "split": "train",
+      "frames": 163,
+      "fine_counts": {
+        "stringing": 163
+      },
+      "binary_counts": {
+        "failing": 163
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167173323623,
+      "last_ts": 167173472306,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_22122022_18_48_47": {
+      "split": "val",
+      "frames": 94,
+      "fine_counts": {
+        "stringing": 94
+      },
+      "binary_counts": {
+        "failing": 94
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167173571249,
+      "last_ts": 167173646994,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_23.02.2023_13_39_47": {
+      "split": "train",
+      "frames": 103,
+      "fine_counts": {
+        "good": 103
+      },
+      "binary_counts": {
+        "normal": 103
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167716013379,
+      "last_ts": 167716062011,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_23.02.2023_13_57_12": {
+      "split": "train",
+      "frames": 115,
+      "fine_counts": {
+        "good": 115
+      },
+      "binary_counts": {
+        "normal": 115
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167716143746,
+      "last_ts": 167716270396,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_23.02.2023_14_31_57": {
+      "split": "train",
+      "frames": 141,
+      "fine_counts": {
+        "good": 141
+      },
+      "binary_counts": {
+        "normal": 141
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167716318516,
+      "last_ts": 167716480402,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_23.02.2023_15_09_16": {
+      "split": "val",
+      "frames": 88,
+      "fine_counts": {
+        "good": 88
+      },
+      "binary_counts": {
+        "normal": 88
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167716524070,
+      "last_ts": 167716548282,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_23.02.2023_15_18_16": {
+      "split": "train",
+      "frames": 151,
+      "fine_counts": {
+        "good": 151
+      },
+      "binary_counts": {
+        "normal": 151
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167716755724,
+      "last_ts": 167717056115,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_23.02.2023_16_44_22": {
+      "split": "train",
+      "frames": 96,
+      "fine_counts": {
+        "stringing": 96
+      },
+      "binary_counts": {
+        "failing": 96
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167717115828,
+      "last_ts": 167717256561,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_23.02.2023_19_58_44": {
+      "split": "train",
+      "frames": 24,
+      "fine_counts": {
+        "stringing": 24
+      },
+      "binary_counts": {
+        "failing": 24
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167718296021,
+      "last_ts": 167718331043,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_23.02.2023_20_15_22": {
+      "split": "train",
+      "frames": 95,
+      "fine_counts": {
+        "stringing": 95
+      },
+      "binary_counts": {
+        "failing": 95
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167718529922,
+      "last_ts": 167718715591,
+      "n_transitions": 0,
+      "fine_runs": [
+        "stringing"
+      ],
+      "starts_good": false
+    },
+    "Recording_23.02.2023_21_33_10": {
+      "split": "val",
+      "frames": 39,
+      "fine_counts": {
+        "under_extrusion": 39
+      },
+      "binary_counts": {
+        "failing": 39
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167718893992,
+      "last_ts": 167718922544,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_28122022_15_51_39": {
+      "split": "train",
+      "frames": 146,
+      "fine_counts": {
+        "good": 146
+      },
+      "binary_counts": {
+        "normal": 146
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167224318674,
+      "last_ts": 167224394557,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_29112022_17_13_22": {
+      "split": "train",
+      "frames": 125,
+      "fine_counts": {
+        "good": 125
+      },
+      "binary_counts": {
+        "normal": 125
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 166974238548,
+      "last_ts": 166974370045,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_29112022_18_19_50": {
+      "split": "train",
+      "frames": 29,
+      "fine_counts": {
+        "under_extrusion": 29
+      },
+      "binary_counts": {
+        "failing": 29
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 166974698967,
+      "last_ts": 166974729753,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_29112022_18_50_45": {
+      "split": "train",
+      "frames": 62,
+      "fine_counts": {
+        "spaghetti": 10,
+        "good": 52
+      },
+      "binary_counts": {
+        "failing": 10,
+        "normal": 52
+      },
+      "composition": "MIXED_NORMAL_LABEL",
+      "first_ts": 166974839102,
+      "last_ts": 166975043038,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "spaghetti"
+      ],
+      "starts_good": true
+    },
+    "Recording_29112022_19_40_36": {
+      "split": "train",
+      "frames": 125,
+      "fine_counts": {
+        "under_extrusion": 59,
+        "good": 66
+      },
+      "binary_counts": {
+        "failing": 59,
+        "normal": 66
+      },
+      "composition": "MIXED_NORMAL_LABEL",
+      "first_ts": 166975106133,
+      "last_ts": 166975262791,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_29112022_20_11_16": {
+      "split": "val",
+      "frames": 94,
+      "fine_counts": {
+        "under_extrusion": 58,
+        "good": 36
+      },
+      "binary_counts": {
+        "failing": 58,
+        "normal": 36
+      },
+      "composition": "MIXED_FAILING_LABEL",
+      "first_ts": 166975296934,
+      "last_ts": 166975491852,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_29112022_20_50_21": {
+      "split": "train",
+      "frames": 58,
+      "fine_counts": {
+        "under_extrusion": 58
+      },
+      "binary_counts": {
+        "failing": 58
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 166975671762,
+      "last_ts": 166975747324,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    },
+    "Recording_29112022_21_41_27": {
+      "split": "train",
+      "frames": 105,
+      "fine_counts": {
+        "under_extrusion": 9,
+        "good": 96
+      },
+      "binary_counts": {
+        "failing": 9,
+        "normal": 96
+      },
+      "composition": "MIXED_NORMAL_LABEL",
+      "first_ts": 166975866485,
+      "last_ts": 166975998837,
+      "n_transitions": 1,
+      "fine_runs": [
+        "good",
+        "under_extrusion"
+      ],
+      "starts_good": true
+    },
+    "Recording_29112022_22_13_20": {
+      "split": "test",
+      "frames": 147,
+      "fine_counts": {
+        "good": 147
+      },
+      "binary_counts": {
+        "normal": 147
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 166976040331,
+      "last_ts": 166976126854,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_29122022_12_47_22": {
+      "split": "train",
+      "frames": 27,
+      "fine_counts": {
+        "good": 27
+      },
+      "binary_counts": {
+        "normal": 27
+      },
+      "composition": "PURE_NORMAL",
+      "first_ts": 167231883846,
+      "last_ts": 167231988212,
+      "n_transitions": 0,
+      "fine_runs": [
+        "good"
+      ],
+      "starts_good": true
+    },
+    "Recording_29122022_13_26_06": {
+      "split": "train",
+      "frames": 67,
+      "fine_counts": {
+        "under_extrusion": 67
+      },
+      "binary_counts": {
+        "failing": 67
+      },
+      "composition": "PURE_FAILING",
+      "first_ts": 167232502845,
+      "last_ts": 167232642131,
+      "n_transitions": 0,
+      "fine_runs": [
+        "under_extrusion"
+      ],
+      "starts_good": false
+    }
+  },
+  "summary": {
+    "composition_total": {
+      "MIXED_NORMAL_LABEL": 9,
+      "MIXED_FAILING_LABEL": 32,
+      "PURE_NORMAL": 50,
+      "PURE_FAILING": 60
+    },
+    "per_split": {
+      "train": {
+        "n_recordings": 105,
+        "composition": {
+          "MIXED_NORMAL_LABEL": 8,
+          "PURE_NORMAL": 40,
+          "PURE_FAILING": 44,
+          "MIXED_FAILING_LABEL": 13
+        },
+        "frames_total": 11254,
+        "frames_in_mixed": 2537,
+        "mixed_recordings": 21
+      },
+      "val": {
+        "n_recordings": 22,
+        "composition": {
+          "PURE_NORMAL": 4,
+          "MIXED_FAILING_LABEL": 10,
+          "PURE_FAILING": 7,
+          "MIXED_NORMAL_LABEL": 1
+        },
+        "frames_total": 2174,
+        "frames_in_mixed": 1148,
+        "mixed_recordings": 11
+      },
+      "test": {
+        "n_recordings": 24,
+        "composition": {
+          "MIXED_FAILING_LABEL": 9,
+          "PURE_NORMAL": 6,
+          "PURE_FAILING": 9
+        },
+        "frames_total": 2859,
+        "frames_in_mixed": 1194,
+        "mixed_recordings": 9
+      }
+    }
+  }
+}

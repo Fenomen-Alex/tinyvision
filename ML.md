@@ -78,6 +78,17 @@ frozen ShuffleNetV2 baseline over the frozen val/test splits. Findings:
 - Dominant bottleneck is **frame-classifier miscalibration** (sustained over-confidence on
   source-labeled-good prints), which temporal logic cannot fix.
 
+**Stage 4 update (see `docs/research/stage4-dataset-forensics.md`):** the prepared dataset
+has **no recording-level label** — `normal`/`failing` folders are a *per-frame* mapping of the
+source `class` column, so 41/151 recordings span both folders (good→defect transitions). The
+Stage 3 "recording label" was a first-frame convention, which mislabels every transition
+recording as `normal`. Corrected conclusion: the "miscalibration / over-confidence" concern
+applies only to **genuinely all-good** recordings (6 test / 4 val), not to mixed
+good→defect transition recordings (whose defect frames are real detections). The strongest
+defensible task is **per-frame binary classification**; false alarms should be measured only
+on all-good recordings, and temporal "onset" is **not verified ground truth** (class-flip does
+not reliably equal physical failure onset).
+
 ### Datasets (status)
 
 **Own data collection is essential** for deployment-time validation on real
@@ -154,6 +165,8 @@ End-to-end smoke test (train → evaluate → export → INT8) passed on CPU.
 | Evaluation plan | `docs/research/evaluation-plan.md` |
 | Temporal decision logic | `docs/research/temporal-decision-logic.md` |
 | Anomaly detection research | `docs/research/anomaly-detection-for-3d-print.md` |
+| Stage 3 temporal evaluation | `docs/research/stage3-temporal-evaluation.md` |
+| Stage 4 dataset forensics | `docs/research/stage4-dataset-forensics.md` |
 | Open-source projects | `docs/research/open-source-projects.md` |
 | Lightweight models | `docs/research/lightweight-models-comparison.md` |
 | Dataset records | `docs/research/datasets/` |

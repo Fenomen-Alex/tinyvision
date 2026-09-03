@@ -20,6 +20,8 @@
   - Consecutive frames of the same recording are highly correlated (temporal redundancy); requires source-level splitting (by `recording`) to avoid leakage.
   - Oblique-camera images have significant motion blur; silver-bed images differ in background.
   - Binary mapping for Experiment 1 maps GOOD→normal and all three error classes→failing; the multiple error modes are collapsed, so per-mode confusion is not separated.
+  - **No recording-level label exists.** The `recording` column is a session id only; labels are per-frame `class`. A recording that starts good and later fails produces frames under both `normal/` and `failing/` folders (41 of 151 recordings). Any "recording label" is a downstream construction, not source ground truth (see `docs/research/stage4-dataset-forensics.md`).
+  - The per-frame `class` transition (good→defect) is not a verified physical failure onset; some recordings' flips do not align with `modified_layers`, and `modified_layers` is empty for most transition recordings.
 - **Intended usage**: Visual error detection in FDM printing (author's FDM_error_detection project, ResNet/baseCNN). For TinyVision: Experiment 1 binary classification (normal vs failing).
 - **Retrieval date**: 2026-09-03 (downloaded `datasets/Printing_Errors/`).
 
