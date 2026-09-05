@@ -99,6 +99,17 @@ threshold sweep shows F1 peaks at 0.7 (0.911 vs 0.908 at frozen 0.5). Key priori
 (1) own data collection, (2) threshold tuning for deployment, (3) failure-type-specific
 analysis, (4) deferred temporal logic redesign.
 
+**Stage 11B update (see `docs/research/stage11b-cluster-generalization-results.md`):**
+leave-cluster-out generalization experiment. Held out entire date/session clusters from
+training and evaluated on unseen clusters. **Both stringing holdout clusters showed
+degradation** vs known-domain stringing: 22122022 FNR 0.062 (known=0.000), 20122022 FNR
+0.162 (known=0.001). Under-extrusion controls were mixed: 10012023 performed well (FNR
+0.016), but 05012023 degraded significantly (FNR 0.337). Results support the hypothesis
+that stringing failures have poor cross-cluster generalization, though the under-extrusion
+control variability means this is not a clean comparison. The 20122022 cluster (3 of 5
+recordings nearly completely missed) is particularly concerning. Production deployment
+must account for per-session performance variation.
+
 ### Datasets (status)
 
 **Own data collection is essential** for deployment-time validation on real
@@ -140,21 +151,49 @@ End-to-end smoke test (train → evaluate → export → INT8) passed on CPU.
 ### Next steps
 
 1. ✅ Run Experiment 1 across all classification candidates in the registry (done).
-2. Collect own dataset (`tv capture`) for normal + failure classes to supplement
-   and validate on real hardware/camera.
-3. Run the temporal-smoothing experiment (Experiment 4) on the shadow candidate set
-   (mobilenet_v3_small, shufflenet_v2_x1_0).
-4. Benchmark edge latency / memory on Raspberry Pi (see `EDGE.md`).
-5. Declare the winner from measured edge + accuracy results, then build the C++ runtime.
+2. ✅ Cluster domain audit (Stage 10) — confirmed session/date effects.
+3. ✅ Leave-cluster-out experiment (Stage 11B) — confirmed cross-domain degradation for
+   stringing AND under-extrusion. Clean stringing-only hypothesis NOT established.
+4. Acquire external video data: 19–31 independent sessions from ≥10 YouTube sources
+   (see `docs/research/stage12-data-acquisition-design.md`). Stage 12A cataloged 13 candidate
+   videos; Stage 12B piloted 6 (SP001, SP002, NORMAL001, UE001, UE003, STR001) and determined
+    most search-sourced failure videos are heavily edited or tutorial-dominated.
+    **STRINGING_SOURCE_FAILED for STR001.** No failure type visually confirmed yet;
+    human montage review pending before full acquisition. Stage 12C built a provisional
+    external **pilot** dataset (1,546 kept frames, 21 normal + 15 failing labeled,
+    exact-md5 dedup, source-atomic split) — see
+    `docs/research/stage12c-external-pilot-dataset.md`. **No training on it yet; labels are
+    unverified; validation split contains zero labeled frames.** Stage 12D built the
+    **human-review workflow** (manifest + contact sheets, 1,006 units; decisions all empty)
+    to turn a subset of the six sources into **human-verified** external data —
+    see `docs/research/stage12d-human-review-workflow.md`. The pilot showed acquisition
+    should favor **continuous footage first, failure type second** (stable printer-cam feeds
+    over tutorials/montages). A local **VLM review pipe** (Qwen3-VL-8B via LM Studio,
+    proposals only — never ground truth, never merged into labels) now produces opinion
+    proposals for the 120 high-value units (`SP001`, `NORMAL001`, `UE003`), smoke-tested on
+    one unit; explicit `--batch` required for the full run — see
+    `docs/research/stage12d-extra-vlm-review-pipe.md`. Stage 12E audited the full 120/120
+    batch run (`docs/research/stage12e-vlm-batch-audit.md`).
+5. Label acquired data (binary per-frame: normal / failing / uncertain) — human review
+    **stopped at 24 units** (UE003 is largely setup/non-print footage with low information
+    value). Stage 12F records the six-unit tranche NORMAL001×3 `failing/stringing`, SP001×3
+    `failing/spaghetti` merged into `verified_labels.json` (6 units), plus 18 additional UE003
+    decisions kept in the manifest (unmerged); VLM agreed **0/6** on the overlapped audit
+    sample (observation, not an accuracy metric) — see
+    `docs/research/stage12f-first-human-review.md`.
+6. Run Experiment 2: augment training data with external data, evaluate on frozen test set.
+7. Benchmark edge latency / memory on Raspberry Pi (see `EDGE.md`).
+8. Build the C++ runtime.
 
 ## Experiment plan
 
 | # | Task | Model | Dataset | Timeline |
 |---|---|---|---|---|
-| 1 | Binary classification (✅ done) | mobilenet_v3_small, shufflenet_v2_x1_0 (winner + runner-up) | 3d-print-errors + own | Week 1–2 |
-| 4 | Temporal smoothing | Experiment 1 model outputs | Video sequences | Week 2–3 |
-| 2 | Object detection | YOLOv11n | Roboflow datasets | Week 3–4 |
-| 3 | Anomaly detection | EfficientAD-S | Own normal prints | Week 4–5 |
+| 1 | Binary classification (✅ done) | ShuffleNetV2 x1.0 (winner) | 3d-print-errors | Week 1–2 |
+| 11B | Leave-cluster-out (✅ done) | ShuffleNetV2 x1.0 | 3d-print-errors | Week 4 |
+| 2 | External data augmentation | ShuffleNetV2 x1.0 | 3d-print-errors + external video frames | TBD |
+| 4 | Temporal smoothing | Experiment 1 model outputs | Video sequences | TBD |
+| 3 | Anomaly detection | EfficientAD-S | Own normal prints | TBD |
 
 ## Key open questions
 
@@ -178,6 +217,18 @@ End-to-end smoke test (train → evaluate → export → INT8) passed on CPU.
 | Stage 3 temporal evaluation | `docs/research/stage3-temporal-evaluation.md` |
 | Stage 4 dataset forensics | `docs/research/stage4-dataset-forensics.md` |
 | Stage 5 corrected evaluation | `docs/research/stage5-corrected-evaluation.md` |
+| Stage 10 cluster domain audit | `docs/research/stage10-cluster-domain-audit.md` |
+| Stage 11A experiment design | `docs/research/stage11a-cluster-generalization-design.md` |
+| Stage 11B execution preflight | `docs/research/stage11b-execution-preflight.md` |
+| Stage 11B results | `docs/research/stage11b-cluster-generalization-results.md` |
+| Stage 12 data acquisition design | `docs/research/stage12-data-acquisition-design.md` |
+| Stage 12A video source candidates | `docs/research/stage12a-video-source-candidates.md` |
+| Stage 12B video acquisition pilot | `docs/research/stage12b-video-acquisition-pilot.md` |
+| Stage 12C external pilot dataset | `docs/research/stage12c-external-pilot-dataset.md` |
+| Stage 12D human review workflow | `docs/research/stage12d-human-review-workflow.md` |
+| Stage 12D-extra VLM review pipe | `docs/research/stage12d-extra-vlm-review-pipe.md` |
+| Stage 12E VLM batch audit | `docs/research/stage12e-vlm-batch-audit.md` |
+| Stage 12F first human review tranche | `docs/research/stage12f-first-human-review.md` |
 | Open-source projects | `docs/research/open-source-projects.md` |
 | Lightweight models | `docs/research/lightweight-models-comparison.md` |
 | Dataset records | `docs/research/datasets/` |

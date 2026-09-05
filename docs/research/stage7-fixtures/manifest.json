@@ -1,0 +1,150 @@
+{
+  "fps": 2.0,
+  "data_dir": "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors",
+  "generated_at": "2026-09-04T09:21:30Z",
+  "recordings": [
+    {
+      "id": "test_pure_normal_68",
+      "split": "test",
+      "composition": "PURE_NORMAL",
+      "recording": "Recording_05012023_13_10_42",
+      "class": "normal",
+      "failure_types": [],
+      "video_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/test_pure_normal_68.mp4",
+      "frame_count": 68,
+      "resolution": "256x256",
+      "source_dirs": [
+        "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors/normal/Recording_05012023_13_10_42"
+      ],
+      "labels_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/test_pure_normal_68_labels.json",
+      "generation_time_s": 0.098
+    },
+    {
+      "id": "test_pure_failing_underex_147",
+      "split": "test",
+      "composition": "PURE_FAILING",
+      "recording": "Recording_08012023_13_31_14",
+      "class": "failing",
+      "failure_types": [
+        "under_extrusion"
+      ],
+      "video_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/test_pure_failing_underex_147.mp4",
+      "frame_count": 147,
+      "resolution": "256x256",
+      "source_dirs": [
+        "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors/failing/Recording_08012023_13_31_14"
+      ],
+      "labels_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/test_pure_failing_underex_147_labels.json",
+      "generation_time_s": 0.234
+    },
+    {
+      "id": "test_pure_failing_stringing_72",
+      "split": "test",
+      "composition": "PURE_FAILING",
+      "recording": "Recording_14.02.2023_17_38_44",
+      "class": "failing",
+      "failure_types": [
+        "stringing"
+      ],
+      "video_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/test_pure_failing_stringing_72.mp4",
+      "frame_count": 72,
+      "resolution": "256x256",
+      "source_dirs": [
+        "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors/failing/Recording_14.02.2023_17_38_44"
+      ],
+      "labels_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/test_pure_failing_stringing_72_labels.json",
+      "generation_time_s": 0.116
+    },
+    {
+      "id": "test_mixed_underex_86",
+      "split": "test",
+      "composition": "MIXED",
+      "recording": "Recording_01122022_16_06_44",
+      "class": "failing",
+      "failure_types": [
+        "under_extrusion"
+      ],
+      "video_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/test_mixed_underex_86.mp4",
+      "frame_count": 86,
+      "resolution": "256x256",
+      "source_dirs": [
+        "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors/normal/Recording_01122022_16_06_44",
+        "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors/failing/Recording_01122022_16_06_44"
+      ],
+      "labels_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/test_mixed_underex_86_labels.json",
+      "generation_time_s": 0.146
+    },
+    {
+      "id": "val_pure_normal_152",
+      "split": "val",
+      "composition": "PURE_NORMAL",
+      "recording": "Recording_01122022_17_44_58",
+      "class": "normal",
+      "failure_types": [],
+      "video_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/val_pure_normal_152.mp4",
+      "frame_count": 152,
+      "resolution": "256x256",
+      "source_dirs": [
+        "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors/normal/Recording_01122022_17_44_58"
+      ],
+      "labels_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/val_pure_normal_152_labels.json",
+      "generation_time_s": 0.243
+    },
+    {
+      "id": "val_pure_failing_underex_119",
+      "split": "val",
+      "composition": "PURE_FAILING",
+      "recording": "Recording_10012023_18_46_21",
+      "class": "failing",
+      "failure_types": [
+        "under_extrusion"
+      ],
+      "video_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/val_pure_failing_underex_119.mp4",
+      "frame_count": 119,
+      "resolution": "256x256",
+      "source_dirs": [
+        "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors/failing/Recording_10012023_18_46_21"
+      ],
+      "labels_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/val_pure_failing_underex_119_labels.json",
+      "generation_time_s": 0.191
+    },
+    {
+      "id": "val_pure_failing_stringing_40",
+      "split": "val",
+      "composition": "PURE_FAILING",
+      "recording": "Recording_14.02.2023_20_02_21",
+      "class": "failing",
+      "failure_types": [
+        "stringing"
+      ],
+      "video_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/val_pure_failing_stringing_40.mp4",
+      "frame_count": 40,
+      "resolution": "256x256",
+      "source_dirs": [
+        "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors/failing/Recording_14.02.2023_20_02_21"
+      ],
+      "labels_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/val_pure_failing_stringing_40_labels.json",
+      "generation_time_s": 0.073
+    },
+    {
+      "id": "val_mixed_multi_131",
+      "split": "val",
+      "composition": "MIXED",
+      "recording": "Recording_03012023_15_07_03",
+      "class": "failing",
+      "failure_types": [
+        "under_extrusion",
+        "spaghetti"
+      ],
+      "video_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/val_mixed_multi_131.mp4",
+      "frame_count": 131,
+      "resolution": "256x256",
+      "source_dirs": [
+        "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors/normal/Recording_03012023_15_07_03",
+        "/Users/alex/Projects/tinyvision/datasets/processed/printing-errors/failing/Recording_03012023_15_07_03"
+      ],
+      "labels_path": "/Users/alex/Projects/tinyvision/docs/research/stage7-fixtures/val_mixed_multi_131_labels.json",
+      "generation_time_s": 0.226
+    }
+  ]
+}

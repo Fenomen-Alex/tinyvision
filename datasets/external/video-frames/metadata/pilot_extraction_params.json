@@ -1,0 +1,1097 @@
+{
+  "SP001": {
+    "source_video": "SP001_3Ci-3ZYHBkM.mp4",
+    "duration_s": 25.5,
+    "target_frames": 26,
+    "spacing_s": [
+      1
+    ],
+    "frames": [
+      {
+        "index": 0,
+        "timestamp_s": 0,
+        "path": "extracted/SP001/sample/frame_0000_t0000.000.jpg"
+      },
+      {
+        "index": 1,
+        "timestamp_s": 1,
+        "path": "extracted/SP001/sample/frame_0001_t0001.000.jpg"
+      },
+      {
+        "index": 2,
+        "timestamp_s": 2,
+        "path": "extracted/SP001/sample/frame_0002_t0002.000.jpg"
+      },
+      {
+        "index": 3,
+        "timestamp_s": 3,
+        "path": "extracted/SP001/sample/frame_0003_t0003.000.jpg"
+      },
+      {
+        "index": 4,
+        "timestamp_s": 4,
+        "path": "extracted/SP001/sample/frame_0004_t0004.000.jpg"
+      },
+      {
+        "index": 5,
+        "timestamp_s": 5,
+        "path": "extracted/SP001/sample/frame_0005_t0005.000.jpg"
+      },
+      {
+        "index": 6,
+        "timestamp_s": 6,
+        "path": "extracted/SP001/sample/frame_0006_t0006.000.jpg"
+      },
+      {
+        "index": 7,
+        "timestamp_s": 7,
+        "path": "extracted/SP001/sample/frame_0007_t0007.000.jpg"
+      },
+      {
+        "index": 8,
+        "timestamp_s": 8,
+        "path": "extracted/SP001/sample/frame_0008_t0008.000.jpg"
+      },
+      {
+        "index": 9,
+        "timestamp_s": 9,
+        "path": "extracted/SP001/sample/frame_0009_t0009.000.jpg"
+      },
+      {
+        "index": 10,
+        "timestamp_s": 10,
+        "path": "extracted/SP001/sample/frame_0010_t0010.000.jpg"
+      },
+      {
+        "index": 11,
+        "timestamp_s": 11,
+        "path": "extracted/SP001/sample/frame_0011_t0011.000.jpg"
+      },
+      {
+        "index": 12,
+        "timestamp_s": 12,
+        "path": "extracted/SP001/sample/frame_0012_t0012.000.jpg"
+      },
+      {
+        "index": 13,
+        "timestamp_s": 13,
+        "path": "extracted/SP001/sample/frame_0013_t0013.000.jpg"
+      },
+      {
+        "index": 14,
+        "timestamp_s": 14,
+        "path": "extracted/SP001/sample/frame_0014_t0014.000.jpg"
+      },
+      {
+        "index": 15,
+        "timestamp_s": 15,
+        "path": "extracted/SP001/sample/frame_0015_t0015.000.jpg"
+      },
+      {
+        "index": 16,
+        "timestamp_s": 16,
+        "path": "extracted/SP001/sample/frame_0016_t0016.000.jpg"
+      },
+      {
+        "index": 17,
+        "timestamp_s": 17,
+        "path": "extracted/SP001/sample/frame_0017_t0017.000.jpg"
+      },
+      {
+        "index": 18,
+        "timestamp_s": 18,
+        "path": "extracted/SP001/sample/frame_0018_t0018.000.jpg"
+      },
+      {
+        "index": 19,
+        "timestamp_s": 19,
+        "path": "extracted/SP001/sample/frame_0019_t0019.000.jpg"
+      },
+      {
+        "index": 20,
+        "timestamp_s": 20,
+        "path": "extracted/SP001/sample/frame_0020_t0020.000.jpg"
+      },
+      {
+        "index": 21,
+        "timestamp_s": 21,
+        "path": "extracted/SP001/sample/frame_0021_t0021.000.jpg"
+      },
+      {
+        "index": 22,
+        "timestamp_s": 22,
+        "path": "extracted/SP001/sample/frame_0022_t0022.000.jpg"
+      },
+      {
+        "index": 23,
+        "timestamp_s": 23,
+        "path": "extracted/SP001/sample/frame_0023_t0023.000.jpg"
+      },
+      {
+        "index": 24,
+        "timestamp_s": 24,
+        "path": "extracted/SP001/sample/frame_0024_t0024.000.jpg"
+      },
+      {
+        "index": 25,
+        "timestamp_s": 25,
+        "path": "extracted/SP001/sample/frame_0025_t0025.000.jpg"
+      }
+    ]
+  },
+  "SP002": {
+    "source_video": "SP002_qcVFnRcJcP4.mp4",
+    "duration_s": 54.966667,
+    "target_frames": 55,
+    "spacing_s": [
+      1
+    ],
+    "frames": [
+      {
+        "index": 0,
+        "timestamp_s": 0,
+        "path": "extracted/SP002/sample/frame_0000_t0000.000.jpg"
+      },
+      {
+        "index": 1,
+        "timestamp_s": 1,
+        "path": "extracted/SP002/sample/frame_0001_t0001.000.jpg"
+      },
+      {
+        "index": 2,
+        "timestamp_s": 2,
+        "path": "extracted/SP002/sample/frame_0002_t0002.000.jpg"
+      },
+      {
+        "index": 3,
+        "timestamp_s": 3,
+        "path": "extracted/SP002/sample/frame_0003_t0003.000.jpg"
+      },
+      {
+        "index": 4,
+        "timestamp_s": 4,
+        "path": "extracted/SP002/sample/frame_0004_t0004.000.jpg"
+      },
+      {
+        "index": 5,
+        "timestamp_s": 5,
+        "path": "extracted/SP002/sample/frame_0005_t0005.000.jpg"
+      },
+      {
+        "index": 6,
+        "timestamp_s": 6,
+        "path": "extracted/SP002/sample/frame_0006_t0006.000.jpg"
+      },
+      {
+        "index": 7,
+        "timestamp_s": 7,
+        "path": "extracted/SP002/sample/frame_0007_t0007.000.jpg"
+      },
+      {
+        "index": 8,
+        "timestamp_s": 8,
+        "path": "extracted/SP002/sample/frame_0008_t0008.000.jpg"
+      },
+      {
+        "index": 9,
+        "timestamp_s": 9,
+        "path": "extracted/SP002/sample/frame_0009_t0009.000.jpg"
+      },
+      {
+        "index": 10,
+        "timestamp_s": 10,
+        "path": "extracted/SP002/sample/frame_0010_t0010.000.jpg"
+      },
+      {
+        "index": 11,
+        "timestamp_s": 11,
+        "path": "extracted/SP002/sample/frame_0011_t0011.000.jpg"
+      },
+      {
+        "index": 12,
+        "timestamp_s": 12,
+        "path": "extracted/SP002/sample/frame_0012_t0012.000.jpg"
+      },
+      {
+        "index": 13,
+        "timestamp_s": 13,
+        "path": "extracted/SP002/sample/frame_0013_t0013.000.jpg"
+      },
+      {
+        "index": 14,
+        "timestamp_s": 14,
+        "path": "extracted/SP002/sample/frame_0014_t0014.000.jpg"
+      },
+      {
+        "index": 15,
+        "timestamp_s": 15,
+        "path": "extracted/SP002/sample/frame_0015_t0015.000.jpg"
+      },
+      {
+        "index": 16,
+        "timestamp_s": 16,
+        "path": "extracted/SP002/sample/frame_0016_t0016.000.jpg"
+      },
+      {
+        "index": 17,
+        "timestamp_s": 17,
+        "path": "extracted/SP002/sample/frame_0017_t0017.000.jpg"
+      },
+      {
+        "index": 18,
+        "timestamp_s": 18,
+        "path": "extracted/SP002/sample/frame_0018_t0018.000.jpg"
+      },
+      {
+        "index": 19,
+        "timestamp_s": 19,
+        "path": "extracted/SP002/sample/frame_0019_t0019.000.jpg"
+      },
+      {
+        "index": 20,
+        "timestamp_s": 20,
+        "path": "extracted/SP002/sample/frame_0020_t0020.000.jpg"
+      },
+      {
+        "index": 21,
+        "timestamp_s": 21,
+        "path": "extracted/SP002/sample/frame_0021_t0021.000.jpg"
+      },
+      {
+        "index": 22,
+        "timestamp_s": 22,
+        "path": "extracted/SP002/sample/frame_0022_t0022.000.jpg"
+      },
+      {
+        "index": 23,
+        "timestamp_s": 23,
+        "path": "extracted/SP002/sample/frame_0023_t0023.000.jpg"
+      },
+      {
+        "index": 24,
+        "timestamp_s": 24,
+        "path": "extracted/SP002/sample/frame_0024_t0024.000.jpg"
+      },
+      {
+        "index": 25,
+        "timestamp_s": 25,
+        "path": "extracted/SP002/sample/frame_0025_t0025.000.jpg"
+      },
+      {
+        "index": 26,
+        "timestamp_s": 26,
+        "path": "extracted/SP002/sample/frame_0026_t0026.000.jpg"
+      },
+      {
+        "index": 27,
+        "timestamp_s": 27,
+        "path": "extracted/SP002/sample/frame_0027_t0027.000.jpg"
+      },
+      {
+        "index": 28,
+        "timestamp_s": 28,
+        "path": "extracted/SP002/sample/frame_0028_t0028.000.jpg"
+      },
+      {
+        "index": 29,
+        "timestamp_s": 29,
+        "path": "extracted/SP002/sample/frame_0029_t0029.000.jpg"
+      },
+      {
+        "index": 30,
+        "timestamp_s": 30,
+        "path": "extracted/SP002/sample/frame_0030_t0030.000.jpg"
+      },
+      {
+        "index": 31,
+        "timestamp_s": 31,
+        "path": "extracted/SP002/sample/frame_0031_t0031.000.jpg"
+      },
+      {
+        "index": 32,
+        "timestamp_s": 32,
+        "path": "extracted/SP002/sample/frame_0032_t0032.000.jpg"
+      },
+      {
+        "index": 33,
+        "timestamp_s": 33,
+        "path": "extracted/SP002/sample/frame_0033_t0033.000.jpg"
+      },
+      {
+        "index": 34,
+        "timestamp_s": 34,
+        "path": "extracted/SP002/sample/frame_0034_t0034.000.jpg"
+      },
+      {
+        "index": 35,
+        "timestamp_s": 35,
+        "path": "extracted/SP002/sample/frame_0035_t0035.000.jpg"
+      },
+      {
+        "index": 36,
+        "timestamp_s": 36,
+        "path": "extracted/SP002/sample/frame_0036_t0036.000.jpg"
+      },
+      {
+        "index": 37,
+        "timestamp_s": 37,
+        "path": "extracted/SP002/sample/frame_0037_t0037.000.jpg"
+      },
+      {
+        "index": 38,
+        "timestamp_s": 38,
+        "path": "extracted/SP002/sample/frame_0038_t0038.000.jpg"
+      },
+      {
+        "index": 39,
+        "timestamp_s": 39,
+        "path": "extracted/SP002/sample/frame_0039_t0039.000.jpg"
+      },
+      {
+        "index": 40,
+        "timestamp_s": 40,
+        "path": "extracted/SP002/sample/frame_0040_t0040.000.jpg"
+      },
+      {
+        "index": 41,
+        "timestamp_s": 41,
+        "path": "extracted/SP002/sample/frame_0041_t0041.000.jpg"
+      },
+      {
+        "index": 42,
+        "timestamp_s": 42,
+        "path": "extracted/SP002/sample/frame_0042_t0042.000.jpg"
+      },
+      {
+        "index": 43,
+        "timestamp_s": 43,
+        "path": "extracted/SP002/sample/frame_0043_t0043.000.jpg"
+      },
+      {
+        "index": 44,
+        "timestamp_s": 44,
+        "path": "extracted/SP002/sample/frame_0044_t0044.000.jpg"
+      },
+      {
+        "index": 45,
+        "timestamp_s": 45,
+        "path": "extracted/SP002/sample/frame_0045_t0045.000.jpg"
+      },
+      {
+        "index": 46,
+        "timestamp_s": 46,
+        "path": "extracted/SP002/sample/frame_0046_t0046.000.jpg"
+      },
+      {
+        "index": 47,
+        "timestamp_s": 47,
+        "path": "extracted/SP002/sample/frame_0047_t0047.000.jpg"
+      },
+      {
+        "index": 48,
+        "timestamp_s": 48,
+        "path": "extracted/SP002/sample/frame_0048_t0048.000.jpg"
+      },
+      {
+        "index": 49,
+        "timestamp_s": 49,
+        "path": "extracted/SP002/sample/frame_0049_t0049.000.jpg"
+      },
+      {
+        "index": 50,
+        "timestamp_s": 50,
+        "path": "extracted/SP002/sample/frame_0050_t0050.000.jpg"
+      },
+      {
+        "index": 51,
+        "timestamp_s": 51,
+        "path": "extracted/SP002/sample/frame_0051_t0051.000.jpg"
+      },
+      {
+        "index": 52,
+        "timestamp_s": 52,
+        "path": "extracted/SP002/sample/frame_0052_t0052.000.jpg"
+      },
+      {
+        "index": 53,
+        "timestamp_s": 53,
+        "path": "extracted/SP002/sample/frame_0053_t0053.000.jpg"
+      },
+      {
+        "index": 54,
+        "timestamp_s": 54,
+        "path": "extracted/SP002/sample/frame_0054_t0054.000.jpg"
+      }
+    ]
+  },
+  "NORMAL001": {
+    "source_video": "NORMAL001_dX4eGEFrthE.mp4",
+    "duration_s": 20.066667,
+    "target_frames": 21,
+    "spacing_s": [
+      1
+    ],
+    "frames": [
+      {
+        "index": 0,
+        "timestamp_s": 0,
+        "path": "extracted/NORMAL001/sample/frame_0000_t0000.000.jpg"
+      },
+      {
+        "index": 1,
+        "timestamp_s": 1,
+        "path": "extracted/NORMAL001/sample/frame_0001_t0001.000.jpg"
+      },
+      {
+        "index": 2,
+        "timestamp_s": 2,
+        "path": "extracted/NORMAL001/sample/frame_0002_t0002.000.jpg"
+      },
+      {
+        "index": 3,
+        "timestamp_s": 3,
+        "path": "extracted/NORMAL001/sample/frame_0003_t0003.000.jpg"
+      },
+      {
+        "index": 4,
+        "timestamp_s": 4,
+        "path": "extracted/NORMAL001/sample/frame_0004_t0004.000.jpg"
+      },
+      {
+        "index": 5,
+        "timestamp_s": 5,
+        "path": "extracted/NORMAL001/sample/frame_0005_t0005.000.jpg"
+      },
+      {
+        "index": 6,
+        "timestamp_s": 6,
+        "path": "extracted/NORMAL001/sample/frame_0006_t0006.000.jpg"
+      },
+      {
+        "index": 7,
+        "timestamp_s": 7,
+        "path": "extracted/NORMAL001/sample/frame_0007_t0007.000.jpg"
+      },
+      {
+        "index": 8,
+        "timestamp_s": 8,
+        "path": "extracted/NORMAL001/sample/frame_0008_t0008.000.jpg"
+      },
+      {
+        "index": 9,
+        "timestamp_s": 9,
+        "path": "extracted/NORMAL001/sample/frame_0009_t0009.000.jpg"
+      },
+      {
+        "index": 10,
+        "timestamp_s": 10,
+        "path": "extracted/NORMAL001/sample/frame_0010_t0010.000.jpg"
+      },
+      {
+        "index": 11,
+        "timestamp_s": 11,
+        "path": "extracted/NORMAL001/sample/frame_0011_t0011.000.jpg"
+      },
+      {
+        "index": 12,
+        "timestamp_s": 12,
+        "path": "extracted/NORMAL001/sample/frame_0012_t0012.000.jpg"
+      },
+      {
+        "index": 13,
+        "timestamp_s": 13,
+        "path": "extracted/NORMAL001/sample/frame_0013_t0013.000.jpg"
+      },
+      {
+        "index": 14,
+        "timestamp_s": 14,
+        "path": "extracted/NORMAL001/sample/frame_0014_t0014.000.jpg"
+      },
+      {
+        "index": 15,
+        "timestamp_s": 15,
+        "path": "extracted/NORMAL001/sample/frame_0015_t0015.000.jpg"
+      },
+      {
+        "index": 16,
+        "timestamp_s": 16,
+        "path": "extracted/NORMAL001/sample/frame_0016_t0016.000.jpg"
+      },
+      {
+        "index": 17,
+        "timestamp_s": 17,
+        "path": "extracted/NORMAL001/sample/frame_0017_t0017.000.jpg"
+      },
+      {
+        "index": 18,
+        "timestamp_s": 18,
+        "path": "extracted/NORMAL001/sample/frame_0018_t0018.000.jpg"
+      },
+      {
+        "index": 19,
+        "timestamp_s": 19,
+        "path": "extracted/NORMAL001/sample/frame_0019_t0019.000.jpg"
+      },
+      {
+        "index": 20,
+        "timestamp_s": 20,
+        "path": "extracted/NORMAL001/sample/frame_0020_t0020.000.jpg"
+      }
+    ]
+  },
+  "UE001": {
+    "source_video": "UE001_6V319bseO3U.mp4",
+    "duration_s": 519.64,
+    "target_frames": 35,
+    "spacing_s": [
+      14.421
+    ],
+    "frames": [
+      {
+        "index": 0,
+        "timestamp_s": 0.5,
+        "path": "extracted/UE001/sample/frame_0000_t0000.500.jpg"
+      },
+      {
+        "index": 1,
+        "timestamp_s": 14.921,
+        "path": "extracted/UE001/sample/frame_0001_t0014.921.jpg"
+      },
+      {
+        "index": 2,
+        "timestamp_s": 29.341,
+        "path": "extracted/UE001/sample/frame_0002_t0029.341.jpg"
+      },
+      {
+        "index": 3,
+        "timestamp_s": 43.762,
+        "path": "extracted/UE001/sample/frame_0003_t0043.762.jpg"
+      },
+      {
+        "index": 4,
+        "timestamp_s": 58.182,
+        "path": "extracted/UE001/sample/frame_0004_t0058.182.jpg"
+      },
+      {
+        "index": 5,
+        "timestamp_s": 72.603,
+        "path": "extracted/UE001/sample/frame_0005_t0072.603.jpg"
+      },
+      {
+        "index": 6,
+        "timestamp_s": 87.023,
+        "path": "extracted/UE001/sample/frame_0006_t0087.023.jpg"
+      },
+      {
+        "index": 7,
+        "timestamp_s": 101.444,
+        "path": "extracted/UE001/sample/frame_0007_t0101.444.jpg"
+      },
+      {
+        "index": 8,
+        "timestamp_s": 115.864,
+        "path": "extracted/UE001/sample/frame_0008_t0115.864.jpg"
+      },
+      {
+        "index": 9,
+        "timestamp_s": 130.285,
+        "path": "extracted/UE001/sample/frame_0009_t0130.285.jpg"
+      },
+      {
+        "index": 10,
+        "timestamp_s": 144.706,
+        "path": "extracted/UE001/sample/frame_0010_t0144.706.jpg"
+      },
+      {
+        "index": 11,
+        "timestamp_s": 159.126,
+        "path": "extracted/UE001/sample/frame_0011_t0159.126.jpg"
+      },
+      {
+        "index": 12,
+        "timestamp_s": 173.547,
+        "path": "extracted/UE001/sample/frame_0012_t0173.547.jpg"
+      },
+      {
+        "index": 13,
+        "timestamp_s": 187.967,
+        "path": "extracted/UE001/sample/frame_0013_t0187.967.jpg"
+      },
+      {
+        "index": 14,
+        "timestamp_s": 202.388,
+        "path": "extracted/UE001/sample/frame_0014_t0202.388.jpg"
+      },
+      {
+        "index": 15,
+        "timestamp_s": 216.808,
+        "path": "extracted/UE001/sample/frame_0015_t0216.808.jpg"
+      },
+      {
+        "index": 16,
+        "timestamp_s": 231.229,
+        "path": "extracted/UE001/sample/frame_0016_t0231.229.jpg"
+      },
+      {
+        "index": 17,
+        "timestamp_s": 245.649,
+        "path": "extracted/UE001/sample/frame_0017_t0245.649.jpg"
+      },
+      {
+        "index": 18,
+        "timestamp_s": 260.07,
+        "path": "extracted/UE001/sample/frame_0018_t0260.070.jpg"
+      },
+      {
+        "index": 19,
+        "timestamp_s": 274.491,
+        "path": "extracted/UE001/sample/frame_0019_t0274.491.jpg"
+      },
+      {
+        "index": 20,
+        "timestamp_s": 288.911,
+        "path": "extracted/UE001/sample/frame_0020_t0288.911.jpg"
+      },
+      {
+        "index": 21,
+        "timestamp_s": 303.332,
+        "path": "extracted/UE001/sample/frame_0021_t0303.332.jpg"
+      },
+      {
+        "index": 22,
+        "timestamp_s": 317.752,
+        "path": "extracted/UE001/sample/frame_0022_t0317.752.jpg"
+      },
+      {
+        "index": 23,
+        "timestamp_s": 332.173,
+        "path": "extracted/UE001/sample/frame_0023_t0332.173.jpg"
+      },
+      {
+        "index": 24,
+        "timestamp_s": 346.593,
+        "path": "extracted/UE001/sample/frame_0024_t0346.593.jpg"
+      },
+      {
+        "index": 25,
+        "timestamp_s": 361.014,
+        "path": "extracted/UE001/sample/frame_0025_t0361.014.jpg"
+      },
+      {
+        "index": 26,
+        "timestamp_s": 375.434,
+        "path": "extracted/UE001/sample/frame_0026_t0375.434.jpg"
+      },
+      {
+        "index": 27,
+        "timestamp_s": 389.855,
+        "path": "extracted/UE001/sample/frame_0027_t0389.855.jpg"
+      },
+      {
+        "index": 28,
+        "timestamp_s": 404.276,
+        "path": "extracted/UE001/sample/frame_0028_t0404.276.jpg"
+      },
+      {
+        "index": 29,
+        "timestamp_s": 418.696,
+        "path": "extracted/UE001/sample/frame_0029_t0418.696.jpg"
+      },
+      {
+        "index": 30,
+        "timestamp_s": 433.117,
+        "path": "extracted/UE001/sample/frame_0030_t0433.117.jpg"
+      },
+      {
+        "index": 31,
+        "timestamp_s": 447.537,
+        "path": "extracted/UE001/sample/frame_0031_t0447.537.jpg"
+      },
+      {
+        "index": 32,
+        "timestamp_s": 461.958,
+        "path": "extracted/UE001/sample/frame_0032_t0461.958.jpg"
+      },
+      {
+        "index": 33,
+        "timestamp_s": 476.378,
+        "path": "extracted/UE001/sample/frame_0033_t0476.378.jpg"
+      },
+      {
+        "index": 34,
+        "timestamp_s": 490.799,
+        "path": "extracted/UE001/sample/frame_0034_t0490.799.jpg"
+      }
+    ]
+  },
+  "UE003": {
+    "source_video": "UE003_k-inUpjRVLA.mp4",
+    "duration_s": 367.61725,
+    "target_frames": 35,
+    "spacing_s": [
+      10.198
+    ],
+    "frames": [
+      {
+        "index": 0,
+        "timestamp_s": 0.5,
+        "path": "extracted/UE003/sample/frame_0000_t0000.500.jpg"
+      },
+      {
+        "index": 1,
+        "timestamp_s": 10.698,
+        "path": "extracted/UE003/sample/frame_0001_t0010.698.jpg"
+      },
+      {
+        "index": 2,
+        "timestamp_s": 20.895,
+        "path": "extracted/UE003/sample/frame_0002_t0020.895.jpg"
+      },
+      {
+        "index": 3,
+        "timestamp_s": 31.093,
+        "path": "extracted/UE003/sample/frame_0003_t0031.093.jpg"
+      },
+      {
+        "index": 4,
+        "timestamp_s": 41.291,
+        "path": "extracted/UE003/sample/frame_0004_t0041.291.jpg"
+      },
+      {
+        "index": 5,
+        "timestamp_s": 51.489,
+        "path": "extracted/UE003/sample/frame_0005_t0051.489.jpg"
+      },
+      {
+        "index": 6,
+        "timestamp_s": 61.686,
+        "path": "extracted/UE003/sample/frame_0006_t0061.686.jpg"
+      },
+      {
+        "index": 7,
+        "timestamp_s": 71.884,
+        "path": "extracted/UE003/sample/frame_0007_t0071.884.jpg"
+      },
+      {
+        "index": 8,
+        "timestamp_s": 82.082,
+        "path": "extracted/UE003/sample/frame_0008_t0082.082.jpg"
+      },
+      {
+        "index": 9,
+        "timestamp_s": 92.279,
+        "path": "extracted/UE003/sample/frame_0009_t0092.279.jpg"
+      },
+      {
+        "index": 10,
+        "timestamp_s": 102.477,
+        "path": "extracted/UE003/sample/frame_0010_t0102.477.jpg"
+      },
+      {
+        "index": 11,
+        "timestamp_s": 112.675,
+        "path": "extracted/UE003/sample/frame_0011_t0112.675.jpg"
+      },
+      {
+        "index": 12,
+        "timestamp_s": 122.872,
+        "path": "extracted/UE003/sample/frame_0012_t0122.872.jpg"
+      },
+      {
+        "index": 13,
+        "timestamp_s": 133.07,
+        "path": "extracted/UE003/sample/frame_0013_t0133.070.jpg"
+      },
+      {
+        "index": 14,
+        "timestamp_s": 143.268,
+        "path": "extracted/UE003/sample/frame_0014_t0143.268.jpg"
+      },
+      {
+        "index": 15,
+        "timestamp_s": 153.466,
+        "path": "extracted/UE003/sample/frame_0015_t0153.466.jpg"
+      },
+      {
+        "index": 16,
+        "timestamp_s": 163.663,
+        "path": "extracted/UE003/sample/frame_0016_t0163.663.jpg"
+      },
+      {
+        "index": 17,
+        "timestamp_s": 173.861,
+        "path": "extracted/UE003/sample/frame_0017_t0173.861.jpg"
+      },
+      {
+        "index": 18,
+        "timestamp_s": 184.059,
+        "path": "extracted/UE003/sample/frame_0018_t0184.059.jpg"
+      },
+      {
+        "index": 19,
+        "timestamp_s": 194.256,
+        "path": "extracted/UE003/sample/frame_0019_t0194.256.jpg"
+      },
+      {
+        "index": 20,
+        "timestamp_s": 204.454,
+        "path": "extracted/UE003/sample/frame_0020_t0204.454.jpg"
+      },
+      {
+        "index": 21,
+        "timestamp_s": 214.652,
+        "path": "extracted/UE003/sample/frame_0021_t0214.652.jpg"
+      },
+      {
+        "index": 22,
+        "timestamp_s": 224.849,
+        "path": "extracted/UE003/sample/frame_0022_t0224.849.jpg"
+      },
+      {
+        "index": 23,
+        "timestamp_s": 235.047,
+        "path": "extracted/UE003/sample/frame_0023_t0235.047.jpg"
+      },
+      {
+        "index": 24,
+        "timestamp_s": 245.245,
+        "path": "extracted/UE003/sample/frame_0024_t0245.245.jpg"
+      },
+      {
+        "index": 25,
+        "timestamp_s": 255.443,
+        "path": "extracted/UE003/sample/frame_0025_t0255.443.jpg"
+      },
+      {
+        "index": 26,
+        "timestamp_s": 265.64,
+        "path": "extracted/UE003/sample/frame_0026_t0265.640.jpg"
+      },
+      {
+        "index": 27,
+        "timestamp_s": 275.838,
+        "path": "extracted/UE003/sample/frame_0027_t0275.838.jpg"
+      },
+      {
+        "index": 28,
+        "timestamp_s": 286.036,
+        "path": "extracted/UE003/sample/frame_0028_t0286.036.jpg"
+      },
+      {
+        "index": 29,
+        "timestamp_s": 296.233,
+        "path": "extracted/UE003/sample/frame_0029_t0296.233.jpg"
+      },
+      {
+        "index": 30,
+        "timestamp_s": 306.431,
+        "path": "extracted/UE003/sample/frame_0030_t0306.431.jpg"
+      },
+      {
+        "index": 31,
+        "timestamp_s": 316.629,
+        "path": "extracted/UE003/sample/frame_0031_t0316.629.jpg"
+      },
+      {
+        "index": 32,
+        "timestamp_s": 326.826,
+        "path": "extracted/UE003/sample/frame_0032_t0326.826.jpg"
+      },
+      {
+        "index": 33,
+        "timestamp_s": 337.024,
+        "path": "extracted/UE003/sample/frame_0033_t0337.024.jpg"
+      },
+      {
+        "index": 34,
+        "timestamp_s": 347.222,
+        "path": "extracted/UE003/sample/frame_0034_t0347.222.jpg"
+      }
+    ]
+  },
+  "STR001": {
+    "source_video": "STR001_kuAMtoUJGgE.mp4",
+    "duration_s": 645.061083,
+    "target_frames": 35,
+    "spacing_s": [
+      17.904
+    ],
+    "frames": [
+      {
+        "index": 0,
+        "timestamp_s": 0.5,
+        "path": "extracted/STR001/sample/frame_0000_t0000.500.jpg"
+      },
+      {
+        "index": 1,
+        "timestamp_s": 18.404,
+        "path": "extracted/STR001/sample/frame_0001_t0018.404.jpg"
+      },
+      {
+        "index": 2,
+        "timestamp_s": 36.309,
+        "path": "extracted/STR001/sample/frame_0002_t0036.309.jpg"
+      },
+      {
+        "index": 3,
+        "timestamp_s": 54.213,
+        "path": "extracted/STR001/sample/frame_0003_t0054.213.jpg"
+      },
+      {
+        "index": 4,
+        "timestamp_s": 72.118,
+        "path": "extracted/STR001/sample/frame_0004_t0072.118.jpg"
+      },
+      {
+        "index": 5,
+        "timestamp_s": 90.022,
+        "path": "extracted/STR001/sample/frame_0005_t0090.022.jpg"
+      },
+      {
+        "index": 6,
+        "timestamp_s": 107.927,
+        "path": "extracted/STR001/sample/frame_0006_t0107.927.jpg"
+      },
+      {
+        "index": 7,
+        "timestamp_s": 125.831,
+        "path": "extracted/STR001/sample/frame_0007_t0125.831.jpg"
+      },
+      {
+        "index": 8,
+        "timestamp_s": 143.736,
+        "path": "extracted/STR001/sample/frame_0008_t0143.736.jpg"
+      },
+      {
+        "index": 9,
+        "timestamp_s": 161.64,
+        "path": "extracted/STR001/sample/frame_0009_t0161.640.jpg"
+      },
+      {
+        "index": 10,
+        "timestamp_s": 179.545,
+        "path": "extracted/STR001/sample/frame_0010_t0179.545.jpg"
+      },
+      {
+        "index": 11,
+        "timestamp_s": 197.449,
+        "path": "extracted/STR001/sample/frame_0011_t0197.449.jpg"
+      },
+      {
+        "index": 12,
+        "timestamp_s": 215.354,
+        "path": "extracted/STR001/sample/frame_0012_t0215.354.jpg"
+      },
+      {
+        "index": 13,
+        "timestamp_s": 233.258,
+        "path": "extracted/STR001/sample/frame_0013_t0233.258.jpg"
+      },
+      {
+        "index": 14,
+        "timestamp_s": 251.163,
+        "path": "extracted/STR001/sample/frame_0014_t0251.163.jpg"
+      },
+      {
+        "index": 15,
+        "timestamp_s": 269.067,
+        "path": "extracted/STR001/sample/frame_0015_t0269.067.jpg"
+      },
+      {
+        "index": 16,
+        "timestamp_s": 286.972,
+        "path": "extracted/STR001/sample/frame_0016_t0286.972.jpg"
+      },
+      {
+        "index": 17,
+        "timestamp_s": 304.876,
+        "path": "extracted/STR001/sample/frame_0017_t0304.876.jpg"
+      },
+      {
+        "index": 18,
+        "timestamp_s": 322.781,
+        "path": "extracted/STR001/sample/frame_0018_t0322.781.jpg"
+      },
+      {
+        "index": 19,
+        "timestamp_s": 340.685,
+        "path": "extracted/STR001/sample/frame_0019_t0340.685.jpg"
+      },
+      {
+        "index": 20,
+        "timestamp_s": 358.589,
+        "path": "extracted/STR001/sample/frame_0020_t0358.589.jpg"
+      },
+      {
+        "index": 21,
+        "timestamp_s": 376.494,
+        "path": "extracted/STR001/sample/frame_0021_t0376.494.jpg"
+      },
+      {
+        "index": 22,
+        "timestamp_s": 394.398,
+        "path": "extracted/STR001/sample/frame_0022_t0394.398.jpg"
+      },
+      {
+        "index": 23,
+        "timestamp_s": 412.303,
+        "path": "extracted/STR001/sample/frame_0023_t0412.303.jpg"
+      },
+      {
+        "index": 24,
+        "timestamp_s": 430.207,
+        "path": "extracted/STR001/sample/frame_0024_t0430.207.jpg"
+      },
+      {
+        "index": 25,
+        "timestamp_s": 448.112,
+        "path": "extracted/STR001/sample/frame_0025_t0448.112.jpg"
+      },
+      {
+        "index": 26,
+        "timestamp_s": 466.016,
+        "path": "extracted/STR001/sample/frame_0026_t0466.016.jpg"
+      },
+      {
+        "index": 27,
+        "timestamp_s": 483.921,
+        "path": "extracted/STR001/sample/frame_0027_t0483.921.jpg"
+      },
+      {
+        "index": 28,
+        "timestamp_s": 501.825,
+        "path": "extracted/STR001/sample/frame_0028_t0501.825.jpg"
+      },
+      {
+        "index": 29,
+        "timestamp_s": 519.73,
+        "path": "extracted/STR001/sample/frame_0029_t0519.730.jpg"
+      },
+      {
+        "index": 30,
+        "timestamp_s": 537.634,
+        "path": "extracted/STR001/sample/frame_0030_t0537.634.jpg"
+      },
+      {
+        "index": 31,
+        "timestamp_s": 555.539,
+        "path": "extracted/STR001/sample/frame_0031_t0555.539.jpg"
+      },
+      {
+        "index": 32,
+        "timestamp_s": 573.443,
+        "path": "extracted/STR001/sample/frame_0032_t0573.443.jpg"
+      },
+      {
+        "index": 33,
+        "timestamp_s": 591.348,
+        "path": "extracted/STR001/sample/frame_0033_t0591.348.jpg"
+      },
+      {
+        "index": 34,
+        "timestamp_s": 609.252,
+        "path": "extracted/STR001/sample/frame_0034_t0609.252.jpg"
+      }
+    ]
+  }
+}

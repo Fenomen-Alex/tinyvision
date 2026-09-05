@@ -1,0 +1,62 @@
+{
+  "stage": "12D",
+  "title": "Human Review Workflow for External Pilot Footage",
+  "date": "2026-09-05",
+  "status": "workflow built and ready for humans; 0 decisions filled; NO training; NO auto-labeling",
+  "constraints_honored": {
+    "no_training": true,
+    "no_inference_or_auto_labeling": true,
+    "no_vision_capability": true,
+    "kaggle_and_official_test_untouched": true,
+    "no_additional_downloads": true,
+    "deterministic_and_reproducible_units": true,
+    "no_fabricated_ground_truth": true
+  },
+  "params": {
+    "min_sequence_seconds": 6,
+    "sequence_chunk_seconds": 10,
+    "tile_max_px": 256,
+    "decision_vocab": ["failing", "normal", "uncertain"],
+    "stability_rule": "unstable = cut_flag OR (frac_changed > 0.30 AND diff_bbox_frac > 0.50)",
+    "data_source": "pilot_footage_analysis.json (Stage 12B per-second cut_flag)"
+  },
+  "per_source": {
+    "NORMAL001": {"duration_s": 20.1, "units": 3, "sequence_units": 3, "frame_units": 0, "sequence_reviewable_seconds": 21, "stable_seconds": 21, "unstable_seconds": 0, "review_priority": "high"},
+    "SP001": {"duration_s": 25.5, "units": 6, "sequence_units": 3, "frame_units": 3, "sequence_reviewable_seconds": 23, "stable_seconds": 24, "unstable_seconds": 2, "review_priority": "highest"},
+    "SP002": {"duration_s": 55.0, "units": 55, "sequence_units": 0, "frame_units": 55, "sequence_reviewable_seconds": 0, "stable_seconds": 14, "unstable_seconds": 41, "review_priority": "minimal"},
+    "STR001": {"duration_s": 645.1, "units": 520, "sequence_units": 19, "frame_units": 501, "sequence_reviewable_seconds": 144, "stable_seconds": 312, "unstable_seconds": 333, "review_priority": "low"},
+    "UE001": {"duration_s": 519.6, "units": 311, "sequence_units": 28, "frame_units": 283, "sequence_reviewable_seconds": 237, "stable_seconds": 342, "unstable_seconds": 178, "review_priority": "moderate"},
+    "UE003": {"duration_s": 367.6, "units": 111, "sequence_units": 33, "frame_units": 78, "sequence_reviewable_seconds": 290, "stable_seconds": 308, "unstable_seconds": 60, "review_priority": "high"}
+  },
+  "totals": {
+    "units": 1006,
+    "sequence_units": 86,
+    "frame_units": 920,
+    "sequence_reviewable_seconds": 715,
+    "contact_sheets": 86,
+    "decisions_filled": 0
+  },
+  "reviewability_synthesis": {
+    "highest_value_per_effort": ["SP001", "NORMAL001"],
+    "moderate": ["UE003"],
+    "limited_tutorial_dominated": ["UE001"],
+    "low_value": ["STR001"],
+    "effectively_non_contributing": ["SP002"],
+    "usable_upper_bound_note": "715 sequence-reviewable seconds is an upper bound, not a guaranteed yield; UE001/STR001 will reasonably return many uncertain"
+  },
+  "acquisition_criterion_revision": {
+    "old": "failure type first",
+    "new": "continuous footage first, failure type second",
+    "rationale": "prefer long stable printer-monitoring feeds over tutorial/montage videos; a stable feed is more minable than an edited video that merely claims a failure"
+  },
+  "deliverables": [
+    "training/tv/review.py",
+    "scripts/run_human_review.py",
+    "training/tests/test_review.py (10 tests)",
+    "datasets/external/video-frames/labels/review_manifest.json (1006 units, decisions null)",
+    "datasets/external/video-frames/labels/sheets/*.jpg (86 sequence contact sheets)",
+    "docs/research/stage12d-human-review-workflow.md / .json"
+  ],
+  "verified_labels_status": "NOT produced (only written by merge after a human completes the manifest)",
+  "decision_point": "enough verified external frames (hundreds across >= a few independent sessions) -> deliberate Experiment 2; otherwise -> acquire continuous-footage-first sources"
+}

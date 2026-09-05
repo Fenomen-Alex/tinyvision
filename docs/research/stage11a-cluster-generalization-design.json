@@ -1,0 +1,983 @@
+{
+  "stage": "11A",
+  "title": "Leave-Cluster-Out Generalization Experiment Design",
+  "objective": "Test whether stringing failures generalize poorly across recording/session domains by withholding entire date clusters from training and evaluating on the unseen cluster.",
+  "status": "design_only",
+  "no_training": true,
+  "recording_inventory": {
+    "train": {
+      "total_recordings": 105,
+      "total_frames": 11254,
+      "stringing_recordings": 23,
+      "stringing_frames": 2341,
+      "under_extrusion_recordings": 37,
+      "under_extrusion_frames": 3331
+    },
+    "val": {
+      "total_recordings": 22,
+      "total_frames": 2174
+    },
+    "test": {
+      "total_recordings": 24,
+      "total_frames": 2859,
+      "note": "FROZEN; not used in this experiment"
+    }
+  },
+  "stringing_recording_table": [
+    {
+      "recording_id": "Recording_14.02.2023_17_53_55",
+      "date": "14.02.2023",
+      "frame_count": 181,
+      "stringing_frames": 181,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_14.02.2023_18_15_37",
+      "date": "14.02.2023",
+      "frame_count": 85,
+      "stringing_frames": 85,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_14.02.2023_18_39_51",
+      "date": "14.02.2023",
+      "frame_count": 94,
+      "stringing_frames": 94,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_15.02.2023_14_15_54",
+      "date": "15.02.2023",
+      "frame_count": 52,
+      "stringing_frames": 52,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_20122022_13_39_27",
+      "date": "20122022",
+      "frame_count": 138,
+      "stringing_frames": 138,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_20122022_13_53_11",
+      "date": "20122022",
+      "frame_count": 3,
+      "stringing_frames": 3,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_20122022_14_15_06",
+      "date": "20122022",
+      "frame_count": 2,
+      "stringing_frames": 2,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_20122022_16_09_41",
+      "date": "20122022",
+      "frame_count": 3,
+      "stringing_frames": 3,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_20122022_16_55_38",
+      "date": "20122022",
+      "frame_count": 21,
+      "stringing_frames": 21,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_21122022_19_21_52",
+      "date": "21122022",
+      "frame_count": 113,
+      "stringing_frames": 113,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_21122022_19_53_17",
+      "date": "21122022",
+      "frame_count": 174,
+      "stringing_frames": 174,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_22122022_11_00_38",
+      "date": "22122022",
+      "frame_count": 146,
+      "stringing_frames": 146,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_22122022_11_49_58",
+      "date": "22122022",
+      "frame_count": 165,
+      "stringing_frames": 165,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_22122022_12_03_39",
+      "date": "22122022",
+      "frame_count": 174,
+      "stringing_frames": 174,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_22122022_12_19_15",
+      "date": "22122022",
+      "frame_count": 93,
+      "stringing_frames": 93,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_22122022_12_37_10",
+      "date": "22122022",
+      "frame_count": 140,
+      "stringing_frames": 140,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_22122022_15_18_40",
+      "date": "22122022",
+      "frame_count": 158,
+      "stringing_frames": 158,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_22122022_15_50_18",
+      "date": "22122022",
+      "frame_count": 102,
+      "stringing_frames": 102,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_22122022_16_35_52",
+      "date": "22122022",
+      "frame_count": 119,
+      "stringing_frames": 119,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_22122022_18_04_20",
+      "date": "22122022",
+      "frame_count": 163,
+      "stringing_frames": 163,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_23.02.2023_16_44_22",
+      "date": "23.02.2023",
+      "frame_count": 96,
+      "stringing_frames": 96,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_23.02.2023_19_58_44",
+      "date": "23.02.2023",
+      "frame_count": 24,
+      "stringing_frames": 24,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    },
+    {
+      "recording_id": "Recording_23.02.2023_20_15_22",
+      "date": "23.02.2023",
+      "frame_count": 95,
+      "stringing_frames": 95,
+      "split": "train",
+      "failure_type": "stringing",
+      "composition": "PURE_FAILING"
+    }
+  ],
+  "stringing_clusters": {
+    "14.02.2023": {
+      "cluster_id": "14.02.2023",
+      "definition": "date=14.02.2023",
+      "recordings": [
+        "Recording_14.02.2023_17_53_55",
+        "Recording_14.02.2023_18_15_37",
+        "Recording_14.02.2023_18_39_51"
+      ],
+      "recording_count": 3,
+      "total_frames": 360,
+      "stringing_frames": 360,
+      "date_range": "14.02.2023",
+      "rationale": "Natural date/session cluster: 3 recording(s) from 14.02.2023",
+      "exploratory": false,
+      "exploratory_reason": ""
+    },
+    "15.02.2023": {
+      "cluster_id": "15.02.2023",
+      "definition": "date=15.02.2023",
+      "recordings": [
+        "Recording_15.02.2023_14_15_54"
+      ],
+      "recording_count": 1,
+      "total_frames": 52,
+      "stringing_frames": 52,
+      "date_range": "15.02.2023",
+      "rationale": "Natural date/session cluster: 1 recording(s) from 15.02.2023",
+      "exploratory": true,
+      "exploratory_reason": "Only 1 recording(s) — insufficient for robust evaluation"
+    },
+    "20122022": {
+      "cluster_id": "20122022",
+      "definition": "date=20122022",
+      "recordings": [
+        "Recording_20122022_13_39_27",
+        "Recording_20122022_13_53_11",
+        "Recording_20122022_14_15_06",
+        "Recording_20122022_16_09_41",
+        "Recording_20122022_16_55_38"
+      ],
+      "recording_count": 5,
+      "total_frames": 167,
+      "stringing_frames": 167,
+      "date_range": "20122022",
+      "rationale": "Natural date/session cluster: 5 recording(s) from 20122022",
+      "exploratory": false,
+      "exploratory_reason": ""
+    },
+    "21122022": {
+      "cluster_id": "21122022",
+      "definition": "date=21122022",
+      "recordings": [
+        "Recording_21122022_19_21_52",
+        "Recording_21122022_19_53_17"
+      ],
+      "recording_count": 2,
+      "total_frames": 287,
+      "stringing_frames": 287,
+      "date_range": "21122022",
+      "rationale": "Natural date/session cluster: 2 recording(s) from 21122022",
+      "exploratory": true,
+      "exploratory_reason": "Only 2 recording(s) — insufficient for robust evaluation"
+    },
+    "22122022": {
+      "cluster_id": "22122022",
+      "definition": "date=22122022",
+      "recordings": [
+        "Recording_22122022_11_00_38",
+        "Recording_22122022_11_49_58",
+        "Recording_22122022_12_03_39",
+        "Recording_22122022_12_19_15",
+        "Recording_22122022_12_37_10",
+        "Recording_22122022_15_18_40",
+        "Recording_22122022_15_50_18",
+        "Recording_22122022_16_35_52",
+        "Recording_22122022_18_04_20"
+      ],
+      "recording_count": 9,
+      "total_frames": 1260,
+      "stringing_frames": 1260,
+      "date_range": "22122022",
+      "rationale": "Natural date/session cluster: 9 recording(s) from 22122022",
+      "exploratory": false,
+      "exploratory_reason": ""
+    },
+    "23.02.2023": {
+      "cluster_id": "23.02.2023",
+      "definition": "date=23.02.2023",
+      "recordings": [
+        "Recording_23.02.2023_16_44_22",
+        "Recording_23.02.2023_19_58_44",
+        "Recording_23.02.2023_20_15_22"
+      ],
+      "recording_count": 3,
+      "total_frames": 215,
+      "stringing_frames": 215,
+      "date_range": "23.02.2023",
+      "rationale": "Natural date/session cluster: 3 recording(s) from 23.02.2023",
+      "exploratory": false,
+      "exploratory_reason": ""
+    }
+  },
+  "under_extrusion_clusters": {
+    "01122022": {
+      "cluster_id": "ue_01122022",
+      "definition": "date=01122022",
+      "recordings": [
+        "Recording_01122022_15_27_47"
+      ],
+      "recording_count": 1,
+      "total_frames": 82,
+      "date_range": "01122022",
+      "rationale": "Under-extrusion control cluster: 1 recording(s) from 01122022",
+      "exploratory": true,
+      "exploratory_reason": "Only 1 recording(s) — insufficient for robust evaluation"
+    },
+    "02012023": {
+      "cluster_id": "ue_02012023",
+      "definition": "date=02012023",
+      "recordings": [
+        "Recording_02012023_15_03_00",
+        "Recording_02012023_15_38_24"
+      ],
+      "recording_count": 2,
+      "total_frames": 166,
+      "date_range": "02012023",
+      "rationale": "Under-extrusion control cluster: 2 recording(s) from 02012023",
+      "exploratory": true,
+      "exploratory_reason": "Only 2 recording(s) — insufficient for robust evaluation"
+    },
+    "02122022": {
+      "cluster_id": "ue_02122022",
+      "definition": "date=02122022",
+      "recordings": [
+        "Recording_02122022_14_45_08"
+      ],
+      "recording_count": 1,
+      "total_frames": 167,
+      "date_range": "02122022",
+      "rationale": "Under-extrusion control cluster: 1 recording(s) from 02122022",
+      "exploratory": true,
+      "exploratory_reason": "Only 1 recording(s) — insufficient for robust evaluation"
+    },
+    "04012023": {
+      "cluster_id": "ue_04012023",
+      "definition": "date=04012023",
+      "recordings": [
+        "Recording_04012023_15_23_23",
+        "Recording_04012023_16_03_49"
+      ],
+      "recording_count": 2,
+      "total_frames": 236,
+      "date_range": "04012023",
+      "rationale": "Under-extrusion control cluster: 2 recording(s) from 04012023",
+      "exploratory": true,
+      "exploratory_reason": "Only 2 recording(s) — insufficient for robust evaluation"
+    },
+    "05012023": {
+      "cluster_id": "ue_05012023",
+      "definition": "date=05012023",
+      "recordings": [
+        "Recording_05012023_11_49_39",
+        "Recording_05012023_13_33_01",
+        "Recording_05012023_13_54_18",
+        "Recording_05012023_14_15_36",
+        "Recording_05012023_14_32_45",
+        "Recording_05012023_15_23_21",
+        "Recording_05012023_18_14_03"
+      ],
+      "recording_count": 7,
+      "total_frames": 495,
+      "date_range": "05012023",
+      "rationale": "Under-extrusion control cluster: 7 recording(s) from 05012023",
+      "exploratory": false,
+      "exploratory_reason": ""
+    },
+    "06012023": {
+      "cluster_id": "ue_06012023",
+      "definition": "date=06012023",
+      "recordings": [
+        "Recording_06012023_15_16_40"
+      ],
+      "recording_count": 1,
+      "total_frames": 124,
+      "date_range": "06012023",
+      "rationale": "Under-extrusion control cluster: 1 recording(s) from 06012023",
+      "exploratory": true,
+      "exploratory_reason": "Only 1 recording(s) — insufficient for robust evaluation"
+    },
+    "08012023": {
+      "cluster_id": "ue_08012023",
+      "definition": "date=08012023",
+      "recordings": [
+        "Recording_08012023_15_03_53"
+      ],
+      "recording_count": 1,
+      "total_frames": 170,
+      "date_range": "08012023",
+      "rationale": "Under-extrusion control cluster: 1 recording(s) from 08012023",
+      "exploratory": true,
+      "exploratory_reason": "Only 1 recording(s) — insufficient for robust evaluation"
+    },
+    "10012023": {
+      "cluster_id": "ue_10012023",
+      "definition": "date=10012023",
+      "recordings": [
+        "Recording_10012023_15_02_20",
+        "Recording_10012023_15_33_34",
+        "Recording_10012023_18_16_22",
+        "Recording_10012023_19_39_45",
+        "Recording_10012023_20_31_36",
+        "Recording_10012023_20_51_12",
+        "Recording_10012023_21_52_16",
+        "Recording_10012023_22_14_59"
+      ],
+      "recording_count": 8,
+      "total_frames": 1079,
+      "date_range": "10012023",
+      "rationale": "Under-extrusion control cluster: 8 recording(s) from 10012023",
+      "exploratory": false,
+      "exploratory_reason": ""
+    },
+    "11012023": {
+      "cluster_id": "ue_11012023",
+      "definition": "date=11012023",
+      "recordings": [
+        "Recording_11012023_12_52_06",
+        "Recording_11012023_14_23_46"
+      ],
+      "recording_count": 2,
+      "total_frames": 261,
+      "date_range": "11012023",
+      "rationale": "Under-extrusion control cluster: 2 recording(s) from 11012023",
+      "exploratory": true,
+      "exploratory_reason": "Only 2 recording(s) — insufficient for robust evaluation"
+    },
+    "16.02.2023": {
+      "cluster_id": "ue_16.02.2023",
+      "definition": "date=16.02.2023",
+      "recordings": [
+        "Recording_16.02.2023_16_55_10",
+        "Recording_16.02.2023_17_54_17",
+        "Recording_16.02.2023_18_17_11",
+        "Recording_16.02.2023_21_21_46",
+        "Recording_16.02.2023_21_58_36"
+      ],
+      "recording_count": 5,
+      "total_frames": 520,
+      "date_range": "16.02.2023",
+      "rationale": "Under-extrusion control cluster: 5 recording(s) from 16.02.2023",
+      "exploratory": false,
+      "exploratory_reason": ""
+    },
+    "17.02.2023": {
+      "cluster_id": "ue_17.02.2023",
+      "definition": "date=17.02.2023",
+      "recordings": [
+        "Recording_17.02.2023_12_07_38",
+        "Recording_17.02.2023_13_15_33"
+      ],
+      "recording_count": 2,
+      "total_frames": 209,
+      "date_range": "17.02.2023",
+      "rationale": "Under-extrusion control cluster: 2 recording(s) from 17.02.2023",
+      "exploratory": true,
+      "exploratory_reason": "Only 2 recording(s) — insufficient for robust evaluation"
+    },
+    "29112022": {
+      "cluster_id": "ue_29112022",
+      "definition": "date=29112022",
+      "recordings": [
+        "Recording_29112022_18_19_50",
+        "Recording_29112022_19_40_36",
+        "Recording_29112022_20_50_21",
+        "Recording_29112022_21_41_27"
+      ],
+      "recording_count": 4,
+      "total_frames": 317,
+      "date_range": "29112022",
+      "rationale": "Under-extrusion control cluster: 4 recording(s) from 29112022",
+      "exploratory": false,
+      "exploratory_reason": ""
+    },
+    "29122022": {
+      "cluster_id": "ue_29122022",
+      "definition": "date=29122022",
+      "recordings": [
+        "Recording_29122022_13_26_06"
+      ],
+      "recording_count": 1,
+      "total_frames": 67,
+      "date_range": "29122022",
+      "rationale": "Under-extrusion control cluster: 1 recording(s) from 29122022",
+      "exploratory": true,
+      "exploratory_reason": "Only 1 recording(s) — insufficient for robust evaluation"
+    }
+  },
+  "experimental_runs": {
+    "str_holdout_22122022": {
+      "run_id": "str_holdout_22122022",
+      "held_out_cluster_id": "22122022",
+      "held_out_recordings": [
+        "Recording_22122022_11_00_38",
+        "Recording_22122022_11_49_58",
+        "Recording_22122022_12_03_39",
+        "Recording_22122022_12_19_15",
+        "Recording_22122022_12_37_10",
+        "Recording_22122022_15_18_40",
+        "Recording_22122022_15_50_18",
+        "Recording_22122022_16_35_52",
+        "Recording_22122022_18_04_20"
+      ],
+      "held_out_frame_count": 1260,
+      "held_out_stringing_frames": 1260,
+      "train_recording_count": 96,
+      "train_frame_count": 9994,
+      "train_stringing_frame_count": 1081,
+      "val_recording_count": 21,
+      "val_frame_count": 2080,
+      "notes": [
+        "Excluded 1 val recording(s) from date 22122022 to avoid leakage: ['Recording_22122022_18_48_47']"
+      ]
+    },
+    "str_holdout_20122022": {
+      "run_id": "str_holdout_20122022",
+      "held_out_cluster_id": "20122022",
+      "held_out_recordings": [
+        "Recording_20122022_13_39_27",
+        "Recording_20122022_13_53_11",
+        "Recording_20122022_14_15_06",
+        "Recording_20122022_16_09_41",
+        "Recording_20122022_16_55_38"
+      ],
+      "held_out_frame_count": 167,
+      "held_out_stringing_frames": 167,
+      "train_recording_count": 100,
+      "train_frame_count": 11087,
+      "train_stringing_frame_count": 2174,
+      "val_recording_count": 21,
+      "val_frame_count": 2082,
+      "notes": [
+        "Excluded 1 val recording(s) from date 20122022 to avoid leakage: ['Recording_20122022_20_06_10']"
+      ]
+    },
+    "ue_control_10012023": {
+      "run_id": "ue_control_10012023",
+      "held_out_cluster_id": "ue_10012023",
+      "held_out_recordings": [
+        "Recording_10012023_15_02_20",
+        "Recording_10012023_15_33_34",
+        "Recording_10012023_18_16_22",
+        "Recording_10012023_19_39_45",
+        "Recording_10012023_20_31_36",
+        "Recording_10012023_20_51_12",
+        "Recording_10012023_21_52_16",
+        "Recording_10012023_22_14_59"
+      ],
+      "held_out_frame_count": 1079,
+      "held_out_stringing_frames": 0,
+      "train_recording_count": 97,
+      "train_frame_count": 10175,
+      "train_stringing_frame_count": 2341,
+      "val_recording_count": 21,
+      "val_frame_count": 2055,
+      "notes": [
+        "Excluded 1 val recording(s) from date 10012023: ['Recording_10012023_18_46_21']"
+      ]
+    },
+    "ue_control_05012023": {
+      "run_id": "ue_control_05012023",
+      "held_out_cluster_id": "ue_05012023",
+      "held_out_recordings": [
+        "Recording_05012023_11_49_39",
+        "Recording_05012023_13_33_01",
+        "Recording_05012023_13_54_18",
+        "Recording_05012023_14_15_36",
+        "Recording_05012023_14_32_45",
+        "Recording_05012023_15_23_21",
+        "Recording_05012023_18_14_03"
+      ],
+      "held_out_frame_count": 495,
+      "held_out_stringing_frames": 0,
+      "train_recording_count": 98,
+      "train_frame_count": 10759,
+      "train_stringing_frame_count": 2341,
+      "val_recording_count": 19,
+      "val_frame_count": 1861,
+      "notes": [
+        "Excluded 3 val recording(s) from date 05012023: ['Recording_05012023_11_08_00', 'Recording_05012023_11_27_16', 'Recording_05012023_15_08_31']"
+      ]
+    }
+  },
+  "leakage_audits": {
+    "str_holdout_22122022": {
+      "passed": true,
+      "checks": [
+        {
+          "id": "L1",
+          "check": "Held-out recordings are correctly excluded from held-in train set",
+          "passed": true,
+          "detail": "held_out=9, held_in=96, expected=96"
+        },
+        {
+          "id": "L2",
+          "check": "No frame from held-out cluster appears in held-in training",
+          "passed": true,
+          "detail": "Clean"
+        },
+        {
+          "id": "L3",
+          "check": "Session identity remains atomic",
+          "passed": true,
+          "detail": "All held-out recordings are complete sessions"
+        },
+        {
+          "id": "L4",
+          "check": "Official validation/test remain untouched",
+          "passed": true,
+          "detail": "Clean"
+        },
+        {
+          "id": "L5",
+          "check": "No duplicate recording IDs across held-in train and held-out",
+          "passed": true,
+          "detail": "Verified"
+        },
+        {
+          "id": "L6",
+          "check": "No generated fixture accidentally enters training",
+          "passed": true,
+          "detail": "No synthetic data used"
+        },
+        {
+          "id": "L7",
+          "check": "No test-derived information influenced cluster selection",
+          "passed": true,
+          "detail": "Clusters selected from train metadata only"
+        },
+        {
+          "id": "L8",
+          "check": "No hyperparameters selected from held-out cluster results",
+          "passed": true,
+          "detail": "Design phase only; no training executed"
+        }
+      ]
+    },
+    "str_holdout_20122022": {
+      "passed": true,
+      "checks": [
+        {
+          "id": "L1",
+          "check": "Held-out recordings are correctly excluded from held-in train set",
+          "passed": true,
+          "detail": "held_out=5, held_in=100, expected=100"
+        },
+        {
+          "id": "L2",
+          "check": "No frame from held-out cluster appears in held-in training",
+          "passed": true,
+          "detail": "Clean"
+        },
+        {
+          "id": "L3",
+          "check": "Session identity remains atomic",
+          "passed": true,
+          "detail": "All held-out recordings are complete sessions"
+        },
+        {
+          "id": "L4",
+          "check": "Official validation/test remain untouched",
+          "passed": true,
+          "detail": "Clean"
+        },
+        {
+          "id": "L5",
+          "check": "No duplicate recording IDs across held-in train and held-out",
+          "passed": true,
+          "detail": "Verified"
+        },
+        {
+          "id": "L6",
+          "check": "No generated fixture accidentally enters training",
+          "passed": true,
+          "detail": "No synthetic data used"
+        },
+        {
+          "id": "L7",
+          "check": "No test-derived information influenced cluster selection",
+          "passed": true,
+          "detail": "Clusters selected from train metadata only"
+        },
+        {
+          "id": "L8",
+          "check": "No hyperparameters selected from held-out cluster results",
+          "passed": true,
+          "detail": "Design phase only; no training executed"
+        }
+      ]
+    },
+    "ue_control_10012023": {
+      "passed": true,
+      "checks": [
+        {
+          "id": "L1",
+          "check": "Held-out recordings are correctly excluded from held-in train set",
+          "passed": true,
+          "detail": "held_out=8, held_in=97, expected=97"
+        },
+        {
+          "id": "L2",
+          "check": "No frame from held-out cluster appears in held-in training",
+          "passed": true,
+          "detail": "Clean"
+        },
+        {
+          "id": "L3",
+          "check": "Session identity remains atomic",
+          "passed": true,
+          "detail": "All held-out recordings are complete sessions"
+        },
+        {
+          "id": "L4",
+          "check": "Official validation/test remain untouched",
+          "passed": true,
+          "detail": "Clean"
+        },
+        {
+          "id": "L5",
+          "check": "No duplicate recording IDs across held-in train and held-out",
+          "passed": true,
+          "detail": "Verified"
+        },
+        {
+          "id": "L6",
+          "check": "No generated fixture accidentally enters training",
+          "passed": true,
+          "detail": "No synthetic data used"
+        },
+        {
+          "id": "L7",
+          "check": "No test-derived information influenced cluster selection",
+          "passed": true,
+          "detail": "Clusters selected from train metadata only"
+        },
+        {
+          "id": "L8",
+          "check": "No hyperparameters selected from held-out cluster results",
+          "passed": true,
+          "detail": "Design phase only; no training executed"
+        }
+      ]
+    },
+    "ue_control_05012023": {
+      "passed": true,
+      "checks": [
+        {
+          "id": "L1",
+          "check": "Held-out recordings are correctly excluded from held-in train set",
+          "passed": true,
+          "detail": "held_out=7, held_in=98, expected=98"
+        },
+        {
+          "id": "L2",
+          "check": "No frame from held-out cluster appears in held-in training",
+          "passed": true,
+          "detail": "Clean"
+        },
+        {
+          "id": "L3",
+          "check": "Session identity remains atomic",
+          "passed": true,
+          "detail": "All held-out recordings are complete sessions"
+        },
+        {
+          "id": "L4",
+          "check": "Official validation/test remain untouched",
+          "passed": true,
+          "detail": "Clean"
+        },
+        {
+          "id": "L5",
+          "check": "No duplicate recording IDs across held-in train and held-out",
+          "passed": true,
+          "detail": "Verified"
+        },
+        {
+          "id": "L6",
+          "check": "No generated fixture accidentally enters training",
+          "passed": true,
+          "detail": "No synthetic data used"
+        },
+        {
+          "id": "L7",
+          "check": "No test-derived information influenced cluster selection",
+          "passed": true,
+          "detail": "Clusters selected from train metadata only"
+        },
+        {
+          "id": "L8",
+          "check": "No hyperparameters selected from held-out cluster results",
+          "passed": true,
+          "detail": "Design phase only; no training executed"
+        }
+      ]
+    }
+  },
+  "control_condition": {
+    "description": "Comparable leave-cluster-out experiment using under-extrusion. Under-extrusion has 37 train recordings across 13 dates (Stage 10), making it the best-represented failure type. If under-extrusion shows less cluster-holdout degradation than stringing, this supports the hypothesis that stringing has poor cross-cluster generalization specifically.",
+    "methodology": "Same leave-cluster-out design as stringing, but holding out an under-extrusion date cluster.  Same architecture, same training config, same evaluation metrics.",
+    "selected_clusters": [
+      "10012023",
+      "05012023"
+    ],
+    "interpretation": "Compare: (a) stringing held-out FNR vs under-extrusion held-out FNR; (b) stringing validation-to-held-out degradation vs under-extrusion validation-to-held-out degradation.  If stringing degrades more, this supports H1 (stringing has poor cross-cluster generalization)."
+  },
+  "baseline": {
+    "experiment_1": {
+      "checkpoint": "experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt",
+      "val_F1_at_0_65": 0.9135,
+      "test_F1_at_0_65": 0.8799,
+      "test_stringing_FNR_at_0_65": 0.213,
+      "test_under_extrusion_FNR_at_0_65": 0.155,
+      "test_normal_FPR_at_0_65": 0.103,
+      "note": "Historical reference only.  Stage 11B results will be compared against these numbers but the test set is NOT used for model selection or hyperparameter tuning."
+    },
+    "comparison_principle": "For each run, compare: (a) held-out cluster metrics vs ordinary validation metrics from the same run; (b) stringing runs vs under-extrusion control runs; (c) cross-run variance."
+  },
+  "training_config": {
+    "model": "shufflenet_v2_x1_0",
+    "num_classes": 2,
+    "image_size": 224,
+    "optimizer": "adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "epochs": 30,
+    "early_stopping_patience": 10,
+    "batch_size": 32,
+    "precision": "fp32",
+    "seed": 42,
+    "num_workers": 4,
+    "pin_memory": true,
+    "augmentation": {
+      "horizontal_flip": true,
+      "random_rotation": 15,
+      "color_jitter": 0.2,
+      "random_crop": false,
+      "normalize": true
+    },
+    "hardware": "MPS (Apple M1 Pro) or CPU",
+    "source": "Exact copy of Experiment 1 config (shufflenet_v2_x1_0_printing-errors_cdc9e2cad4)",
+    "no_hp_search": true,
+    "no_architecture_search": true,
+    "no_augmentation_search": true
+  },
+  "metrics": {
+    "primary": {
+      "failing_recall": "TP / (TP + FN) — fraction of failing frames correctly detected",
+      "fnr": "FN / (FN + TP) — fraction of failing frames missed",
+      "f1": "2 * precision * recall / (precision + recall)"
+    },
+    "secondary": {
+      "precision": "TP / (TP + FP) — fraction of predicted-failing that are truly failing",
+      "fpr": "FP / (FP + TN) — fraction of normal frames falsely flagged",
+      "accuracy": "(TP + TN) / total",
+      "auroc": "Area under ROC curve (threshold-independent)"
+    },
+    "threshold": 0.65,
+    "frame_level": true,
+    "recording_level": "descriptive per-recording summaries only; NOT a recording-classification task"
+  },
+  "run_count": {
+    "stringing_holdout_runs": 2,
+    "under_extrusion_control_runs": 2,
+    "total": 4,
+    "per_run_estimate": {
+      "training_time": "15-18 minutes (MPS)",
+      "evaluation_time": "1-2 minutes",
+      "total_per_run": "16-20 minutes"
+    },
+    "total_wall_clock": "64-80 minutes (4 runs sequentially)",
+    "disk_per_checkpoint": "~10 MB",
+    "total_disk": "~40 MB (4 checkpoints)"
+  },
+  "success_criteria": {
+    "strong_evidence_domain_generalization_failure": "Consistent degradation across BOTH independent held-out stringing clusters (22122022 and 20122022), with held-out FNR substantially worse than ordinary validation FNR from the same run.",
+    "moderate_evidence": "Degradation in ONE OR MORE held-out stringing clusters, but insufficient independent clusters for strong conclusion.  Under-extrusion control shows less degradation.",
+    "weak_inconclusive": "High between-run variance or insufficient cluster count.  Results do not clearly distinguish domain-generalization failure from inherent difficulty.",
+    "no_support": "Unseen-cluster performance is broadly comparable to ordinary validation performance.  Stringing and under-extrusion show similar degradation patterns.",
+    "abort_criteria": "If F1 on the held-in validation set regresses by >5pp relative to Experiment 1 validation F1 (0.9135), the training itself may have failed and results are not interpretable."
+  },
+  "test_firewall": {
+    "frozen": true,
+    "may_reference": "Historical context only (e.g., 'catastrophic test recording had FNR ~0.898 in Stage 8').",
+    "must_not_influence": [
+      "cluster selection",
+      "split construction",
+      "hyperparameters",
+      "model selection",
+      "threshold selection",
+      "success criteria",
+      "acquisition decisions"
+    ]
+  },
+  "limitations": [
+    "This experiment cannot prove real-world generalization.",
+    "Date is a proxy for session/provenance, not a causal factor.",
+    "Causal effects of date, lighting, camera, or printer cannot be established.",
+    "Production performance is not measured.",
+    "Limited to 2 independent stringing holdout clusters — statistical power is modest.",
+    "The under-extrusion control has different sample sizes and may not be a perfect comparison.",
+    "Only ShuffleNetV2 x1.0 is evaluated; results may differ for other architectures.",
+    "The frozen Experiment 1 test set provides historical context but is not the primary evaluation target."
+  ],
+  "execution_plan": {
+    "clusters_held_out": [
+      "22122022",
+      "20122022"
+    ],
+    "control_clusters": [
+      "10012023",
+      "05012023"
+    ],
+    "total_runs": 4,
+    "steps": [
+      "1. Generate temporary CSV splits for each run (preflight)",
+      "2. Run leakage audit on each run's splits",
+      "3. Train ShuffleNetV2 x1.0 on each run's training split",
+      "4. Evaluate on each run's validation split",
+      "5. Evaluate on each run's held-out cluster",
+      "6. Compare stringing runs vs under-extrusion control runs",
+      "7. Report per-cluster and aggregate metrics",
+      "8. Interpret against success criteria"
+    ],
+    "abort_conditions": [
+      "Validation F1 regresses by >5pp vs Experiment 1",
+      "Any training run fails to converge (val loss does not decrease)",
+      "Leakage audit fails"
+    ],
+    "expected_artifacts": [
+      "experiments/stage11a_<run_id>/artifacts/best.pt",
+      "experiments/stage11a_<run_id>/artifacts/metrics.json",
+      "experiments/stage11a_<run_id>/config.yaml",
+      "experiments/stage11a_<run_id>/status.json",
+      "docs/research/stage11a-results.json",
+      "docs/research/stage11a-results.md"
+    ]
+  }
+}

@@ -1,0 +1,1252 @@
+{
+  "stage": "11B",
+  "title": "Leave-Cluster-Out Generalization Results",
+  "date": "2026-09-04 14:36 UTC",
+  "status": "complete",
+  "threshold": 0.65,
+  "total_runs": 4,
+  "runs": {
+    "str_holdout_22122022": {
+      "run_id": "str_holdout_22122022",
+      "held_out_cluster": "22122022",
+      "held_out_recordings": [
+        "Recording_22122022_11_00_38",
+        "Recording_22122022_11_49_58",
+        "Recording_22122022_12_03_39",
+        "Recording_22122022_12_19_15",
+        "Recording_22122022_12_37_10",
+        "Recording_22122022_15_18_40",
+        "Recording_22122022_15_50_18",
+        "Recording_22122022_16_35_52",
+        "Recording_22122022_18_04_20"
+      ],
+      "held_out_frame_count": 1260,
+      "train_frame_count": 9994,
+      "train_recording_count": 96,
+      "val_frame_count": 2080,
+      "val_recording_count": 21,
+      "experiment_id": "stage11b_str_holdout_22122022",
+      "checkpoint": "/Users/alex/Projects/tinyvision/experiments/stage11b_str_holdout_22122022/artifacts/best.pt",
+      "training_elapsed_seconds": 1367.4,
+      "best_val_loss": 0.7631627312986815,
+      "training_epochs": 16,
+      "validation": {
+        "sample_count": 2080,
+        "failing_frames": 1323,
+        "normal_frames": 757,
+        "detected": 1122,
+        "missed": 201,
+        "metrics": {
+          "precision": 0.9212,
+          "recall": 0.8481,
+          "f1": 0.8831,
+          "accuracy": 0.8572,
+          "fnr": 0.1519,
+          "fpr": 0.1268,
+          "auroc": 0.9121
+        },
+        "confusion_matrix": [
+          [
+            1122,
+            201
+          ],
+          [
+            96,
+            661
+          ]
+        ]
+      },
+      "held_out": {
+        "sample_count": 1260,
+        "failing_frames": 1260,
+        "normal_frames": 0,
+        "detected": 1182,
+        "missed": 78,
+        "false_positives": 0,
+        "true_negatives": 0,
+        "metrics": {
+          "precision": 1.0,
+          "recall": 0.9381,
+          "f1": 0.9681,
+          "accuracy": 0.9381,
+          "fnr": 0.0619,
+          "fpr": 0.0,
+          "auroc": null
+        },
+        "confusion_matrix": [
+          [
+            1182,
+            78
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "per_recording": {
+          "Recording_22122022_11_00_38": {
+            "frames": 146,
+            "detected": 131,
+            "missed": 15,
+            "accuracy": 0.8973,
+            "mean_fail_score": 0.8922
+          },
+          "Recording_22122022_11_49_58": {
+            "frames": 165,
+            "detected": 164,
+            "missed": 1,
+            "accuracy": 0.9939,
+            "mean_fail_score": 0.9937
+          },
+          "Recording_22122022_12_03_39": {
+            "frames": 174,
+            "detected": 174,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9962
+          },
+          "Recording_22122022_12_19_15": {
+            "frames": 93,
+            "detected": 93,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9987
+          },
+          "Recording_22122022_12_37_10": {
+            "frames": 140,
+            "detected": 140,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9884
+          },
+          "Recording_22122022_15_18_40": {
+            "frames": 158,
+            "detected": 133,
+            "missed": 25,
+            "accuracy": 0.8418,
+            "mean_fail_score": 0.8253
+          },
+          "Recording_22122022_15_50_18": {
+            "frames": 102,
+            "detected": 102,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9894
+          },
+          "Recording_22122022_16_35_52": {
+            "frames": 119,
+            "detected": 82,
+            "missed": 37,
+            "accuracy": 0.6891,
+            "mean_fail_score": 0.6584
+          },
+          "Recording_22122022_18_04_20": {
+            "frames": 163,
+            "detected": 163,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9996
+          }
+        },
+        "threshold": 0.65
+      },
+      "known_domain_stringing": {
+        "sample_count": 1081,
+        "failing_frames": 1081,
+        "normal_frames": 0,
+        "detected": 1081,
+        "missed": 0,
+        "false_positives": 0,
+        "true_negatives": 0,
+        "metrics": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "accuracy": 1.0,
+          "fnr": 0.0,
+          "fpr": 0.0,
+          "auroc": null
+        },
+        "confusion_matrix": [
+          [
+            1081,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "per_recording": {
+          "Recording_14.02.2023_17_53_55": {
+            "frames": 181,
+            "detected": 181,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9989
+          },
+          "Recording_14.02.2023_18_15_37": {
+            "frames": 85,
+            "detected": 85,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9984
+          },
+          "Recording_14.02.2023_18_39_51": {
+            "frames": 94,
+            "detected": 94,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9988
+          },
+          "Recording_15.02.2023_14_15_54": {
+            "frames": 52,
+            "detected": 52,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9978
+          },
+          "Recording_20122022_13_39_27": {
+            "frames": 138,
+            "detected": 138,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9996
+          },
+          "Recording_20122022_13_53_11": {
+            "frames": 3,
+            "detected": 3,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9814
+          },
+          "Recording_20122022_14_15_06": {
+            "frames": 2,
+            "detected": 2,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9532
+          },
+          "Recording_20122022_16_09_41": {
+            "frames": 3,
+            "detected": 3,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 1.0
+          },
+          "Recording_20122022_16_55_38": {
+            "frames": 21,
+            "detected": 21,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9999
+          },
+          "Recording_21122022_19_21_52": {
+            "frames": 113,
+            "detected": 113,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9999
+          },
+          "Recording_21122022_19_53_17": {
+            "frames": 174,
+            "detected": 174,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 1.0
+          },
+          "Recording_23.02.2023_16_44_22": {
+            "frames": 96,
+            "detected": 96,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9907
+          },
+          "Recording_23.02.2023_19_58_44": {
+            "frames": 24,
+            "detected": 24,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9939
+          },
+          "Recording_23.02.2023_20_15_22": {
+            "frames": 95,
+            "detected": 95,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9965
+          }
+        },
+        "threshold": 0.65
+      },
+      "config": {
+        "model": "shufflenet_v2_x1_0",
+        "seed": 42,
+        "epochs": 30,
+        "early_stopping_patience": 10,
+        "lr": 0.001,
+        "wd": 0.0001,
+        "batch_size": 32,
+        "image_size": 224,
+        "precision": "fp32",
+        "threshold": 0.65
+      }
+    },
+    "str_holdout_20122022": {
+      "run_id": "str_holdout_20122022",
+      "held_out_cluster": "20122022",
+      "held_out_recordings": [
+        "Recording_20122022_13_39_27",
+        "Recording_20122022_13_53_11",
+        "Recording_20122022_14_15_06",
+        "Recording_20122022_16_09_41",
+        "Recording_20122022_16_55_38"
+      ],
+      "held_out_frame_count": 167,
+      "train_frame_count": 11087,
+      "train_recording_count": 100,
+      "val_frame_count": 2082,
+      "val_recording_count": 21,
+      "experiment_id": "stage11b_str_holdout_20122022",
+      "checkpoint": "/Users/alex/Projects/tinyvision/experiments/stage11b_str_holdout_20122022/artifacts/best.pt",
+      "training_elapsed_seconds": 1947.5,
+      "best_val_loss": 0.35179464664602283,
+      "training_epochs": 22,
+      "validation": {
+        "sample_count": 2082,
+        "failing_frames": 1417,
+        "normal_frames": 665,
+        "detected": 1248,
+        "missed": 169,
+        "metrics": {
+          "precision": 0.972,
+          "recall": 0.8807,
+          "f1": 0.9241,
+          "accuracy": 0.9015,
+          "fnr": 0.1193,
+          "fpr": 0.0541,
+          "auroc": 0.9635
+        },
+        "confusion_matrix": [
+          [
+            1248,
+            169
+          ],
+          [
+            36,
+            629
+          ]
+        ]
+      },
+      "held_out": {
+        "sample_count": 167,
+        "failing_frames": 167,
+        "normal_frames": 0,
+        "detected": 140,
+        "missed": 27,
+        "false_positives": 0,
+        "true_negatives": 0,
+        "metrics": {
+          "precision": 1.0,
+          "recall": 0.8383,
+          "f1": 0.9121,
+          "accuracy": 0.8383,
+          "fnr": 0.1617,
+          "fpr": 0.0,
+          "auroc": null
+        },
+        "confusion_matrix": [
+          [
+            140,
+            27
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "per_recording": {
+          "Recording_20122022_13_39_27": {
+            "frames": 138,
+            "detected": 138,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.998
+          },
+          "Recording_20122022_13_53_11": {
+            "frames": 3,
+            "detected": 2,
+            "missed": 1,
+            "accuracy": 0.6667,
+            "mean_fail_score": 0.622
+          },
+          "Recording_20122022_14_15_06": {
+            "frames": 2,
+            "detected": 0,
+            "missed": 2,
+            "accuracy": 0.0,
+            "mean_fail_score": 0.0109
+          },
+          "Recording_20122022_16_09_41": {
+            "frames": 3,
+            "detected": 0,
+            "missed": 3,
+            "accuracy": 0.0,
+            "mean_fail_score": 0.0158
+          },
+          "Recording_20122022_16_55_38": {
+            "frames": 21,
+            "detected": 0,
+            "missed": 21,
+            "accuracy": 0.0,
+            "mean_fail_score": 0.0168
+          }
+        },
+        "threshold": 0.65
+      },
+      "known_domain_stringing": {
+        "sample_count": 2174,
+        "failing_frames": 2174,
+        "normal_frames": 0,
+        "detected": 2173,
+        "missed": 1,
+        "false_positives": 0,
+        "true_negatives": 0,
+        "metrics": {
+          "precision": 1.0,
+          "recall": 0.9995,
+          "f1": 0.9998,
+          "accuracy": 0.9995,
+          "fnr": 0.0005,
+          "fpr": 0.0,
+          "auroc": null
+        },
+        "confusion_matrix": [
+          [
+            2173,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "per_recording": {
+          "Recording_14.02.2023_17_53_55": {
+            "frames": 181,
+            "detected": 181,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9999
+          },
+          "Recording_14.02.2023_18_15_37": {
+            "frames": 85,
+            "detected": 85,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9998
+          },
+          "Recording_14.02.2023_18_39_51": {
+            "frames": 94,
+            "detected": 94,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9964
+          },
+          "Recording_15.02.2023_14_15_54": {
+            "frames": 52,
+            "detected": 52,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9997
+          },
+          "Recording_21122022_19_21_52": {
+            "frames": 113,
+            "detected": 113,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9999
+          },
+          "Recording_21122022_19_53_17": {
+            "frames": 174,
+            "detected": 174,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9998
+          },
+          "Recording_22122022_11_00_38": {
+            "frames": 146,
+            "detected": 146,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9993
+          },
+          "Recording_22122022_11_49_58": {
+            "frames": 165,
+            "detected": 165,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9978
+          },
+          "Recording_22122022_12_03_39": {
+            "frames": 174,
+            "detected": 174,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9972
+          },
+          "Recording_22122022_12_19_15": {
+            "frames": 93,
+            "detected": 92,
+            "missed": 1,
+            "accuracy": 0.9892,
+            "mean_fail_score": 0.9824
+          },
+          "Recording_22122022_12_37_10": {
+            "frames": 140,
+            "detected": 140,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.996
+          },
+          "Recording_22122022_15_18_40": {
+            "frames": 158,
+            "detected": 158,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9994
+          },
+          "Recording_22122022_15_50_18": {
+            "frames": 102,
+            "detected": 102,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9999
+          },
+          "Recording_22122022_16_35_52": {
+            "frames": 119,
+            "detected": 119,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 1.0
+          },
+          "Recording_22122022_18_04_20": {
+            "frames": 163,
+            "detected": 163,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9999
+          },
+          "Recording_23.02.2023_16_44_22": {
+            "frames": 96,
+            "detected": 96,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.998
+          },
+          "Recording_23.02.2023_19_58_44": {
+            "frames": 24,
+            "detected": 24,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.998
+          },
+          "Recording_23.02.2023_20_15_22": {
+            "frames": 95,
+            "detected": 95,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9979
+          }
+        },
+        "threshold": 0.65
+      },
+      "config": {
+        "model": "shufflenet_v2_x1_0",
+        "seed": 42,
+        "epochs": 30,
+        "early_stopping_patience": 10,
+        "lr": 0.001,
+        "wd": 0.0001,
+        "batch_size": 32,
+        "image_size": 224,
+        "precision": "fp32",
+        "threshold": 0.65
+      }
+    },
+    "ue_control_10012023": {
+      "run_id": "ue_control_10012023",
+      "held_out_cluster": "ue_10012023",
+      "held_out_recordings": [
+        "Recording_10012023_15_02_20",
+        "Recording_10012023_15_33_34",
+        "Recording_10012023_18_16_22",
+        "Recording_10012023_19_39_45",
+        "Recording_10012023_20_31_36",
+        "Recording_10012023_20_51_12",
+        "Recording_10012023_21_52_16",
+        "Recording_10012023_22_14_59"
+      ],
+      "held_out_frame_count": 1079,
+      "train_frame_count": 10175,
+      "train_recording_count": 97,
+      "val_frame_count": 2055,
+      "val_recording_count": 21,
+      "experiment_id": "stage11b_ue_control_10012023",
+      "checkpoint": "/Users/alex/Projects/tinyvision/experiments/stage11b_ue_control_10012023/artifacts/best.pt",
+      "training_elapsed_seconds": 2135.7,
+      "best_val_loss": 0.642110069908758,
+      "training_epochs": 25,
+      "validation": {
+        "sample_count": 2055,
+        "failing_frames": 1298,
+        "normal_frames": 757,
+        "detected": 1132,
+        "missed": 166,
+        "metrics": {
+          "precision": 0.8694,
+          "recall": 0.8721,
+          "f1": 0.8708,
+          "accuracy": 0.8365,
+          "fnr": 0.1279,
+          "fpr": 0.2246,
+          "auroc": 0.9282
+        },
+        "confusion_matrix": [
+          [
+            1132,
+            166
+          ],
+          [
+            170,
+            587
+          ]
+        ]
+      },
+      "held_out": {
+        "sample_count": 1079,
+        "failing_frames": 975,
+        "normal_frames": 104,
+        "detected": 959,
+        "missed": 16,
+        "false_positives": 8,
+        "true_negatives": 96,
+        "metrics": {
+          "precision": 0.9917,
+          "recall": 0.9836,
+          "f1": 0.9876,
+          "accuracy": 0.9778,
+          "fnr": 0.0164,
+          "fpr": 0.0769,
+          "auroc": 0.9951
+        },
+        "confusion_matrix": [
+          [
+            959,
+            16
+          ],
+          [
+            8,
+            96
+          ]
+        ],
+        "per_recording": {
+          "Recording_10012023_15_02_20": {
+            "frames": 128,
+            "detected": 126,
+            "missed": 2,
+            "accuracy": 0.9844,
+            "mean_fail_score": 0.9842
+          },
+          "Recording_10012023_15_33_34": {
+            "frames": 152,
+            "detected": 152,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9958
+          },
+          "Recording_10012023_18_16_22": {
+            "frames": 134,
+            "detected": 103,
+            "missed": 9,
+            "accuracy": 0.9328,
+            "mean_fail_score": 0.768
+          },
+          "Recording_10012023_19_39_45": {
+            "frames": 139,
+            "detected": 139,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9992
+          },
+          "Recording_10012023_20_31_36": {
+            "frames": 162,
+            "detected": 111,
+            "missed": 4,
+            "accuracy": 0.9383,
+            "mean_fail_score": 0.7359
+          },
+          "Recording_10012023_20_51_12": {
+            "frames": 89,
+            "detected": 74,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.8225
+          },
+          "Recording_10012023_21_52_16": {
+            "frames": 132,
+            "detected": 132,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9945
+          },
+          "Recording_10012023_22_14_59": {
+            "frames": 143,
+            "detected": 122,
+            "missed": 1,
+            "accuracy": 0.979,
+            "mean_fail_score": 0.844
+          }
+        },
+        "threshold": 0.65
+      },
+      "known_domain_stringing": {
+        "sample_count": 2341,
+        "failing_frames": 2341,
+        "normal_frames": 0,
+        "detected": 2329,
+        "missed": 12,
+        "false_positives": 0,
+        "true_negatives": 0,
+        "metrics": {
+          "precision": 1.0,
+          "recall": 0.9949,
+          "f1": 0.9974,
+          "accuracy": 0.9949,
+          "fnr": 0.0051,
+          "fpr": 0.0,
+          "auroc": null
+        },
+        "confusion_matrix": [
+          [
+            2329,
+            12
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "per_recording": {
+          "Recording_14.02.2023_17_53_55": {
+            "frames": 181,
+            "detected": 180,
+            "missed": 1,
+            "accuracy": 0.9945,
+            "mean_fail_score": 0.9933
+          },
+          "Recording_14.02.2023_18_15_37": {
+            "frames": 85,
+            "detected": 85,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9988
+          },
+          "Recording_14.02.2023_18_39_51": {
+            "frames": 94,
+            "detected": 94,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9874
+          },
+          "Recording_15.02.2023_14_15_54": {
+            "frames": 52,
+            "detected": 52,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9996
+          },
+          "Recording_20122022_13_39_27": {
+            "frames": 138,
+            "detected": 138,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 1.0
+          },
+          "Recording_20122022_13_53_11": {
+            "frames": 3,
+            "detected": 3,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 1.0
+          },
+          "Recording_20122022_14_15_06": {
+            "frames": 2,
+            "detected": 2,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.6135
+          },
+          "Recording_20122022_16_09_41": {
+            "frames": 3,
+            "detected": 3,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9451
+          },
+          "Recording_20122022_16_55_38": {
+            "frames": 21,
+            "detected": 21,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9996
+          },
+          "Recording_21122022_19_21_52": {
+            "frames": 113,
+            "detected": 113,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9922
+          },
+          "Recording_21122022_19_53_17": {
+            "frames": 174,
+            "detected": 174,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9977
+          },
+          "Recording_22122022_11_00_38": {
+            "frames": 146,
+            "detected": 144,
+            "missed": 2,
+            "accuracy": 0.9863,
+            "mean_fail_score": 0.9718
+          },
+          "Recording_22122022_11_49_58": {
+            "frames": 165,
+            "detected": 164,
+            "missed": 1,
+            "accuracy": 0.9939,
+            "mean_fail_score": 0.9946
+          },
+          "Recording_22122022_12_03_39": {
+            "frames": 174,
+            "detected": 174,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9979
+          },
+          "Recording_22122022_12_19_15": {
+            "frames": 93,
+            "detected": 93,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9911
+          },
+          "Recording_22122022_12_37_10": {
+            "frames": 140,
+            "detected": 140,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9882
+          },
+          "Recording_22122022_15_18_40": {
+            "frames": 158,
+            "detected": 155,
+            "missed": 3,
+            "accuracy": 0.981,
+            "mean_fail_score": 0.9804
+          },
+          "Recording_22122022_15_50_18": {
+            "frames": 102,
+            "detected": 102,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9902
+          },
+          "Recording_22122022_16_35_52": {
+            "frames": 119,
+            "detected": 116,
+            "missed": 3,
+            "accuracy": 0.9748,
+            "mean_fail_score": 0.9778
+          },
+          "Recording_22122022_18_04_20": {
+            "frames": 163,
+            "detected": 163,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9998
+          },
+          "Recording_23.02.2023_16_44_22": {
+            "frames": 96,
+            "detected": 95,
+            "missed": 1,
+            "accuracy": 0.9896,
+            "mean_fail_score": 0.9854
+          },
+          "Recording_23.02.2023_19_58_44": {
+            "frames": 24,
+            "detected": 23,
+            "missed": 1,
+            "accuracy": 0.9583,
+            "mean_fail_score": 0.9753
+          },
+          "Recording_23.02.2023_20_15_22": {
+            "frames": 95,
+            "detected": 95,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9963
+          }
+        },
+        "threshold": 0.65
+      },
+      "config": {
+        "model": "shufflenet_v2_x1_0",
+        "seed": 42,
+        "epochs": 30,
+        "early_stopping_patience": 10,
+        "lr": 0.001,
+        "wd": 0.0001,
+        "batch_size": 32,
+        "image_size": 224,
+        "precision": "fp32",
+        "threshold": 0.65
+      }
+    },
+    "ue_control_05012023": {
+      "run_id": "ue_control_05012023",
+      "held_out_cluster": "ue_05012023",
+      "held_out_recordings": [
+        "Recording_05012023_11_49_39",
+        "Recording_05012023_13_33_01",
+        "Recording_05012023_13_54_18",
+        "Recording_05012023_14_15_36",
+        "Recording_05012023_14_32_45",
+        "Recording_05012023_15_23_21",
+        "Recording_05012023_18_14_03"
+      ],
+      "held_out_frame_count": 495,
+      "train_frame_count": 10759,
+      "train_recording_count": 98,
+      "val_frame_count": 1861,
+      "val_recording_count": 19,
+      "experiment_id": "stage11b_ue_control_05012023",
+      "checkpoint": "/Users/alex/Projects/tinyvision/experiments/stage11b_ue_control_05012023/artifacts/best.pt",
+      "training_elapsed_seconds": 1116.4,
+      "best_val_loss": 0.19007470524166237,
+      "training_epochs": 13,
+      "validation": {
+        "sample_count": 1861,
+        "failing_frames": 1160,
+        "normal_frames": 701,
+        "detected": 1119,
+        "missed": 41,
+        "metrics": {
+          "precision": 0.9127,
+          "recall": 0.9647,
+          "f1": 0.938,
+          "accuracy": 0.9205,
+          "fnr": 0.0353,
+          "fpr": 0.1526,
+          "auroc": 0.9816
+        },
+        "confusion_matrix": [
+          [
+            1119,
+            41
+          ],
+          [
+            107,
+            594
+          ]
+        ]
+      },
+      "held_out": {
+        "sample_count": 495,
+        "failing_frames": 392,
+        "normal_frames": 103,
+        "detected": 260,
+        "missed": 132,
+        "false_positives": 10,
+        "true_negatives": 93,
+        "metrics": {
+          "precision": 0.963,
+          "recall": 0.6633,
+          "f1": 0.7855,
+          "accuracy": 0.7131,
+          "fnr": 0.3367,
+          "fpr": 0.0971,
+          "auroc": 0.8716
+        },
+        "confusion_matrix": [
+          [
+            260,
+            132
+          ],
+          [
+            10,
+            93
+          ]
+        ],
+        "per_recording": {
+          "Recording_05012023_11_49_39": {
+            "frames": 144,
+            "detected": 106,
+            "missed": 23,
+            "accuracy": 0.8403,
+            "mean_fail_score": 0.6767
+          },
+          "Recording_05012023_13_33_01": {
+            "frames": 88,
+            "detected": 30,
+            "missed": 8,
+            "accuracy": 0.7955,
+            "mean_fail_score": 0.4526
+          },
+          "Recording_05012023_13_54_18": {
+            "frames": 37,
+            "detected": 37,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.994
+          },
+          "Recording_05012023_14_15_36": {
+            "frames": 56,
+            "detected": 30,
+            "missed": 6,
+            "accuracy": 0.8929,
+            "mean_fail_score": 0.4942
+          },
+          "Recording_05012023_14_32_45": {
+            "frames": 37,
+            "detected": 7,
+            "missed": 30,
+            "accuracy": 0.1892,
+            "mean_fail_score": 0.2071
+          },
+          "Recording_05012023_15_23_21": {
+            "frames": 68,
+            "detected": 49,
+            "missed": 1,
+            "accuracy": 0.9853,
+            "mean_fail_score": 0.6942
+          },
+          "Recording_05012023_18_14_03": {
+            "frames": 65,
+            "detected": 1,
+            "missed": 64,
+            "accuracy": 0.0154,
+            "mean_fail_score": 0.068
+          }
+        },
+        "threshold": 0.65
+      },
+      "known_domain_stringing": {
+        "sample_count": 2341,
+        "failing_frames": 2341,
+        "normal_frames": 0,
+        "detected": 2340,
+        "missed": 1,
+        "false_positives": 0,
+        "true_negatives": 0,
+        "metrics": {
+          "precision": 1.0,
+          "recall": 0.9996,
+          "f1": 0.9998,
+          "accuracy": 0.9996,
+          "fnr": 0.0004,
+          "fpr": 0.0,
+          "auroc": null
+        },
+        "confusion_matrix": [
+          [
+            2340,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "per_recording": {
+          "Recording_14.02.2023_17_53_55": {
+            "frames": 181,
+            "detected": 180,
+            "missed": 1,
+            "accuracy": 0.9945,
+            "mean_fail_score": 0.9915
+          },
+          "Recording_14.02.2023_18_15_37": {
+            "frames": 85,
+            "detected": 85,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.999
+          },
+          "Recording_14.02.2023_18_39_51": {
+            "frames": 94,
+            "detected": 94,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9993
+          },
+          "Recording_15.02.2023_14_15_54": {
+            "frames": 52,
+            "detected": 52,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 1.0
+          },
+          "Recording_20122022_13_39_27": {
+            "frames": 138,
+            "detected": 138,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9984
+          },
+          "Recording_20122022_13_53_11": {
+            "frames": 3,
+            "detected": 3,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.99
+          },
+          "Recording_20122022_14_15_06": {
+            "frames": 2,
+            "detected": 2,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.8285
+          },
+          "Recording_20122022_16_09_41": {
+            "frames": 3,
+            "detected": 3,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9894
+          },
+          "Recording_20122022_16_55_38": {
+            "frames": 21,
+            "detected": 21,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9813
+          },
+          "Recording_21122022_19_21_52": {
+            "frames": 113,
+            "detected": 113,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9997
+          },
+          "Recording_21122022_19_53_17": {
+            "frames": 174,
+            "detected": 174,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9991
+          },
+          "Recording_22122022_11_00_38": {
+            "frames": 146,
+            "detected": 146,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 1.0
+          },
+          "Recording_22122022_11_49_58": {
+            "frames": 165,
+            "detected": 165,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9989
+          },
+          "Recording_22122022_12_03_39": {
+            "frames": 174,
+            "detected": 174,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9989
+          },
+          "Recording_22122022_12_19_15": {
+            "frames": 93,
+            "detected": 93,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9968
+          },
+          "Recording_22122022_12_37_10": {
+            "frames": 140,
+            "detected": 140,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9656
+          },
+          "Recording_22122022_15_18_40": {
+            "frames": 158,
+            "detected": 158,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9995
+          },
+          "Recording_22122022_15_50_18": {
+            "frames": 102,
+            "detected": 102,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9997
+          },
+          "Recording_22122022_16_35_52": {
+            "frames": 119,
+            "detected": 119,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 1.0
+          },
+          "Recording_22122022_18_04_20": {
+            "frames": 163,
+            "detected": 163,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9999
+          },
+          "Recording_23.02.2023_16_44_22": {
+            "frames": 96,
+            "detected": 96,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9929
+          },
+          "Recording_23.02.2023_19_58_44": {
+            "frames": 24,
+            "detected": 24,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9997
+          },
+          "Recording_23.02.2023_20_15_22": {
+            "frames": 95,
+            "detected": 95,
+            "missed": 0,
+            "accuracy": 1.0,
+            "mean_fail_score": 0.9881
+          }
+        },
+        "threshold": 0.65
+      },
+      "config": {
+        "model": "shufflenet_v2_x1_0",
+        "seed": 42,
+        "epochs": 30,
+        "early_stopping_patience": 10,
+        "lr": 0.001,
+        "wd": 0.0001,
+        "batch_size": 32,
+        "image_size": 224,
+        "precision": "fp32",
+        "threshold": 0.65
+      }
+    }
+  }
+}

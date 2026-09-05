@@ -1,0 +1,56 @@
+experiment_id: stage11b_str_holdout_22122022
+model: shufflenet_v2_x1_0
+task: classification
+dataset:
+  name: printing-errors
+  version: '1.0'
+  data_dir: /var/folders/bc/8s_rgxsx0xx6hnv5xt2p_0cc0000gn/T/stage11b_9ce5j0gv/str_holdout_22122022
+  image_size: 224
+  source_mode: directory
+  split_ratios:
+  - 0.7
+  - 0.15
+  - 0.15
+data:
+  num_workers: 4
+  batch_size: 32
+  pin_memory: true
+train:
+  epochs: 30
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  augmentation:
+    horizontal_flip: true
+    random_rotation: 15
+    color_jitter: 0.2
+    random_crop: false
+    normalize: true
+  precision: fp32
+  seed: 42
+  early_stopping_patience: 10
+evaluation:
+  metrics:
+  - precision
+  - recall
+  - f1
+  - fnr
+  - fpr
+  - auroc
+  decision_threshold: 0.65
+export:
+  format: onnx
+  quantization: int8
+  dynamic_axes: false
+hardware:
+  machine: ''
+  gpu: ''
+software:
+  python: ''
+  torch: ''
+  torchvision: ''
+  ultralytics: ''
+  opencv: ''
+  os: ''
+created_at: '2026-09-04T12:09:45.136488+00:00'
+notes: 'Stage 11B: leave-cluster-out (str_holdout_22122022)'

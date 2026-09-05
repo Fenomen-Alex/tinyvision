@@ -1,0 +1,74 @@
+{
+  "stage": "12E",
+  "title": "VLM Batch Audit for Human Review Preparation",
+  "date": "2026-09-05",
+  "status": "audit only; 120/120 VLM batch complete; blind human review prepared; NO labels changed, NO merges, NO VLM rerun, NO training",
+  "constraints_honored": {
+    "no_vlm_rerun": true,
+    "no_implementation_change": true,
+    "no_manifest_change": true,
+    "no_verified_labels": true,
+    "no_human_review_decisions_modified": true,
+    "preparation_and_analysis_only": true
+  },
+  "batch_outcome": {
+    "units_processed": 120,
+    "success": 120,
+    "error": 0,
+    "sequence_units": 39,
+    "frame_units": 81,
+    "decision_counts": {"normal": 110, "failing": 4, "uncertain": 6},
+    "failure_type_counts": {"stringing": 4, "spaghetti": 0, "under_extrusion": 0, "null": 116},
+    "confidence": {"min": 0.0, "max": 1.0, "mean": 0.9372},
+    "per_source": {
+      "NORMAL001": {"total": 3, "normal": 3, "failing": 0, "uncertain": 0},
+      "SP001": {"total": 6, "normal": 3, "failing": 3, "uncertain": 0},
+      "UE003": {"total": 111, "normal": 104, "failing": 1, "uncertain": 6}
+    }
+  },
+  "failing_units": [
+    {"unit": "SP001__seq000", "type": "sequence", "failure_type": "stringing", "confidence": 0.95, "attempts": 1},
+    {"unit": "SP001__seq001", "type": "sequence", "failure_type": "stringing", "confidence": 0.95, "attempts": 1},
+    {"unit": "SP001__seq002", "type": "sequence", "failure_type": "stringing", "confidence": 0.95, "attempts": 1},
+    {"unit": "UE003__frm0027", "type": "frame", "failure_type": "stringing", "confidence": 0.95, "attempts": 2}
+  ],
+  "uncertain_units": [
+    {"unit": "UE003__seq010", "type": "sequence", "confidence": 0.0, "attempts": 1},
+    {"unit": "UE003__seq015", "type": "sequence", "confidence": 0.0, "attempts": 1},
+    {"unit": "UE003__seq016", "type": "sequence", "confidence": 0.0, "attempts": 1},
+    {"unit": "UE003__seq024", "type": "sequence", "confidence": 0.0, "attempts": 1},
+    {"unit": "UE003__seq028", "type": "sequence", "confidence": 0.0, "attempts": 1},
+    {"unit": "UE003__seq032", "type": "sequence", "confidence": 0.0, "attempts": 1}
+  ],
+  "uncertain_evidence_summary": "hand/extruder interaction, control-panel/touchscreen operation, or black screen with text; no printed object or print bed visible",
+  "disagreement": {
+    "units": ["SP001__seq000", "SP001__seq001", "SP001__seq002"],
+    "stage12b_provisional": "spaghetti (suspect_growth via structural growing-blob analysis)",
+    "vlm_proposal": "stringing (independent visual reading, confidence 0.95)",
+    "prompt_neutrality": "VLM never received source id, unit id, filenames, Stage 12B labels, or documented failure types",
+    "status": "neither classification is ground truth; human reviewer resolves on contact sheets, blind to both prior claims"
+  },
+  "retry_observation": {
+    "attempt_1_success": 43,
+    "attempt_2_success": 77,
+    "final_errors": 0,
+    "schema_limitation": "proposal schema records final attempt count and status only; transient retry causes (timeout vs validation) are not stored"
+  },
+  "human_review_integrity": {
+    "blind_to_vlm_predictions": true,
+    "predictions_not_in_manifest": true,
+    "predictions_not_in_ui_or_contact_sheets": true,
+    "stage12d_tooling_unmodified": true,
+    "initial_labels_from_visual_evidence_only": true,
+    "later_comparison_allowed_after_human_labels_exist": true
+  },
+  "review_priority": ["NORMAL001", "SP001", "UE003"],
+  "validation": {
+    "full_test_suite": "268 passed",
+    "review_manifest_sha256": "fbb7a711175ee9fa0deeb89952f6f1a34890bdfad1f8fa37850f1ea60f79dce9",
+    "verified_labels_exists": false,
+    "vlm_review_proposals_unchanged": true,
+    "no_additional_vlm_requests": true
+  },
+  "next_step": "human performs Stage 12E labeling pass (NORMAL001 -> SP001 -> UE003) via Stage 12D workflow and merges; VLM proposals compared to human labels only afterwards"
+}

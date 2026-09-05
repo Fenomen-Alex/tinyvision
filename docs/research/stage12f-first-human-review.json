@@ -1,0 +1,110 @@
+{
+  "stage": "12F",
+  "title": "First Human Review Tranche and VLM Comparison",
+  "date": "2026-09-05",
+  "status": "documentation/audit only; first six-unit human-review tranche complete and merged; compared to VLM proposals; FINALIZED - manual human review stopped at 24 reviewed units; NO label changes, NO training, NO VLM rerun, NO new VLM requests",
+  "constraints_honored": {
+    "no_label_changes": true,
+    "no_further_human_review": true,
+    "no_training": true,
+    "no_vlm_rerun": true,
+    "no_new_vlm_requests": true,
+    "vlm_source_unmodified": true,
+    "vlm_proposals_unmodified": true,
+    "verification_documented": true
+  },
+  "reviewed_units": [
+    {"unit": "NORMAL001__seq000", "source": "NORMAL001", "type": "sequence", "human_decision": "failing", "human_failure_type": "stringing"},
+    {"unit": "NORMAL001__seq001", "source": "NORMAL001", "type": "sequence", "human_decision": "failing", "human_failure_type": "stringing"},
+    {"unit": "NORMAL001__seq002", "source": "NORMAL001", "type": "sequence", "human_decision": "failing", "human_failure_type": "stringing"},
+    {"unit": "SP001__seq000", "source": "SP001", "type": "sequence", "human_decision": "failing", "human_failure_type": "spaghetti"},
+    {"unit": "SP001__seq001", "source": "SP001", "type": "sequence", "human_decision": "failing", "human_failure_type": "spaghetti"},
+    {"unit": "SP001__seq002", "source": "SP001", "type": "sequence", "human_decision": "failing", "human_failure_type": "spaghetti"}
+  ],
+  "vlm_proposals": [
+    {"unit": "NORMAL001__seq000", "decision": "normal", "failure_type": null, "confidence": 0.98},
+    {"unit": "NORMAL001__seq001", "decision": "normal", "failure_type": null, "confidence": 0.98},
+    {"unit": "NORMAL001__seq002", "decision": "normal", "failure_type": null, "confidence": 0.99},
+    {"unit": "SP001__seq000", "decision": "failing", "failure_type": "stringing", "confidence": 0.95},
+    {"unit": "SP001__seq001", "decision": "failing", "failure_type": "stringing", "confidence": 0.95},
+    {"unit": "SP001__seq002", "decision": "failing", "failure_type": "stringing", "confidence": 0.95}
+  ],
+  "vlm_model": "qwen/qwen3-vl-8b via local LM Studio endpoint (http://127.0.0.1:1234); proposals only, never ground truth",
+  "comparison": {
+    "units": 6,
+    "agreement": 0,
+    "disagreement": 6,
+    "agreement_ratio": "0/6",
+    "disagreement_ratio": "6/6",
+    "breakdown": [
+      {"group": "NORMAL001 (seq000-002)", "human": "failing/stringing", "vlm": "normal", "disagreement_dimension": "decision + failure type", "note": "vlm most confident outputs (0.98/0.98/0.99) while human found visible stringing"},
+      {"group": "SP001 (seq000-002)", "human": "failing/spaghetti", "vlm": "failing/stringing", "disagreement_dimension": "failure type only", "note": "decision agrees (failing); failure type differs"}
+    ]
+  },
+  "interpretation": {
+    "sample_status": "six-unit audit/calibration sample only; insufficient to establish general VLM accuracy; no accuracy/recall/precision metric derived",
+    "human_labels_not_ground_truth": "human labels are human-reviewed labels from this tranche; not objectively proven ground truth",
+    "important_findings": [
+      "human review found visible failures in all six units (stringing x3 NORMAL001, spaghetti x3 SP001)",
+      "VLM classified all three NORMAL001 units as normal (observed false-negative tendency on this sample)",
+      "VLM detected failure in SP001 but assigned stringing instead of spaghetti",
+      "earlier Stage 12B provisional spaghetti (suspect_growth, structural) for SP001 is consistent with the human labels for all three SP001 sequence units",
+      "VLM stringing result for SP001 remains a disagreement requiring further analysis"
+    ],
+    "observations_not_conclusions": [
+      "NORMAL001 source was treated as a likely-clean baseline but human review found stringing in all three of its sequence units; source names describe channel origin, not verified content",
+      "only SP001 sequence units are in this tranche; the 3 SP001 frame units remain unreviewed",
+      "remaining 1000 manifest units have no human decision yet"
+    ]
+  },
+  "integrity": {
+    "review_manifest_unit_count": 1006,
+    "review_manifest_decided_units": 6,
+    "review_manifest_decided_units_final": 24,
+    "review_manifest_undecided_final": 982,
+    "verified_labels_unit_count": 6,
+    "verified_labels_provenance": "human_reviewed",
+    "verified_labels_stage": "stage12d",
+    "vlm_review_proposals_sha256": "6457afdd02150a90891614140296d3b76e4d832536adbcb090ad99de6f683b03",
+    "vlm_review_proposals_unchanged": true,
+    "vlm_source_unmodified": true,
+    "no_training": true,
+    "no_new_vlm_requests": true
+  },
+  "finalization": {
+    "manual_review_stopped": true,
+    "stopped_at": "operator decision; exhaustive UE003 review stopped because it has low information value (substantial setup/non-print footage)",
+    "ue003_setup_nonprint_evidence": [
+      "human note (UE003__seq003): 'Printer is being setting up, no print progress or printed object visible'",
+      "stage12e VLM-uncertain evidence: hands/extruder interaction, control panels, black-screen-with-text frames; no printed object or print bed visible"
+    ],
+    "final_decision_counts": {
+      "failing/stringing": 3,
+      "failing/spaghetti": 3,
+      "normal": 8,
+      "uncertain": 10
+    },
+    "final_decision_by_source": {
+      "NORMAL001": {"sequence failing/stringing": 3},
+      "SP001": {"sequence failing/spaghetti": 3},
+      "UE003": {"sequence normal": 3, "frame normal": 5, "sequence uncertain": 10}
+    },
+    "verified_labels_unchanged": true,
+    "verified_labels_units": 6,
+    "additional_manifest_decisions_not_merged": 18,
+    "no_merge_performed_during_finalization": true,
+    "human_decisions_altered": false
+  },
+  "validation": {
+    "full_test_suite": "290 passed",
+    "review_manifest_sha256": "72b4ee89d9f11c069453172e7888d71c5cc89c79fef6e2690fc3fd1202cee19b",
+    "verified_labels_sha256": "27038df1e7dbb81ff2da57b8d04e3d1d77ddf9ec6242d50409322b4204f50642",
+    "test_invariant_update": "test_manifest_and_verified_untouched updated: previously asserted repo-wide verified_labels.json absent (invalid once merge creates it); now asserts a VLM review op leaves an existing verified file byte-for-byte unchanged"
+  },
+  "next_steps": [
+    "continue tranche labeling of remaining units via Stage 12D workflow",
+    "extend human/VLM comparison as human labels complete (still as audit/calibration samples until useful sample sizes exist)",
+    "investigate SP001 failure-type disagreement (spaghetti human+Stage12B vs stringing VLM) with further evidence; no conclusion in this stage",
+    "decide only after enough calibrated samples whether VLM proposals may serve as review-assist; blind-review requirement not relaxed by this comparison"
+  ]
+}

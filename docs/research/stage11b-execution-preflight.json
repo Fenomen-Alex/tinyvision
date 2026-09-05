@@ -1,0 +1,104 @@
+{
+  "stage": "11B",
+  "status": "preflight_complete",
+  "decision": "READY_TO_RUN",
+  "date": "2026-09-04",
+  "runs": {
+    "str_holdout_22122022": {
+      "task": "stringing_holdout",
+      "held_out_cluster": "22122022",
+      "held_out_recordings": 9,
+      "held_out_frames": 1260,
+      "held_out_stringing_frames": 1260,
+      "train_recordings": 96,
+      "train_frames": 9994,
+      "train_stringing_frames": 1081,
+      "val_recordings": 21,
+      "val_frames": 2080,
+      "val_excluded": ["Recording_22122022_18_48_47"],
+      "output_dir": "experiments/stage11b_str_holdout_22122022",
+      "composition": "single_class_failing",
+      "valid_metrics": ["failing_recall", "fnr", "per_recording"],
+      "invalid_metrics": ["fpr", "auroc", "f1", "accuracy"]
+    },
+    "str_holdout_20122022": {
+      "task": "stringing_holdout",
+      "held_out_cluster": "20122022",
+      "held_out_recordings": 5,
+      "held_out_frames": 167,
+      "held_out_stringing_frames": 167,
+      "train_recordings": 100,
+      "train_frames": 11087,
+      "train_stringing_frames": 2174,
+      "val_recordings": 21,
+      "val_frames": 2082,
+      "val_excluded": ["Recording_20122022_20_06_10"],
+      "output_dir": "experiments/stage11b_str_holdout_20122022",
+      "composition": "single_class_failing",
+      "valid_metrics": ["failing_recall", "fnr", "per_recording"],
+      "invalid_metrics": ["fpr", "auroc", "f1", "accuracy"]
+    },
+    "ue_control_10012023": {
+      "task": "under_extrusion_control",
+      "held_out_cluster": "ue_10012023",
+      "held_out_recordings": 8,
+      "held_out_frames": 1079,
+      "held_out_under_extrusion_frames": 975,
+      "held_out_normal_frames": 104,
+      "train_recordings": 97,
+      "train_frames": 10175,
+      "train_under_extrusion_frames": 2356,
+      "val_recordings": 21,
+      "val_frames": 2055,
+      "val_excluded": ["Recording_10012023_18_46_21"],
+      "output_dir": "experiments/stage11b_ue_control_10012023",
+      "composition": "mixed",
+      "valid_metrics": ["precision", "recall", "f1", "fnr", "fpr", "accuracy", "auroc"]
+    },
+    "ue_control_05012023": {
+      "task": "under_extrusion_control",
+      "held_out_cluster": "ue_05012023",
+      "held_out_recordings": 7,
+      "held_out_frames": 495,
+      "held_out_under_extrusion_frames": 392,
+      "held_out_normal_frames": 103,
+      "train_recordings": 98,
+      "train_frames": 10759,
+      "train_under_extrusion_frames": 2939,
+      "val_recordings": 19,
+      "val_frames": 1861,
+      "val_excluded": ["Recording_05012023_11_08_00", "Recording_05012023_11_27_16", "Recording_05012023_15_08_31"],
+      "output_dir": "experiments/stage11b_ue_control_05012023",
+      "composition": "mixed",
+      "valid_metrics": ["precision", "recall", "f1", "fnr", "fpr", "accuracy", "auroc"]
+    }
+  },
+  "leakage_audit": {
+    "all_8_checks_pass": true,
+    "all_4_runs_pass": true,
+    "duplicate_frames": 0,
+    "partial_date_holdout": {
+      "note": "3 of 4 runs have normal recordings from same dates remaining in training. This is correct: clusters are failure-type-specific, not date-specific.",
+      "affected_runs": ["str_holdout_20122022", "ue_control_10012023", "ue_control_05012023"]
+    }
+  },
+  "validation_methodology": {
+    "checkpoint_selection": "val_loss (early stopping, patience=10)",
+    "held_out_cluster_consulted": false,
+    "threshold": 0.65,
+    "hp_search": false,
+    "modified_val_per_run": true
+  },
+  "runtime": {
+    "device": "MPS",
+    "per_run_estimate_min": "14-16",
+    "total_estimate_min": "65-70",
+    "caffeinate_recommended": true
+  },
+  "reproducibility": {
+    "seed": 42,
+    "deterministic": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  }
+}

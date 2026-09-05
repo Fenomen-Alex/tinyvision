@@ -1,0 +1,82 @@
+{
+  "stage": "12D-extra",
+  "title": "Local VLM Review Pipe (Proposals Only)",
+  "date": "2026-09-05",
+  "status": "built + tested (268 passed) + smoke-tested on one unit; NO batch run; NO verified labels; NO training",
+  "constraints_honored": {
+    "manifest_read_only": true,
+    "verified_labels_never_created": true,
+    "neutral_prompt_no_source_unit_filename_or_prior_labels": true,
+    "no_fabricated_labels_uncertain_allowed": true,
+    "proposals_only_never_ground_truth": true,
+    "no_new_dependencies_stdlib_urllib": true,
+    "lm_studio_config_untouched": true
+  },
+  "runtime": {
+    "endpoint": "http://127.0.0.1:1234",
+    "model": "qwen/qwen3-vl-8b",
+    "api": "POST /v1/chat/completions (OpenAI-compatible, image_url data URIs)",
+    "lm_studio_server_context_tokens": 16384,
+    "lm_studio_server_temperature": 0.15,
+    "default_timeout_s": 60.0,
+    "default_retries": 2
+  },
+  "high_value_scope": {
+    "sources": ["NORMAL001", "SP001", "UE003"],
+    "units": 120,
+    "sequence_units": 39,
+    "frame_units": 81,
+    "sequence_reviewable_seconds": 334,
+    "per_source": {
+      "NORMAL001": {"units": 3, "sequence_units": 3, "frame_units": 0},
+      "SP001": {"units": 6, "sequence_units": 3, "frame_units": 3},
+      "UE003": {"units": 111, "sequence_units": 33, "frame_units": 78}
+    },
+    "selection_guard": "UE001/STR001/SP002 refused; no selection is an argparse error; full run requires explicit --batch"
+  },
+  "decision_vocab": {
+    "decision": ["failing", "normal", "uncertain"],
+    "failure_type": ["spaghetti", "stringing", "under_extrusion", "null"]
+  },
+  "evidence_mapping": {
+    "sequence": "labels/sheets/<review_unit_id>.jpg (single contact-sheet image)",
+    "frame": "extracted/<sid>/sequence/frame_%04d.jpg target (+/-1 neighbours as [CONTEXT], optional via --no-frame-context)"
+  },
+  "smoke_test": {
+    "command": "python3 scripts/run_vlm_review.py --unit NORMAL001__seq000",
+    "outcome": "success",
+    "attempts": 1,
+    "status": "success",
+    "decision": "normal",
+    "failure_type": null,
+    "confidence": 1.0,
+    "visual_evidence": "consistent smooth extrusion, no stringing/spaghetti/under-extrusion visible",
+    "integrity": {
+      "review_manifest_mtime": "2026-09-05T15:12:20 local (unchanged, predates run)",
+      "verified_labels_exists": false,
+      "proposals_written_to": "datasets/external/video-frames/labels/vlm_review_proposals.json",
+      "units_processed": 1
+    }
+  },
+  "deliverables": [
+    "training/tv/vlm_review.py",
+    "scripts/run_vlm_review.py",
+    "training/tests/test_vlm_review.py (39 tests)",
+    "datasets/external/video-frames/labels/vlm_review_proposals.json (schema_version 1, 1 proposal)",
+    "docs/research/stage12d-extra-vlm-review-pipe.md / .json"
+  ],
+  "test_results": {
+    "new_tests": 39,
+    "full_suite_passed": 268
+  },
+  "limitations": [
+    "VLM confidence is uncalibrated; not ground truth",
+    "frame-unit live path only dry-run verified; only a sequence request hit the live server",
+    "retries bounded by design; repeated identical invalid JSON exhausts retries to an explicit error",
+    "batch = 120 sequential requests, no concurrency/rate limit",
+    "JPEG-only image input",
+    "upsert never purges stale proposals for untouched units",
+    "manifest fractional times for 23.976 fps sources are cosmetic; frame identity consistent"
+  ],
+  "next_step": "human completes review_manifest.json (Stage 12D merge) and optionally runs the explicit --batch VLM run; compare human labels vs VLM proposals before the Experiment 2 decision"
+}

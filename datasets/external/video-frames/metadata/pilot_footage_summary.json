@@ -1,0 +1,82 @@
+{
+  "videos": {
+    "SP001": {
+      "duration_s": 25.5,
+      "samples": 26,
+      "cut_samples": 2,
+      "cuts_per_min": 4.7,
+      "unstable_frac": 0.077,
+      "n_stable_runs_ge1s": 1,
+      "longest_stable_run_s": 22.0,
+      "total_stable_s": 22.0,
+      "fg_growth_trend": {
+        "n": 23,
+        "slope_per_s": 0.006673,
+        "t0_area": 0.0076,
+        "t_end_area": 0.1373,
+        "precut_max": 0.1373
+      }
+    },
+    "SP002": {
+      "duration_s": 54.967,
+      "samples": 55,
+      "cut_samples": 41,
+      "cuts_per_min": 44.8,
+      "unstable_frac": 0.745,
+      "n_stable_runs_ge1s": 5,
+      "longest_stable_run_s": 1.0,
+      "total_stable_s": 5.0,
+      "fg_growth_trend": {
+        "n": 23,
+        "slope_per_s": 0.002016,
+        "t0_area": 0.1222,
+        "t_end_area": 0.2624,
+        "precut_max": 0.5328
+      }
+    },
+    "NORMAL001": {
+      "duration_s": 20.067,
+      "samples": 21,
+      "cut_samples": 0,
+      "cuts_per_min": 0.0,
+      "unstable_frac": 0.0,
+      "n_stable_runs_ge1s": 1,
+      "longest_stable_run_s": 20.0,
+      "total_stable_s": 20.0,
+      "fg_growth_trend": null
+    },
+    "UE001": {
+      "duration_s": 519.64,
+      "samples": 520,
+      "cut_samples": 169,
+      "cuts_per_min": 19.5,
+      "unstable_frac": 0.342,
+      "n_stable_runs_ge1s": 44,
+      "longest_stable_run_s": 88.0,
+      "total_stable_s": 278.0,
+      "fg_growth_trend": null
+    },
+    "UE003": {
+      "duration_s": 367.617,
+      "samples": 368,
+      "cut_samples": 51,
+      "cuts_per_min": 8.3,
+      "unstable_frac": 0.163,
+      "n_stable_runs_ge1s": 17,
+      "longest_stable_run_s": 108.1,
+      "total_stable_s": 287.3,
+      "fg_growth_trend": null
+    },
+    "STR001": {
+      "duration_s": 645.061,
+      "samples": 645,
+      "cut_samples": 321,
+      "cuts_per_min": 29.9,
+      "unstable_frac": 0.516,
+      "n_stable_runs_ge1s": 58,
+      "longest_stable_run_s": 17.0,
+      "total_stable_s": 219.2,
+      "fg_growth_trend": null
+    }
+  }
+}

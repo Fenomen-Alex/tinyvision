@@ -1,0 +1,2423 @@
+{
+  "stage": 9,
+  "dataset_inventory": {
+    "train": [
+      {
+        "recording_id": "Recording_01122022_15_27_47",
+        "total_frames": 82,
+        "normal_frames": 50,
+        "failing_frames": 32,
+        "composition": "MIXED_NORMAL_LABEL",
+        "fine_counts": {
+          "under_extrusion": 32,
+          "good": 50
+        },
+        "date": "01122022"
+      },
+      {
+        "recording_id": "Recording_01122022_16_34_17",
+        "total_frames": 91,
+        "normal_frames": 91,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 91
+        },
+        "date": "01122022"
+      },
+      {
+        "recording_id": "Recording_01122022_16_50_08",
+        "total_frames": 16,
+        "normal_frames": 16,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 16
+        },
+        "date": "01122022"
+      },
+      {
+        "recording_id": "Recording_02012023_15_03_00",
+        "total_frames": 38,
+        "normal_frames": 0,
+        "failing_frames": 38,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 38
+        },
+        "date": "02012023"
+      },
+      {
+        "recording_id": "Recording_02012023_15_38_24",
+        "total_frames": 128,
+        "normal_frames": 0,
+        "failing_frames": 128,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 128
+        },
+        "date": "02012023"
+      },
+      {
+        "recording_id": "Recording_02122022_14_23_06",
+        "total_frames": 162,
+        "normal_frames": 162,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 162
+        },
+        "date": "02122022"
+      },
+      {
+        "recording_id": "Recording_02122022_14_45_08",
+        "total_frames": 167,
+        "normal_frames": 27,
+        "failing_frames": 140,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 140,
+          "good": 27
+        },
+        "date": "02122022"
+      },
+      {
+        "recording_id": "Recording_04012023_15_02_41",
+        "total_frames": 176,
+        "normal_frames": 176,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 176
+        },
+        "date": "04012023"
+      },
+      {
+        "recording_id": "Recording_04012023_15_23_23",
+        "total_frames": 99,
+        "normal_frames": 32,
+        "failing_frames": 67,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 67,
+          "good": 32
+        },
+        "date": "04012023"
+      },
+      {
+        "recording_id": "Recording_04012023_16_03_49",
+        "total_frames": 137,
+        "normal_frames": 15,
+        "failing_frames": 122,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 122,
+          "good": 15
+        },
+        "date": "04012023"
+      },
+      {
+        "recording_id": "Recording_05012023_11_49_39",
+        "total_frames": 144,
+        "normal_frames": 15,
+        "failing_frames": 129,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 129,
+          "good": 15
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_12_11_14",
+        "total_frames": 143,
+        "normal_frames": 143,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 143
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_13_33_01",
+        "total_frames": 88,
+        "normal_frames": 50,
+        "failing_frames": 38,
+        "composition": "MIXED_NORMAL_LABEL",
+        "fine_counts": {
+          "under_extrusion": 38,
+          "good": 50
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_13_54_18",
+        "total_frames": 37,
+        "normal_frames": 0,
+        "failing_frames": 37,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 37
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_14_15_36",
+        "total_frames": 56,
+        "normal_frames": 20,
+        "failing_frames": 36,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 36,
+          "good": 20
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_14_32_45",
+        "total_frames": 37,
+        "normal_frames": 0,
+        "failing_frames": 37,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 37
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_15_23_21",
+        "total_frames": 68,
+        "normal_frames": 18,
+        "failing_frames": 50,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 50,
+          "good": 18
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_17_47_06",
+        "total_frames": 96,
+        "normal_frames": 96,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 96
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_18_14_03",
+        "total_frames": 65,
+        "normal_frames": 0,
+        "failing_frames": 65,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 65
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_06012023_13_33_16",
+        "total_frames": 72,
+        "normal_frames": 72,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 72
+        },
+        "date": "06012023"
+      },
+      {
+        "recording_id": "Recording_06012023_15_16_40",
+        "total_frames": 124,
+        "normal_frames": 35,
+        "failing_frames": 89,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 89,
+          "good": 35
+        },
+        "date": "06012023"
+      },
+      {
+        "recording_id": "Recording_06122022_14_16_00",
+        "total_frames": 247,
+        "normal_frames": 191,
+        "failing_frames": 56,
+        "composition": "MIXED_NORMAL_LABEL",
+        "fine_counts": {
+          "spaghetti": 56,
+          "good": 191
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_16_11_00",
+        "total_frames": 141,
+        "normal_frames": 141,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 141
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_18_34_46",
+        "total_frames": 173,
+        "normal_frames": 173,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 173
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_18_53_57",
+        "total_frames": 178,
+        "normal_frames": 178,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 178
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_19_52_40",
+        "total_frames": 211,
+        "normal_frames": 211,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 211
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_20_40_07",
+        "total_frames": 80,
+        "normal_frames": 80,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 80
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_21_09_50",
+        "total_frames": 128,
+        "normal_frames": 128,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 128
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_21_23_44",
+        "total_frames": 83,
+        "normal_frames": 83,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 83
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_21_57_28",
+        "total_frames": 159,
+        "normal_frames": 159,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 159
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_22_44_33",
+        "total_frames": 96,
+        "normal_frames": 96,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 96
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_23_02_05",
+        "total_frames": 64,
+        "normal_frames": 64,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 64
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_07122022_08_06_58",
+        "total_frames": 80,
+        "normal_frames": 80,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 80
+        },
+        "date": "07122022"
+      },
+      {
+        "recording_id": "Recording_07122022_08_22_41",
+        "total_frames": 80,
+        "normal_frames": 80,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 80
+        },
+        "date": "07122022"
+      },
+      {
+        "recording_id": "Recording_07122022_09_46_44",
+        "total_frames": 94,
+        "normal_frames": 94,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 94
+        },
+        "date": "07122022"
+      },
+      {
+        "recording_id": "Recording_07122022_10_08_49",
+        "total_frames": 77,
+        "normal_frames": 77,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 77
+        },
+        "date": "07122022"
+      },
+      {
+        "recording_id": "Recording_07122022_10_52_44",
+        "total_frames": 143,
+        "normal_frames": 143,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 143
+        },
+        "date": "07122022"
+      },
+      {
+        "recording_id": "Recording_07122022_12_18_42",
+        "total_frames": 175,
+        "normal_frames": 175,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 175
+        },
+        "date": "07122022"
+      },
+      {
+        "recording_id": "Recording_08012023_15_03_53",
+        "total_frames": 170,
+        "normal_frames": 0,
+        "failing_frames": 170,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 170
+        },
+        "date": "08012023"
+      },
+      {
+        "recording_id": "Recording_08122022_19_51_23",
+        "total_frames": 121,
+        "normal_frames": 121,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 121
+        },
+        "date": "08122022"
+      },
+      {
+        "recording_id": "Recording_10012023_15_02_20",
+        "total_frames": 128,
+        "normal_frames": 0,
+        "failing_frames": 128,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 128
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_10012023_15_33_34",
+        "total_frames": 152,
+        "normal_frames": 0,
+        "failing_frames": 152,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 152
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_10012023_16_47_55",
+        "total_frames": 38,
+        "normal_frames": 38,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 38
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_10012023_18_16_22",
+        "total_frames": 134,
+        "normal_frames": 22,
+        "failing_frames": 112,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 112,
+          "good": 22
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_10012023_19_39_45",
+        "total_frames": 139,
+        "normal_frames": 0,
+        "failing_frames": 139,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 139
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_10012023_20_31_36",
+        "total_frames": 162,
+        "normal_frames": 47,
+        "failing_frames": 115,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 115,
+          "good": 47
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_10012023_20_51_12",
+        "total_frames": 89,
+        "normal_frames": 15,
+        "failing_frames": 74,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 74,
+          "good": 15
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_10012023_21_52_16",
+        "total_frames": 132,
+        "normal_frames": 0,
+        "failing_frames": 132,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 132
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_10012023_22_14_59",
+        "total_frames": 143,
+        "normal_frames": 20,
+        "failing_frames": 123,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 123,
+          "good": 20
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_11012023_10_32_58",
+        "total_frames": 92,
+        "normal_frames": 72,
+        "failing_frames": 20,
+        "composition": "MIXED_NORMAL_LABEL",
+        "fine_counts": {
+          "spaghetti": 20,
+          "good": 72
+        },
+        "date": "11012023"
+      },
+      {
+        "recording_id": "Recording_11012023_10_48_13",
+        "total_frames": 86,
+        "normal_frames": 0,
+        "failing_frames": 86,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "spaghetti": 86
+        },
+        "date": "11012023"
+      },
+      {
+        "recording_id": "Recording_11012023_11_37_07",
+        "total_frames": 16,
+        "normal_frames": 16,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 16
+        },
+        "date": "11012023"
+      },
+      {
+        "recording_id": "Recording_11012023_12_52_06",
+        "total_frames": 92,
+        "normal_frames": 12,
+        "failing_frames": 80,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 80,
+          "good": 12
+        },
+        "date": "11012023"
+      },
+      {
+        "recording_id": "Recording_11012023_13_28_03",
+        "total_frames": 96,
+        "normal_frames": 96,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 96
+        },
+        "date": "11012023"
+      },
+      {
+        "recording_id": "Recording_11012023_13_52_33",
+        "total_frames": 98,
+        "normal_frames": 98,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 98
+        },
+        "date": "11012023"
+      },
+      {
+        "recording_id": "Recording_11012023_14_23_46",
+        "total_frames": 169,
+        "normal_frames": 22,
+        "failing_frames": 147,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 147,
+          "good": 22
+        },
+        "date": "11012023"
+      },
+      {
+        "recording_id": "Recording_13012023_14_29_56",
+        "total_frames": 8,
+        "normal_frames": 8,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 8
+        },
+        "date": "13012023"
+      },
+      {
+        "recording_id": "Recording_13012023_14_38_10",
+        "total_frames": 228,
+        "normal_frames": 228,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 228
+        },
+        "date": "13012023"
+      },
+      {
+        "recording_id": "Recording_13122022_16_24_29",
+        "total_frames": 152,
+        "normal_frames": 133,
+        "failing_frames": 19,
+        "composition": "MIXED_NORMAL_LABEL",
+        "fine_counts": {
+          "spaghetti": 19,
+          "good": 133
+        },
+        "date": "13122022"
+      },
+      {
+        "recording_id": "Recording_13122022_22_37_48",
+        "total_frames": 30,
+        "normal_frames": 30,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 30
+        },
+        "date": "13122022"
+      },
+      {
+        "recording_id": "Recording_14.02.2023_17_53_55",
+        "total_frames": 181,
+        "normal_frames": 0,
+        "failing_frames": 181,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 181
+        },
+        "date": "14.02.2023"
+      },
+      {
+        "recording_id": "Recording_14.02.2023_18_15_37",
+        "total_frames": 85,
+        "normal_frames": 0,
+        "failing_frames": 85,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 85
+        },
+        "date": "14.02.2023"
+      },
+      {
+        "recording_id": "Recording_14.02.2023_18_39_51",
+        "total_frames": 94,
+        "normal_frames": 0,
+        "failing_frames": 94,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 94
+        },
+        "date": "14.02.2023"
+      },
+      {
+        "recording_id": "Recording_15.02.2023_14_15_54",
+        "total_frames": 52,
+        "normal_frames": 0,
+        "failing_frames": 52,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 52
+        },
+        "date": "15.02.2023"
+      },
+      {
+        "recording_id": "Recording_16.02.2023_16_55_10",
+        "total_frames": 94,
+        "normal_frames": 0,
+        "failing_frames": 94,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 94
+        },
+        "date": "16.02.2023"
+      },
+      {
+        "recording_id": "Recording_16.02.2023_17_54_17",
+        "total_frames": 133,
+        "normal_frames": 0,
+        "failing_frames": 133,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 133
+        },
+        "date": "16.02.2023"
+      },
+      {
+        "recording_id": "Recording_16.02.2023_18_17_11",
+        "total_frames": 142,
+        "normal_frames": 0,
+        "failing_frames": 142,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 142
+        },
+        "date": "16.02.2023"
+      },
+      {
+        "recording_id": "Recording_16.02.2023_21_21_46",
+        "total_frames": 96,
+        "normal_frames": 0,
+        "failing_frames": 96,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 96
+        },
+        "date": "16.02.2023"
+      },
+      {
+        "recording_id": "Recording_16.02.2023_21_58_36",
+        "total_frames": 55,
+        "normal_frames": 0,
+        "failing_frames": 55,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 55
+        },
+        "date": "16.02.2023"
+      },
+      {
+        "recording_id": "Recording_17.02.2023_12_07_38",
+        "total_frames": 101,
+        "normal_frames": 0,
+        "failing_frames": 101,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 101
+        },
+        "date": "17.02.2023"
+      },
+      {
+        "recording_id": "Recording_17.02.2023_13_15_33",
+        "total_frames": 108,
+        "normal_frames": 0,
+        "failing_frames": 108,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 108
+        },
+        "date": "17.02.2023"
+      },
+      {
+        "recording_id": "Recording_20122022_13_39_27",
+        "total_frames": 138,
+        "normal_frames": 0,
+        "failing_frames": 138,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 138
+        },
+        "date": "20122022"
+      },
+      {
+        "recording_id": "Recording_20122022_13_53_11",
+        "total_frames": 3,
+        "normal_frames": 0,
+        "failing_frames": 3,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 3
+        },
+        "date": "20122022"
+      },
+      {
+        "recording_id": "Recording_20122022_14_15_06",
+        "total_frames": 2,
+        "normal_frames": 0,
+        "failing_frames": 2,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 2
+        },
+        "date": "20122022"
+      },
+      {
+        "recording_id": "Recording_20122022_14_53_56",
+        "total_frames": 148,
+        "normal_frames": 148,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 148
+        },
+        "date": "20122022"
+      },
+      {
+        "recording_id": "Recording_20122022_16_09_41",
+        "total_frames": 3,
+        "normal_frames": 0,
+        "failing_frames": 3,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 3
+        },
+        "date": "20122022"
+      },
+      {
+        "recording_id": "Recording_20122022_16_55_38",
+        "total_frames": 21,
+        "normal_frames": 0,
+        "failing_frames": 21,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 21
+        },
+        "date": "20122022"
+      },
+      {
+        "recording_id": "Recording_20122022_18_08_37",
+        "total_frames": 72,
+        "normal_frames": 72,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 72
+        },
+        "date": "20122022"
+      },
+      {
+        "recording_id": "Recording_21122022_19_21_52",
+        "total_frames": 113,
+        "normal_frames": 0,
+        "failing_frames": 113,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 113
+        },
+        "date": "21122022"
+      },
+      {
+        "recording_id": "Recording_21122022_19_53_17",
+        "total_frames": 174,
+        "normal_frames": 0,
+        "failing_frames": 174,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 174
+        },
+        "date": "21122022"
+      },
+      {
+        "recording_id": "Recording_22122022_11_00_38",
+        "total_frames": 146,
+        "normal_frames": 0,
+        "failing_frames": 146,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 146
+        },
+        "date": "22122022"
+      },
+      {
+        "recording_id": "Recording_22122022_11_49_58",
+        "total_frames": 165,
+        "normal_frames": 0,
+        "failing_frames": 165,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 165
+        },
+        "date": "22122022"
+      },
+      {
+        "recording_id": "Recording_22122022_12_03_39",
+        "total_frames": 174,
+        "normal_frames": 0,
+        "failing_frames": 174,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 174
+        },
+        "date": "22122022"
+      },
+      {
+        "recording_id": "Recording_22122022_12_19_15",
+        "total_frames": 93,
+        "normal_frames": 0,
+        "failing_frames": 93,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 93
+        },
+        "date": "22122022"
+      },
+      {
+        "recording_id": "Recording_22122022_12_37_10",
+        "total_frames": 140,
+        "normal_frames": 0,
+        "failing_frames": 140,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 140
+        },
+        "date": "22122022"
+      },
+      {
+        "recording_id": "Recording_22122022_15_18_40",
+        "total_frames": 158,
+        "normal_frames": 0,
+        "failing_frames": 158,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 158
+        },
+        "date": "22122022"
+      },
+      {
+        "recording_id": "Recording_22122022_15_50_18",
+        "total_frames": 102,
+        "normal_frames": 0,
+        "failing_frames": 102,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 102
+        },
+        "date": "22122022"
+      },
+      {
+        "recording_id": "Recording_22122022_16_35_52",
+        "total_frames": 119,
+        "normal_frames": 0,
+        "failing_frames": 119,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 119
+        },
+        "date": "22122022"
+      },
+      {
+        "recording_id": "Recording_22122022_18_04_20",
+        "total_frames": 163,
+        "normal_frames": 0,
+        "failing_frames": 163,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 163
+        },
+        "date": "22122022"
+      },
+      {
+        "recording_id": "Recording_23.02.2023_13_39_47",
+        "total_frames": 103,
+        "normal_frames": 103,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 103
+        },
+        "date": "23.02.2023"
+      },
+      {
+        "recording_id": "Recording_23.02.2023_13_57_12",
+        "total_frames": 115,
+        "normal_frames": 115,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 115
+        },
+        "date": "23.02.2023"
+      },
+      {
+        "recording_id": "Recording_23.02.2023_14_31_57",
+        "total_frames": 141,
+        "normal_frames": 141,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 141
+        },
+        "date": "23.02.2023"
+      },
+      {
+        "recording_id": "Recording_23.02.2023_15_18_16",
+        "total_frames": 151,
+        "normal_frames": 151,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 151
+        },
+        "date": "23.02.2023"
+      },
+      {
+        "recording_id": "Recording_23.02.2023_16_44_22",
+        "total_frames": 96,
+        "normal_frames": 0,
+        "failing_frames": 96,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 96
+        },
+        "date": "23.02.2023"
+      },
+      {
+        "recording_id": "Recording_23.02.2023_19_58_44",
+        "total_frames": 24,
+        "normal_frames": 0,
+        "failing_frames": 24,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 24
+        },
+        "date": "23.02.2023"
+      },
+      {
+        "recording_id": "Recording_23.02.2023_20_15_22",
+        "total_frames": 95,
+        "normal_frames": 0,
+        "failing_frames": 95,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 95
+        },
+        "date": "23.02.2023"
+      },
+      {
+        "recording_id": "Recording_28122022_15_51_39",
+        "total_frames": 146,
+        "normal_frames": 146,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 146
+        },
+        "date": "28122022"
+      },
+      {
+        "recording_id": "Recording_29112022_17_13_22",
+        "total_frames": 125,
+        "normal_frames": 125,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 125
+        },
+        "date": "29112022"
+      },
+      {
+        "recording_id": "Recording_29112022_18_19_50",
+        "total_frames": 29,
+        "normal_frames": 0,
+        "failing_frames": 29,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 29
+        },
+        "date": "29112022"
+      },
+      {
+        "recording_id": "Recording_29112022_18_50_45",
+        "total_frames": 62,
+        "normal_frames": 52,
+        "failing_frames": 10,
+        "composition": "MIXED_NORMAL_LABEL",
+        "fine_counts": {
+          "spaghetti": 10,
+          "good": 52
+        },
+        "date": "29112022"
+      },
+      {
+        "recording_id": "Recording_29112022_19_40_36",
+        "total_frames": 125,
+        "normal_frames": 66,
+        "failing_frames": 59,
+        "composition": "MIXED_NORMAL_LABEL",
+        "fine_counts": {
+          "under_extrusion": 59,
+          "good": 66
+        },
+        "date": "29112022"
+      },
+      {
+        "recording_id": "Recording_29112022_20_50_21",
+        "total_frames": 58,
+        "normal_frames": 0,
+        "failing_frames": 58,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 58
+        },
+        "date": "29112022"
+      },
+      {
+        "recording_id": "Recording_29112022_21_41_27",
+        "total_frames": 105,
+        "normal_frames": 96,
+        "failing_frames": 9,
+        "composition": "MIXED_NORMAL_LABEL",
+        "fine_counts": {
+          "under_extrusion": 9,
+          "good": 96
+        },
+        "date": "29112022"
+      },
+      {
+        "recording_id": "Recording_29122022_12_47_22",
+        "total_frames": 27,
+        "normal_frames": 27,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 27
+        },
+        "date": "29122022"
+      },
+      {
+        "recording_id": "Recording_29122022_13_26_06",
+        "total_frames": 67,
+        "normal_frames": 0,
+        "failing_frames": 67,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 67
+        },
+        "date": "29122022"
+      }
+    ],
+    "val": [
+      {
+        "recording_id": "Recording_01122022_17_44_58",
+        "total_frames": 152,
+        "normal_frames": 152,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 152
+        },
+        "date": "01122022"
+      },
+      {
+        "recording_id": "Recording_03012023_15_07_03",
+        "total_frames": 131,
+        "normal_frames": 10,
+        "failing_frames": 121,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 112,
+          "spaghetti": 9,
+          "good": 10
+        },
+        "date": "03012023"
+      },
+      {
+        "recording_id": "Recording_04012023_16_25_12",
+        "total_frames": 48,
+        "normal_frames": 22,
+        "failing_frames": 26,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "spaghetti": 26,
+          "good": 22
+        },
+        "date": "04012023"
+      },
+      {
+        "recording_id": "Recording_05012023_11_08_00",
+        "total_frames": 165,
+        "normal_frames": 21,
+        "failing_frames": 144,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 144,
+          "good": 21
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_11_27_16",
+        "total_frames": 68,
+        "normal_frames": 17,
+        "failing_frames": 51,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 51,
+          "good": 17
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_15_08_31",
+        "total_frames": 80,
+        "normal_frames": 18,
+        "failing_frames": 62,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 62,
+          "good": 18
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_07122022_09_01_08",
+        "total_frames": 95,
+        "normal_frames": 95,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 95
+        },
+        "date": "07122022"
+      },
+      {
+        "recording_id": "Recording_08012023_13_05_05",
+        "total_frames": 181,
+        "normal_frames": 9,
+        "failing_frames": 172,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 172,
+          "good": 9
+        },
+        "date": "08012023"
+      },
+      {
+        "recording_id": "Recording_10012023_18_46_21",
+        "total_frames": 119,
+        "normal_frames": 0,
+        "failing_frames": 119,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 119
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_11012023_11_03_20",
+        "total_frames": 59,
+        "normal_frames": 22,
+        "failing_frames": 37,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 37,
+          "good": 22
+        },
+        "date": "11012023"
+      },
+      {
+        "recording_id": "Recording_11012023_11_58_26",
+        "total_frames": 77,
+        "normal_frames": 12,
+        "failing_frames": 65,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 65,
+          "good": 12
+        },
+        "date": "11012023"
+      },
+      {
+        "recording_id": "Recording_11012023_12_28_37",
+        "total_frames": 78,
+        "normal_frames": 10,
+        "failing_frames": 68,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 68,
+          "good": 10
+        },
+        "date": "11012023"
+      },
+      {
+        "recording_id": "Recording_13122022_14_51_28",
+        "total_frames": 167,
+        "normal_frames": 153,
+        "failing_frames": 14,
+        "composition": "MIXED_NORMAL_LABEL",
+        "fine_counts": {
+          "spaghetti": 14,
+          "good": 153
+        },
+        "date": "13122022"
+      },
+      {
+        "recording_id": "Recording_14.02.2023_20_02_21",
+        "total_frames": 40,
+        "normal_frames": 0,
+        "failing_frames": 40,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 40
+        },
+        "date": "14.02.2023"
+      },
+      {
+        "recording_id": "Recording_14.02.2023_22_23_42",
+        "total_frames": 94,
+        "normal_frames": 0,
+        "failing_frames": 94,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 94
+        },
+        "date": "14.02.2023"
+      },
+      {
+        "recording_id": "Recording_17.02.2023_12_53_20",
+        "total_frames": 70,
+        "normal_frames": 0,
+        "failing_frames": 70,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 70
+        },
+        "date": "17.02.2023"
+      },
+      {
+        "recording_id": "Recording_20122022_20_06_10",
+        "total_frames": 92,
+        "normal_frames": 92,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 92
+        },
+        "date": "20122022"
+      },
+      {
+        "recording_id": "Recording_21122022_19_03_19",
+        "total_frames": 143,
+        "normal_frames": 0,
+        "failing_frames": 143,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 143
+        },
+        "date": "21122022"
+      },
+      {
+        "recording_id": "Recording_22122022_18_48_47",
+        "total_frames": 94,
+        "normal_frames": 0,
+        "failing_frames": 94,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 94
+        },
+        "date": "22122022"
+      },
+      {
+        "recording_id": "Recording_23.02.2023_15_09_16",
+        "total_frames": 88,
+        "normal_frames": 88,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 88
+        },
+        "date": "23.02.2023"
+      },
+      {
+        "recording_id": "Recording_23.02.2023_21_33_10",
+        "total_frames": 39,
+        "normal_frames": 0,
+        "failing_frames": 39,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 39
+        },
+        "date": "23.02.2023"
+      },
+      {
+        "recording_id": "Recording_29112022_20_11_16",
+        "total_frames": 94,
+        "normal_frames": 36,
+        "failing_frames": 58,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 58,
+          "good": 36
+        },
+        "date": "29112022"
+      }
+    ],
+    "test": [
+      {
+        "recording_id": "Recording_01122022_16_06_44",
+        "total_frames": 86,
+        "normal_frames": 4,
+        "failing_frames": 82,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 82,
+          "good": 4
+        },
+        "date": "01122022"
+      },
+      {
+        "recording_id": "Recording_03012023_15_32_58",
+        "total_frames": 124,
+        "normal_frames": 26,
+        "failing_frames": 98,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 98,
+          "good": 26
+        },
+        "date": "03012023"
+      },
+      {
+        "recording_id": "Recording_03012023_15_48_43",
+        "total_frames": 126,
+        "normal_frames": 13,
+        "failing_frames": 113,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 113,
+          "good": 13
+        },
+        "date": "03012023"
+      },
+      {
+        "recording_id": "Recording_03012023_19_32_03",
+        "total_frames": 119,
+        "normal_frames": 11,
+        "failing_frames": 108,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 108,
+          "good": 11
+        },
+        "date": "03012023"
+      },
+      {
+        "recording_id": "Recording_05012023_13_10_42",
+        "total_frames": 68,
+        "normal_frames": 68,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 68
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_05012023_17_24_05",
+        "total_frames": 84,
+        "normal_frames": 84,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 84
+        },
+        "date": "05012023"
+      },
+      {
+        "recording_id": "Recording_06012023_12_17_19",
+        "total_frames": 179,
+        "normal_frames": 60,
+        "failing_frames": 119,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 119,
+          "good": 60
+        },
+        "date": "06012023"
+      },
+      {
+        "recording_id": "Recording_06012023_12_43_32",
+        "total_frames": 126,
+        "normal_frames": 13,
+        "failing_frames": 113,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 113,
+          "good": 13
+        },
+        "date": "06012023"
+      },
+      {
+        "recording_id": "Recording_06122022_14_49_53",
+        "total_frames": 164,
+        "normal_frames": 14,
+        "failing_frames": 150,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "stringing": 150,
+          "good": 14
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_06122022_19_29_09",
+        "total_frames": 97,
+        "normal_frames": 97,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 97
+        },
+        "date": "06122022"
+      },
+      {
+        "recording_id": "Recording_07122022_20_17_29",
+        "total_frames": 187,
+        "normal_frames": 187,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 187
+        },
+        "date": "07122022"
+      },
+      {
+        "recording_id": "Recording_08012023_13_31_14",
+        "total_frames": 147,
+        "normal_frames": 0,
+        "failing_frames": 147,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 147
+        },
+        "date": "08012023"
+      },
+      {
+        "recording_id": "Recording_10012023_20_09_14",
+        "total_frames": 166,
+        "normal_frames": 26,
+        "failing_frames": 140,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 140,
+          "good": 26
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_10012023_22_39_52",
+        "total_frames": 104,
+        "normal_frames": 18,
+        "failing_frames": 86,
+        "composition": "MIXED_FAILING_LABEL",
+        "fine_counts": {
+          "under_extrusion": 86,
+          "good": 18
+        },
+        "date": "10012023"
+      },
+      {
+        "recording_id": "Recording_14.02.2023_17_38_44",
+        "total_frames": 72,
+        "normal_frames": 0,
+        "failing_frames": 72,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 72
+        },
+        "date": "14.02.2023"
+      },
+      {
+        "recording_id": "Recording_14.02.2023_20_17_41",
+        "total_frames": 46,
+        "normal_frames": 0,
+        "failing_frames": 46,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 46
+        },
+        "date": "14.02.2023"
+      },
+      {
+        "recording_id": "Recording_14.02.2023_21_04_55",
+        "total_frames": 94,
+        "normal_frames": 0,
+        "failing_frames": 94,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 94
+        },
+        "date": "14.02.2023"
+      },
+      {
+        "recording_id": "Recording_14.02.2023_21_24_41",
+        "total_frames": 118,
+        "normal_frames": 0,
+        "failing_frames": 118,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 118
+        },
+        "date": "14.02.2023"
+      },
+      {
+        "recording_id": "Recording_15.02.2023_13_19_52",
+        "total_frames": 127,
+        "normal_frames": 0,
+        "failing_frames": 127,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 127
+        },
+        "date": "15.02.2023"
+      },
+      {
+        "recording_id": "Recording_16.02.2023_17_27_18",
+        "total_frames": 98,
+        "normal_frames": 0,
+        "failing_frames": 98,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 98
+        },
+        "date": "16.02.2023"
+      },
+      {
+        "recording_id": "Recording_17.02.2023_14_11_25",
+        "total_frames": 80,
+        "normal_frames": 0,
+        "failing_frames": 80,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "under_extrusion": 80
+        },
+        "date": "17.02.2023"
+      },
+      {
+        "recording_id": "Recording_17.02.2023_15_18_59",
+        "total_frames": 190,
+        "normal_frames": 0,
+        "failing_frames": 190,
+        "composition": "PURE_FAILING",
+        "fine_counts": {
+          "stringing": 190
+        },
+        "date": "17.02.2023"
+      },
+      {
+        "recording_id": "Recording_20122022_17_05_36",
+        "total_frames": 110,
+        "normal_frames": 110,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 110
+        },
+        "date": "20122022"
+      },
+      {
+        "recording_id": "Recording_29112022_22_13_20",
+        "total_frames": 147,
+        "normal_frames": 147,
+        "failing_frames": 0,
+        "composition": "PURE_NORMAL",
+        "fine_counts": {
+          "good": 147
+        },
+        "date": "29112022"
+      }
+    ]
+  },
+  "frame_concentration": {
+    "train": {
+      "n_recordings": 105,
+      "total_frames": 11254,
+      "frames_per_recording": {
+        "min": 2,
+        "max": 247,
+        "median": 102,
+        "mean": 107.2,
+        "stdev": 51.6
+      },
+      "top5_recordings": [
+        {
+          "recording": "Recording_06122022_14_16_00",
+          "frames": 247,
+          "composition": "MIXED_NORMAL_LABEL"
+        },
+        {
+          "recording": "Recording_13012023_14_38_10",
+          "frames": 228,
+          "composition": "PURE_NORMAL"
+        },
+        {
+          "recording": "Recording_06122022_19_52_40",
+          "frames": 211,
+          "composition": "PURE_NORMAL"
+        },
+        {
+          "recording": "Recording_14.02.2023_17_53_55",
+          "frames": 181,
+          "composition": "PURE_FAILING"
+        },
+        {
+          "recording": "Recording_06122022_18_53_57",
+          "frames": 178,
+          "composition": "PURE_NORMAL"
+        }
+      ],
+      "top5_frame_fraction": 0.0929,
+      "top10_frame_fraction": 0.1703
+    },
+    "val": {
+      "n_recordings": 22,
+      "total_frames": 2174,
+      "frames_per_recording": {
+        "min": 39,
+        "max": 181,
+        "median": 93.0,
+        "mean": 98.8,
+        "stdev": 41.7
+      },
+      "top5_recordings": [
+        {
+          "recording": "Recording_08012023_13_05_05",
+          "frames": 181,
+          "composition": "MIXED_FAILING_LABEL"
+        },
+        {
+          "recording": "Recording_13122022_14_51_28",
+          "frames": 167,
+          "composition": "MIXED_NORMAL_LABEL"
+        },
+        {
+          "recording": "Recording_05012023_11_08_00",
+          "frames": 165,
+          "composition": "MIXED_FAILING_LABEL"
+        },
+        {
+          "recording": "Recording_01122022_17_44_58",
+          "frames": 152,
+          "composition": "PURE_NORMAL"
+        },
+        {
+          "recording": "Recording_21122022_19_03_19",
+          "frames": 143,
+          "composition": "PURE_FAILING"
+        }
+      ],
+      "top5_frame_fraction": 0.3717,
+      "top10_frame_fraction": 0.6168
+    },
+    "test": {
+      "n_recordings": 24,
+      "total_frames": 2859,
+      "frames_per_recording": {
+        "min": 46,
+        "max": 190,
+        "median": 118.5,
+        "mean": 119.1,
+        "stdev": 39.1
+      },
+      "top5_recordings": [
+        {
+          "recording": "Recording_17.02.2023_15_18_59",
+          "frames": 190,
+          "composition": "PURE_FAILING"
+        },
+        {
+          "recording": "Recording_07122022_20_17_29",
+          "frames": 187,
+          "composition": "PURE_NORMAL"
+        },
+        {
+          "recording": "Recording_06012023_12_17_19",
+          "frames": 179,
+          "composition": "MIXED_FAILING_LABEL"
+        },
+        {
+          "recording": "Recording_10012023_20_09_14",
+          "frames": 166,
+          "composition": "MIXED_FAILING_LABEL"
+        },
+        {
+          "recording": "Recording_06122022_14_49_53",
+          "frames": 164,
+          "composition": "MIXED_FAILING_LABEL"
+        }
+      ],
+      "top5_frame_fraction": 0.3099,
+      "top10_frame_fraction": 0.5453
+    }
+  },
+  "failure_type_diversity": {
+    "spaghetti": {
+      "train": {
+        "n_recordings": 5,
+        "frames": 191
+      },
+      "val": {
+        "n_recordings": 3,
+        "frames": 49
+      },
+      "test": {
+        "n_recordings": 0,
+        "frames": 0
+      },
+      "train_recording_ids": [
+        "Recording_06122022_14_16_00",
+        "Recording_11012023_10_32_58",
+        "Recording_11012023_10_48_13",
+        "Recording_13122022_16_24_29",
+        "Recording_29112022_18_50_45"
+      ]
+    },
+    "stringing": {
+      "train": {
+        "n_recordings": 23,
+        "frames": 2341
+      },
+      "val": {
+        "n_recordings": 4,
+        "frames": 371
+      },
+      "test": {
+        "n_recordings": 7,
+        "frames": 797
+      },
+      "train_recording_ids": [
+        "Recording_14.02.2023_17_53_55",
+        "Recording_14.02.2023_18_15_37",
+        "Recording_14.02.2023_18_39_51",
+        "Recording_15.02.2023_14_15_54",
+        "Recording_20122022_13_39_27",
+        "Recording_20122022_13_53_11",
+        "Recording_20122022_14_15_06",
+        "Recording_20122022_16_09_41",
+        "Recording_20122022_16_55_38",
+        "Recording_21122022_19_21_52",
+        "Recording_21122022_19_53_17",
+        "Recording_22122022_11_00_38",
+        "Recording_22122022_11_49_58",
+        "Recording_22122022_12_03_39",
+        "Recording_22122022_12_19_15",
+        "Recording_22122022_12_37_10",
+        "Recording_22122022_15_18_40",
+        "Recording_22122022_15_50_18",
+        "Recording_22122022_16_35_52",
+        "Recording_22122022_18_04_20",
+        "Recording_23.02.2023_16_44_22",
+        "Recording_23.02.2023_19_58_44",
+        "Recording_23.02.2023_20_15_22"
+      ]
+    },
+    "under_extrusion": {
+      "train": {
+        "n_recordings": 37,
+        "frames": 3331
+      },
+      "val": {
+        "n_recordings": 12,
+        "frames": 997
+      },
+      "test": {
+        "n_recordings": 11,
+        "frames": 1184
+      },
+      "train_recording_ids": [
+        "Recording_01122022_15_27_47",
+        "Recording_02012023_15_03_00",
+        "Recording_02012023_15_38_24",
+        "Recording_02122022_14_45_08",
+        "Recording_04012023_15_23_23",
+        "Recording_04012023_16_03_49",
+        "Recording_05012023_11_49_39",
+        "Recording_05012023_13_33_01",
+        "Recording_05012023_13_54_18",
+        "Recording_05012023_14_15_36",
+        "Recording_05012023_14_32_45",
+        "Recording_05012023_15_23_21",
+        "Recording_05012023_18_14_03",
+        "Recording_06012023_15_16_40",
+        "Recording_08012023_15_03_53",
+        "Recording_10012023_15_02_20",
+        "Recording_10012023_15_33_34",
+        "Recording_10012023_18_16_22",
+        "Recording_10012023_19_39_45",
+        "Recording_10012023_20_31_36",
+        "Recording_10012023_20_51_12",
+        "Recording_10012023_21_52_16",
+        "Recording_10012023_22_14_59",
+        "Recording_11012023_12_52_06",
+        "Recording_11012023_14_23_46",
+        "Recording_16.02.2023_16_55_10",
+        "Recording_16.02.2023_17_54_17",
+        "Recording_16.02.2023_18_17_11",
+        "Recording_16.02.2023_21_21_46",
+        "Recording_16.02.2023_21_58_36",
+        "Recording_17.02.2023_12_07_38",
+        "Recording_17.02.2023_13_15_33",
+        "Recording_29112022_18_19_50",
+        "Recording_29112022_19_40_36",
+        "Recording_29112022_20_50_21",
+        "Recording_29112022_21_41_27",
+        "Recording_29122022_13_26_06"
+      ]
+    }
+  },
+  "normal_diversity": {
+    "train": {
+      "pure_normal_recordings": 40,
+      "mixed_recordings_with_normal": 21,
+      "total_recordings_with_normal": 61,
+      "total_normal_frames": 5391,
+      "pure_normal_recording_ids": [
+        "Recording_01122022_16_34_17",
+        "Recording_01122022_16_50_08",
+        "Recording_02122022_14_23_06",
+        "Recording_04012023_15_02_41",
+        "Recording_05012023_12_11_14",
+        "Recording_05012023_17_47_06",
+        "Recording_06012023_13_33_16",
+        "Recording_06122022_16_11_00",
+        "Recording_06122022_18_34_46",
+        "Recording_06122022_18_53_57",
+        "Recording_06122022_19_52_40",
+        "Recording_06122022_20_40_07",
+        "Recording_06122022_21_09_50",
+        "Recording_06122022_21_23_44",
+        "Recording_06122022_21_57_28",
+        "Recording_06122022_22_44_33",
+        "Recording_06122022_23_02_05",
+        "Recording_07122022_08_06_58",
+        "Recording_07122022_08_22_41",
+        "Recording_07122022_09_46_44",
+        "Recording_07122022_10_08_49",
+        "Recording_07122022_10_52_44",
+        "Recording_07122022_12_18_42",
+        "Recording_08122022_19_51_23",
+        "Recording_10012023_16_47_55",
+        "Recording_11012023_11_37_07",
+        "Recording_11012023_13_28_03",
+        "Recording_11012023_13_52_33",
+        "Recording_13012023_14_29_56",
+        "Recording_13012023_14_38_10",
+        "Recording_13122022_22_37_48",
+        "Recording_20122022_14_53_56",
+        "Recording_20122022_18_08_37",
+        "Recording_23.02.2023_13_39_47",
+        "Recording_23.02.2023_13_57_12",
+        "Recording_23.02.2023_14_31_57",
+        "Recording_23.02.2023_15_18_16",
+        "Recording_28122022_15_51_39",
+        "Recording_29112022_17_13_22",
+        "Recording_29122022_12_47_22"
+      ]
+    },
+    "val": {
+      "pure_normal_recordings": 4,
+      "mixed_recordings_with_normal": 11,
+      "total_recordings_with_normal": 15,
+      "total_normal_frames": 757,
+      "pure_normal_recording_ids": [
+        "Recording_01122022_17_44_58",
+        "Recording_07122022_09_01_08",
+        "Recording_20122022_20_06_10",
+        "Recording_23.02.2023_15_09_16"
+      ]
+    },
+    "test": {
+      "pure_normal_recordings": 6,
+      "mixed_recordings_with_normal": 9,
+      "total_recordings_with_normal": 15,
+      "total_normal_frames": 878,
+      "pure_normal_recording_ids": [
+        "Recording_05012023_13_10_42",
+        "Recording_05012023_17_24_05",
+        "Recording_06122022_19_29_09",
+        "Recording_07122022_20_17_29",
+        "Recording_20122022_17_05_36",
+        "Recording_29112022_22_13_20"
+      ]
+    }
+  },
+  "stringing_investigation": {
+    "n_recordings": 23,
+    "total_stringing_frames": 2341,
+    "frames_per_recording": {
+      "min": 2,
+      "max": 181,
+      "median": 102,
+      "mean": 101.8
+    },
+    "n_tiny_sessions_lt10_frames": 3,
+    "n_small_sessions_10_50_frames": 2,
+    "tiny_session_ids": [
+      "Recording_20122022_13_53_11",
+      "Recording_20122022_16_09_41",
+      "Recording_20122022_14_15_06"
+    ],
+    "small_session_ids": [
+      "Recording_23.02.2023_19_58_44",
+      "Recording_20122022_16_55_38"
+    ],
+    "large_session_ids": [
+      "Recording_14.02.2023_17_53_55",
+      "Recording_21122022_19_53_17",
+      "Recording_22122022_12_03_39",
+      "Recording_22122022_11_49_58",
+      "Recording_22122022_18_04_20",
+      "Recording_22122022_15_18_40",
+      "Recording_22122022_11_00_38",
+      "Recording_22122022_12_37_10",
+      "Recording_20122022_13_39_27",
+      "Recording_22122022_16_35_52",
+      "Recording_21122022_19_21_52",
+      "Recording_22122022_15_50_18",
+      "Recording_23.02.2023_16_44_22",
+      "Recording_23.02.2023_20_15_22",
+      "Recording_14.02.2023_18_39_51",
+      "Recording_22122022_12_19_15",
+      "Recording_14.02.2023_18_15_37",
+      "Recording_15.02.2023_14_15_54"
+    ],
+    "date_distribution": {
+      "14.02.2023": 3,
+      "21122022": 2,
+      "22122022": 9,
+      "20122022": 5,
+      "23.02.2023": 3,
+      "15.02.2023": 1
+    },
+    "composition_breakdown": {
+      "PURE_FAILING": 23
+    },
+    "stage8_observation": {
+      "catastrophic_recording": "Recording_15.02.2023_13_19_52",
+      "failure_type": "stringing",
+      "fnr": 0.898,
+      "note": "This test recording has 127 stringing frames with FNR=0.898. It is a PURE_FAILING stringing recording. The frozen model produces near-zero fail scores for the majority of its frames."
+    }
+  },
+  "normal_domain_investigation": {
+    "training_normal": {
+      "n_pure_normal_recordings": 40,
+      "total_normal_frames": 5391,
+      "frames_per_pure_normal_recording": {
+        "min": 8,
+        "max": 228,
+        "median": 100.5
+      },
+      "brightness_mean": 154.4,
+      "brightness_stdev": 6.5,
+      "contrast_mean": 104.7,
+      "recording_ids": [
+        "Recording_01122022_16_34_17",
+        "Recording_01122022_16_50_08",
+        "Recording_02122022_14_23_06",
+        "Recording_04012023_15_02_41",
+        "Recording_05012023_12_11_14",
+        "Recording_05012023_17_47_06",
+        "Recording_06012023_13_33_16",
+        "Recording_06122022_16_11_00",
+        "Recording_06122022_18_34_46",
+        "Recording_06122022_18_53_57",
+        "Recording_06122022_19_52_40",
+        "Recording_06122022_20_40_07",
+        "Recording_06122022_21_09_50",
+        "Recording_06122022_21_23_44",
+        "Recording_06122022_21_57_28",
+        "Recording_06122022_22_44_33",
+        "Recording_06122022_23_02_05",
+        "Recording_07122022_08_06_58",
+        "Recording_07122022_08_22_41",
+        "Recording_07122022_09_46_44",
+        "Recording_07122022_10_08_49",
+        "Recording_07122022_10_52_44",
+        "Recording_07122022_12_18_42",
+        "Recording_08122022_19_51_23",
+        "Recording_10012023_16_47_55",
+        "Recording_11012023_11_37_07",
+        "Recording_11012023_13_28_03",
+        "Recording_11012023_13_52_33",
+        "Recording_13012023_14_29_56",
+        "Recording_13012023_14_38_10",
+        "Recording_13122022_22_37_48",
+        "Recording_20122022_14_53_56",
+        "Recording_20122022_18_08_37",
+        "Recording_23.02.2023_13_39_47",
+        "Recording_23.02.2023_13_57_12",
+        "Recording_23.02.2023_14_31_57",
+        "Recording_23.02.2023_15_18_16",
+        "Recording_28122022_15_51_39",
+        "Recording_29112022_17_13_22",
+        "Recording_29122022_12_47_22"
+      ]
+    },
+    "problematic_test_recording": {
+      "recording_id": "Recording_20122022_17_05_36",
+      "composition": "PURE_NORMAL",
+      "n_frames": 110,
+      "brightness_mean": 76.4,
+      "brightness_stdev": 3.9,
+      "contrast_mean": 79.8,
+      "stage8_observation": "This PURE_NORMAL recording generates highly confident false positives (p>0.98). Mean brightness ~76 vs training normal mean ~156 suggests a substantially different lighting environment."
+    }
+  },
+  "split_distribution_comparison": {
+    "train": {
+      "n_recordings": 105,
+      "total_frames": 11254,
+      "normal_frames": 5391,
+      "failing_frames": 5863,
+      "normal_fraction": 0.479,
+      "compositions": {
+        "MIXED_NORMAL_LABEL": 8,
+        "PURE_NORMAL": 40,
+        "PURE_FAILING": 44,
+        "MIXED_FAILING_LABEL": 13
+      },
+      "failure_type_frames": {
+        "under_extrusion": 3331,
+        "spaghetti": 191,
+        "stringing": 2341
+      },
+      "failure_type_recordings": {
+        "under_extrusion": 37,
+        "spaghetti": 5,
+        "stringing": 23
+      }
+    },
+    "val": {
+      "n_recordings": 22,
+      "total_frames": 2174,
+      "normal_frames": 757,
+      "failing_frames": 1417,
+      "normal_fraction": 0.3482,
+      "compositions": {
+        "PURE_NORMAL": 4,
+        "MIXED_FAILING_LABEL": 10,
+        "PURE_FAILING": 7,
+        "MIXED_NORMAL_LABEL": 1
+      },
+      "failure_type_frames": {
+        "under_extrusion": 997,
+        "spaghetti": 49,
+        "stringing": 371
+      },
+      "failure_type_recordings": {
+        "under_extrusion": 12,
+        "spaghetti": 3,
+        "stringing": 4
+      }
+    },
+    "test": {
+      "n_recordings": 24,
+      "total_frames": 2859,
+      "normal_frames": 878,
+      "failing_frames": 1981,
+      "normal_fraction": 0.3071,
+      "compositions": {
+        "MIXED_FAILING_LABEL": 9,
+        "PURE_NORMAL": 6,
+        "PURE_FAILING": 9
+      },
+      "failure_type_frames": {
+        "under_extrusion": 1184,
+        "stringing": 797
+      },
+      "failure_type_recordings": {
+        "under_extrusion": 11,
+        "stringing": 7
+      }
+    }
+  },
+  "data_quality": {
+    "concerns": [
+      {
+        "type": "scarce_spaghetti",
+        "split": "train",
+        "recording": "Recording_13122022_16_24_29",
+        "spaghetti_frames": 19
+      },
+      {
+        "type": "tiny_recording",
+        "split": "train",
+        "recording": "Recording_20122022_13_53_11",
+        "frames": 3,
+        "note": "Very few frames; limited diversity from this session."
+      },
+      {
+        "type": "tiny_recording",
+        "split": "train",
+        "recording": "Recording_20122022_14_15_06",
+        "frames": 2,
+        "note": "Very few frames; limited diversity from this session."
+      },
+      {
+        "type": "tiny_recording",
+        "split": "train",
+        "recording": "Recording_20122022_16_09_41",
+        "frames": 3,
+        "note": "Very few frames; limited diversity from this session."
+      },
+      {
+        "type": "scarce_spaghetti",
+        "split": "train",
+        "recording": "Recording_29112022_18_50_45",
+        "spaghetti_frames": 10
+      },
+      {
+        "type": "scarce_spaghetti",
+        "split": "val",
+        "recording": "Recording_03012023_15_07_03",
+        "spaghetti_frames": 9
+      },
+      {
+        "type": "scarce_spaghetti",
+        "split": "val",
+        "recording": "Recording_13122022_14_51_28",
+        "spaghetti_frames": 14
+      },
+      {
+        "type": "few_normal_frames_in_mixed",
+        "split": "test",
+        "recording": "Recording_01122022_16_06_44",
+        "normal_frames": 4
+      }
+    ],
+    "n_concerns": 8
+  },
+  "acquisition_design": {
+    "priority_1_stringing": {
+      "rationale": "Stage 8 found FNR=0.898 on one PURE_FAILING stringing test recording. The training set has 23 stringing recordings (2341 frames), but 4 have <10 frames and date diversity is concentrated (22122022, 14.02.2023).",
+      "failure_type": "stringing",
+      "minimum_exploratory": {
+        "n_sessions": "5-10 independent sessions",
+        "n_frames_per_session": "50-200 frames",
+        "rationale": "5-10 new independent sessions would roughly double the session count. Each session should come from a distinct print job (different dates if possible) to test generalization beyond the existing date clusters."
+      },
+      "stronger_target": {
+        "n_sessions": "15-20 independent sessions",
+        "n_frames_per_session": "80-200 frames",
+        "rationale": "Would bring total stringing sessions to ~40+, approaching the diversity level of under_extrusion (37 train sessions). Provides meaningful coverage of session-to-session variation."
+      },
+      "ideal_target": {
+        "n_sessions": "25-30 independent sessions",
+        "note": "Would bring total to ~50+ sessions, matching or exceeding under_extrusion diversity. This is a production-grade target, not a minimum exploratory target."
+      },
+      "diversity_requirements": [
+        "Multiple distinct print objects (if possible)",
+        "Different lighting conditions (if possible)",
+        "Different print stages where stringing occurs",
+        "Mix of severe and mild stringing"
+      ],
+      "held_out_condition": "Hold out 1-2 sessions from a distinct date range or object as a final held-out set, separate from the existing frozen test set."
+    },
+    "priority_2_normal_domain": {
+      "rationale": "Recording_20122022_17_05_36 is a PURE_NORMAL test recording with brightness ~76 vs training normal ~156. This represents a potentially missing normal condition (darker lighting or different camera setting).",
+      "failure_type": "normal",
+      "minimum_exploratory": {
+        "n_sessions": "5-10 independent sessions",
+        "n_frames_per_session": "50-150 frames",
+        "note": "Capture normal prints under varied lighting: bright, dim, and mixed ambient conditions. Include sessions that test the model's ability to reject non-failure visual variation."
+      },
+      "stronger_target": {
+        "n_sessions": "10-15 independent sessions",
+        "note": "Cover at least 3 distinct lighting/environment conditions."
+      },
+      "diversity_requirements": [
+        "Varied ambient lighting (bright, dim, mixed)",
+        "Different objects in frame (if applicable)",
+        "Different camera orientations/angles if eventually relevant"
+      ]
+    },
+    "priority_3_spaghetti": {
+      "rationale": "Spaghetti has only 5 training recordings (191 frames) and 4 validation recordings (49 frames). This is the scarcest failure type.",
+      "failure_type": "spaghetti",
+      "minimum_exploratory": {
+        "n_sessions": "5-8 independent sessions",
+        "n_frames_per_session": "50-150 frames",
+        "note": "Spaghetti is visually distinctive but severely underrepresented."
+      },
+      "stronger_target": {
+        "n_sessions": "10-15 independent sessions",
+        "note": "Would bring total to ~15-20 sessions, comparable to stringing."
+      }
+    },
+    "priority_4_under_extrusion": {
+      "rationale": "Under_extrusion has 37 training recordings (3331 frames) \u2014 the best-represented failure type. Additional data is lower priority but could improve generalization at the margins.",
+      "failure_type": "under_extrusion",
+      "minimum_exploratory": {
+        "n_sessions": "3-5 independent sessions",
+        "n_frames_per_session": "50-150 frames",
+        "note": "Focus on under-represented severity levels or object types."
+      }
+    },
+    "general_principles": [
+      "Prioritize INDEPENDENT SESSIONS over raw frame count.",
+      "Each new session should be from a distinct print job, ideally on a different date.",
+      "Record metadata: date, object, lighting condition, camera settings if available.",
+      "Label requirements: same binary normal/failing + fine failure type as existing.",
+      "Split strategy: new sessions split 60/20/20 by session (not frame) into train/val/held-out.",
+      "The existing frozen test set remains untouched for evaluation.",
+      "Held-out sessions from new data provide a second evaluation set to measure improvement."
+    ]
+  },
+  "future_experiment": {
+    "objective": "Test whether adding targeted independent data improves generalization to previously unseen recordings.",
+    "baseline": {
+      "model": "ShuffleNetV2 x1.0",
+      "checkpoint": "experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt",
+      "test_performance": {
+        "F1_at_0_50": 0.8763,
+        "F1_at_0_65": 0.8799,
+        "FNR_at_0_65": 0.1787
+      }
+    },
+    "old_test_set": {
+      "policy": "FROZEN. Do not touch. Used only for final comparison.",
+      "n_recordings": 24,
+      "n_frames": 2859
+    },
+    "new_data_split_policy": {
+      "unit": "session/recording (never frame)",
+      "split_ratio": "60% train / 20% val / 20% held-out evaluation",
+      "held_out_set": "Sessions from new data held out at acquisition time; these become the second evaluation set to measure improvement."
+    },
+    "training_setup": {
+      "same_architecture": true,
+      "same_augmentation": true,
+      "same_optimizer": true,
+      "same_splits_for_old_data": true,
+      "new_data_added_to_train_and_val": true
+    },
+    "primary_metrics": [
+      "FNR on stringing failure type (test set, at threshold 0.65)",
+      "FPR on normal frames (test set, at threshold 0.65)",
+      "F1 overall (test set, at threshold 0.50 and 0.65)"
+    ],
+    "secondary_metrics": [
+      "Per-failure-type recall and F1",
+      "Calibration (Brier, ECE)",
+      "Per-recording error analysis",
+      "Performance on the new held-out evaluation set"
+    ],
+    "success_criteria": {
+      "minimum": "Stringing FNR improves by >=5pp on the frozen test set, without F1 regression on other failure types.",
+      "meaningful": "Stringing FNR improves by >=10pp AND overall F1 improves by >=1pp on the frozen test set.",
+      "strong": "Stringing FNR on the frozen test set approaches under_extrusion FNR (currently 0.155), and the new held-out set shows comparable performance."
+    },
+    "deliverables": [
+      "Updated frozen checkpoint (retrained with expanded training set)",
+      "Same frozen test set evaluation at 0.50 and 0.65",
+      "New held-out evaluation set results",
+      "Per-failure-type comparison (before vs after)",
+      "Calibration comparison",
+      "Full comparison report"
+    ]
+  },
+  "retraining_gate": {
+    "A_is_evidence_sufficient_for_immediate_retraining": false,
+    "B_what_evidence_or_data_is_missing": "1. The current training set has adequate under_extrusion coverage (37 sessions) but stringing is concentrated in date clusters (22122022, 14.02.2023) with some tiny sessions (2-24 frames). Adding 5-10 new independent stringing sessions before retraining would test whether the model can learn stringing from diverse sessions, not just from the current date clusters.\n2. The normal-domain false-alarm problem (Recording_20122022_17_05_36, brightness ~76 vs training ~156) suggests the training normal set may not cover darker lighting conditions. 5-10 normal sessions under varied lighting would test this.\n3. Spaghetti is severely underrepresented (5 training sessions, 191 frames). Adding 5-8 sessions would bring it closer to stringing's diversity.",
+    "C_what_data_acquisition_unblocks_retraining": "Minimum: 5-10 new independent stringing sessions (50-200 frames each) from distinct print jobs and dates. Optionally: 5-10 normal sessions under varied lighting, and 5-8 spaghetti sessions.",
+    "D_what_would_constitute_success": "After retraining with the expanded dataset:\n- Stringing FNR on the frozen test set improves by >=5pp (ideally >=10pp).\n- Overall test F1 does not regress.\n- The new held-out evaluation set shows comparable performance to the frozen test.\n- Calibration does not materially degrade.\n- No single recording dominates the error profile.",
+    "priority_order": [
+      "1. Independent session diversity (not raw frame count)",
+      "2. Failure-type diversity (stringing > spaghetti > under_extrusion)",
+      "3. Normal-domain diversity (varied lighting conditions)",
+      "4. Object/condition diversity (if metadata supports it)",
+      "5. Raw frame count (lowest priority \u2014 more of the same sessions adds little)"
+    ]
+  },
+  "limitations": [
+    "All analyses are metadata/statistical only; no model inference was performed.",
+    "Image statistics (brightness, contrast) are non-learned proxies, not proof of semantic OOD.",
+    "Frame counts are not independent samples; recording identity is the diversity unit.",
+    "Test-set observations are documented for context only; they do not drive data-selection decisions.",
+    "No claims of real-world generalization are made."
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "total_extracted": 1546,
+  "labeled_normal": 21,
+  "labeled_failing": 15,
+  "uncertain": 1510,
+  "duplicate_count": 90,
+  "by_source": {
+    "NORMAL001": {
+      "creator": "TheeHustleHouse",
+      "failure_type": "normal",
+      "total_frames": 21,
+      "normal": 21,
+      "failing": 0,
+      "uncertain": 0,
+      "usable": 21,
+      "duration_s": null,
+      "split": "train"
+    },
+    "SP001": {
+      "creator": "GXS 3D",
+      "failure_type": "spaghetti",
+      "total_frames": 26,
+      "normal": 0,
+      "failing": 15,
+      "uncertain": 11,
+      "usable": 15,
+      "duration_s": null,
+      "split": "train"
+    },
+    "SP002": {
+      "creator": "BetterLifeCreations",
+      "failure_type": "spaghetti",
+      "total_frames": 53,
+      "normal": 0,
+      "failing": 0,
+      "uncertain": 53,
+      "usable": 0,
+      "duration_s": null,
+      "split": "validation"
+    },
+    "STR001": {
+      "creator": "3D Printsmith",
+      "failure_type": "stringing",
+      "total_frames": 642,
+      "normal": 0,
+      "failing": 0,
+      "uncertain": 642,
+      "usable": 0,
+      "duration_s": null,
+      "split": "validation"
+    },
+    "UE001": {
+      "creator": "Callum Coles",
+      "failure_type": "under_extrusion",
+      "total_frames": 437,
+      "normal": 0,
+      "failing": 0,
+      "uncertain": 437,
+      "usable": 0,
+      "duration_s": null,
+      "split": "validation"
+    },
+    "UE003": {
+      "creator": "NeedItMakeIt",
+      "failure_type": "under_extrusion",
+      "total_frames": 367,
+      "normal": 0,
+      "failing": 0,
+      "uncertain": 367,
+      "usable": 0,
+      "duration_s": null,
+      "split": "train"
+    }
+  },
+  "by_failure_type": {
+    "normal": {
+      "sessions": 1,
+      "frames": 21
+    },
+    "spaghetti": {
+      "sessions": 2,
+      "frames": 79
+    },
+    "stringing": {
+      "sessions": 1,
+      "frames": 642
+    },
+    "under_extrusion": {
+      "sessions": 2,
+      "frames": 804
+    }
+  },
+  "splits": {
+    "external_train": [
+      "NORMAL001",
+      "SP001",
+      "UE003"
+    ],
+    "external_validation": [
+      "SP002",
+      "STR001",
+      "UE001"
+    ]
+  },
+  "dedup": {
+    "method": "exact md5 (first occurrence kept)",
+    "removed_total": 90,
+    "groups": 29
+  }
+}

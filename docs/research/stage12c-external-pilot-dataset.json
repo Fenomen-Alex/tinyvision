@@ -1,0 +1,105 @@
+{
+  "stage": "12C",
+  "title": "External Pilot Dataset Build",
+  "date": "2026-09-05",
+  "status": "provisional pilot; research only; no training",
+  "constraints_honored": {
+    "no_training": true,
+    "kaggle_read_only": true,
+    "official_test_untouched": true,
+    "no_extra_downloads": true,
+    "no_external_test_set_this_stage": true,
+    "source_atomic_split": true,
+    "no_fabricated_visual_claims": true,
+    "no_vision_capability": true
+  },
+  "extraction": {
+    "fps": 1,
+    "method": "ffmpeg -ss <t> -frames:v 1 per integer-second grid",
+    "stage12b_label_grid": true,
+    "source_frame_index": "round(t * source_fps)",
+    "segment_id": "<sid>__s0",
+    "canonical_name": "<sid>__t<time:07.3f>__f<src_idx:06d>.jpg"
+  },
+  "label_map": {
+    "normal_provisional": "normal",
+    "suspect_growth": "failing",
+    "uncertain": "uncertain",
+    "scene_transition_or_final_state": "uncertain",
+    "policy": "uncertain never silently converted; preserved in metadata, excluded from labeled/"
+  },
+  "per_source": {
+    "NORMAL001": {"creator": "TheeHustleHouse", "failure_type": "normal", "extracted": 21, "kept": 21, "exact_removed": 0, "normal": 21, "failing": 0, "uncertain": 0, "usable": 21, "split": "train"},
+    "SP001": {"creator": "GXS 3D", "failure_type": "spaghetti", "extracted": 26, "kept": 26, "exact_removed": 0, "normal": 0, "failing": 15, "uncertain": 11, "usable": 15, "split": "train"},
+    "SP002": {"creator": "BetterLifeCreations", "failure_type": "spaghetti", "extracted": 55, "kept": 53, "exact_removed": 2, "normal": 0, "failing": 0, "uncertain": 53, "usable": 0, "split": "validation"},
+    "STR001": {"creator": "3D Printsmith", "failure_type": "stringing", "extracted": 646, "kept": 642, "exact_removed": 4, "normal": 0, "failing": 0, "uncertain": 642, "usable": 0, "split": "validation"},
+    "UE001": {"creator": "Callum Coles", "failure_type": "under_extrusion", "extracted": 520, "kept": 437, "exact_removed": 83, "normal": 0, "failing": 0, "uncertain": 437, "usable": 0, "split": "validation"},
+    "UE003": {"creator": "NeedItMakeIt", "failure_type": "under_extrusion", "extracted": 368, "kept": 367, "exact_removed": 1, "normal": 0, "failing": 0, "uncertain": 367, "usable": 0, "split": "train"}
+  },
+  "totals": {
+    "extracted": 1636,
+    "kept_after_dedup": 1546,
+    "labeled_normal": 21,
+    "labeled_failing": 15,
+    "uncertain": 1510,
+    "exact_md5_removed": 90,
+    "exact_md5_groups": 29
+  },
+  "failure_type_inventory": {
+    "normal": {"sessions": 1, "frames": 21},
+    "spaghetti": {"sessions": 2, "frames": 79},
+    "stringing": {"sessions": 1, "frames": 642},
+    "under_extrusion": {"sessions": 2, "frames": 804}
+  },
+  "dedup": {
+    "removed_policy": "exact md5 only; first occurrence kept",
+    "removed_total": 90,
+    "groups": 29,
+    "near_duplicate_report": {
+      "threshold_hamming": 4,
+      "unique_frames_considered": 1546,
+      "within_source_near_duplicate_pairs": 3547,
+      "cross_source_near_duplicate_pairs": 23,
+      "policy": "diagnostic only; no removal (temporal neighbours preserved)"
+    }
+  },
+  "splits": {
+    "method": "sha256(source_id) % 100 < 20 -> validation; source-atomic",
+    "val_fraction": 0.2,
+    "external_train": ["NORMAL001", "SP001", "UE003"],
+    "external_validation": ["SP002", "STR001", "UE001"],
+    "degenerate_note": "validation contains zero labeled frames; no external test set this stage; meaningful external validation deferred until >=5 labeled independent sources exist"
+  },
+  "diversity_vs_kaggle": {
+    "common_grid": 256,
+    "kaggle_sampled": 400,
+    "external_sampled": 36,
+    "kaggle": {"brightness_mean": 129.37, "brightness_std": 34.83, "contrast_mean": 78.69, "saturation_mean": 66.98},
+    "external": {"brightness_mean": 89.67, "brightness_std": 27.87, "contrast_mean": 63.96, "saturation_mean": 77.05},
+    "external_image_dimensions": {"1080x1920": 21, "720x1280": 15},
+    "per_class_brightness": {
+      "kaggle_normal": 139.4,
+      "kaggle_failing": 119.0,
+      "external_normal": 66.4,
+      "external_failing": 122.2
+    },
+    "phash_hamming": {"intra_kaggle_mean": 28.93, "intra_kaggle_median": 30.0, "external_vs_kaggle_mean": 32.07, "external_vs_kaggle_median": 32.0, "pair_limit": 2000, "seed": 0},
+    "interpretation": "external pilot is darker, portrait-oriented, and +3 bits phash-distance from Kaggle (different domain); diversity desirable only once labels are verified; 36 usable frames insufficient for any accuracy claim; motivates simple fine-tune not zero-shot transfer"
+  },
+  "critical_limitations": [
+    "labels are provisional, not human-verified ground truth (no vision capability)",
+    "36 usable frames is a pilot, not a training dataset; no accuracy claim made",
+    "validation split has zero labeled frames; no external test set this stage",
+    "source-atomic split honored: no frame of a source in both splits",
+    "uncertain frames preserved in metadata, excluded from labeled/ and usable stats; never silently relabeled"
+  ],
+  "deliverables": [
+    "training/tv/external_pilot.py",
+    "scripts/build_external_pilot.py",
+    "scripts/analyze_external_pilot.py",
+    "training/tests/test_external_pilot.py (11 tests; suite 219 passed)",
+    "datasets/external/video-frames/ dataset tree",
+    "docs/research/stage12c-external-pilot-dataset.md / .json"
+  ],
+  "next_step_not_executed": "human visual review of montages/SP001/NORMAL001 to confirm labels before any training; expand to >=5 labeled sources before using external data as an evaluation signal"
+}

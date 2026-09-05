@@ -33,6 +33,13 @@ datasets/processed/
 datasets/Printing_Errors/
 datasets/target-camera/
 
+# Derived external video-frames media (regenerable via documented scripts)
+datasets/external/video-frames/extracted/
+datasets/external/video-frames/labeled/
+datasets/external/video-frames/raw/
+datasets/external/video-frames/labels/sheets/
+datasets/external/video-frames/montage_*.jpg
+
 # Experiment artifacts
 experiments/*/artifacts/
 experiments/logs/
