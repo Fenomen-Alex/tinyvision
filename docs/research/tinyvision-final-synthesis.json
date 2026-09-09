@@ -1,0 +1,142 @@
+{
+  "schema": "tinyvision-final-synthesis",
+  "schema_version": 1,
+  "created_at": "2026-09-07",
+  "task": "stop_and_synthesize",
+  "corrections_applied": [
+    "stage14-experiment.json/md: SKZ surface standardized to canonical skz_eval subset (31 img / 16 groups) for all three models; previously mixed the 166-image subset for baseline/Exp3 with the 31-image subset for Exp4.",
+    "exp4 config.yaml notes: corrected stale '142 frames' to actual '100 VLM-verified frames'."
+  ],
+  "timeline": [
+    {"stage": "12C", "title": "external pilot dataset", "date": "2026-09-05", "doc": "stage12c-external-pilot-dataset.md", "summary": "1,546 kept frames, 36 provisional labeled (21 normal / 15 failing), degenerate val split, domain shift vs Kaggle measured."},
+    {"stage": "12D", "title": "human review workflow", "date": "2026-09-05", "doc": "stage12d-human-review-workflow.md", "summary": "1,006 units / 86 sheets; finding: continuous footage first, failure type second."},
+    {"stage": "12D-extra/12E", "title": "VLM review pipe + batch audit", "date": "2026-09-05", "doc": "stage12d-extra-vlm-review-pipe.md, stage12e-vlm-batch-audit.md", "summary": "qwen3-vl-8b proposals only (120/120); SP001 stringing vs spaghetti disagreement."},
+    {"stage": "12F", "title": "first human review tranche", "date": "2026-09-05", "doc": "stage12f-first-human-review.md", "summary": "6 units verified (44 failing frames); VLM agreed 0/6; human review stopped at 24 units."},
+    {"stage": "SKZ-A/B", "title": "nozzle-cam probe", "date": "2026-09-06", "doc": "skz-probe-experiments.md", "summary": "A: failure transfer recall 0.966, normal FPR 0.92. B (+135 aux): frozen test improves, SKZ-normal FPR persists."},
+    {"stage": "Exp2", "title": "verified video-frames augmentation", "date": "2026-09-06", "doc": "exp2-external-video-augmentation.md", "summary": "+44 verified failing frames degraded frozen test (recall 0.839-0.628); 44 frames too small."},
+    {"stage": "POC", "title": "inference POC", "date": "2026-09-06", "doc": "poc-inference-architecture.md", "summary": "End-to-end loop works; verdict A-proceed; normal data is the blocker."},
+    {"stage": "C++/parity", "title": "edge runtime parity + benchmark", "date": "2026-09-06", "doc": "cpp-runtime-parity.md, edge-runtime-benchmark.md", "summary": "Bit-exact preprocessing/temporal ports; exact state parity; infer ~2.2 ms; Pi unvalidated."},
+    {"stage": "Real-world", "title": "7-video external evaluation", "date": "2026-09-06", "doc": "real-world-video-evaluation.md", "summary": "Frozen baseline FAILING 96-99% on all clips incl 2 confirmed normal prints; 2 spaghetti detected."},
+    {"stage": "13", "title": "normal augmentation (Exp3)", "date": "2026-09-07", "doc": "stage13-experiment.md", "summary": "+333 normal/7 sources -> held-out FPR 1.000->0.258; misses confirmed spaghetti; SKZ failure recall 0.10."},
+    {"stage": "14", "title": "failure balancing (Exp4)", "date": "2026-09-07", "doc": "stage14-experiment.md", "summary": "+100 failing/2 sources -> frozen failing recall 0.950 (best), spaghetti re-detected, but held-out normal FPR back to 1.000."}
+  ],
+  "proven": {
+    "runtime": [
+      "C++ behaviorally equivalent to Python POC (states/events exact; raw-P within 0.15 decoder floor)",
+      "preprocessing parity (Pillow-bilinear bit-exact)",
+      "temporal logic parity (bit-exact golden traces)",
+      "inference pipeline works end to end",
+      "failure handling works",
+      "performance sufficient at 1 fps cadence on dev machine (infer ~2.2 ms; 19-53 fps)"
+    ],
+    "model": [
+      "frozen model detects obvious failures",
+      "failure detection transfers to independent footage (SKZ recall 0.966; spaghetti clips)",
+      "severe out-of-domain normal false-positive behavior (FPR 1.000; 96-99% on confirmed normals)",
+      "target-domain normal augmentation substantially reduces it (1.000->0.258; 7-8x on clips)",
+      "adding a small failure tail reverses it (back to 1.000; 39-54% on clips)",
+      "simple count-based balancing does not produce a stable operating point"
+    ],
+    "data": [
+      "original public dataset insufficiently representative of target-domain normal footage",
+      "continuous fixed-camera footage substantially more informative than arbitrary stills (supported)",
+      "source diversity matters more than frame count (supported)",
+      "two-camera failure augmentation insufficient and caused style/domain overfitting (supported)",
+      "target-domain normal data is the dominant missing ingredient (supported)",
+      "target-domain failure diversity also insufficient (supported)"
+    ]
+  },
+  "not_proven": [
+    "no quantitative real-world accuracy estimate",
+    "no physical printer validation",
+    "no hardware (edge) deployment validation",
+    "no broad generalization guarantee",
+    "no demonstrated under-extrusion robustness on truly independent target-domain footage",
+    "no evidence threshold 0.5 globally optimal",
+    "no release-ready checkpoint",
+    "no stable count-interpolation operating point",
+    "no validated synthetic failure data",
+    "no edge-target INT8 validation",
+    "no validated failure-type identification"
+  ],
+  "architecture_assessment": {
+    "architecture_viable": true,
+    "verified_components": ["camera/video", "Pillow-bilinear 224 preprocessing", "ShuffleNetV2", "ONNX Runtime", "per-frame P(failing)", "EWMA + FSM temporal logic", "event generation"],
+    "unresolved": ["domain shift", "normal-print diversity", "failure diversity", "source/style overfitting", "calibration/boundary instability"],
+    "conclusion": "Keep the architecture; the training data is the primary unresolved problem. No evidence justifies replacement."
+  },
+  "checkpoints": {
+    "frozen_baseline": {"status": "experimental / benchmark reference", "release_candidate": false, "reason": "FPR 1.000 on held-out normals; 96-99% FAILING on confirmed normal prints"},
+    "exp3_normal_aug": {"status": "experimental", "release_candidate": false, "reason": "normal FPR fixed (0.258) but misses confirmed spaghetti; SKZ failure recall 0.10; frozen recall -0.09"},
+    "exp4_normal_plus_failure": {"status": "experimental", "release_candidate": false, "reason": "best failure side (recall 0.950) but held-out normal FPR 1.000; normal clips 39-54%"}
+  },
+  "datasets": {
+    "printing_errors_train": {"frames": 11254, "role": "training", "status": "used, frozen"},
+    "printing_errors_val": {"frames": 2174, "role": "validation", "status": "byte-identical in all derived splits"},
+    "printing_errors_test": {"frames": 2859, "role": "evaluation", "status": "byte-identical in all derived splits"},
+    "skz_probe": {"frames": 166, "role": "experimental only", "status": "135 train-side (ExpB), 31 held out; candidate normals"},
+    "external_pilot_video_frames": {"frames": 1546, "role": "experimental only / eval-only / unsuitable", "status": "44 verified failing in Exp2 train; 24 UE003 normals eval-only"},
+    "stage13_normal": {"frames": {"train": 333, "eval": 120}, "role": "experimental only / evaluation", "status": "pending human review; Standard YT license"},
+    "stage14_failure": {"frames": 100, "role": "experimental only", "status": "pending human review; 2 sources (ZYfXW0JN2k4 70, 3zXQrw0E-Ag 30)"},
+    "seven_video_external_holdout": {"clips": 7, "role": "external holdout", "status": "eval-only; never trained on"}
+  },
+  "leakage_boundaries_verified": [
+    "frozen val/test byte-identical across all derived splits (sha256 compared)",
+    "no within-file duplicate rows in any train split",
+    "no 7-video / UE003 / stage13-eval / SKZ-eval frames in any training split",
+    "source-atomic grouping throughout",
+    "VLM providers / candidate normals excluded from training except Exp2's 44 verified frames and ExpB's 135 SKZ-aux by design"
+  ],
+  "human_review": {
+    "human_verified": {"units": 6, "frames": 44, "sources": ["NORMAL001", "SP001"], "file": "verified_labels.json"},
+    "pending_human_review": {"stage13_normal": {"train": 333, "eval": 120}, "stage14_failure": {"train": 100}},
+    "vlm_agreement_audit": "0/6 on overlapped Stage-12F units",
+    "caveat": "Exp3/Exp4 trained on VLM-screened (not human-verified) labels; re-sign or retrain after a human pass if labels change materially."
+  },
+  "final_verdict": {
+    "runtime_worth_keeping": true,
+    "model_release_ready": false,
+    "training_data_sufficient": false,
+    "primary_technical_blocker": "target-domain training data diversity (normal especially; failure also)",
+    "highest_value_next_experiment": "data collection program (see future data requirements) followed by identical retrain and re-measurement on frozen surfaces",
+    "do_not_attempt_again": [
+      "count-based rebalancing tweaks on current 7-normal/2-failure YouTube corpus",
+      "threshold tuning against frozen external sets",
+      "training on SKZ candidate-normal labels as ground truth",
+      "trusting titles/channel claims as labels",
+      "another arbitrary Stage 15 without the data first"
+    ]
+  },
+  "future_data_requirements": {
+    "unit_of_independence": "printer-camera-environment session (source), not frame count",
+    "normal": {
+      "independent_sources": ">= ~10, with 2-4 fully held out",
+      "footage_type": "continuous fixed-camera real-time full prints; no tutorials/montages/timelapses/slicer/control-panel",
+      "coverage": "multiple printers, camera placements, lighting, backgrounds, colors/materials",
+      "labels": "human-verified with visible-printing-evidence justification"
+    },
+    "failure": {
+      "independent_sources": ">= 3-6, human-confirmed, spanning spaghetti and under-extrusion at minimum",
+      "footage_type": "live-cam real failures, sequences for onset/transition windows",
+      "labels": "human-verified"
+    },
+    "process": ["source-grouped splits", "Stage-12D human review workflow", "VLM as proposal/screener only", "full license+metadata records", "prefer own/controlled collection", "freeze evaluation surfaces"]
+  },
+  "product_readiness": {
+    "runtime": "validated (dev hardware only)",
+    "model": "research prototype",
+    "data": "insufficient for release",
+    "hardware": "unvalidated",
+    "real_world_generalization": "inadequate",
+    "release_candidate": "none"
+  },
+  "repository_integrity": {
+    "training_tests": "344 passed",
+    "runtime_ctest": "2/2 passed",
+    "frozen_splits": "unchanged (sha256 stable)",
+    "verified_labels_sha": "27038df1e7dbb81ff2da57b8d04e3d1d77ddf9ec6242d50409322b4204f50642",
+    "vlm_proposals_sha": "6457afdd02150a90891614140296d3b76e4d832536adbcb090ad99de6f683b03",
+    "experiment_artifacts": "config.yaml + status.json + checkpoints present for all experiments",
+    "leakage": "none found"
+  }
+}

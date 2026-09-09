@@ -1,0 +1,23 @@
+{
+  "background_notes": null,
+  "camera": {
+    "angle": "unstated in source",
+    "id": "camera1"
+  },
+  "contributor": "trier-team",
+  "environment_group": "no_stringing_error",
+  "environment_id": "9f54bd7f-74e8-5a38-9ece-f23a6ded1405",
+  "environment_key": "env_trier_trier-team_camera1_camera1-no_stringing_error-additional_defect_data",
+  "lighting_notes": null,
+  "metadata": {
+    "camera": "camera1",
+    "failure_type": "none",
+    "print_type": "no_stringing_error",
+    "zip_group": "additional_defect_data"
+  },
+  "notes": "Trier no_stringing_error captured with three fixed camera views; physical angle not stated by authors",
+  "printer": {},
+  "source_dataset": "trier-fff-qc-v2",
+  "split_assignment": "train",
+  "view": "camera1 of no_stringing_error (additional_defect_data); physical angle unstated"
+}

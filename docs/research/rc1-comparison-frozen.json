@@ -1,0 +1,70 @@
+{
+  "schema": "frozen-test-failing-positive-uniform",
+  "surfaces": {
+    "baseline": {
+      "metrics_failing_positive": {
+        "positive_class": 0,
+        "precision": 0.9177,
+        "recall": 0.8385,
+        "f1": 0.8763,
+        "accuracy": 0.836,
+        "fnr": 0.1615,
+        "fpr": 0.1697,
+        "tn": 729,
+        "fp": 149,
+        "fn": 320,
+        "tp": 1661
+      },
+      "auroc_failing": 0.900383
+    },
+    "exp3": {
+      "metrics_failing_positive": {
+        "positive_class": 0,
+        "precision": 0.9265,
+        "recall": 0.7506,
+        "f1": 0.8293,
+        "accuracy": 0.7859,
+        "fnr": 0.2494,
+        "fpr": 0.1344,
+        "tn": 760,
+        "fp": 118,
+        "fn": 494,
+        "tp": 1487
+      },
+      "auroc_failing": 0.877438
+    },
+    "exp4": {
+      "metrics_failing_positive": {
+        "positive_class": 0,
+        "precision": 0.9736,
+        "recall": 0.8203,
+        "f1": 0.8904,
+        "accuracy": 0.8601,
+        "fnr": 0.1797,
+        "fpr": 0.0501,
+        "tn": 834,
+        "fp": 44,
+        "fn": 356,
+        "tp": 1625
+      },
+      "auroc_failing": 0.924568
+    },
+    "rc1": {
+      "metrics_failing_positive": {
+        "positive_class": 0,
+        "precision": 0.9526,
+        "recall": 0.8122,
+        "f1": 0.8768,
+        "accuracy": 0.8419,
+        "fnr": 0.1878,
+        "fpr": 0.0911,
+        "tn": 798,
+        "fp": 80,
+        "fn": 372,
+        "tp": 1609
+      },
+      "auroc_failing": 0.892171
+    }
+  },
+  "threshold": 0.5
+}

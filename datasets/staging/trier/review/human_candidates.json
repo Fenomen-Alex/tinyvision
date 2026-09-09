@@ -1,0 +1,511 @@
+{
+  "schema": "tinyvision-human-candidates",
+  "version": 2,
+  "note": "VLM-supported candidate set for surgical human verification. Proposals only; nothing is confirmed or merged. Review the high-res evidence_jpg files, not the 256px default sheets.",
+  "definitions": [
+    {
+      "environment_key": "camera1-extrusion_error_print-base",
+      "failure_type": "extrusion_error",
+      "units": [
+        {
+          "id": "trier-base-extrusion_error_print-camera1__seq101",
+          "role": "failing"
+        },
+        {
+          "id": "trier-base-extrusion_error_print-camera1__seq104",
+          "role": "failing"
+        },
+        {
+          "id": "trier-base-extrusion_error_print-camera1__seq075",
+          "role": "contrast_normal"
+        }
+      ],
+      "reason": "Train, base print. Failing episode 4684-4855s sits inside the cross-camera shared window 4644-4865s (camera2 fails the same wall-clock window: seq102-106). Persistence across 4 consecutive units plus camera agreement."
+    },
+    {
+      "environment_key": "camera2-extrusion_error_print-base",
+      "failure_type": "extrusion_error",
+      "units": [
+        {
+          "id": "trier-base-extrusion_error_print-camera2__seq102",
+          "role": "failing"
+        },
+        {
+          "id": "trier-base-extrusion_error_print-camera2__seq106",
+          "role": "failing"
+        },
+        {
+          "id": "trier-base-extrusion_error_print-camera2__seq101",
+          "role": "contrast_normal"
+        }
+      ],
+      "reason": "Train, base print. Failing 4644-4865s; camera1 fails the identical window (seq101-104). This is the shared onset window for the base print."
+    },
+    {
+      "environment_key": "camera3-extrusion_error_print-base",
+      "failure_type": "extrusion_error",
+      "units": [
+        {
+          "id": "trier-base-extrusion_error_print-camera3__seq033",
+          "role": "failing"
+        },
+        {
+          "id": "trier-base-extrusion_error_print-camera3__seq042",
+          "role": "failing"
+        },
+        {
+          "id": "trier-base-extrusion_error_print-camera3__seq032",
+          "role": "contrast_normal"
+        }
+      ],
+      "reason": "Train, base print. Sustained 10-unit episode 1584-2025s on this camera (earlier onset than cameras 1/2 view). Long persistence, high confidence. Third camera (different physical setup)."
+    },
+    {
+      "environment_key": "camera1-extrusion_error_print-test",
+      "failure_type": "extrusion_error",
+      "units": [
+        {
+          "id": "trier-test-extrusion_error_print-camera1__seq110",
+          "role": "failing"
+        },
+        {
+          "id": "trier-test-extrusion_error_print-camera1__seq115",
+          "role": "failing"
+        },
+        {
+          "id": "trier-test-extrusion_error_print-camera1__seq102",
+          "role": "contrast_normal"
+        }
+      ],
+      "reason": "Holdout, test print. Failing run 2062-2372s; window 2202-2312s shared with test camera2. Episode is 16 consecutive units; candidates at 2202 and 2303 seconds."
+    },
+    {
+      "environment_key": "camera2-extrusion_error_print-test",
+      "failure_type": "extrusion_error",
+      "units": [
+        {
+          "id": "trier-test-extrusion_error_print-camera2__seq110",
+          "role": "failing"
+        },
+        {
+          "id": "trier-test-extrusion_error_print-camera2__seq115",
+          "role": "failing"
+        },
+        {
+          "id": "trier-test-extrusion_error_print-camera2__seq109",
+          "role": "contrast_normal"
+        }
+      ],
+      "reason": "Holdout, test print. Failing 2202-2312s exactly overlapping test camera1's window at the same wall-clock time (seq110-115 on both cameras). Strong two-camera consensus."
+    },
+    {
+      "environment_key": "camera3-extrusion_error_print-test",
+      "failure_type": "extrusion_error",
+      "units": [
+        {
+          "id": "trier-test-extrusion_error_print-camera3__seq115",
+          "role": "failing"
+        },
+        {
+          "id": "trier-test-extrusion_error_print-camera3__seq114",
+          "role": "contrast_normal"
+        }
+      ],
+      "reason": "OPTIONAL / weakest. Holdout, test print. Single VLM-failing unit at 2301-2318s, coincident with the camera1/2 consensus window but with no camera-3 persistence. Included only as a third holdout view; may be skipped by the reviewer."
+    }
+  ],
+  "environments": [
+    {
+      "environment_id": "27d94c09-4b51-52b0-a516-1370a5957421",
+      "environment_key": "env_trier_trier-team_camera1_camera1-extrusion_error_print-base",
+      "failure_type": "extrusion_error",
+      "candidate_units": [
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera1__seq101",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "stringing",
+          "vlm_confidence": 0.95,
+          "start_time_s": 4684.0,
+          "end_time_s": 4715.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera1_camera1-extrusion_error_print-base/trier-base-extrusion_error_print-camera1__seq101_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4684.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4689.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4693.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4698.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4701.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4706.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4710.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4715.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera1__seq104",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "spaghetti",
+          "vlm_confidence": 0.95,
+          "start_time_s": 4814.0,
+          "end_time_s": 4855.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera1_camera1-extrusion_error_print-base/trier-base-extrusion_error_print-camera1__seq104_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4814.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4819.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4823.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4828.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4832.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4837.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4841.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_4846.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera1__seq075",
+          "role": "contrast_normal",
+          "vlm_decision": "normal",
+          "vlm_failure_type": null,
+          "vlm_confidence": 1.0,
+          "start_time_s": 3503.0,
+          "end_time_s": 3535.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera1_camera1-extrusion_error_print-base/trier-base-extrusion_error_print-camera1__seq075_contrast_normal.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_3503.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_3508.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_3512.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_3517.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_3521.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_3526.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_3530.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera1/camera1_3535.jpg"
+          ]
+        }
+      ],
+      "vlm_confidence": 1.0,
+      "reason": "Train, base print. Failing episode 4684-4855s sits inside the cross-camera shared window 4644-4865s (camera2 fails the same wall-clock window: seq102-106). Persistence across 4 consecutive units plus camera agreement."
+    },
+    {
+      "environment_id": "d7525f7d-6238-584e-8f62-4e751bb8777d",
+      "environment_key": "env_trier_trier-team_camera2_camera2-extrusion_error_print-base",
+      "failure_type": "extrusion_error",
+      "candidate_units": [
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera2__seq102",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "stringing",
+          "vlm_confidence": 0.95,
+          "start_time_s": 4644.0,
+          "end_time_s": 4685.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera2_camera2-extrusion_error_print-base/trier-base-extrusion_error_print-camera2__seq102_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4644.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4649.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4653.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4658.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4662.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4667.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4671.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4676.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera2__seq106",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "spaghetti",
+          "vlm_confidence": 0.95,
+          "start_time_s": 4824.0,
+          "end_time_s": 4865.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera2_camera2-extrusion_error_print-base/trier-base-extrusion_error_print-camera2__seq106_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4824.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4829.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4833.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4838.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4842.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4847.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4851.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4856.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera2__seq101",
+          "role": "contrast_normal",
+          "vlm_decision": "normal",
+          "vlm_failure_type": null,
+          "vlm_confidence": 1.0,
+          "start_time_s": 4603.0,
+          "end_time_s": 4635.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera2_camera2-extrusion_error_print-base/trier-base-extrusion_error_print-camera2__seq101_contrast_normal.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4603.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4608.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4612.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4617.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4621.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4626.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4630.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera2/camera2_4635.jpg"
+          ]
+        }
+      ],
+      "vlm_confidence": 1.0,
+      "reason": "Train, base print. Failing 4644-4865s; camera1 fails the identical window (seq101-104). This is the shared onset window for the base print."
+    },
+    {
+      "environment_id": "7cf37592-ce09-5da9-99f4-fed93be240d6",
+      "environment_key": "env_trier_trier-team_camera3_camera3-extrusion_error_print-base",
+      "failure_type": "extrusion_error",
+      "candidate_units": [
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera3__seq033",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "spaghetti",
+          "vlm_confidence": 0.95,
+          "start_time_s": 1584.0,
+          "end_time_s": 1615.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera3_camera3-extrusion_error_print-base/trier-base-extrusion_error_print-camera3__seq033_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1584.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1589.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1593.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1598.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1601.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1606.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1610.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1615.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera3__seq042",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "spaghetti",
+          "vlm_confidence": 0.95,
+          "start_time_s": 1994.0,
+          "end_time_s": 2025.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera3_camera3-extrusion_error_print-base/trier-base-extrusion_error_print-camera3__seq042_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1994.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1999.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_2002.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_2007.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_2011.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_2016.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_2020.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_2025.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera3__seq032",
+          "role": "contrast_normal",
+          "vlm_decision": "normal",
+          "vlm_failure_type": null,
+          "vlm_confidence": 1.0,
+          "start_time_s": 1534.0,
+          "end_time_s": 1575.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera3_camera3-extrusion_error_print-base/trier-base-extrusion_error_print-camera3__seq032_contrast_normal.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1534.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1539.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1543.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1548.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1552.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1557.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1561.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/base/full_res/extrusion_error_print/camera3/camera3_1566.jpg"
+          ]
+        }
+      ],
+      "vlm_confidence": 1.0,
+      "reason": "Train, base print. Sustained 10-unit episode 1584-2025s on this camera (earlier onset than cameras 1/2 view). Long persistence, high confidence. Third camera (different physical setup)."
+    },
+    {
+      "environment_id": "beb24c82-7008-5125-a6d9-c577a38efc3f",
+      "environment_key": "env_trier_trier-team_camera1_camera1-extrusion_error_print-test",
+      "failure_type": "extrusion_error",
+      "candidate_units": [
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera1__seq110",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "spaghetti",
+          "vlm_confidence": 0.95,
+          "start_time_s": 2202.0,
+          "end_time_s": 2220.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera1_camera1-extrusion_error_print-test/trier-test-extrusion_error_print-camera1__seq110_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2202.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2204.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2206.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2208.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2211.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2213.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2215.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2217.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera1__seq115",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "spaghetti",
+          "vlm_confidence": 0.95,
+          "start_time_s": 2303.0,
+          "end_time_s": 2321.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera1_camera1-extrusion_error_print-test/trier-test-extrusion_error_print-camera1__seq115_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2303.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2305.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2307.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2309.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2310.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2312.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2314.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2316.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera1__seq102",
+          "role": "contrast_normal",
+          "vlm_decision": "normal",
+          "vlm_failure_type": null,
+          "vlm_confidence": 0.98,
+          "start_time_s": 2042.0,
+          "end_time_s": 2060.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera1_camera1-extrusion_error_print-test/trier-test-extrusion_error_print-camera1__seq102_contrast_normal.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2042.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2044.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2046.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2048.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2051.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2053.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2055.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera1/detection_cam1_2057.jpg"
+          ]
+        }
+      ],
+      "vlm_confidence": 0.98,
+      "reason": "Holdout, test print. Failing run 2062-2372s; window 2202-2312s shared with test camera2. Episode is 16 consecutive units; candidates at 2202 and 2303 seconds."
+    },
+    {
+      "environment_id": "f0161e26-1850-5538-8547-abdee42434e4",
+      "environment_key": "env_trier_trier-team_camera2_camera2-extrusion_error_print-test",
+      "failure_type": "extrusion_error",
+      "candidate_units": [
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera2__seq110",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "spaghetti",
+          "vlm_confidence": 0.95,
+          "start_time_s": 2202.0,
+          "end_time_s": 2220.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera2_camera2-extrusion_error_print-test/trier-test-extrusion_error_print-camera2__seq110_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2202.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2204.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2206.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2208.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2211.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2213.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2215.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2217.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera2__seq115",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "stringing",
+          "vlm_confidence": 0.95,
+          "start_time_s": 2303.0,
+          "end_time_s": 2312.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera2_camera2-extrusion_error_print-test/trier-test-extrusion_error_print-camera2__seq115_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2303.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2305.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2307.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2309.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2310.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2312.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera2__seq109",
+          "role": "contrast_normal",
+          "vlm_decision": "normal",
+          "vlm_failure_type": null,
+          "vlm_confidence": 0.98,
+          "start_time_s": 2183.0,
+          "end_time_s": 2200.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera2_camera2-extrusion_error_print-test/trier-test-extrusion_error_print-camera2__seq109_contrast_normal.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2183.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2185.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2187.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2189.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2190.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2192.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2194.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera2/detection_cam3_2196.jpg"
+          ]
+        }
+      ],
+      "vlm_confidence": 0.98,
+      "reason": "Holdout, test print. Failing 2202-2312s exactly overlapping test camera1's window at the same wall-clock time (seq110-115 on both cameras). Strong two-camera consensus."
+    },
+    {
+      "environment_id": "6a9157e0-3e1e-5da8-81e9-b7cddaddbb87",
+      "environment_key": "env_trier_trier-team_camera3_camera3-extrusion_error_print-test",
+      "failure_type": "extrusion_error",
+      "candidate_units": [
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera3__seq115",
+          "role": "failing",
+          "vlm_decision": "failing",
+          "vlm_failure_type": "spaghetti",
+          "vlm_confidence": 0.95,
+          "start_time_s": 2301.0,
+          "end_time_s": 2318.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera3_camera3-extrusion_error_print-test/trier-test-extrusion_error_print-camera3__seq115_failing.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2301.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2303.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2305.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2307.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2309.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2310.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2312.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2314.jpg"
+          ]
+        },
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera3__seq114",
+          "role": "contrast_normal",
+          "vlm_decision": "normal",
+          "vlm_failure_type": null,
+          "vlm_confidence": 1.0,
+          "start_time_s": 2280.0,
+          "end_time_s": 2299.0,
+          "evidence_jpg": "datasets/staging/trier/review/evidence/env_trier_trier-team_camera3_camera3-extrusion_error_print-test/trier-test-extrusion_error_print-camera3__seq114_contrast_normal.jpg",
+          "fullres_source_frames": [
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2280.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2282.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2284.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2286.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2288.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2291.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2293.jpg",
+            "/Users/alex/Projects/tinyvision/datasets/raw/trier-fffqc-v2/extracted/test/full_res/extrusion_error_print/camera3/detection_cam2_2295.jpg"
+          ]
+        }
+      ],
+      "vlm_confidence": 1.0,
+      "reason": "OPTIONAL / weakest. Holdout, test print. Single VLM-failing unit at 2301-2318s, coincident with the camera1/2 consensus window but with no camera-3 persistence. Included only as a third holdout view; may be skipped by the reviewer."
+    }
+  ]
+}

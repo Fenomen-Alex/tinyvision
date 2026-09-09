@@ -1,0 +1,23 @@
+{
+  "background_notes": null,
+  "camera": {
+    "angle": "unstated in source",
+    "id": "camera3"
+  },
+  "contributor": "trier-team",
+  "environment_group": "layershift_error_print",
+  "environment_id": "d4f52851-98f1-5048-b695-bad6af1f7ee8",
+  "environment_key": "env_trier_trier-team_camera3_camera3-layershift_error_print-test",
+  "lighting_notes": null,
+  "metadata": {
+    "camera": "camera3",
+    "failure_type": "layer_shift",
+    "print_type": "layershift_error_print",
+    "zip_group": "test"
+  },
+  "notes": "Trier layershift_error_print captured with three fixed camera views; physical angle not stated by authors",
+  "printer": {},
+  "source_dataset": "trier-fff-qc-v2",
+  "split_assignment": "external_holdout",
+  "view": "camera3 of layershift_error_print (test); physical angle unstated"
+}

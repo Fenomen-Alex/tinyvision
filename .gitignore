@@ -40,12 +40,38 @@ datasets/external/video-frames/raw/
 datasets/external/video-frames/labels/sheets/
 datasets/external/video-frames/montage_*.jpg
 
+# SKZ Nozzle-Cam audit + derived probe (regenerable from HF test split:
+# DasKunststoffZentrumSKZ/Errors_Additive_Manufacturing_Nozzle_Cam)
+datasets/external/skz-audit/
+datasets/external/skz-probe/
+
 # Experiment artifacts
 experiments/*/artifacts/
 experiments/logs/
 
 # Generated model-inference trajectory caches (regenerable)
 docs/research/evalcaches/
+
+# Non-redistributable YouTube media + derived screening frames under external
+# evaluation sources (regenerable via yt-dlp / documented screening scripts;
+# never redistributed). JSON manifests, proposals, and run reports are kept.
+datasets/external/stage13-normal/raw/
+datasets/external/stage13-normal/screening/cand/
+datasets/external/stage13-normal/screening/frames/
+datasets/external/stage13-normal/screening/samples/
+datasets/external/stage13-normal/screening/sheets/
+datasets/external/stage14-failure/raw/
+datasets/external/stage14-failure/screening/frames/
+datasets/external/stage14-failure/screening/montages/
+datasets/external/real-world-eval/*/video.*
+datasets/external/real-world-eval/sheets/
+datasets/external/real-world-eval/review/
+
+# Regenerable review render intermediates (build_human_evidence.py etc.)
+datasets/staging/trier/review/sheets/
+
+# Transient local training log
+datasets/staging/rc1_train.log
 
 # Environment
 .env

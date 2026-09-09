@@ -1,0 +1,83 @@
+{
+  "schema": "tinyvision-bambu-inventory",
+  "source_dataset": "bambu-timelapse-v1",
+  "name": "Bambu Timelapse Dataset",
+  "url": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset",
+  "license": "CC BY 4.0",
+  "license_url": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset",
+  "splits": [
+    {
+      "name": "timelapses",
+      "continuous_realtime": false,
+      "rows": 405,
+      "contributors": {
+        "Similar-Ad-1223": 198,
+        "Borillion": 87,
+        "v2thegreat": 120
+      }
+    },
+    {
+      "name": "videos",
+      "continuous_realtime": true,
+      "rows": 135,
+      "contributors": {
+        "Borillion": 135
+      }
+    }
+  ],
+  "n_contributors": 3,
+  "n_environment_candidates": 1,
+  "environments": [
+    {
+      "environment_key": "env_bambu_borillion_bonnp-ipcam_inside_chamber",
+      "source_dataset": "bambu-timelapse-v1",
+      "contributor": "Borillion",
+      "view": "inside_chamber",
+      "camera": {
+        "identity": "bambu-pnp-ipcam",
+        "description": "built-in Bambu Lab printer chamber camera"
+      },
+      "normal_available": true,
+      "failure_type": null,
+      "has_continuous_realtime_video": true,
+      "timelapse_sequences": 87,
+      "full_length_videos": 135,
+      "notes": "full-length video useful for ~1fps training if the original recording is continuous"
+    },
+    {
+      "environment_key": "env_bambu_similar-ad-1223_bonnp-ipcam_inside_chamber",
+      "source_dataset": "bambu-timelapse-v1",
+      "contributor": "Similar-Ad-1223",
+      "view": "inside_chamber",
+      "camera": {
+        "identity": "bambu-pnp-ipcam",
+        "description": "built-in Bambu Lab printer chamber camera"
+      },
+      "normal_available": true,
+      "failure_type": null,
+      "has_continuous_realtime_video": false,
+      "timelapse_sequences": 198,
+      "full_length_videos": 0,
+      "notes": "timelapse only; skimmed cadence, unsuited to 1fps training"
+    },
+    {
+      "environment_key": "env_bambu_v2thegreat_bonnp-ipcam_inside_chamber",
+      "source_dataset": "bambu-timelapse-v1",
+      "contributor": "v2thegreat",
+      "view": "inside_chamber",
+      "camera": {
+        "identity": "bambu-pnp-ipcam",
+        "description": "built-in Bambu Lab printer chamber camera"
+      },
+      "normal_available": true,
+      "failure_type": null,
+      "has_continuous_realtime_video": false,
+      "timelapse_sequences": 120,
+      "full_length_videos": 0,
+      "notes": "timelapse only; skimmed cadence, unsuited to 1fps training"
+    }
+  ],
+  "structure_verified_by": "metadata-csv",
+  "media_downloaded": false,
+  "note": "Environment candidates keyed by contributor's chamber camera."
+}

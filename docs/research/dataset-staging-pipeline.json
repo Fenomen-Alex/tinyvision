@@ -1,0 +1,111 @@
+{
+  "schema": "tinyvision-dataset-staging-pipeline-spec",
+  "version": 1,
+  "status": "planning",
+  "updated": "2026-09-07",
+  "objective": "Infrastructure for staging new camera-environment data and contributor intake; no training, no model changes, no blind downloads.",
+  "governing_docs": [
+    "docs/research/tinyvision-data-strategy.md",
+    "docs/research/tinyvision-data-strategy.json",
+    "docs/research/dataset-staging-pipeline.md"
+  ],
+  "manifest_schema": {
+    "name": "tinyvision-env-manifest",
+    "version": 1,
+    "canonical_file": "manifests/env_manifest.json",
+    "samples_format": "per-recording JSONL under samples/<recording_id>.jsonl",
+    "instance": "datasets/staging/env_manifest.example.json"
+  },
+  "environment_identity": {
+    "environment_id": "env-<uuid4> (persistent, never regenerated)",
+    "environment_key": "env_<source>_<contributor>_<camera_identity>_<view> (unique per manifest)",
+    "atomic_unit": "camera environment (sensor + optics + viewpoint + lighting + background + visible printer appearance)",
+    "rule": "two recordings share an environment only if they share physical setup, camera, viewpoint, lighting and printer appearance"
+  },
+  "splitting": {
+    "granularity": "environment",
+    "splits": ["train", "validation", "external_holdout"],
+    "leakage_rules": [
+      "one environment -> exactly one split",
+      "recording references exactly one environment",
+      "environment environment_key unique",
+      "historical experiment splits are frozen and excluded; never re-split"
+    ]
+  },
+  "review_verification": {
+    "source_label": "never auto-promoted",
+    "verified_requires": "tinyvision_label in {normal, failing} and provenance prefix in {human, pipeline}",
+    "banned_provenance": ["source_auto", "source", "vlm_only"],
+    "states": ["pending", "verified", "rejected", "uncertain"],
+    "allowed_transitions": {
+      "pending": ["verified", "rejected", "uncertain"],
+      "uncertain": ["verified", "rejected"],
+      "verified": [],
+      "rejected": []
+    }
+  },
+  "dataset_inventories": [
+    {
+      "dataset": "trier-fff-qc-v2",
+      "url": "https://zenodo.org/records/18628777",
+      "license": "CC BY 4.0",
+      "license_verified": true,
+      "size_bytes": 48425897465,
+      "files": [
+        {"key": "base_data.zip", "size_bytes": 19632181220, "md5": "b5b3354970c0a229ea63334b1346da07"},
+        {"key": "additional_defect_data.zip", "size_bytes": 16129011133, "md5": "11ea08432cd0306b93ab880f8d0493be"},
+        {"key": "test_data.zip", "size_bytes": 12630419031, "md5": "3d6e8295621bd033d193a196f11025e3"}
+      ],
+      "camera_angles_claimed": 3,
+      "environment_count_verified": false,
+      "note": "environment units unverifiable from metadata; characterization tool ready (tv env-index --kind trier)"
+    },
+    {
+      "dataset": "bambu-timelapse-v1",
+      "url": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset",
+      "license": "CC BY 4.0",
+      "license_verified": true,
+      "splits": {
+        "timelapses": {"rows": 405, "contributors": {"Similar-Ad-1223": 198, "v2thegreat": 120, "Borillion": 87}},
+        "videos": {"rows": 135, "contributors": {"Borillion": 135}}
+      },
+      "environment_candidates": 3,
+      "continuous_video_environments": 1,
+      "continuous_video_recordings": 135,
+      "staged_manifest": "datasets/staging/bambu/manifests/env_manifest.json"
+    }
+  ],
+  "readiness": {
+    "tool": "tv env-readiness",
+    "holdings_snapshot": "datasets/staging/readiness/canonical_holdings.json",
+    "next_training_gate": {
+      "training_environments_min": 20,
+      "new_failure_envs_human_verified_min": 5,
+      "new_normal_holdout_envs_min": 2,
+      "new_failure_holdout_envs_min": 2
+    },
+    "ceiling_note": "the next serious training run must not happen until this gate passes",
+    "current": {
+      "training_environments": 12,
+      "new_verified_failure_envs": 0,
+      "new_normal_holdout_envs": 0,
+      "new_failure_holdout_envs": 0,
+      "training_ready": false
+    }
+  },
+  "intake_tooling": [
+    {"name": "tv env-index", "purpose": "build environment inventories from dataset metadata (trier | bambu)"},
+    {"name": "tv env-validate", "purpose": "schema + consent + leakage + physical media checks"},
+    {"name": "tv env-split", "purpose": "assign/validate environment-level splits"},
+    {"name": "tv env-readiness", "purpose": "report gate status and recovery plan"}
+  ],
+  "contributor_kit": [
+    "docs/contributors/README.md",
+    "docs/contributors/recording-guide.md",
+    "docs/contributors/contributor-consent.md"
+  ],
+  "tests": {
+    "file": "training/tests/test_envdata.py",
+    "count": 24
+  }
+}

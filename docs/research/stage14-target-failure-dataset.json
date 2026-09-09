@@ -1,0 +1,62 @@
+{
+  "schema": "stage14-target-failure-dataset",
+  "schema_version": 1,
+  "status": "pending_human_review",
+  "frames": 100,
+  "sources": [
+    {
+      "source_id": "ZYfXW0JN2k4",
+      "url": "https://www.youtube.com/watch?v=ZYfXW0JN2k4",
+      "title": "3d Print Fail Caught On Camera",
+      "channel": "Inside The Mind Of Matt",
+      "printer": "unknown",
+      "printer_brand": "unknown",
+      "camera": "fixed webcam, whole-print partial view",
+      "license": "unknown",
+      "failure_type": "spaghetti",
+      "frames": 70,
+      "windows": {
+        "main": "t=98-156",
+        "final": "t=221-231"
+      }
+    },
+    {
+      "source_id": "3zXQrw0E-Ag",
+      "url": "https://www.youtube.com/watch?v=3zXQrw0E-Ag",
+      "title": "Bambu A1 Blob of Death: What Happened & How I Fixed It",
+      "channel": "Diaz Creative Studio",
+      "printer": "Bambu Lab A1",
+      "printer_brand": "Bambu Lab",
+      "camera": "fixed webcam, whole-print partial view",
+      "license": "unknown",
+      "failure_type": "blob",
+      "frames": 30,
+      "windows": {
+        "blob": "t=142-171"
+      }
+    }
+  ],
+  "label_authority": {
+    "method": "per-frame neutral single-image review, qwen/qwen3-vl-8b via LM Studio",
+    "inclusion": "frames in contiguous windows where reviewer consistently saw failure",
+    "exclusion": "boundary frames reviewed as healthy / idle / no-print-visible, and all pre-failure frames",
+    "human_status": "pending_human_review"
+  },
+  "rejected_candidates": {
+    "24dukPzuBAM": "no visible failure anywhere in 38 min; same GXS rig",
+    "4N1XUyW39YY": "nozzle close-up; no failure; same GXS rig",
+    "kWK3pUjccrQ": "nozzle close-up; no failure; low fps",
+    "O7dEPsU6-pQ": "nozzle close-up; only mild stringing",
+    "4k980nMcRys": "explainer; no whole-print failure footage",
+    "X-dQ2r0YI4Y": "screen recording of detection UI",
+    "vroX8UuUkRw": "vertical Short; multi-scene edited",
+    "A-B2A8SXqwA": "80-min repair tutorial; one blob frame",
+    "RRSRCzolhmM": "plugin review; zero failure footage"
+  },
+  "caveats": [
+    "Frames sampled 1-2 s apart; near-duplicates intentional to model continuous failure evolution.",
+    "Licensing unknown (Standard YouTube License); not redistributable.",
+    "Label 'failure_type' per contiguous window; per-frame detail pending human review.",
+    "Launched from YouTube titles '3D print fail' — titles are candidate signals only, never ground truth; inclusion decided by VLM evidence."
+  ]
+}

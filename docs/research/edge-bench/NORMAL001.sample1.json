@@ -1,0 +1,32 @@
+{
+  "schema": "poc-inference",
+  "schema_version": 1,
+  "runtime": "cpp-onnxruntime",
+  "model": {"path": "experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/model.onnx", "image_size": 224, "threshold": 0.5000, "backend": "onnxruntime-cpu"},
+  "source": {"input": "datasets/external/video-frames/raw/NORMAL001/NORMAL001_dX4eGEFrthE.mp4", "resolution": "1080x1920", "native_fps": 30.000, "total_frames_in_video": 602, "sample_fps": 1.000, "skip": 30},
+  "temporal": {"alpha": 0.150000, "baseline_window": 60, "warmup": 30, "suspect_threshold": 0.050000, "fail_threshold": 0.300000, "recover_threshold": 0.010000, "fail_threshold_abs": 0.650000, "confirm": 3, "use_delta": false},
+  "summary": {"frames": 19, "state_counts": {"OBSERVING": 19, "NORMAL": 0, "SUSPECT": 0, "FAILING": 0, "PAUSED": 0}, "first_failing_event_frame": -1, "failing_frames": 0, "last_state": "OBSERVING", "cadence_fps": 25.752},
+  "timing": {"processed_frames": 19, "stream_seconds": 0.7378, "cadence_fps": 25.752, "decode_ms": {"count": 19, "mean_ms": 32.6716, "p50_ms": 31.6390, "p95_ms": 51.8580, "max_ms": 51.8580}, "preprocess_ms": {"count": 19, "mean_ms": 3.1371, "p50_ms": 2.8140, "p95_ms": 8.5900, "max_ms": 8.5900}, "inference_ms": {"count": 19, "mean_ms": 2.2838, "p50_ms": 2.2030, "p95_ms": 3.8380, "max_ms": 3.8380}},
+  "annotated_output": null,
+  "per_frame": [
+    {"frame": 0, "frame_idx": 31, "raw": 0.853349, "signal": 0.128002, "baseline": 0.128002, "delta": 0.000000, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 1, "frame_idx": 62, "raw": 0.857015, "signal": 0.237354, "baseline": 0.182678, "delta": 0.054676, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 2, "frame_idx": 93, "raw": 0.834449, "signal": 0.326918, "baseline": 0.230758, "delta": 0.096160, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 3, "frame_idx": 124, "raw": 0.955251, "signal": 0.421168, "baseline": 0.278361, "delta": 0.142807, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 4, "frame_idx": 155, "raw": 0.854474, "signal": 0.486164, "baseline": 0.319921, "delta": 0.166243, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 5, "frame_idx": 186, "raw": 0.662752, "signal": 0.512652, "baseline": 0.352043, "delta": 0.160609, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 6, "frame_idx": 217, "raw": 0.931749, "signal": 0.575517, "baseline": 0.383968, "delta": 0.191549, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 7, "frame_idx": 248, "raw": 0.965495, "signal": 0.634013, "baseline": 0.415224, "delta": 0.218790, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 8, "frame_idx": 279, "raw": 0.943706, "signal": 0.680467, "baseline": 0.444695, "delta": 0.235772, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 9, "frame_idx": 310, "raw": 0.599568, "signal": 0.668332, "baseline": 0.467059, "delta": 0.201273, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 10, "frame_idx": 341, "raw": 0.707911, "signal": 0.674269, "baseline": 0.485896, "delta": 0.188373, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 11, "frame_idx": 372, "raw": 0.820747, "signal": 0.696241, "baseline": 0.503425, "delta": 0.192816, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 12, "frame_idx": 403, "raw": 0.928712, "signal": 0.731111, "baseline": 0.520939, "delta": 0.210172, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 13, "frame_idx": 434, "raw": 0.958771, "signal": 0.765260, "baseline": 0.538391, "delta": 0.226870, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 14, "frame_idx": 465, "raw": 0.580711, "signal": 0.737578, "baseline": 0.551670, "delta": 0.185908, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 15, "frame_idx": 496, "raw": 0.737901, "signal": 0.737626, "baseline": 0.563292, "delta": 0.174334, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 16, "frame_idx": 527, "raw": 0.649871, "signal": 0.724463, "baseline": 0.572773, "delta": 0.151690, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 17, "frame_idx": 558, "raw": 0.516602, "signal": 0.693284, "baseline": 0.579468, "delta": 0.113816, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 18, "frame_idx": 589, "raw": 0.728956, "signal": 0.698635, "baseline": 0.585740, "delta": 0.112895, "state": "OBSERVING", "raw_decision": "failing", "event": null}
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "stage14-experiment",
+  "schema_version": 1,
+  "experiment_id": "exp4_target_balanced_shufflenet_v2_x1_0",
+  "stage": 14,
+  "status": "complete",
+  "decision": "stop_experimentation",
+  "release_candidate": null,
+  "question": "Does a small (100-300 frame) diverse target-domain failure set, added to the Stage-13 normal augmentation, restore failure sensitivity while retaining the normal-FP improvement?",
+  "answer": "Partially refuted: failure detection was restored (best of all checkpoints), but the normal-FP improvement was completely lost on held-out sources (FPR 1.000), so the two required properties did not co-exist. Stop experimentation.",
+  "training": {
+    "model": "shufflenet_v2_x1_0",
+    "seed": 42,
+    "epochs": 30,
+    "early_stopping": true,
+    "best_val_loss": 0.6489,
+    "stopped_epoch": 11,
+    "train_rows": 11687,
+    "train_rows_frozen_failing": 5863,
+    "train_rows_frozen_normal": 5724,
+    "train_rows_stage13_normal": 333,
+    "train_rows_stage14_failing": 100,
+    "augmentation_failure_sources": ["ZYfXW0JN2k4", "3zXQrw0E-Ag"],
+    "augmentation_failure_per_source": {"ZYfXW0JN2k4": 70, "3zXQrw0E-Ag": 30},
+    "label_status": "pending_human_review"
+  },
+  "frozen_original_test": {
+    "threshold": 0.5,
+    "failing_positive": {
+      "baseline": {"precision": 0.695, "recall": 0.830, "f1": 0.757, "fnr": 0.170, "fpr": 0.162, "auroc": 0.900},
+      "exp3": {"precision": 0.606, "recall": 0.866, "f1": 0.713, "fnr": 0.134, "fpr": 0.249, "auroc": 0.877},
+      "exp4": {"precision": 0.701, "recall": 0.950, "f1": 0.807, "fnr": 0.050, "fpr": 0.180, "auroc": 0.925}
+    }
+  },
+  "external_normal_holdout": {
+    "frames": 120,
+    "sources": ["LY3jlcO34f4", "zkJgLanCSUw"],
+    "false_positive_rate": {"baseline": 1.000, "exp3": 0.258, "exp4": 1.000}
+  },
+  "seven_video_runtime": {
+    "config": "sample-fps 1, warmup 8, confirm 2, threshold 0.5",
+    "metric": "raw-failing fraction",
+    "normal_clips": {
+      "nbkf372s_cA": {"baseline": 0.961, "exp3": 0.110, "exp4": 0.514},
+      "UzULqvGoi1Y": {"baseline": 0.870, "exp3": 0.141, "exp4": 0.543},
+      "0TY6LVvMpUo": {"baseline": 0.926, "exp3": 0.114, "exp4": 0.393}
+    },
+    "normal_by_vlm": {
+      "38gnsbGqcx4": {"baseline": 0.787, "exp3": 0.036, "exp4": 0.360},
+      "G56LQfQCUnA": {"baseline": 0.847, "exp3": 0.411, "exp4": 0.448}
+    },
+    "confirmed_spaghetti": {
+      "87gsL-Luvis": {"baseline": {"raw_failing": 0.818, "first_event": 8}, "exp3": {"raw_failing": 0.000, "first_event": null}, "exp4": {"raw_failing": 0.212, "first_event": 9}},
+      "mGH3p3AF1YY": {"baseline": {"raw_failing": 1.000, "first_event": 8}, "exp3": {"raw_failing": 0.562, "first_event": 9}, "exp4": {"raw_failing": 0.500, "first_event": 9}}
+    }
+  },
+  "skz_heldout": {
+    "subset": "skz_eval",
+    "images": 31,
+    "groups": 16,
+    "auroc_failing": {"baseline": 0.723, "exp3": 0.332, "exp4": 0.518},
+    "failure_recall": {"baseline": 1.000, "exp3": 0.100, "exp4": 0.400},
+    "normal_fpr": {"baseline": 0.909, "exp3": 0.273, "exp4": 0.364},
+    "note": "All three models evaluated on the canonical skz_eval subset (31 images, 16 groups). Duration-only continuity reference; not a tuning target."
+  },
+  "classification": {
+    "baseline": "reject (normal-FP tail 1.000)",
+    "exp3": "experimental (too normal-biased; misses confirmed spaghetti)",
+    "exp4": "experimental (failure detection restored but normal FPR regressed to 1.000 on holdout)"
+  },
+  "root_cause": [
+    "Count-based balance is not a valid proxy: 100 sub-second near-duplicate failure frames (2 cameras) vs 333 30-35s-spaced normals (7 cameras); effective diversity moves the boundary, not count.",
+    "Extreme domain scarcity vs 11.3k frozen frames: adding 100 failures flips the entire boundary; no stable operating point.",
+    "The two tails are anti-correlated at threshold 0.5; a single checkpoint satisfies neither simultaneously.",
+    "Catastrophic held-out FPR 1.000 indicates overfitting to two failure cameras' visual style, not generalizable failure evidence."
+  ],
+  "required_human_review": {
+    "stage13_normal_frames": 333,
+    "stage14_failing_frames": 100,
+    "status": "not_started"
+  }
+}

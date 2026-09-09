@@ -1,0 +1,173 @@
+{
+  "schema": "stage13-target-normal-dataset",
+  "schema_version": 1,
+  "name": "Stage 13 target-domain normal-print augmentation set",
+  "created": "2026-09-07",
+  "summary": {
+    "total_frames": 453,
+    "train_frames": 333,
+    "eval_frames": 120,
+    "train_sources": 7,
+    "eval_sources": 2,
+    "per_source_train": {
+      "DHpo4Za2--M": 89,
+      "LwHaHzVV_iE": 46,
+      "PscyiwiZ9Mc": 60,
+      "R0xnULlObrs": 40,
+      "kZ06bpskj9I": 55,
+      "uCCXJzvYxKA": 26,
+      "zFX80aMaYFg": 17
+    },
+    "per_source_eval": {
+      "LY3jlcO34f4": 60,
+      "zkJgLanCSUw": 60
+    }
+  },
+  "collection": {
+    "methodology": "Continuous real-time FDM footage from fixed cameras; one sample every 35-50 seconds far into each source (two offset passes at 35s and 50s), capped at 60 samples/source; long sources capped to first 6h span.",
+    "screening": "Per-frame VLM review (local qwen/qwen3-vl-8b) with a strict neutral single-frame prompt; accepted only if decision==normal AND part_visible==True.",
+    "continuity": "Source-level continuity screening (adjacent-frame structural diff) confirmed all selected sources are unedited continuous real-time footage.",
+    "source_grouping": "Every source entirely in ONE role. 7 sources train, 2 sources held-out eval (LY3jlcO34f4, zkJgLanCSUw). No frame-level splitting."
+  },
+  "sources": [
+    {
+      "source_id": "DHpo4Za2--M",
+      "youtube_id": "DHpo4Za2--M",
+      "title": "Benchy 25 minute real time - Ender 3 Pro",
+      "channel": "Szab\u00f3 D\u00e9nes (deniblender)",
+      "upload_date": "20230820",
+      "printer": "Ender 3 Pro",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "duration_s": 1512,
+      "url": "https://www.youtube.com/watch?v=DHpo4Za2--M",
+      "license": "Standard YouTube License (not redistributable); eval-only / internal experiment use only",
+      "split": "train"
+    },
+    {
+      "source_id": "LwHaHzVV_iE",
+      "youtube_id": "LwHaHzVV_iE",
+      "title": "Unedited and Real-Time: Watch the Creality K1 Print a Benchy in 11min 40s",
+      "channel": "Creality",
+      "upload_date": "20230426",
+      "printer": "Creality K1",
+      "resolution": "1920x1080",
+      "fps": 25,
+      "duration_s": 719,
+      "url": "https://www.youtube.com/watch?v=LwHaHzVV_iE",
+      "license": "Standard YouTube License (not redistributable); eval-only / internal experiment use only",
+      "split": "train"
+    },
+    {
+      "source_id": "PscyiwiZ9Mc",
+      "youtube_id": "PscyiwiZ9Mc",
+      "title": "REAL TIME 3D PRINTING -TEST PRINT",
+      "channel": "XIMBRIUM",
+      "upload_date": "20200929",
+      "printer": "unknown",
+      "resolution": "1280x720",
+      "fps": 30,
+      "duration_s": 2965,
+      "url": "https://www.youtube.com/watch?v=PscyiwiZ9Mc",
+      "license": "Standard YouTube License (not redistributable); eval-only / internal experiment use only",
+      "split": "train"
+    },
+    {
+      "source_id": "R0xnULlObrs",
+      "youtube_id": "R0xnULlObrs",
+      "title": "Wargaming wall 3D print with AnyCubic Chiron in real time",
+      "channel": "Nawar",
+      "upload_date": "20220426",
+      "printer": "Anycubic Chiron",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "duration_s": 6161,
+      "url": "https://www.youtube.com/watch?v=R0xnULlObrs",
+      "license": "Standard YouTube License (not redistributable); eval-only / internal experiment use only",
+      "split": "train"
+    },
+    {
+      "source_id": "kZ06bpskj9I",
+      "youtube_id": "kZ06bpskj9I",
+      "title": "K1 Max Benchy In Real Time",
+      "channel": "Shy",
+      "upload_date": "20240531",
+      "printer": "Creality K1 Max",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "duration_s": 1411,
+      "url": "https://www.youtube.com/watch?v=kZ06bpskj9I",
+      "license": "Standard YouTube License (not redistributable); eval-only / internal experiment use only",
+      "split": "train"
+    },
+    {
+      "source_id": "uCCXJzvYxKA",
+      "youtube_id": "uCCXJzvYxKA",
+      "title": "PRUSA CORE ONE L 8 minute benchy + live telemetry",
+      "channel": "BMAN_PRINTS",
+      "upload_date": "20260817",
+      "printer": "Prusa Core One L",
+      "resolution": "1142x720",
+      "fps": 15,
+      "duration_s": 746,
+      "url": "https://www.youtube.com/watch?v=uCCXJzvYxKA",
+      "license": "Standard YouTube License (not redistributable); eval-only / internal experiment use only",
+      "split": "train"
+    },
+    {
+      "source_id": "zFX80aMaYFg",
+      "youtube_id": "zFX80aMaYFg",
+      "title": "LIVE 3D FDM Printing 2020 Extrusion Webcam Mount Logitech C270",
+      "channel": "Evel-Knievel",
+      "upload_date": "20211209",
+      "printer": "unknown (Logitech C270 webcam)",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "duration_s": 27520,
+      "url": "https://www.youtube.com/watch?v=zFX80aMaYFg",
+      "license": "Standard YouTube License (not redistributable); eval-only / internal experiment use only",
+      "split": "train"
+    },
+    {
+      "source_id": "LY3jlcO34f4",
+      "youtube_id": "LY3jlcO34f4",
+      "title": "3D Printing Live (real time not time lapse)",
+      "channel": "The Civilized Barbarian",
+      "upload_date": "20210109",
+      "printer": "unknown",
+      "resolution": "1280x720",
+      "fps": 30,
+      "duration_s": 4386,
+      "url": "https://www.youtube.com/watch?v=LY3jlcO34f4",
+      "license": "Standard YouTube License (not redistributable); eval-only / internal experiment use only",
+      "split": "eval_holdout"
+    },
+    {
+      "source_id": "zkJgLanCSUw",
+      "youtube_id": "zkJgLanCSUw",
+      "title": "Live 3d printed benchy in 30 minutes (full video)",
+      "channel": "Martinez Printing",
+      "upload_date": "20220220",
+      "printer": "unknown",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "duration_s": 2182,
+      "url": "https://www.youtube.com/watch?v=zkJgLanCSUw",
+      "license": "Standard YouTube License (not redistributable); eval-only / internal experiment use only",
+      "split": "eval_holdout"
+    }
+  ],
+  "licensing": "Standard YouTube License (not redistributable); eval-only / internal experiment use only",
+  "verification": {
+    "status": "pending_human_review",
+    "claim": "Frames are VLM-screened, not human-verified. A human pass via scripts/run_human_review.py must be completed before any release use.",
+    "excluded": [
+      "EnhYvvWLozE (mostly idle bed)",
+      "xbZC4e6LY48 (too dark/blurry)",
+      "Bl3ivR13SYs (VLM uncertain 48/48)"
+    ]
+  },
+  "manifest_path": "datasets/external/stage13-normal/manifest.json",
+  "manifest_sha256_entries": "e21a28b89a7a526d",
+  "intended_usage": "Training augmentation (normal class) for Experiment 3 and external-normal evaluation against the frozen TinyVision binary model."
+}

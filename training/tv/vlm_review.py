@@ -39,7 +39,7 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 REPO = Path(__file__).resolve().parents[2]
 EXT = REPO / "datasets" / "external" / "video-frames"
@@ -61,6 +61,12 @@ HIGH_VALUE_SOURCES = {"SP001", "NORMAL001", "UE003"}
 
 DECISIONS = {"normal", "failing", "uncertain"}
 FAILURE_TYPES = {"spaghetti", "stringing", "under_extrusion"}
+# Extended vocabulary used for environment-staged review sets (Trier defect
+# taxonomy). Not part of the Stage 12D defaults; enabled only via explicit
+# opt-in in the envdata driver.
+EXTENDED_FAILURE_TYPES = FAILURE_TYPES | {
+    "extrusion_error", "layer_shift", "bed_adhesion", "warping",
+}
 
 # Application-owned neutral prompt. Keep these semantics; do not inject
 # filename / source / label / metadata information into it.
@@ -81,6 +87,29 @@ REVIEW_PROMPT = (
     "Return only valid JSON with:\n"
     '{"decision": "normal | failing | uncertain", '
     '"failure_type": "spaghetti | stringing | under_extrusion | null", '
+    '"confidence": 0.0, '
+    '"visual_evidence": "brief description of visible evidence"}'
+)
+
+_FT_LINE = "\n".join(f"- {ft}" for ft in ("spaghetti", "stringing", "under_extrusion",
+                                          "extrusion_error", "layer_shift",
+                                          "bed_adhesion", "warping"))
+EXTENDED_REVIEW_PROMPT = (
+    "Review this 3D-printing footage for a TinyVision review proposal.\n"
+    "Classify the visible result as exactly one of:\n"
+    "- normal\n"
+    "- failing\n"
+    "- uncertain\n"
+    "If and only if the footage visibly shows a failure, optionally classify the "
+    "failure type as:\n"
+    + _FT_LINE +
+    "\n"
+    "Base the judgment only on what is visibly shown.\n"
+    "Do not infer information from filenames, source names, metadata, or previous labels.\n"
+    'Use "uncertain" when the visual evidence is insufficient.\n'
+    "Return only valid JSON with:\n"
+    '{"decision": "normal | failing | uncertain", '
+    '"failure_type": "<one of the listed failure types> | null", '
     '"confidence": 0.0, '
     '"visual_evidence": "brief description of visible evidence"}'
 )
@@ -230,6 +259,28 @@ def image_to_data_url(path: Path) -> str:
     return f"data:image/jpeg;base64,{b64}"
 
 
+def image_to_data_url_scaled(path: Path, max_side: int) -> str:
+    """Encode an image as a JPEG data URL, capping the longest side.
+
+    Used only to bound VLM input size for large evidence (contact sheets).
+    Optional; default evidence passes through `image_to_data_url` unchanged.
+    """
+    import io
+
+    from PIL import Image
+
+    im = Image.open(path).convert("RGB")
+    w, h = im.size
+    scale = min(1.0, max_side / max(w, h))
+    if scale < 1.0:
+        im = im.resize((max(1, int(w * scale)), max(1, int(h * scale))),
+                       Image.BILINEAR)
+    buf = io.BytesIO()
+    im.save(buf, format="JPEG", quality=88)
+    b64 = base64.b64encode(buf.getvalue()).decode("ascii")
+    return f"data:image/jpeg;base64,{b64}"
+
+
 # ---------------------------------------------------------------------------
 # Prompt / message building (neutral; identifies target vs context)
 # ---------------------------------------------------------------------------
@@ -327,7 +378,9 @@ def extract_json_object(text: str) -> dict:
     return obj
 
 
-def validate_response(obj: dict) -> tuple[str, str | None, float, str]:
+def validate_response(obj: dict,
+                      failure_types: frozenset[str] | None = None
+                      ) -> tuple[str, str | None, float, str]:
     """Validate a parsed model response into (decision, failure_type, confidence, evidence).
 
     Raises ResponseValidationError on any violation. failure_type is normalized
@@ -339,13 +392,14 @@ def validate_response(obj: dict) -> tuple[str, str | None, float, str]:
 
     raw_ft = obj.get("failure_type", None)
     failure_type: str | None
+    vocab = frozenset(failure_types or FAILURE_TYPES)
     if raw_ft is None:
         failure_type = None
     else:
         ft = str(raw_ft).strip().lower()
         if ft in ("null", "none", ""):
             failure_type = None
-        elif ft not in FAILURE_TYPES:
+        elif ft not in vocab:
             raise ResponseValidationError(f"invalid failure_type: {raw_ft!r}")
         else:
             failure_type = ft
@@ -371,9 +425,9 @@ def _now_iso() -> str:
 
 
 def _success_proposal(unit: ReviewUnit, model: str, endpoint: str, result: tuple,
-                      attempts: int) -> dict:
+                      attempts: int, extra: dict | None = None) -> dict:
     decision, failure_type, confidence, evidence = result
-    return {
+    proposal = {
         "review_unit_id": unit.review_unit_id,
         "source_id": unit.source_id,
         "unit_type": unit.unit_type,
@@ -387,10 +441,14 @@ def _success_proposal(unit: ReviewUnit, model: str, endpoint: str, result: tuple
         "attempts": attempts,
         "generated_at": _now_iso(),
     }
+    if extra:
+        proposal = {**extra, **proposal}
+    return proposal
 
 
 def _error_proposal(unit: ReviewUnit, model: str, endpoint: str,
-                    error_type: str, message: str, attempts: int) -> dict:
+                    error_type: str, message: str, attempts: int,
+                    extra: dict | None = None) -> dict:
     return {
         "review_unit_id": unit.review_unit_id,
         "source_id": unit.source_id,
@@ -403,19 +461,34 @@ def _error_proposal(unit: ReviewUnit, model: str, endpoint: str,
         "attempts": attempts,
         "generated_at": _now_iso(),
     }
+    if extra:
+        proposal = {**extra, **proposal}
+    return proposal
 
 
 def propose_unit(unit: ReviewUnit, endpoint: str = DEFAULT_ENDPOINT,
                  model: str = DEFAULT_MODEL, include_context: bool = True,
                  timeout: float = DEFAULT_TIMEOUT, retries: int = DEFAULT_RETRIES,
-                 dry_run: bool = False) -> dict:
+                 dry_run: bool = False, prompt: str = REVIEW_PROMPT,
+                 failure_types: frozenset[str] | None = None,
+                 evidence: Evidence | None = None,
+                 max_side: int = 0,
+                 extra: dict | None = None) -> dict:
     """Produce a proposal for one unit. Never writes to disk; never touches the
-    manifest or verified labels."""
-    try:
-        evidence = resolve_evidence(unit, include_context=include_context)
-    except MissingEvidenceError as e:
-        return _error_proposal(unit, model, endpoint, "missing_evidence",
-                               str(e), attempts=0)
+    manifest or verified labels.
+
+    `prompt`/`failure_types` let the envdata driver opt into the extended
+    vocabulary without changing Stage 12D defaults. `evidence` lets a driver
+    supply a pre-resolved Evidence (e.g. environment-staged contact sheets);
+    when omitted the Stage 12D resolver is used. `extra` carries driver-owned
+    identity fields (environment_id, recording_id, provenance) into the record.
+    """
+    if evidence is None:
+        try:
+            evidence = resolve_evidence(unit, include_context=include_context)
+        except MissingEvidenceError as e:
+            return _error_proposal(unit, model, endpoint, "missing_evidence",
+                                   str(e), attempts=0, extra=extra)
 
     if dry_run:
         return {
@@ -428,8 +501,14 @@ def propose_unit(unit: ReviewUnit, endpoint: str = DEFAULT_ENDPOINT,
             "status": "dry_run",
         }
 
-    data_urls = [image_to_data_url(evidence.primary)]
-    data_urls += [image_to_data_url(p) for p in evidence.context]
+    data_urls: list[str]
+    if max_side > 0:
+        data_urls = [image_to_data_url_scaled(evidence.primary, max_side)]
+        data_urls += [image_to_data_url_scaled(p, max_side)
+                      for p in evidence.context]
+    else:
+        data_urls = [image_to_data_url(evidence.primary)]
+        data_urls += [image_to_data_url(p) for p in evidence.context]
 
     last_error: RetryableApiError | None = None
     last_validation: ResponseValidationError | None = None
@@ -437,25 +516,27 @@ def propose_unit(unit: ReviewUnit, endpoint: str = DEFAULT_ENDPOINT,
     for attempt in range(retries + 1):
         attempts = attempt + 1
         try:
-            content = call_lmstudio(endpoint, model, REVIEW_PROMPT, data_urls,
+            content = call_lmstudio(endpoint, model, prompt, data_urls,
                                     timeout=timeout)
             obj = extract_json_object(content)
-            result = validate_response(obj)
+            result = validate_response(obj, failure_types=failure_types)
         except RetryableApiError as e:
             last_error = e
             continue
         except ResponseValidationError as e:
             last_validation = e
             continue
-        return _success_proposal(unit, model, endpoint, result, attempts)
+        return _success_proposal(unit, model, endpoint, result, attempts,
+                                 extra=extra)
 
     if last_error is not None:
         return _error_proposal(unit, model, endpoint, last_error.error_type,
-                               str(last_error), attempts)
+                               str(last_error), attempts, extra=extra)
     if last_validation is not None:
         return _error_proposal(unit, model, endpoint, "validation",
-                               str(last_validation), attempts)
-    return _error_proposal(unit, model, endpoint, "unknown", "unknown failure", attempts)
+                               str(last_validation), attempts, extra=extra)
+    return _error_proposal(unit, model, endpoint, "unknown", "unknown failure",
+                           attempts, extra=extra)
 
 
 # ---------------------------------------------------------------------------
@@ -501,10 +582,18 @@ def write_proposals(store: dict, path: Path = PROPOSALS_OUT) -> Path:
 def run_review(units: list[ReviewUnit], endpoint: str = DEFAULT_ENDPOINT,
                model: str = DEFAULT_MODEL, include_context: bool = True,
                timeout: float = DEFAULT_TIMEOUT, retries: int = DEFAULT_RETRIES,
-               dry_run: bool = False, output: Path = PROPOSALS_OUT) -> dict:
+               dry_run: bool = False, output: Path = PROPOSALS_OUT,
+               prompt: str = REVIEW_PROMPT,
+               failure_types: frozenset[str] | None = None,
+               max_side: int = 0,
+               build_extra: Callable[[ReviewUnit], dict | None] | None = None) -> dict:
     """Run the review for selected units and write the upserted proposal store."""
-    proposals = [propose_unit(u, endpoint, model, include_context, timeout,
-                              retries, dry_run) for u in units]
+    proposals = [
+        propose_unit(u, endpoint, model, include_context, timeout, retries,
+                     dry_run, prompt, failure_types, max_side=max_side,
+                     extra=build_extra(u) if build_extra else None)
+        for u in units
+    ]
     if dry_run:
         return {"dry_run": proposals}
     store = load_proposals(output)

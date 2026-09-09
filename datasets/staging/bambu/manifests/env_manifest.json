@@ -1,0 +1,2132 @@
+{
+  "dataset": {
+    "acquisition_method": "community_dataset",
+    "dataset_id": "bambu-timelapse-v1",
+    "evaluation_allowed": true,
+    "license": "CC BY 4.0",
+    "license_url": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset",
+    "name": "Bambu Timelapse Dataset",
+    "notes": "Timelapses are skimmed (a few encoded frames per print) and are unsuitable for ~1fps per-environment training; full-length videos (Borillion, 135 recordings) are real-time continuous footage.",
+    "provenance": "Community-contributed timelapse/video footage from Bambu Lab printers; split into train/timelapses and train/videos.",
+    "redistribution_allowed": true,
+    "retrieval_date": "2026-09-07",
+    "training_allowed": true,
+    "url": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset"
+  },
+  "environments": [
+    {
+      "background_notes": null,
+      "camera": {
+        "description": "built-in Bambu Lab printer chamber camera",
+        "identity": "bambu-pnp-ipcam"
+      },
+      "contributor": "Borillion",
+      "environment_group": null,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "environment_key": "env_bambu_borillion_bonnp-ipcam_inside_chamber",
+      "lighting_notes": null,
+      "metadata": {
+        "failure_type": null,
+        "full_length_videos": 135,
+        "normal_available": true,
+        "timelapse_sequences": 87,
+        "timelapse_total_duration_s": 874.361511111111
+      },
+      "notes": null,
+      "printer": {},
+      "source_dataset": "bambu-timelapse-v1",
+      "split_assignment": "train",
+      "view": "inside_chamber"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "description": "built-in Bambu Lab printer chamber camera",
+        "identity": "bambu-pnp-ipcam"
+      },
+      "contributor": "Similar-Ad-1223",
+      "environment_group": null,
+      "environment_id": "env-806599460f5356768fd2538cb50b6a48",
+      "environment_key": "env_bambu_similar-ad-1223_bonnp-ipcam_inside_chamber",
+      "lighting_notes": null,
+      "metadata": {
+        "failure_type": null,
+        "full_length_videos": 0,
+        "normal_available": true,
+        "timelapse_sequences": 198,
+        "timelapse_total_duration_s": 1886.4293222222225
+      },
+      "notes": "timelapse-only contributor: candidate_only (unassigned). Do not promote timelapse footage to training without reassessment (temporal gaps, frame-rate illusions).",
+      "printer": {},
+      "source_dataset": "bambu-timelapse-v1",
+      "split_assignment": null,
+      "view": "inside_chamber"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "description": "built-in Bambu Lab printer chamber camera",
+        "identity": "bambu-pnp-ipcam"
+      },
+      "contributor": "v2thegreat",
+      "environment_group": null,
+      "environment_id": "env-9ef94007115c54e2a1ec22323aae90c8",
+      "environment_key": "env_bambu_v2thegreat_bonnp-ipcam_inside_chamber",
+      "lighting_notes": null,
+      "metadata": {
+        "failure_type": null,
+        "full_length_videos": 0,
+        "normal_available": true,
+        "timelapse_sequences": 120,
+        "timelapse_total_duration_s": 1287.0333333333335
+      },
+      "notes": "timelapse-only contributor: candidate_only (unassigned). Do not promote timelapse footage to training without reassessment (temporal gaps, frame-rate illusions).",
+      "printer": {},
+      "source_dataset": "bambu-timelapse-v1",
+      "split_assignment": null,
+      "view": "inside_chamber"
+    }
+  ],
+  "license_consents": [
+    {
+      "attribution": "CC BY 4.0 via the Bambu Timelapse Dataset",
+      "consent_date": "2025-04-17",
+      "contributor": "contributors (v2thegreat, Similar-Ad-1223, Borillion)",
+      "evaluation_allowed": true,
+      "notes": "Rights come from the dataset CC BY 4.0 license; contributors are anonymized login names.",
+      "preferred_credit": null,
+      "redistribution_allowed": true,
+      "training_allowed": true,
+      "verification": "dataset_license"
+    }
+  ],
+  "recordings": [
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.388,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.958,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7621
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-09-27.82.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-09-27.82.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.774,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.847,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7634
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-00-55.80.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-00-55.80.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.266,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.93,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7640
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-48-33.63.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-48-33.63.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 252.038,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.904,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7537
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-32-06.9.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-32-06.9.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 252.04,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.884,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7532
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-11-34.26.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-11-34.26.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.029,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.863,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7586
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-19-16.42.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-19-16.42.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.24,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.901,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7602
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-06-33.39.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-06-33.39.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.064,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.977,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7586
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-15-02.41.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-15-02.41.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.822,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.978,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7639
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-58-02.37.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-58-02.37.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.199,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.926,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7637
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-30-13.101.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-30-13.101.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.177,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.983,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7591
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_23-10-12.18.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_23-10-12.18.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.035,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.968,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7613
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-24-15.29.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-24-15.29.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.16,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.848,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7616
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-40-31.47.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-40-31.47.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.154,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.915,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7603
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-02-18.38.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-02-18.38.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.1,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.992,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7591
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-35-48.60.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-35-48.60.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.619,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.978,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7633
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-48-11.77.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-48-11.77.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.066,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.965,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7583
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-49-03.49.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-49-03.49.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.732,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.894,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7615
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-10-19.54.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-10-19.54.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.996,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.969,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7612
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-55-11.121.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-55-11.121.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.698,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.981,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7636
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-40-02.61.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-40-02.61.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.229,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.969,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7589
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-48-59.13.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-48-59.13.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.908,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.928,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7599
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-08-59.96.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-08-59.96.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.997,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.922,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7660
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_23-18-42.20.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_23-18-42.20.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.808,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.999,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7614
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-01-47.52.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-01-47.52.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.384,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.967,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7653
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-12-14.125.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-12-14.125.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.127,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.981,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7649
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-52-49.64.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-52-49.64.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 252.899,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.008,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7589
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_21-23-31.3.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_21-23-31.3.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 122.845,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.989,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 3684
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_21-27-45.4.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_21-27-45.4.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.57,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.898,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7641
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-23-31.43.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-23-31.43.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.545,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.975,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7630
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-29-17.129.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-29-17.129.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.636,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.929,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7591
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-57-28.15.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-57-28.15.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.767,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.004,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7644
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-42-05.132.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-42-05.132.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.634,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.992,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7607
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-25-58.100.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-25-58.100.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 66.925,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.974,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 2006
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-50-37.134.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-50-37.134.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.97,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.992,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7617
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-43-30.90.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-43-30.90.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.367,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.004,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7662
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_23-22-59.21.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_23-22-59.21.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.307,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.991,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7627
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-33-54.116.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-33-54.116.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.129,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.004,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7625
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-31-10.73.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-31-10.73.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.199,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.98,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7651
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-09-52.68.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-09-52.68.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 252.602,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.992,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7576
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-44-45.12.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-44-45.12.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.615,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.959,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7628
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-56-41.79.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-56-41.79.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.732,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.992,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7610
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-29-40.115.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-29-40.115.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.391,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.981,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7627
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-21-43.99.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-21-43.99.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.083,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.769,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7534
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-27-52.8.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-27-52.8.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.475,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.991,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7632
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-14-08.69.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-14-08.69.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.108,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.999,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7623
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-00-29.94.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-00-29.94.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.098,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.922,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7603
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-34-28.102.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-34-28.102.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 252.372,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.861,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7536
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-36-19.10.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-36-19.10.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.874,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.932,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7599
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-53-17.50.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-53-17.50.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 251.907,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.928,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7539
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-32-42.31.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-32-42.31.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.759,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.918,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7622
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-18-23.70.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-18-23.70.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.81,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.912,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7592
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-56-14.93.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-56-14.93.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.671,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.932,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7593
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-39-40.75.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-39-40.75.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.4,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7602
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-50-57.120.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-50-57.120.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.101,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.874,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7621
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-22-13.85.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-22-13.85.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.17,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.885,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7596
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-25-25.114.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-25-25.114.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.431,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.969,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7625
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-59-55.108.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-59-55.108.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.38,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.002,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7602
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-10-48.40.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-10-48.40.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.287,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.923,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7609
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-17-58.84.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-17-58.84.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.367,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.926,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7642
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-33-33.130.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-33-33.130.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.657,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.97,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7632
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-30-44.87.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-30-44.87.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 256.797,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.872,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7671
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-03-42.123.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-03-42.123.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.788,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.994,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7612
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-31-32.59.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-31-32.59.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.584,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.759,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7606
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-19-22.6.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-19-22.6.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.063,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.993,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7590
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-14-34.55.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-14-34.55.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.794,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.672,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7590
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_21-15-00.1.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_21-15-00.1.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 103.161,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.953,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 3090
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_23-27-15.22.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_23-27-15.22.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.798,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.004,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7645
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-25-02.128.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-25-02.128.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.401,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.992,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7600
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-27-47.44.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-27-47.44.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.946,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.951,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7636
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_20-55-01.23.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_20-55-01.23.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 251.764,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.004,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7554
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-36-54.32.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-36-54.32.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.293,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.949,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7586
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-04-10.109.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-04-10.109.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.392,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.887,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7603
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-08-25.110.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-08-25.110.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.301,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.968,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7621
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_23-05-57.17.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_23-05-57.17.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.229,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.993,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7595
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-42-57.104.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-42-57.104.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.228,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.961,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7617
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-52-26.78.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-52-26.78.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 256.296,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.958,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7678
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-57-04.65.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-57-04.65.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.2,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.988,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7623
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-13-42.83.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-13-42.83.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.599,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.906,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7614
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_23-14-26.19.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_23-14-26.19.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.36,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.878,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7570
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_20-59-17.24.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_20-59-17.24.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.41,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.877,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7601
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-15-47.27.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-15-47.27.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.963,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.918,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7598
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-52-00.92.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-52-00.92.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.996,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.91,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7627
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-46-41.119.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-46-41.119.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.881,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.998,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7646
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-44-47.48.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-44-47.48.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.197,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.981,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7621
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-38-10.117.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-38-10.117.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.064,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.898,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7596
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-53-12.14.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-53-12.14.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.482,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.998,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7634
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-07-59.124.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-07-59.124.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 150.877,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.932,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 4516
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-16-22.5.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-16-22.5.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.866,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.827,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7572
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_21-19-16.2.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_21-19-16.2.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.609,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.948,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7595
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-32-01.45.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-32-01.45.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.964,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.941,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7604
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-05-37.67.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-05-37.67.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 252.368,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.897,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7545
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-40-32.11.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-40-32.11.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.389,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.935,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7645
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-22-39.71.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-22-39.71.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.735,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.98,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7607
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-18-48.56.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-18-48.56.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.338,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.944,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7586
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-21-11.113.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-21-11.113.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.41,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.979,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7627
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-59-26.122.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-59-26.122.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.817,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.939,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7629
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-42-25.118.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-42-25.118.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.238,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.893,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7600
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-43-55.76.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-43-55.76.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.933,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.875,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7616
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-26-55.72.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-26-55.72.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.977,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.007,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7651
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-12-39.111.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-12-39.111.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.039,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.991,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7589
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-53-48.36.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-53-48.36.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.663,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.926,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7621
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_03-16-55.112.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_03-16-55.112.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 0.0,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": null,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 0
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-03-31.25.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/Borillion/ipcam-record.2025-01-16_21-03-31.25.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.031,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.91,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7628
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-51-25.106.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-51-25.106.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.248,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.943,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7613
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-01-22.66.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-01-22.66.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 252.3,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.988,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7566
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-41-07.33.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-41-07.33.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.277,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.893,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7631
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-39-14.89.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-39-14.89.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.771,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.897,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7587
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-27-18.58.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-27-18.58.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.806,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.928,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7596
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_00-35-26.74.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_00-35-26.74.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.798,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.957,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7603
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-04-44.95.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-04-44.95.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.739,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.968,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7604
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-35-00.88.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-35-00.88.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.63,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.899,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7643
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-37-49.131.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-37-49.131.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 256.34,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.909,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7667
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-20-44.127.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-20-44.127.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 252.942,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.967,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7580
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-16-30.126.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-16-30.126.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 251.304,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7539
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-20-03.28.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-20-03.28.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.266,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.988,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7625
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-26-29.86.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-26-29.86.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.364,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.933,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7584
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-45-20.34.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-45-20.34.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.877,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.751,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7553
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_22-23-38.7.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_22-23-38.7.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.732,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.898,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7616
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-36-16.46.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-36-16.46.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.798,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.957,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7603
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-13-14.97.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-13-14.97.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.347,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.896,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7604
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-49-34.35.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-49-34.35.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.365,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.996,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7630
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-05-12.81.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-05-12.81.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 251.933,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.956,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7547
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_21-28-29.30.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_21-28-29.30.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 255.308,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.936,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7643
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-23-02.57.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-23-02.57.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.734,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.961,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7632
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-06-03.53.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-06-03.53.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 256.131,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.989,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7681
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_04-46-20.133.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_04-46-20.133.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.73,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.004,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7613
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_23-01-42.16.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_23-01-42.16.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.11,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.991,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7591
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-55-41.107.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-55-41.107.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.653,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.845,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7600
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-12_21-10-44.0.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-12_21-10-44.0.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.998,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 30.004,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7621
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-17-28.98.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-17-28.98.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 252.79,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.997,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7583
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-38-43.103.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-38-43.103.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.611,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.995,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7607
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_01-47-45.91.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_01-47-45.91.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.265,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.969,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7590
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-17_02-47-10.105.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-17_02-47-10.105.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 253.77,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.98,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7608
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_22-57-33.51.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_22-57-33.51.mp4",
+      "temporal_note": null,
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 254.798,
+      "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+      "fps": 29.945,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "n_frames": 7630
+      },
+      "recording_id": "bambu-video-ipcam-record.2025-01-16_23-44-18.62.mp4",
+      "source": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset/resolve/main/train/videos/Borillion/ipcam-record.2025-01-16_23-44-18.62.mp4",
+      "temporal_note": null,
+      "width": null
+    }
+  ],
+  "schema": "tinyvision-env-manifest",
+  "schema_version": 1
+}

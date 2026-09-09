@@ -1,0 +1,24 @@
+{
+  "background_notes": null,
+  "camera": {
+    "description": "built-in Bambu Lab printer chamber camera",
+    "identity": "bambu-pnp-ipcam"
+  },
+  "contributor": "Borillion",
+  "environment_group": null,
+  "environment_id": "env-fb94387069a252cd98565678b4810c9d",
+  "environment_key": "env_bambu_borillion_bonnp-ipcam_inside_chamber",
+  "lighting_notes": null,
+  "metadata": {
+    "failure_type": null,
+    "full_length_videos": 135,
+    "normal_available": true,
+    "timelapse_sequences": 87,
+    "timelapse_total_duration_s": 874.361511111111
+  },
+  "notes": null,
+  "printer": {},
+  "source_dataset": "bambu-timelapse-v1",
+  "split_assignment": "train",
+  "view": "inside_chamber"
+}

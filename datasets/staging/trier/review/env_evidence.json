@@ -1,0 +1,1026 @@
+{
+  "schema": "tinyvision-env-vlm-evidence",
+  "min_confidence_floor": 0.7,
+  "n_environments": 24,
+  "n_proposals": 2931,
+  "environments": {
+    "9f54bd7f-74e8-5a38-9ece-f23a6ded1405": {
+      "environment_id": "9f54bd7f-74e8-5a38-9ece-f23a6ded1405",
+      "environment_key": "env_trier_trier-team_camera1_camera1-no_stringing_error-additional_defect_data",
+      "environment_group": "no_stringing_error",
+      "intended_failure_type": "none",
+      "intended_failure": false,
+      "split": "train",
+      "n_units": 111,
+      "n_sequence_units": 111,
+      "n_reviewed_sequence_units": 111,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 111,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-additional_defect_data-no_stringing_error-camera1__seq000",
+          "decision": "normal",
+          "confidence": 0.95,
+          "visual_evidence": "The 3D printer is steadily extruding red filament in a layered pattern, with consistent layer height and geometry. No visible defects such as stringing, under-extrusion, warping, or bed adhesion issues are present across the time-lapse frames.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-additional_defect_data-no_stringing_error-camera1__seq000.jpg"
+        }
+      ]
+    },
+    "35fddd7e-25ab-543f-98a5-806195655823": {
+      "environment_id": "35fddd7e-25ab-543f-98a5-806195655823",
+      "environment_key": "env_trier_trier-team_camera2_camera2-no_stringing_error-additional_defect_data",
+      "environment_group": "no_stringing_error",
+      "intended_failure_type": "none",
+      "intended_failure": false,
+      "split": "train",
+      "n_units": 113,
+      "n_sequence_units": 111,
+      "n_reviewed_sequence_units": 111,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 111,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-additional_defect_data-no_stringing_error-camera2__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is steadily building a red object with clean, well-defined layers. The nozzle moves precisely, and there are no visible signs of stringing, under-extrusion, warping, or bed adhesion issues. The print appears to be progressing normally.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-additional_defect_data-no_stringing_error-camera2__seq000.jpg"
+        }
+      ]
+    },
+    "007b8e86-bcc2-554a-8bdc-0e5a1213d4ff": {
+      "environment_id": "007b8e86-bcc2-554a-8bdc-0e5a1213d4ff",
+      "environment_key": "env_trier_trier-team_camera3_camera3-no_stringing_error-additional_defect_data",
+      "environment_group": "no_stringing_error",
+      "intended_failure_type": "none",
+      "intended_failure": false,
+      "split": "train",
+      "n_units": 120,
+      "n_sequence_units": 110,
+      "n_reviewed_sequence_units": 110,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 110,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-additional_defect_data-no_stringing_error-camera3__seq000",
+          "decision": "normal",
+          "confidence": 0.98,
+          "visual_evidence": "The 3D printer is steadily building a multi-column structure with consistent layer height and good adhesion to the print bed. No visible defects such as stringing, under-extrusion, warping, or layer shifting are present in any frame.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-additional_defect_data-no_stringing_error-camera3__seq000.jpg"
+        }
+      ]
+    },
+    "a84e7cf8-ed0b-55bf-8c78-6f2bbf618ac1": {
+      "environment_id": "a84e7cf8-ed0b-55bf-8c78-6f2bbf618ac1",
+      "environment_key": "env_trier_trier-team_camera1_camera1-stringing_error-additional_defect_data",
+      "environment_group": "stringing_error",
+      "intended_failure_type": "stringing",
+      "intended_failure": true,
+      "split": "train",
+      "n_units": 116,
+      "n_sequence_units": 111,
+      "n_reviewed_sequence_units": 111,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 111,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-additional_defect_data-stringing_error-camera1__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is steadily extruding red filament layer by layer on a black print bed. The structure appears to be forming as expected with consistent layer height and no visible signs of defects such as stringing, under-extrusion, or warping. The nozzle moves smoothly and maintains good bed adhesion.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-additional_defect_data-stringing_error-camera1__seq000.jpg"
+        }
+      ]
+    },
+    "0cae4282-3be6-5e56-9621-b4224421d30b": {
+      "environment_id": "0cae4282-3be6-5e56-9621-b4224421d30b",
+      "environment_key": "env_trier_trier-team_camera2_camera2-stringing_error-additional_defect_data",
+      "environment_group": "stringing_error",
+      "intended_failure_type": "stringing",
+      "intended_failure": true,
+      "split": "train",
+      "n_units": 112,
+      "n_sequence_units": 111,
+      "n_reviewed_sequence_units": 111,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 111,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-additional_defect_data-stringing_error-camera2__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is steadily building a red object with consistent layering and good bed adhesion throughout the timeline. No visible signs of stringing, under-extrusion, warping, or layer shift are present.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-additional_defect_data-stringing_error-camera2__seq000.jpg"
+        }
+      ]
+    },
+    "db13b600-f17f-514f-9a66-8d6347be3bc1": {
+      "environment_id": "db13b600-f17f-514f-9a66-8d6347be3bc1",
+      "environment_key": "env_trier_trier-team_camera3_camera3-stringing_error-additional_defect_data",
+      "environment_group": "stringing_error",
+      "intended_failure_type": "stringing",
+      "intended_failure": true,
+      "split": "train",
+      "n_units": 111,
+      "n_sequence_units": 111,
+      "n_reviewed_sequence_units": 111,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 111,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-additional_defect_data-stringing_error-camera3__seq000",
+          "decision": "normal",
+          "confidence": 0.98,
+          "visual_evidence": "The 3D printer is steadily extruding red filament layer by layer, forming a consistent, solid structure. No signs of stringing, under-extrusion, warping, or bed adhesion issues are visible across the frames.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-additional_defect_data-stringing_error-camera3__seq000.jpg"
+        }
+      ]
+    },
+    "27d94c09-4b51-52b0-a516-1370a5957421": {
+      "environment_id": "27d94c09-4b51-52b0-a516-1370a5957421",
+      "environment_key": "env_trier_trier-team_camera1_camera1-extrusion_error_print-base",
+      "environment_group": "extrusion_error_print",
+      "intended_failure_type": "extrusion_error",
+      "intended_failure": true,
+      "split": "train",
+      "n_units": 110,
+      "n_sequence_units": 107,
+      "n_reviewed_sequence_units": 107,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 34,
+      "vlm_failing": 73,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.682,
+      "failing_confidence": {
+        "mean": 0.95,
+        "min": 0.95,
+        "max": 0.95,
+        "count": 73
+      },
+      "failure_type_histogram": {
+        "stringing": 24,
+        "spaghetti": 49
+      },
+      "missing_type_hits": [
+        "spaghetti"
+      ],
+      "representative_failing": [
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera1__seq016",
+          "decision": "failing",
+          "failure_type": "stringing",
+          "confidence": 0.95,
+          "visual_evidence": "The print exhibits visible stringing, where thin strands of molten filament extend from the nozzle to the printed object or air between layers, especially noticeable in the lower half of the print bed where the nozzle is moving between points.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera1__seq016.jpg"
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera1__seq017",
+          "decision": "failing",
+          "failure_type": "stringing",
+          "confidence": 0.95,
+          "visual_evidence": "The 3D printer is extruding excess filament in thin, stringy filaments between print features, especially visible in the lower portion of the print, which is characteristic of stringing.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera1__seq017.jpg"
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera1__seq018",
+          "decision": "failing",
+          "failure_type": "stringing",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object has visible thin strands of red filament extending from the nozzle to the printed surface, characteristic of stringing during 3D printing.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera1__seq018.jpg"
+        }
+      ],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera1__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is steadily extruding material layer by layer on a flat build plate. The print bed adhesion appears good, with no visible lifting, warping, or detachment. The extrusion is consistent and the nozzle is moving as expected without signs of stringing, under-extrusion, or other defects.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera1__seq000.jpg"
+        }
+      ]
+    },
+    "d7525f7d-6238-584e-8f62-4e751bb8777d": {
+      "environment_id": "d7525f7d-6238-584e-8f62-4e751bb8777d",
+      "environment_key": "env_trier_trier-team_camera2_camera2-extrusion_error_print-base",
+      "environment_group": "extrusion_error_print",
+      "intended_failure_type": "extrusion_error",
+      "intended_failure": true,
+      "split": "train",
+      "n_units": 112,
+      "n_sequence_units": 109,
+      "n_reviewed_sequence_units": 109,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 89,
+      "vlm_failing": 20,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.183,
+      "failing_confidence": {
+        "mean": 0.95,
+        "min": 0.95,
+        "max": 0.95,
+        "count": 20
+      },
+      "failure_type_histogram": {
+        "spaghetti": 19,
+        "stringing": 1
+      },
+      "missing_type_hits": [
+        "spaghetti"
+      ],
+      "representative_failing": [
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera2__seq044",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object exhibits significant stringing and blobbing, with excess filament extruding between layers and forming a 'spaghetti-like' texture, especially visible on the top surface and edges of the print.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera2__seq044.jpg"
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera2__seq078",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object exhibits stringy, tangled extrusions, particularly around the top and sides, indicative of 'spaghetti' failure where molten filament oozes and strings between print points.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera2__seq078.jpg"
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera2__seq079",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object shows excessive stringy, tangled material connecting layers and extending outward, characteristic of spaghetti failure in 3D printing.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera2__seq079.jpg"
+        }
+      ],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera2__seq000",
+          "decision": "normal",
+          "confidence": 0.98,
+          "visual_evidence": "The 3D print is progressing steadily with clean layer transitions, no visible stringing, no warping, and good bed adhesion. The print maintains its shape and position throughout the frames.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera2__seq000.jpg"
+        }
+      ]
+    },
+    "7cf37592-ce09-5da9-99f4-fed93be240d6": {
+      "environment_id": "7cf37592-ce09-5da9-99f4-fed93be240d6",
+      "environment_key": "env_trier_trier-team_camera3_camera3-extrusion_error_print-base",
+      "environment_group": "extrusion_error_print",
+      "intended_failure_type": "extrusion_error",
+      "intended_failure": true,
+      "split": "train",
+      "n_units": 113,
+      "n_sequence_units": 107,
+      "n_reviewed_sequence_units": 107,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 87,
+      "vlm_failing": 20,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.187,
+      "failing_confidence": {
+        "mean": 0.95,
+        "min": 0.95,
+        "max": 0.95,
+        "count": 20
+      },
+      "failure_type_histogram": {
+        "stringing": 12,
+        "spaghetti": 7,
+        "bed_adhesion": 1
+      },
+      "missing_type_hits": [
+        "bed_adhesion",
+        "spaghetti"
+      ],
+      "representative_failing": [
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera3__seq010",
+          "decision": "failing",
+          "failure_type": "stringing",
+          "confidence": 0.95,
+          "visual_evidence": "Multiple thin, stringy filaments are visibly extruding from the print head and connecting to the printed object or hanging loosely, which is characteristic of stringing during 3D printing.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera3__seq010.jpg"
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera3__seq028",
+          "decision": "failing",
+          "failure_type": "stringing",
+          "confidence": 0.95,
+          "visual_evidence": "The print shows multiple thin, stringy filaments extending from the print head to the print bed and between features, especially visible in the later frames. This is characteristic of stringing during 3D printing.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera3__seq028.jpg"
+        },
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera3__seq033",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object exhibits stringy, messy, and poorly defined structures, characteristic of spaghetti failure, where filament extrudes in unwanted strands between print points.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera3__seq033.jpg"
+        }
+      ],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-base-extrusion_error_print-camera3__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D print shows a solid, well-defined cube with clean layer transitions and no visible defects such as stringing, under_extrusion, or warping. The print remains adhered to the bed throughout the sequence.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-extrusion_error_print-camera3__seq000.jpg"
+        }
+      ]
+    },
+    "672404f4-6ddd-5ec8-bde8-2045ee4bb403": {
+      "environment_id": "672404f4-6ddd-5ec8-bde8-2045ee4bb403",
+      "environment_key": "env_trier_trier-team_camera1_camera1-layershift_error_print-base",
+      "environment_group": "layershift_error_print",
+      "intended_failure_type": "layer_shift",
+      "intended_failure": true,
+      "split": "train",
+      "n_units": 107,
+      "n_sequence_units": 102,
+      "n_reviewed_sequence_units": 102,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 102,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-base-layershift_error_print-camera1__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The print appears to be progressing steadily with consistent layer formation and good bed adhesion throughout the visible time frames. No visible signs of stringing, under-extrusion, warping, or other defects are present.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-layershift_error_print-camera1__seq000.jpg"
+        }
+      ]
+    },
+    "8e551d29-9c67-5a4b-82d9-f041c2c511c2": {
+      "environment_id": "8e551d29-9c67-5a4b-82d9-f041c2c511c2",
+      "environment_key": "env_trier_trier-team_camera2_camera2-layershift_error_print-base",
+      "environment_group": "layershift_error_print",
+      "intended_failure_type": "layer_shift",
+      "intended_failure": true,
+      "split": "train",
+      "n_units": 106,
+      "n_sequence_units": 102,
+      "n_reviewed_sequence_units": 102,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 102,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-base-layershift_error_print-camera2__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is steadily extruding material layer by layer on a flat, well-adhered build plate. The print appears solid and progressing without visible defects such as stringing, sagging, or warping. The nozzle moves smoothly without signs of clogging or misalignment.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-layershift_error_print-camera2__seq000.jpg"
+        }
+      ]
+    },
+    "1fba723b-ecc3-5a22-9745-5255338255ca": {
+      "environment_id": "1fba723b-ecc3-5a22-9745-5255338255ca",
+      "environment_key": "env_trier_trier-team_camera3_camera3-layershift_error_print-base",
+      "environment_group": "layershift_error_print",
+      "intended_failure_type": "layer_shift",
+      "intended_failure": true,
+      "split": "train",
+      "n_units": 105,
+      "n_sequence_units": 102,
+      "n_reviewed_sequence_units": 102,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 102,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-base-layershift_error_print-camera3__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is steadily extruding material in a controlled, layer-by-layer manner. The printed object appears to be forming with consistent geometry and no visible signs of defects such as stringing, under-extrusion, warping, or layer shifting. The print bed adhesion appears stable, and the extrusion is progressing without interruption or anomaly.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-layershift_error_print-camera3__seq000.jpg"
+        }
+      ]
+    },
+    "2afbc389-a14f-50fd-868a-03024fcb7cdf": {
+      "environment_id": "2afbc389-a14f-50fd-868a-03024fcb7cdf",
+      "environment_key": "env_trier_trier-team_camera1_camera1-no_error_print-base",
+      "environment_group": "no_error_print",
+      "intended_failure_type": "none",
+      "intended_failure": false,
+      "split": "train",
+      "n_units": 194,
+      "n_sequence_units": 193,
+      "n_reviewed_sequence_units": 193,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 193,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-base-no_error_print-camera1__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is steadily extruding material layer by layer, with consistent flow and adhesion to the build plate. No visible signs of stringing, under-extrusion, warping, or other defects are present across the time-lapse frames.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-no_error_print-camera1__seq000.jpg"
+        }
+      ]
+    },
+    "30555150-b4e9-5d58-b3e5-5af2931b9dca": {
+      "environment_id": "30555150-b4e9-5d58-b3e5-5af2931b9dca",
+      "environment_key": "env_trier_trier-team_camera2_camera2-no_error_print-base",
+      "environment_group": "no_error_print",
+      "intended_failure_type": "none",
+      "intended_failure": false,
+      "split": "train",
+      "n_units": 191,
+      "n_sequence_units": 191,
+      "n_reviewed_sequence_units": 191,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 190,
+      "vlm_failing": 1,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.005,
+      "failing_confidence": {
+        "mean": 0.95,
+        "min": 0.95,
+        "max": 0.95,
+        "count": 1
+      },
+      "failure_type_histogram": {
+        "spaghetti": 1
+      },
+      "missing_type_hits": [
+        "spaghetti"
+      ],
+      "representative_failing": [
+        {
+          "review_unit_id": "trier-base-no_error_print-camera2__seq041",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object exhibits stringy, tangled, and poorly defined structures, characteristic of spaghetti failure, where excess filament is extruded in unwanted strands between layers or across the print bed.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-no_error_print-camera2__seq041.jpg"
+        }
+      ],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-base-no_error_print-camera2__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is steadily extruding material layer by layer on a flat, well-adhered build plate. The print surface appears smooth and continuous across all frames, with no visible signs of stringing, warping, under-extrusion, or layer shifting. The print is progressing normally without any defects.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-no_error_print-camera2__seq000.jpg"
+        }
+      ]
+    },
+    "ad485c07-1ede-5a02-9678-cd41c0091b5d": {
+      "environment_id": "ad485c07-1ede-5a02-9678-cd41c0091b5d",
+      "environment_key": "env_trier_trier-team_camera3_camera3-no_error_print-base",
+      "environment_group": "no_error_print",
+      "intended_failure_type": "none",
+      "intended_failure": false,
+      "split": "train",
+      "n_units": 200,
+      "n_sequence_units": 193,
+      "n_reviewed_sequence_units": 193,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 193,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-base-no_error_print-camera3__seq000",
+          "decision": "normal",
+          "confidence": 0.98,
+          "visual_evidence": "The 3D printer is steadily extruding material in a controlled, layer-by-layer manner across the build plate. The print bed remains stable, and there are no visible signs of stringing, warping, layer shifting, or poor bed adhesion. The extrusion appears consistent and follows the intended path without defects.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-base-no_error_print-camera3__seq000.jpg"
+        }
+      ]
+    },
+    "beb24c82-7008-5125-a6d9-c577a38efc3f": {
+      "environment_id": "beb24c82-7008-5125-a6d9-c577a38efc3f",
+      "environment_key": "env_trier_trier-team_camera1_camera1-extrusion_error_print-test",
+      "environment_group": "extrusion_error_print",
+      "intended_failure_type": "extrusion_error",
+      "intended_failure": true,
+      "split": "external_holdout",
+      "n_units": 119,
+      "n_sequence_units": 119,
+      "n_reviewed_sequence_units": 119,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 96,
+      "vlm_failing": 23,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.193,
+      "failing_confidence": {
+        "mean": 0.95,
+        "min": 0.95,
+        "max": 0.95,
+        "count": 23
+      },
+      "failure_type_histogram": {
+        "spaghetti": 15,
+        "stringing": 8
+      },
+      "missing_type_hits": [
+        "spaghetti"
+      ],
+      "representative_failing": [
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera1__seq089",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The 3D-printed object exhibits significant stringing and stringy, poorly bonded material resembling spaghetti strands, especially visible on the overhangs and between layers, indicating a failure in print quality.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-extrusion_error_print-camera1__seq089.jpg"
+        },
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera1__seq091",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object shows numerous stringy, fused strands of red filament extending from the print head and connecting to the print surface, characteristic of spaghetti failure. The print surface is also covered in extruded filament blobs, indicating poor layer separation and excessive stringing.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-extrusion_error_print-camera1__seq091.jpg"
+        },
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera1__seq094",
+          "decision": "failing",
+          "failure_type": "stringing",
+          "confidence": 0.95,
+          "visual_evidence": "The 3D print exhibits excessive stringing, with long, thin strands of molten plastic extending from the print head to the printed object and between layers, indicating a failure in print control.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-extrusion_error_print-camera1__seq094.jpg"
+        }
+      ],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera1__seq000",
+          "decision": "normal",
+          "confidence": 0.98,
+          "visual_evidence": "The 3D printer is actively printing with consistent extrusion and layer deposition. No visible signs of stringing, under-extrusion, warping, or bed adhesion issues are present across the time-lapse frames.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-extrusion_error_print-camera1__seq000.jpg"
+        }
+      ]
+    },
+    "f0161e26-1850-5538-8547-abdee42434e4": {
+      "environment_id": "f0161e26-1850-5538-8547-abdee42434e4",
+      "environment_key": "env_trier_trier-team_camera2_camera2-extrusion_error_print-test",
+      "environment_group": "extrusion_error_print",
+      "intended_failure_type": "extrusion_error",
+      "intended_failure": true,
+      "split": "external_holdout",
+      "n_units": 116,
+      "n_sequence_units": 116,
+      "n_reviewed_sequence_units": 116,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 109,
+      "vlm_failing": 7,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.06,
+      "failing_confidence": {
+        "mean": 0.95,
+        "min": 0.95,
+        "max": 0.95,
+        "count": 7
+      },
+      "failure_type_histogram": {
+        "spaghetti": 6,
+        "stringing": 1
+      },
+      "missing_type_hits": [
+        "spaghetti"
+      ],
+      "representative_failing": [
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera2__seq104",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object shows stringy, tangled extrusions connecting different parts of the print, characteristic of spaghetti failure, especially visible in the top layers as the nozzle moves.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-extrusion_error_print-camera2__seq104.jpg"
+        },
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera2__seq110",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object exhibits a stringy, fused, and messy appearance with excessive stringing and poor layer definition, characteristic of spaghetti failure in 3D printing.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-extrusion_error_print-camera2__seq110.jpg"
+        },
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera2__seq111",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object has a highly stringy, tangled, and unstructured appearance, characteristic of spaghetti failure, with material extruding in messy, non-layered strands rather than forming clean, defined geometry.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-extrusion_error_print-camera2__seq111.jpg"
+        }
+      ],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera2__seq000",
+          "decision": "normal",
+          "confidence": 0.98,
+          "visual_evidence": "The 3D printer is steadily extruding material in a controlled, layer-by-layer manner. The print surface is smooth and consistent across frames, with no visible signs of stringing, under-extrusion, warping, or bed adhesion issues. The print head moves precisely without any erratic behavior or defects in the printed structure.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-extrusion_error_print-camera2__seq000.jpg"
+        }
+      ]
+    },
+    "6a9157e0-3e1e-5da8-81e9-b7cddaddbb87": {
+      "environment_id": "6a9157e0-3e1e-5da8-81e9-b7cddaddbb87",
+      "environment_key": "env_trier_trier-team_camera3_camera3-extrusion_error_print-test",
+      "environment_group": "extrusion_error_print",
+      "intended_failure_type": "extrusion_error",
+      "intended_failure": true,
+      "split": "external_holdout",
+      "n_units": 116,
+      "n_sequence_units": 116,
+      "n_reviewed_sequence_units": 116,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 115,
+      "vlm_failing": 1,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.009,
+      "failing_confidence": {
+        "mean": 0.95,
+        "min": 0.95,
+        "max": 0.95,
+        "count": 1
+      },
+      "failure_type_histogram": {
+        "spaghetti": 1
+      },
+      "missing_type_hits": [
+        "spaghetti"
+      ],
+      "representative_failing": [
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera3__seq115",
+          "decision": "failing",
+          "failure_type": "spaghetti",
+          "confidence": 0.95,
+          "visual_evidence": "The printed object shows significant stringing and messy, uncontrolled filament deposition, characteristic of spaghetti failure, where the print extrudes in unwanted strands between features.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-extrusion_error_print-camera3__seq115.jpg"
+        }
+      ],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-test-extrusion_error_print-camera3__seq000",
+          "decision": "normal",
+          "confidence": 0.98,
+          "visual_evidence": "The 3D printer is steadily extruding material in a consistent, layer-by-layer manner without visible defects such as stringing, under-extrusion, or warping. The print bed remains stable, and the nozzle moves smoothly across the build plate.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-extrusion_error_print-camera3__seq000.jpg"
+        }
+      ]
+    },
+    "e293d644-7e28-53f7-a2e4-7325b56be7d7": {
+      "environment_id": "e293d644-7e28-53f7-a2e4-7325b56be7d7",
+      "environment_key": "env_trier_trier-team_camera1_camera1-layershift_error_print-test",
+      "environment_group": "layershift_error_print",
+      "intended_failure_type": "layer_shift",
+      "intended_failure": true,
+      "split": "external_holdout",
+      "n_units": 112,
+      "n_sequence_units": 112,
+      "n_reviewed_sequence_units": 112,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 112,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-test-layershift_error_print-camera1__seq000",
+          "decision": "normal",
+          "confidence": 0.98,
+          "visual_evidence": "The 3D printer is steadily extruding material in a controlled, layer-by-layer manner without visible defects such as stringing, warping, or under-extrusion. The print bed appears stable, and the nozzle is consistently depositing filament in the intended pattern.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-layershift_error_print-camera1__seq000.jpg"
+        }
+      ]
+    },
+    "ff1e325a-6ba5-5d18-ad61-285dada5a7cf": {
+      "environment_id": "ff1e325a-6ba5-5d18-ad61-285dada5a7cf",
+      "environment_key": "env_trier_trier-team_camera2_camera2-layershift_error_print-test",
+      "environment_group": "layershift_error_print",
+      "intended_failure_type": "layer_shift",
+      "intended_failure": true,
+      "split": "external_holdout",
+      "n_units": 112,
+      "n_sequence_units": 112,
+      "n_reviewed_sequence_units": 112,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 112,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-test-layershift_error_print-camera2__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is actively extruding material in a consistent, layer-by-layer manner without visible defects such as stringing, under-extrusion, or warping. The print bed appears stable, and the nozzle is moving smoothly across the build plate.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-layershift_error_print-camera2__seq000.jpg"
+        }
+      ]
+    },
+    "d4f52851-98f1-5048-b695-bad6af1f7ee8": {
+      "environment_id": "d4f52851-98f1-5048-b695-bad6af1f7ee8",
+      "environment_key": "env_trier_trier-team_camera3_camera3-layershift_error_print-test",
+      "environment_group": "layershift_error_print",
+      "intended_failure_type": "layer_shift",
+      "intended_failure": true,
+      "split": "external_holdout",
+      "n_units": 112,
+      "n_sequence_units": 112,
+      "n_reviewed_sequence_units": 112,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 112,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-test-layershift_error_print-camera3__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is actively printing a consistent, well-defined object without visible defects such as stringing, under-extrusion, warping, or layer shifting. The print bed remains stable, and extrusion appears smooth and controlled across all frames.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-layershift_error_print-camera3__seq000.jpg"
+        }
+      ]
+    },
+    "699c0050-3bc4-5a7c-9215-d53a6b04a07a": {
+      "environment_id": "699c0050-3bc4-5a7c-9215-d53a6b04a07a",
+      "environment_key": "env_trier_trier-team_camera1_camera1-no_error_print-test",
+      "environment_group": "no_error_print",
+      "intended_failure_type": "none",
+      "intended_failure": false,
+      "split": "external_holdout",
+      "n_units": 107,
+      "n_sequence_units": 107,
+      "n_reviewed_sequence_units": 107,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 107,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-test-no_error_print-camera1__seq000",
+          "decision": "normal",
+          "confidence": 0.98,
+          "visual_evidence": "The 3D printer is actively printing a layered object with consistent extrusion and good layer adhesion. No visible stringing, under-extrusion, warping, or bed adhesion issues are present across the time sequence.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-no_error_print-camera1__seq000.jpg"
+        }
+      ]
+    },
+    "51572c43-59c6-5067-871b-4c80a3e0354c": {
+      "environment_id": "51572c43-59c6-5067-871b-4c80a3e0354c",
+      "environment_key": "env_trier_trier-team_camera2_camera2-no_error_print-test",
+      "environment_group": "no_error_print",
+      "intended_failure_type": "none",
+      "intended_failure": false,
+      "split": "external_holdout",
+      "n_units": 108,
+      "n_sequence_units": 108,
+      "n_reviewed_sequence_units": 108,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 108,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-test-no_error_print-camera2__seq000",
+          "decision": "normal",
+          "confidence": 0.98,
+          "visual_evidence": "The 3D printer is actively printing a layer-by-layer structure with consistent extrusion and no visible defects such as stringing, under-extrusion, or warping. The print bed appears to have good adhesion, and the print head moves smoothly without errors.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-no_error_print-camera2__seq000.jpg"
+        }
+      ]
+    },
+    "0f2d1d04-0c65-5669-80d4-da379fc061de": {
+      "environment_id": "0f2d1d04-0c65-5669-80d4-da379fc061de",
+      "environment_key": "env_trier_trier-team_camera3_camera3-no_error_print-test",
+      "environment_group": "no_error_print",
+      "intended_failure_type": "none",
+      "intended_failure": false,
+      "split": "external_holdout",
+      "n_units": 108,
+      "n_sequence_units": 108,
+      "n_reviewed_sequence_units": 108,
+      "n_error_proposals": 0,
+      "margin_of_unreviewed": 0,
+      "vlm_normal": 108,
+      "vlm_failing": 0,
+      "vlm_uncertain": 0,
+      "vlm_failing_ratio": 0.0,
+      "failing_confidence": {
+        "mean": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "failure_type_histogram": {},
+      "missing_type_hits": [],
+      "representative_failing": [],
+      "representative_normal": [
+        {
+          "review_unit_id": "trier-test-no_error_print-camera3__seq000",
+          "decision": "normal",
+          "confidence": 1.0,
+          "visual_evidence": "The 3D printer is steadily extruding material in a controlled, layered pattern across the build plate. The print surface is smooth and consistent, with no visible signs of stringing, under-extrusion, warping, or layer shifting. The print head moves precisely without any irregularities.",
+          "sheet": "datasets/staging/trier/review/sheets/trier-test-no_error_print-camera3__seq000.jpg"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "background_notes": null,
+  "camera": {
+    "angle": "unstated in source",
+    "id": "camera1"
+  },
+  "contributor": "trier-team",
+  "environment_group": "extrusion_error_print",
+  "environment_id": "27d94c09-4b51-52b0-a516-1370a5957421",
+  "environment_key": "env_trier_trier-team_camera1_camera1-extrusion_error_print-base",
+  "lighting_notes": null,
+  "metadata": {
+    "camera": "camera1",
+    "failure_type": "extrusion_error",
+    "print_type": "extrusion_error_print",
+    "zip_group": "base"
+  },
+  "notes": "Trier extrusion_error_print captured with three fixed camera views; physical angle not stated by authors",
+  "printer": {},
+  "source_dataset": "trier-fff-qc-v2",
+  "split_assignment": "train",
+  "view": "camera1 of extrusion_error_print (base); physical angle unstated"
+}

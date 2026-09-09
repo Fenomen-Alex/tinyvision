@@ -1,0 +1,56 @@
+# Experiment A — SKZ external generalization.
+# Evaluates the frozen Experiment-1 binary checkpoint (shufflenet_v2_x1_0) on the
+# SKZ Nozzle-Cam probe. NO training; this config only records identity + evaluation
+# settings so results are reproducible.
+experiment_id: skz_expA_external_eval
+model: shufflenet_v2_x1_0
+task: classification
+dataset:
+  name: skz-probe
+  version: '1.0'
+  data_dir: datasets/external/skz-probe
+  image_size: 224
+  source_mode: directory
+  split_ratios: [0.0, 0.0, 1.0]
+data:
+  num_workers: 0
+  batch_size: 32
+  pin_memory: false
+train:
+  epochs: 0
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  augmentation:
+    horizontal_flip: true
+    random_rotation: 15
+    color_jitter: 0.2
+    random_crop: false
+    normalize: true
+  precision: fp32
+  seed: 42
+  early_stopping_patience: 10
+evaluation:
+  metrics: [precision, recall, f1, fnr, fpr, auroc]
+  decision_threshold: 0.5
+export:
+  format: onnx
+  quantization: int8
+  dynamic_axes: false
+hardware:
+  machine: ''
+  gpu: ''
+software:
+  python: ''
+  torch: ''
+  torchvision: ''
+  ultralytics: ''
+  opencv: ''
+  os: ''
+created_at: ''
+notes: |-
+  Experiment A: external-domain generalization. Frozen Experiment-1 checkpoint
+  (experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt)
+  evaluated on the SKZ Nozzle-Cam probe (binary mapping: stringing/spaghetti/
+  under_extrusion -> failing, normal(candidate) -> normal). Driven by `tv skz-eval`,
+  not by this config's train path (epochs=0, no training performed).

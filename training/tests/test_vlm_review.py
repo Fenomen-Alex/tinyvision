@@ -444,3 +444,60 @@ def test_dry_run_writes_nothing(fs, monkeypatch):
     result = v.run_review([unit], output=output, dry_run=True)
     assert result["dry_run"][0]["status"] == "dry_run"
     assert not output.exists()
+
+
+# ---------------------------------------------------------------------------
+# Envdata extensions (opt-in; Stage 12D defaults unchanged)
+# ---------------------------------------------------------------------------
+def test_extended_vocabulary_opt_in_only():
+    obj = {"decision": "failing", "failure_type": "layer_shift",
+           "confidence": 0.7, "visual_evidence": "shifted layers"}
+    # default rejects new types even if the model emits them
+    with pytest.raises(v.ResponseValidationError):
+        v.validate_response(dict(obj))
+    # opt-in accepts them
+    d, f, c, e = v.validate_response(dict(obj),
+                                     failure_types=v.EXTENDED_FAILURE_TYPES)
+    assert d == "failing" and f == "layer_shift"
+
+
+def test_extended_prompt_covers_extended_types():
+    for ft in ("layer_shift", "extrusion_error", "bed_adhesion", "warping"):
+        assert ft in v.EXTENDED_REVIEW_PROMPT
+
+
+def test_propose_unit_accepts_reference_evidence(fs, monkeypatch):
+    sheet = make_sheet(fs, "SP001__seq000")
+    unit = sample_unit("SP001__seq000")
+    evidence = v.Evidence(unit=unit, kind="sheet", primary=sheet, context=[])
+    proposal = v.propose_unit(unit, evidence=evidence, dry_run=True)
+    assert proposal["kind"] == "sheet"
+    assert Path(proposal["primary"]) == sheet
+
+
+def test_propose_unit_forwards_extra_fields(fs, monkeypatch):
+    make_sheet(fs, "SP001__seq000")
+    def fake(url, payload, timeout):
+        return _envelope(_proposal_json())
+    monkeypatch.setattr(v, "_http_post_json", fake)
+    unit = sample_unit("SP001__seq000")
+    evidence = v.Evidence(unit=unit, kind="sheet",
+                          primary=fs["sheets"] / "SP001__seq000.jpg",
+                          context=[])
+    p = v.propose_unit(unit, evidence=evidence,
+                       extra={"environment_id": "env-1",
+                              "recording_id": "rec-1",
+                              "provenance": "vlm:qwen/qwen3-vl-8b"})
+    assert p["environment_id"] == "env-1"
+    assert p["recording_id"] == "rec-1"
+    assert p["provenance"] == "vlm:qwen/qwen3-vl-8b"
+
+
+def test_image_to_data_url_scaled(tmp_path):
+    from PIL import Image
+    big = tmp_path / "big.jpg"
+    Image.new("RGB", (400, 200), (10, 10, 10)).save(big, format="JPEG",
+                                                     quality=95)
+    url = v.image_to_data_url_scaled(big, max_side=100)
+    assert url.startswith("data:image/jpeg;base64,")
+    assert len(url) > 40

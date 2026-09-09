@@ -1,0 +1,282 @@
+{
+  "0TY6LVvMpUo_eventstrip": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/0TY6LVvMpUo_eventstrip.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "The 3D printer is actively building a layered object with clear, solid structure visible on the print bed across all frames.",
+    "confidence": 0.95
+  },
+  "0TY6LVvMpUo_grid": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/0TY6LVvMpUo_grid.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "edited",
+    "visible_evidence": "The frames show a 3D printer in operation, with a white, cloud-like object being printed layer by layer without visible defects.",
+    "confidence": 0.95
+  },
+  "0TY6LVvMpUo_maxP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/0TY6LVvMpUo_maxP.jpg",
+    "decision": "uncertain",
+    "failure_type": null,
+    "playback": "timelapse",
+    "visible_evidence": "The frame displays a dark background with white icons and text describing features of a 3D printer, not any actual printing process or object being built.",
+    "confidence": 0.98
+  },
+  "0TY6LVvMpUo_minP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/0TY6LVvMpUo_minP.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "A 3D-printed object with smooth, layered curves is visible, showing consistent extrusion without defects.",
+    "confidence": 0.95
+  },
+  "38gnsbGqcx4_eventstrip": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/38gnsbGqcx4_eventstrip.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "The 3D-printed object on the table appears fully formed with clean, solid layers in all visible frames.",
+    "confidence": 0.95
+  },
+  "38gnsbGqcx4_grid": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/38gnsbGqcx4_grid.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "timelapse",
+    "visible_evidence": "The 3D-printed white object appears solid and well-defined with clean layer lines, showing no signs of stringing or under-extrusion.",
+    "confidence": 0.95
+  },
+  "38gnsbGqcx4_maxP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/38gnsbGqcx4_maxP.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "A 3D-printed orange mechanical component with visible internal parts and screws is being held, showing clean layer lines and no signs of printing defects.",
+    "confidence": 0.95
+  },
+  "38gnsbGqcx4_minP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/38gnsbGqcx4_minP.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "A white 3D-printed object with visible layer lines is being held, showing a smooth, solid build without defects.",
+    "confidence": 0.95
+  },
+  "87gsL-Luvis_eventstrip": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/87gsL-Luvis_eventstrip.jpg",
+    "decision": "failing",
+    "failure_type": "spaghetti",
+    "playback": "continuous",
+    "visible_evidence": "The 3D printer is producing a yellow object with significant spaghetti-like filament blobs and tangled strands, indicating a print failure.",
+    "confidence": 0.95
+  },
+  "87gsL-Luvis_grid": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/87gsL-Luvis_grid.jpg",
+    "decision": "failing",
+    "failure_type": "spaghetti",
+    "playback": "timelapse",
+    "visible_evidence": "The 3D printer is producing a large mass of tangled, unstructured yellow filament, characteristic of a spaghetti failure, across multiple frames.",
+    "confidence": 0.98
+  },
+  "87gsL-Luvis_maxP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/87gsL-Luvis_maxP.jpg",
+    "decision": "failing",
+    "failure_type": "spaghetti",
+    "playback": "continuous",
+    "visible_evidence": "The 3D printer has produced a large mass of tangled, yellow filament resembling spaghetti, indicating a printing failure.",
+    "confidence": 0.98
+  },
+  "87gsL-Luvis_minP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/87gsL-Luvis_minP.jpg",
+    "decision": "failing",
+    "failure_type": "stringing",
+    "playback": "continuous",
+    "visible_evidence": "A hand holds a yellow print with excess stringy filament extruding from it, indicating stringing during the 3D print.",
+    "confidence": 0.95
+  },
+  "G56LQfQCUnA_eventstrip": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/G56LQfQCUnA_eventstrip.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "The 3D printer is actively printing with filament extruding layer by layer, forming a solid structure without visible defects like stringing or gaps.",
+    "confidence": 0.95
+  },
+  "G56LQfQCUnA_grid": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/G56LQfQCUnA_grid.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "timelapse",
+    "visible_evidence": "The printed object appears solid with clean layer lines, showing no signs of stringing, under-extrusion, or filament failure.",
+    "confidence": 0.95
+  },
+  "G56LQfQCUnA_maxP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/G56LQfQCUnA_maxP.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "The 3D printer is actively extruding filament and building a physical object with visible layer structure.",
+    "confidence": 0.95
+  },
+  "G56LQfQCUnA_minP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/G56LQfQCUnA_minP.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "A single, well-defined 3D-printed block with a clear 'X' logo stands on a dark surface, showing no signs of printing defects.",
+    "confidence": 0.95
+  },
+  "UzULqvGoi1Y_eventstrip": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/UzULqvGoi1Y_eventstrip.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "The 3D printer nozzle is steadily depositing filament in a consistent, layered pattern on the build plate across all frames.",
+    "confidence": 0.95
+  },
+  "UzULqvGoi1Y_grid": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/UzULqvGoi1Y_grid.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "timelapse",
+    "visible_evidence": "The 3D printer is steadily building a red object layer by layer on a blue print bed, with no visible signs of stringing, under-extrusion, or failed prints.",
+    "confidence": 0.95
+  },
+  "UzULqvGoi1Y_maxP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/UzULqvGoi1Y_maxP.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "The 3D printer is actively extruding filament in a controlled manner, forming visible layers on the build plate without signs of stringing, spaghetti, or under-extrusion.",
+    "confidence": 0.95
+  },
+  "UzULqvGoi1Y_minP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/UzULqvGoi1Y_minP.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "The 3D printer's build plate is visible with no filament issues, and the print surface appears clean and undisturbed.",
+    "confidence": 0.95
+  },
+  "mGH3p3AF1YY_eventstrip": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/mGH3p3AF1YY_eventstrip.jpg",
+    "decision": "failing",
+    "failure_type": "spaghetti",
+    "playback": "timelapse",
+    "visible_evidence": "The 3D print shows increasing amounts of pink filament strings and blobs, indicating a spaghetti failure as the print progresses from event-0 to event-2.",
+    "confidence": 0.95
+  },
+  "mGH3p3AF1YY_grid": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/mGH3p3AF1YY_grid.jpg",
+    "decision": "failing",
+    "failure_type": "stringing",
+    "playback": "timelapse",
+    "visible_evidence": "The print shows excessive stringing, with pink filament strands extruding between parts of the model, especially visible from t07 onwards.",
+    "confidence": 0.95
+  },
+  "mGH3p3AF1YY_maxP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/mGH3p3AF1YY_maxP.jpg",
+    "decision": "failing",
+    "failure_type": "stringing",
+    "playback": "continuous",
+    "visible_evidence": "The 3D printer is extruding pink filament that forms chaotic, stringy strands rather than coherent layers.",
+    "confidence": 0.95
+  },
+  "mGH3p3AF1YY_minP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/mGH3p3AF1YY_minP.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "A 3D printer is actively building a pink object with visible layer structure on a dark surface.",
+    "confidence": 0.95
+  },
+  "nbkf372s_cA_eventstrip": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/nbkf372s_cA_eventstrip.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "The 3D printer is actively printing with consistent layer deposition, showing no signs of stringing, spaghetti, or under-extrusion.",
+    "confidence": 0.95
+  },
+  "nbkf372s_cA_grid": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/nbkf372s_cA_grid.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "timelapse",
+    "visible_evidence": "The 3D printer is steadily building a layered object with consistent, dense infill visible across the print bed.",
+    "confidence": 0.95
+  },
+  "nbkf372s_cA_maxP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/nbkf372s_cA_maxP.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "The 3D print is progressing layer by layer with clear, solid structure and no visible stringing or gaps.",
+    "confidence": 0.95
+  },
+  "nbkf372s_cA_minP": {
+    "status": "ok",
+    "model": "qwen/qwen3-vl-8b",
+    "image": "datasets/external/real-world-eval/review/nbkf372s_cA_minP.jpg",
+    "decision": "normal",
+    "failure_type": null,
+    "playback": "continuous",
+    "visible_evidence": "A 3D-printed object with visible layer lines is held between fingers against a dark background.",
+    "confidence": 0.95
+  }
+}

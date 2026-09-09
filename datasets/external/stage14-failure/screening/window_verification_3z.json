@@ -1,0 +1,226 @@
+[
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death visible",
+  "file": "fail_t140.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t141.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t142.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death visible",
+  "file": "fail_t143.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death visible",
+  "file": "fail_t144.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death visible",
+  "file": "fail_t145.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death visible",
+  "file": "fail_t146.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death visible",
+  "file": "fail_t147.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death visible",
+  "file": "fail_t148.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t149.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t150.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t151.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t152.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t153.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t154.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible on print",
+  "file": "fail_t155.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death visible",
+  "file": "fail_t156.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "medium",
+  "note": "Blob of death visible",
+  "file": "fail_t157.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t158.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death forming",
+  "file": "fail_t159.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death visible",
+  "file": "fail_t160.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t161.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death forming",
+  "file": "fail_t162.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death forming",
+  "file": "fail_t163.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death forming",
+  "file": "fail_t164.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t165.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death forming",
+  "file": "fail_t166.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t167.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "blob of death visible",
+  "file": "fail_t168.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Excessive stringy blob extrusion",
+  "file": "fail_t169.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death visible",
+  "file": "fail_t170.jpg"
+ },
+ {
+  "state": "failing",
+  "failure_type": "blob",
+  "confidence": "high",
+  "note": "Blob of death forming",
+  "file": "fail_t171.jpg"
+ }
+]

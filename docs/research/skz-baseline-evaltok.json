@@ -1,0 +1,140 @@
+{
+  "schema": "skz-experiment",
+  "schema_version": 1,
+  "checkpoint": "/Users/alex/Projects/tinyvision/experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt",
+  "manifest": "/Users/alex/Projects/tinyvision/datasets/external/skz-probe/manifest.json",
+  "subset": "skz_eval",
+  "threshold": 0.5,
+  "image_size": 224,
+  "evaluated_images": 31,
+  "independent_groups": 16,
+  "classes": [
+    {
+      "class": "normal",
+      "binary_label": "normal",
+      "images": 11,
+      "groups": 11,
+      "predicted_failing_rate": 0.9091
+    },
+    {
+      "class": "stringing",
+      "binary_label": "failing",
+      "images": 5,
+      "groups": 2,
+      "predicted_failing_rate": 1.0
+    },
+    {
+      "class": "spaghetti",
+      "binary_label": "failing",
+      "images": 4,
+      "groups": 4,
+      "predicted_failing_rate": 1.0
+    },
+    {
+      "class": "under_extrusion",
+      "binary_label": "failing",
+      "images": 11,
+      "groups": 11,
+      "predicted_failing_rate": 1.0
+    }
+  ],
+  "per_failure_type": {
+    "Spaghetti": {
+      "images": 4,
+      "groups": 4,
+      "predicted_failing": 4,
+      "recall_failing": 1.0
+    },
+    "Stringing": {
+      "images": 5,
+      "groups": 2,
+      "predicted_failing": 5,
+      "recall_failing": 1.0
+    },
+    "Unterextrusion": {
+      "images": 11,
+      "groups": 11,
+      "predicted_failing": 11,
+      "recall_failing": 1.0
+    }
+  },
+  "multi_defect": {
+    "images": 0,
+    "predicted_failing": 0
+  },
+  "metrics_failing_positive": {
+    "positive_class": 0,
+    "precision": 0.6667,
+    "recall": 1.0,
+    "f1": 0.8,
+    "accuracy": 0.6774,
+    "fnr": 0.0,
+    "fpr": 0.9091,
+    "tn": 1,
+    "fp": 10,
+    "fn": 0,
+    "tp": 20
+  },
+  "metrics_normal_positive": {
+    "positive_class": 1,
+    "precision": 1.0,
+    "recall": 0.0909,
+    "f1": 0.1667,
+    "accuracy": 0.6774,
+    "fnr": 0.9091,
+    "fpr": 0.0,
+    "tn": 20,
+    "fp": 0,
+    "fn": 10,
+    "tp": 1
+  },
+  "auroc_failing": 0.7227,
+  "confusion_matrix": [
+    [
+      20,
+      0
+    ],
+    [
+      10,
+      1
+    ]
+  ],
+  "candidate_normal": {
+    "images": 11,
+    "groups": 11,
+    "false_positive_rate": 0.9091
+  },
+  "evaluated_probe_ids": [
+    "SKZNC-normal-003",
+    "SKZNC-normal-004",
+    "SKZNC-normal-011",
+    "SKZNC-normal-013",
+    "SKZNC-normal-014",
+    "SKZNC-normal-017",
+    "SKZNC-normal-027",
+    "SKZNC-normal-028",
+    "SKZNC-normal-031",
+    "SKZNC-normal-032",
+    "SKZNC-normal-035",
+    "SKZNC-stringing-001",
+    "SKZNC-stringing-003",
+    "SKZNC-stringing-009",
+    "SKZNC-stringing-010",
+    "SKZNC-stringing-013",
+    "SKZNC-spaghetti-015",
+    "SKZNC-spaghetti-024",
+    "SKZNC-spaghetti-026",
+    "SKZNC-spaghetti-030",
+    "SKZNC-under_extrusion-003",
+    "SKZNC-under_extrusion-007",
+    "SKZNC-under_extrusion-010",
+    "SKZNC-under_extrusion-013",
+    "SKZNC-under_extrusion-017",
+    "SKZNC-under_extrusion-026",
+    "SKZNC-under_extrusion-031",
+    "SKZNC-under_extrusion-032",
+    "SKZNC-under_extrusion-033",
+    "SKZNC-under_extrusion-034",
+    "SKZNC-under_extrusion-038"
+  ]
+}

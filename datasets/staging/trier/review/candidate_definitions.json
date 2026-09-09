@@ -1,0 +1,63 @@
+{
+  "definitions": [
+    {
+      "environment_key": "camera1-extrusion_error_print-base",
+      "failure_type": "extrusion_error",
+      "units": [
+        {"id": "trier-base-extrusion_error_print-camera1__seq101", "role": "failing"},
+        {"id": "trier-base-extrusion_error_print-camera1__seq104", "role": "failing"},
+        {"id": "trier-base-extrusion_error_print-camera1__seq075", "role": "contrast_normal"}
+      ],
+      "reason": "Train, base print. Failing episode 4684-4855s sits inside the cross-camera shared window 4644-4865s (camera2 fails the same wall-clock window: seq102-106). Persistence across 4 consecutive units plus camera agreement."
+    },
+    {
+      "environment_key": "camera2-extrusion_error_print-base",
+      "failure_type": "extrusion_error",
+      "units": [
+        {"id": "trier-base-extrusion_error_print-camera2__seq102", "role": "failing"},
+        {"id": "trier-base-extrusion_error_print-camera2__seq106", "role": "failing"},
+        {"id": "trier-base-extrusion_error_print-camera2__seq101", "role": "contrast_normal"}
+      ],
+      "reason": "Train, base print. Failing 4644-4865s; camera1 fails the identical window (seq101-104). This is the shared onset window for the base print."
+    },
+    {
+      "environment_key": "camera3-extrusion_error_print-base",
+      "failure_type": "extrusion_error",
+      "units": [
+        {"id": "trier-base-extrusion_error_print-camera3__seq033", "role": "failing"},
+        {"id": "trier-base-extrusion_error_print-camera3__seq042", "role": "failing"},
+        {"id": "trier-base-extrusion_error_print-camera3__seq032", "role": "contrast_normal"}
+      ],
+      "reason": "Train, base print. Sustained 10-unit episode 1584-2025s on this camera (earlier onset than cameras 1/2 view). Long persistence, high confidence. Third camera (different physical setup)."
+    },
+    {
+      "environment_key": "camera1-extrusion_error_print-test",
+      "failure_type": "extrusion_error",
+      "units": [
+        {"id": "trier-test-extrusion_error_print-camera1__seq110", "role": "failing"},
+        {"id": "trier-test-extrusion_error_print-camera1__seq115", "role": "failing"},
+        {"id": "trier-test-extrusion_error_print-camera1__seq102", "role": "contrast_normal"}
+      ],
+      "reason": "Holdout, test print. Failing run 2062-2372s; window 2202-2312s shared with test camera2. Episode is 16 consecutive units; candidates at 2202 and 2303 seconds."
+    },
+    {
+      "environment_key": "camera2-extrusion_error_print-test",
+      "failure_type": "extrusion_error",
+      "units": [
+        {"id": "trier-test-extrusion_error_print-camera2__seq110", "role": "failing"},
+        {"id": "trier-test-extrusion_error_print-camera2__seq115", "role": "failing"},
+        {"id": "trier-test-extrusion_error_print-camera2__seq109", "role": "contrast_normal"}
+      ],
+      "reason": "Holdout, test print. Failing 2202-2312s exactly overlapping test camera1's window at the same wall-clock time (seq110-115 on both cameras). Strong two-camera consensus."
+    },
+    {
+      "environment_key": "camera3-extrusion_error_print-test",
+      "failure_type": "extrusion_error",
+      "units": [
+        {"id": "trier-test-extrusion_error_print-camera3__seq115", "role": "failing"},
+        {"id": "trier-test-extrusion_error_print-camera3__seq114", "role": "contrast_normal"}
+      ],
+      "reason": "OPTIONAL / weakest. Holdout, test print. Single VLM-failing unit at 2301-2318s, coincident with the camera1/2 consensus window but with no camera-3 persistence. Included only as a third holdout view; may be skipped by the reviewer."
+    }
+  ]
+}

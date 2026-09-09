@@ -1,0 +1,24 @@
+{
+  "background_notes": null,
+  "camera": {
+    "description": "built-in Bambu Lab printer chamber camera",
+    "identity": "bambu-pnp-ipcam"
+  },
+  "contributor": "Similar-Ad-1223",
+  "environment_group": null,
+  "environment_id": "env-806599460f5356768fd2538cb50b6a48",
+  "environment_key": "env_bambu_similar-ad-1223_bonnp-ipcam_inside_chamber",
+  "lighting_notes": null,
+  "metadata": {
+    "failure_type": null,
+    "full_length_videos": 0,
+    "normal_available": true,
+    "timelapse_sequences": 198,
+    "timelapse_total_duration_s": 1886.4293222222225
+  },
+  "notes": "timelapse-only contributor: candidate_only (unassigned). Do not promote timelapse footage to training without reassessment (temporal gaps, frame-rate illusions).",
+  "printer": {},
+  "source_dataset": "bambu-timelapse-v1",
+  "split_assignment": null,
+  "view": "inside_chamber"
+}

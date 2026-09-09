@@ -1,0 +1,5 @@
+{
+  "experiment_id": "skz_expA_external_eval",
+  "status": "completed",
+  "note": "Experiment A: frozen baseline evaluated on SKZ Nozzle-Cam probe (external generalization). No training performed. Artifacts: artifacts/probe_all.json (full 166-image probe), artifacts/probe_heldout.json (31-image held-out slice for the A-vs-B comparison)."
+}

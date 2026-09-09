@@ -1,0 +1,62 @@
+# Experiment 2A — External video-frames augmentation (verified Stage 12 labels).
+# Same binary architecture/hyperparameters as the Experiment-1 baseline
+# (shufflenet_v2_x1_0, seed 42, epochs 30) on printing-errors train + verified
+# external FAILING frames (NORMAL001/SP001, merged human-reviewed units).
+# val/test splits are UNCHANGED copies of the frozen printing-errors splits, so the
+# baseline comparison is direct. UE003 human-normal frames are evaluation-only and
+# never appear in this training split.
+experiment_id: exp2_external_video_aug_shufflenet_v2_x1_0
+model: shufflenet_v2_x1_0
+task: classification
+dataset:
+  name: printing-errors+verified-external-frames
+  version: '1.0'
+  data_dir: datasets/processed/external-aug-exp2
+  image_size: 224
+  source_mode: directory
+  split_ratios: [0.7, 0.15, 0.15]
+data:
+  num_workers: 4
+  batch_size: 32
+  pin_memory: true
+train:
+  epochs: 30
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  augmentation:
+    horizontal_flip: true
+    random_rotation: 15
+    color_jitter: 0.2
+    random_crop: false
+    normalize: true
+  precision: fp32
+  seed: 42
+  early_stopping_patience: 10
+evaluation:
+  metrics: [precision, recall, f1, fnr, fpr, auroc]
+  decision_threshold: 0.5
+export:
+  format: onnx
+  quantization: int8
+  dynamic_axes: false
+hardware:
+  machine: ''
+  gpu: ''
+software:
+  python: ''
+  torch: ''
+  torchvision: ''
+  ultralytics: ''
+  opencv: ''
+  os: ''
+created_at: ''
+notes: |-
+  Experiment 2A: external video-frames augmentation. Identical training setup to
+  the baseline (shufflenet_v2_x1_0_printing-errors_cdc9e2cad4, seed 42, epochs 30).
+  dataset.data_dir (datasets/processed/external-aug-exp2) is a DERIVED split dir
+  created by `tv exp2-prep`: train.csv = printing-errors train + 44 verified
+  external FAILING frames (NORMAL001 stringing + SP001 spaghetti, merged human
+  review); val.csv/test.csv are byte-for-byte copies of the frozen printing-errors
+  splits. UE003 normal frames are evaluation-only (external normal eval), never in
+  training. Derived manifest: datasets/processed/external-aug-exp2/derived_manifest.json.

@@ -1,0 +1,65 @@
+{
+  "schema": "tinyvision-release-dataset-build",
+  "status": "staging complete; human review pending",
+  "training_ready": false,
+  "date": "2026-09-08",
+  "acquisition": {
+    "trier": {
+      "zenodo_record": 18628777,
+      "version": "2.0.0",
+      "license": "CC BY 4.0",
+      "publication_date": "2026-02-13",
+      "doi": "10.5281/zenodo.18628777",
+      "files": {
+        "base_data.zip": {"size_bytes": 19632181220, "md5_verified": "b5b3354970c0a229ea63334b1346da07"},
+        "additional_defect_data.zip": {"size_bytes": 16129011133, "md5_verified": "11ea08432cd0306b93ab880f8d0493be"},
+        "test_data.zip": {"size_bytes": 12630419031, "md5_verified": "3d6e8295621bd033d193a196f11025e3"}
+      }
+    }
+  },
+  "extraction": {
+    "frames_staged": 27154,
+    "disk_gb": 10,
+    "plan": "datasets/staging/trier/extraction_plan.json",
+    "listing": ["datasets/staging/trier/listing_base.json", "datasets/staging/trier/listing_additional.json", "datasets/staging/trier/listing_test.json"]
+  },
+  "environments": {
+    "total": 24,
+    "train": {"failure": 9, "normal": 6},
+    "external_holdout": {"failure": 6, "normal": 3},
+    "frames_per_env_range_train": [933, 1777],
+    "frames_per_env_range_holdout": [1069, 1186]
+  },
+  "review_units": {
+    "total": 2931,
+    "sequence": 2881,
+    "frame": 50,
+    "decisions_prefilled": 0,
+    "priority_counts": {1: 992, 2: 929, 3: 323, 4: 687},
+    "location": "datasets/staging/trier/review/review_units.json",
+    "sheets": "datasets/staging/trier/review/sheets"
+  },
+  "bambu": {
+    "ready_envs_assigned_train": 1,
+    "timelapse_only_candidate_only": 2,
+    "action": "no further Bambu staging this cycle"
+  },
+  "readiness": {
+    "training_ready": false,
+    "gates": {
+      "training_environments_min": {"required": 20, "current": 27, "met": true},
+      "new_failure_envs_human_verified_min": {"required": 5, "current": 0, "met": false},
+      "new_normal_holdout_envs_min": {"required": 2, "current": 3, "met": true},
+      "new_failure_holdout_envs_min": {"required": 2, "current": 6, "met": true}
+    },
+    "failure_type_coverage": {
+      "met": ["stringing", "layer_shift", "extrusion_error"],
+      "missing": {"spaghetti": {"current": 2, "target": 3}, "under_extrusion": {"current": 0, "target": 3}, "bed_adhesion": {"current": 0, "target": 2}, "warping": {"current": 0, "target": 2}}
+    }
+  },
+  "next_actions": [
+    "run human review of P1/P2 units (failure+normal train envs) and tv review-merge",
+    "acquire licensed source or capture for spaghetti, under_extrusion, bed_adhesion, warping",
+    "re-run tv env-readiness after each review tranche"
+  ]
+}

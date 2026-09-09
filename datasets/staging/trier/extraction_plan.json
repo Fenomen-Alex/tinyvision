@@ -1,0 +1,69 @@
+{
+  "schema": "tinyvision-trier-extraction-plan",
+  "version": 1,
+  "purpose": "Subsampled full-resolution extraction of Trier FFF-QC v2 for environment staging (per-env frame caps: normal 1000-1600, failure 500-1200; full zip preserved for listings and provenance)",
+  "sources": {
+    "base_data.zip": {
+      "size_bytes": 19632181220,
+      "md5": "b5b3354970c0a229ea63334b1346da07"
+    },
+    "additional_defect_data.zip": {
+      "size_bytes": 16129011133,
+      "md5": "11ea08432cd0306b93ab880f8d0493be"
+    },
+    "test_data.zip": {
+      "size_bytes": 12630419031,
+      "md5": "3d6e8295621bd033d193a196f11025e3"
+    }
+  },
+  "extractions": [
+    {
+      "zip": "base_data.zip",
+      "stride": 5,
+      "prefixes": [
+        "base/full_res/extrusion_error_print/camera1",
+        "base/full_res/extrusion_error_print/camera2",
+        "base/full_res/extrusion_error_print/camera3",
+        "base/full_res/layershift_error_print/camera1",
+        "base/full_res/layershift_error_print/camera2",
+        "base/full_res/layershift_error_print/camera3",
+        "base/full_res/no_error_print/camera1",
+        "base/full_res/no_error_print/camera2",
+        "base/full_res/no_error_print/camera3"
+      ],
+      "note": "uniform stride 5: defect dirs ~933-996 frames, normal dirs ~1457-1482 (within caps)"
+    },
+    {
+      "zip": "additional_defect_data.zip",
+      "stride": 5,
+      "prefixes": [
+        "additional_defect_data/stringing_error/full_res/camera1",
+        "additional_defect_data/stringing_error/full_res/camera2",
+        "additional_defect_data/stringing_error/full_res/camera3",
+        "additional_defect_data/no_stringing_error/full_res/camera1",
+        "additional_defect_data/no_stringing_error/full_res/camera2",
+        "additional_defect_data/no_stringing_error/full_res/camera3"
+      ],
+      "note": "stride 5 -> stringing 1000 frames, no_stringing 1000 frames per camera"
+    },
+    {
+      "zip": "test_data.zip",
+      "stride": 2,
+      "prefixes": [
+        "test/full_res/extrusion_error_print/camera1",
+        "test/full_res/extrusion_error_print/camera2",
+        "test/full_res/extrusion_error_print/camera3",
+        "test/full_res/layershift_error_print/camera1",
+        "test/full_res/layershift_error_print/camera2",
+        "test/full_res/layershift_error_print/camera3",
+        "test/full_res/no_error_print/camera1",
+        "test/full_res/no_error_print/camera2",
+        "test/full_res/no_error_print/camera3"
+      ],
+      "note": "holdout split: test_data.zip stays external by source design; stride2 -> ~1069-1187 frames per dir"
+    }
+  ],
+  "resolution": "full_res",
+  "created_at_utc": "2026-09-08T19:29:06Z",
+  "layout": "datasets/raw/trier-fffqc-v2/extracted/<zip-member-relative>"
+}

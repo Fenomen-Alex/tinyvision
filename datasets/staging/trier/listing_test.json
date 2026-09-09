@@ -1,0 +1,114 @@
+{
+  "zip": "datasets/raw/trier-fffqc-v2/test_data.zip",
+  "members": 40309,
+  "dirs": {
+    "test": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "test/cropped": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "test/cropped/extrusion_error_print": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "test/cropped/extrusion_error_print/camera1": {
+      "image_files": 2373,
+      "bytes": 253107854
+    },
+    "test/cropped/extrusion_error_print/camera2": {
+      "image_files": 2320,
+      "bytes": 278302350
+    },
+    "test/cropped/extrusion_error_print/camera3": {
+      "image_files": 2313,
+      "bytes": 236972167
+    },
+    "test/cropped/layershift_error_print": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "test/cropped/layershift_error_print/camera1": {
+      "image_files": 2233,
+      "bytes": 218529426
+    },
+    "test/cropped/layershift_error_print/camera2": {
+      "image_files": 2232,
+      "bytes": 238807714
+    },
+    "test/cropped/layershift_error_print/camera3": {
+      "image_files": 2235,
+      "bytes": 202415475
+    },
+    "test/cropped/no_error_print": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "test/cropped/no_error_print/camera1": {
+      "image_files": 2138,
+      "bytes": 203016223
+    },
+    "test/cropped/no_error_print/camera2": {
+      "image_files": 2150,
+      "bytes": 228260077
+    },
+    "test/cropped/no_error_print/camera3": {
+      "image_files": 2147,
+      "bytes": 194303761
+    },
+    "test/full_res": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "test/full_res/extrusion_error_print": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "test/full_res/extrusion_error_print/camera1": {
+      "image_files": 2373,
+      "bytes": 1245728862
+    },
+    "test/full_res/extrusion_error_print/camera2": {
+      "image_files": 2313,
+      "bytes": 1242200421
+    },
+    "test/full_res/extrusion_error_print/camera3": {
+      "image_files": 2320,
+      "bytes": 1327949934
+    },
+    "test/full_res/layershift_error_print": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "test/full_res/layershift_error_print/camera1": {
+      "image_files": 2233,
+      "bytes": 1131889052
+    },
+    "test/full_res/layershift_error_print/camera2": {
+      "image_files": 2232,
+      "bytes": 1204694669
+    },
+    "test/full_res/layershift_error_print/camera3": {
+      "image_files": 2235,
+      "bytes": 1122225116
+    },
+    "test/full_res/no_error_print": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "test/full_res/no_error_print/camera1": {
+      "image_files": 2138,
+      "bytes": 1062634087
+    },
+    "test/full_res/no_error_print/camera2": {
+      "image_files": 2150,
+      "bytes": 1157338619
+    },
+    "test/full_res/no_error_print/camera3": {
+      "image_files": 2147,
+      "bytes": 1077330845
+    }
+  }
+}

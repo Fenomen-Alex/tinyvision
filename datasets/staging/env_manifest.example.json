@@ -1,0 +1,63 @@
+{
+  "schema": "tinyvision-env-manifest",
+  "schema_version": 1,
+  "dataset": {
+    "dataset_id": "example-dataset",
+    "name": "Example Dataset (replace me)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "provenance": "Assertion that you hold rights to this footage. See docs/contributors/.",
+    "acquisition_method": "contributor",
+    "retrieval_date": "YYYY-MM-DD",
+    "url": null,
+    "redistribution_allowed": true,
+    "training_allowed": true,
+    "evaluation_allowed": true,
+    "notes": null
+  },
+  "environments": [
+    {
+      "environment_id": "env-example-1000",
+      "environment_key": "env_contrib_alice_cam-n1_side",
+      "source_dataset": "example-dataset",
+      "contributor": "alice",
+      "camera": {"identity": "cam-n1", "description": "fixed phone camera"},
+      "view": "side",
+      "printer": {"identity": "printer-1", "model": "example printer model"},
+      "environment_group": null,
+      "split_assignment": "train",
+      "lighting_notes": "indoor, constant",
+      "background_notes": "fixed workbench",
+      "notes": null,
+      "metadata": {"normal_available": true, "failure_type": null}
+    }
+  ],
+  "recordings": [
+    {
+      "recording_id": "example-rec-1",
+      "environment_id": "env-example-1000",
+      "source": "file:relative/or/absolute/path/to/video.mp4",
+      "duration_s": 3600.0,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "continuous_realtime": true,
+      "temporal_note": null,
+      "md5": null,
+      "metadata": {"session_date": "YYYY-MM-DD"}
+    }
+  ],
+  "license_consents": [
+    {
+      "contributor": "alice",
+      "consent_date": "YYYY-MM-DD",
+      "training_allowed": true,
+      "evaluation_allowed": true,
+      "redistribution_allowed": true,
+      "attribution": "alice (preferred credit)",
+      "preferred_credit": "alice — example printer",
+      "verification": "template_signed",
+      "notes": "Signed consent form retained offline."
+    }
+  ]
+}

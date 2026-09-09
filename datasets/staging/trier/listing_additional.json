@@ -1,0 +1,50 @@
+{
+  "zip": "datasets/raw/trier-fffqc-v2/additional_defect_data.zip",
+  "members": 30011,
+  "dirs": {
+    "additional_defect_data": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "additional_defect_data/no_stringing_error": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "additional_defect_data/no_stringing_error/full_res": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "additional_defect_data/no_stringing_error/full_res/camera1": {
+      "image_files": 5000,
+      "bytes": 2623717871
+    },
+    "additional_defect_data/no_stringing_error/full_res/camera2": {
+      "image_files": 5000,
+      "bytes": 2880171079
+    },
+    "additional_defect_data/no_stringing_error/full_res/camera3": {
+      "image_files": 5000,
+      "bytes": 2617087968
+    },
+    "additional_defect_data/stringing_error": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "additional_defect_data/stringing_error/full_res": {
+      "image_files": 0,
+      "bytes": 0
+    },
+    "additional_defect_data/stringing_error/full_res/camera1": {
+      "image_files": 5000,
+      "bytes": 2540818293
+    },
+    "additional_defect_data/stringing_error/full_res/camera2": {
+      "image_files": 5000,
+      "bytes": 2911564651
+    },
+    "additional_defect_data/stringing_error/full_res/camera3": {
+      "image_files": 5000,
+      "bytes": 2550361522
+    }
+  }
+}

@@ -1,0 +1,65 @@
+experiment_id: rc1_release_candidate_shufflenet_v2_x1_0
+model: shufflenet_v2_x1_0
+task: classification
+dataset:
+  name: release-candidate-1
+  version: '1.0'
+  data_dir: datasets/processed/release-rc1
+  image_size: 224
+  source_mode: directory
+  split_ratios:
+  - 0.7
+  - 0.15
+  - 0.15
+data:
+  num_workers: 4
+  batch_size: 32
+  pin_memory: true
+train:
+  epochs: 30
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  augmentation:
+    horizontal_flip: true
+    random_rotation: 15
+    color_jitter: 0.2
+    random_crop: false
+    normalize: true
+  precision: fp32
+  seed: 42
+  early_stopping_patience: 10
+evaluation:
+  metrics:
+  - precision
+  - recall
+  - f1
+  - fnr
+  - fpr
+  - auroc
+  decision_threshold: 0.5
+export:
+  format: onnx
+  quantization: int8
+  dynamic_axes: false
+hardware:
+  machine: arm64 (arm)
+  gpu: None
+software:
+  python: 3.11.15
+  torch: !!python/object/new:torch.torch_version.TorchVersion
+  - 2.14.0
+  torchvision: 0.29.0
+  ultralytics: 8.4.138
+  opencv: 5.0.0
+  os: Darwin 25.6.0
+created_at: '2026-09-09T12:00:57.016158'
+notes: 'Release candidate 1. Training on the provenance-typed release dataset
+
+  (printing-errors frozen + Trier source_annotation train envs + human-verified
+
+  NORMAL001/SP001). No VLM-only labels. val/test byte-identical frozen.
+
+  Hyperparameters identical to the established baseline/Exp3/Exp4; threshold
+
+  0.5 preserved (no tuning).'

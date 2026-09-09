@@ -19746,11 +19746,11 @@
       "start_time_s": 135.135,
       "end_time_s": 140.14,
       "n_frames": 6,
-      "decision": null,
+      "decision": "uncertain",
       "failure_type": null,
       "transition_start": null,
       "transition_end": null,
-      "notes": ""
+      "notes": "printer setup/configuration"
     },
     {
       "review_unit_id": "UE003__seq013",
@@ -19783,11 +19783,11 @@
       "start_time_s": 148.148,
       "end_time_s": 157.157,
       "n_frames": 10,
-      "decision": null,
+      "decision": "uncertain",
       "failure_type": null,
       "transition_start": null,
       "transition_end": null,
-      "notes": ""
+      "notes": "printer setup/configuration"
     },
     {
       "review_unit_id": "UE003__seq014",
@@ -20188,11 +20188,11 @@
       "start_time_s": 258.258,
       "end_time_s": 267.267,
       "n_frames": 10,
-      "decision": null,
+      "decision": "uncertain",
       "failure_type": null,
       "transition_start": null,
       "transition_end": null,
-      "notes": ""
+      "notes": "printer setup/configuration"
     },
     {
       "review_unit_id": "UE003__seq025",
@@ -20332,11 +20332,11 @@
       "start_time_s": 298.298,
       "end_time_s": 305.305,
       "n_frames": 8,
-      "decision": null,
+      "decision": "uncertain",
       "failure_type": null,
       "transition_start": null,
       "transition_end": null,
-      "notes": ""
+      "notes": "printer setup/configuration"
     },
     {
       "review_unit_id": "UE003__seq029",
@@ -20468,11 +20468,11 @@
       "start_time_s": 360.36,
       "end_time_s": 367.367,
       "n_frames": 8,
-      "decision": null,
+      "decision": "uncertain",
       "failure_type": null,
       "transition_start": null,
       "transition_end": null,
-      "notes": ""
+      "notes": "video fade out"
     }
   ]
 }

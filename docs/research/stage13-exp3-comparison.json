@@ -1,0 +1,188 @@
+{
+  "schema": "exp3-external",
+  "schema_version": 1,
+  "baseline": "/Users/alex/Projects/tinyvision/experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt",
+  "exp3": "/Users/alex/Projects/tinyvision/experiments/exp3_target_normal_aug_shufflenet_v2_x1_0/artifacts/best.pt",
+  "frozen_original_test": {
+    "baseline": {
+      "precision": 0.6949475691134414,
+      "recall": 0.8302961275626424,
+      "f1": 0.7566165023352361,
+      "accuracy": 0.8359566281916754,
+      "fnr": 0.16970387243735763,
+      "fpr": 0.16153457849570924,
+      "auroc": 0.9003833686536907,
+      "confusion_matrix": [
+        [
+          1661,
+          320
+        ],
+        [
+          149,
+          729
+        ]
+      ],
+      "sample_count": 2859,
+      "classes": [
+        0,
+        1
+      ],
+      "class_to_idx": {
+        "failing": 0,
+        "normal": 1
+      },
+      "checkpoint": "/Users/alex/Projects/tinyvision/experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt",
+      "schema": "exp3-external",
+      "schema_version": 1,
+      "kind": "frozen_original_test",
+      "threshold": 0.5
+    },
+    "exp3": {
+      "precision": 0.6060606060606061,
+      "recall": 0.8656036446469249,
+      "f1": 0.7129455909943715,
+      "accuracy": 0.7859391395592865,
+      "fnr": 0.13439635535307518,
+      "fpr": 0.24936900555275113,
+      "auroc": 0.877439030700539,
+      "confusion_matrix": [
+        [
+          1487,
+          494
+        ],
+        [
+          118,
+          760
+        ]
+      ],
+      "sample_count": 2859,
+      "classes": [
+        0,
+        1
+      ],
+      "class_to_idx": {
+        "failing": 0,
+        "normal": 1
+      },
+      "checkpoint": "/Users/alex/Projects/tinyvision/experiments/exp3_target_normal_aug_shufflenet_v2_x1_0/artifacts/best.pt",
+      "schema": "exp3-external",
+      "schema_version": 1,
+      "kind": "frozen_original_test",
+      "threshold": 0.5
+    }
+  },
+  "external_normal_holdout": {
+    "baseline": {
+      "schema": "exp3-external",
+      "schema_version": 1,
+      "checkpoint": "/Users/alex/Projects/tinyvision/experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt",
+      "kind": "external_normal_holdout",
+      "threshold": 0.5,
+      "image_size": 224,
+      "evaluated_frames": 120,
+      "sources": [
+        "LY3jlcO34f4",
+        "zkJgLanCSUw"
+      ],
+      "metrics_failing_positive": {
+        "positive_class": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "accuracy": 0.0,
+        "fnr": 0.0,
+        "fpr": 1.0,
+        "tn": 0,
+        "fp": 120,
+        "fn": 0,
+        "tp": 0
+      },
+      "metrics_normal_positive": {
+        "positive_class": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "accuracy": 0.0,
+        "fnr": 1.0,
+        "fpr": 0.0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 120,
+        "tp": 0
+      },
+      "per_source": {
+        "LY3jlcO34f4": {
+          "frames": 60,
+          "fpr": 1.0,
+          "predicted_failing": 60
+        },
+        "zkJgLanCSUw": {
+          "frames": 60,
+          "fpr": 1.0,
+          "predicted_failing": 60
+        }
+      },
+      "normal_frames": {
+        "frames": 120,
+        "predicted_failing": 120,
+        "false_positive_rate": 1.0
+      }
+    },
+    "exp3": {
+      "schema": "exp3-external",
+      "schema_version": 1,
+      "checkpoint": "/Users/alex/Projects/tinyvision/experiments/exp3_target_normal_aug_shufflenet_v2_x1_0/artifacts/best.pt",
+      "kind": "external_normal_holdout",
+      "threshold": 0.5,
+      "image_size": 224,
+      "evaluated_frames": 120,
+      "sources": [
+        "LY3jlcO34f4",
+        "zkJgLanCSUw"
+      ],
+      "metrics_failing_positive": {
+        "positive_class": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "accuracy": 0.7417,
+        "fnr": 0.0,
+        "fpr": 0.2583,
+        "tn": 89,
+        "fp": 31,
+        "fn": 0,
+        "tp": 0
+      },
+      "metrics_normal_positive": {
+        "positive_class": 1,
+        "precision": 1.0,
+        "recall": 0.7417,
+        "f1": 0.8517,
+        "accuracy": 0.7417,
+        "fnr": 0.2583,
+        "fpr": 0.0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 31,
+        "tp": 89
+      },
+      "per_source": {
+        "LY3jlcO34f4": {
+          "frames": 60,
+          "fpr": 0.1,
+          "predicted_failing": 6
+        },
+        "zkJgLanCSUw": {
+          "frames": 60,
+          "fpr": 0.4167,
+          "predicted_failing": 25
+        }
+      },
+      "normal_frames": {
+        "frames": 120,
+        "predicted_failing": 31,
+        "false_positive_rate": 0.2583
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "rc1-core-eval",
+  "schema_version": 1,
+  "checkpoint": "experiments/rc1_release_candidate_shufflenet_v2_x1_0/artifacts/best.pt",
+  "frozen_original_test": {
+    "metrics_failing_positive": {
+      "positive_class": 0,
+      "precision": 0.9526,
+      "recall": 0.8122,
+      "f1": 0.8768,
+      "accuracy": 0.8419,
+      "fnr": 0.1878,
+      "fpr": 0.0911,
+      "tn": 798,
+      "fp": 80,
+      "fn": 372,
+      "tp": 1609
+    },
+    "metrics_normal_positive": {
+      "positive_class": 1,
+      "precision": 0.6821,
+      "recall": 0.9089,
+      "f1": 0.7793,
+      "accuracy": 0.8419,
+      "fnr": 0.0911,
+      "fpr": 0.1878,
+      "tn": 1609,
+      "fp": 372,
+      "fn": 80,
+      "tp": 798
+    },
+    "auroc": 0.892170954362572,
+    "sample_count": 2859,
+    "threshold": 0.5,
+    "auroc_failing": 0.892171
+  },
+  "external_normal_holdout": {
+    "evaluated_frames": 120,
+    "sources": [
+      "LY3jlcO34f4",
+      "zkJgLanCSUw"
+    ],
+    "predicted_failing": 120,
+    "false_positive_rate": 1.0,
+    "metrics_failing_positive": {
+      "positive_class": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.0,
+      "fnr": 0.0,
+      "fpr": 1.0,
+      "tn": 0,
+      "fp": 120,
+      "fn": 0,
+      "tp": 0
+    },
+    "per_source": {
+      "LY3jlcO34f4": {
+        "frames": 60,
+        "fpr": 1.0,
+        "predicted_failing": 60
+      },
+      "zkJgLanCSUw": {
+        "frames": 60,
+        "fpr": 1.0,
+        "predicted_failing": 60
+      }
+    }
+  }
+}

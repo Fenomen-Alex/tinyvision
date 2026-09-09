@@ -1,0 +1,193 @@
+{
+  "schema": "tinyvision-data-strategy",
+  "schema_version": 1,
+  "created_at": "2026-09-07",
+  "status": "research_only",
+  "hard_stop_compliance": true,
+  "supporting_docs": [
+    "docs/research/youtube-footage-feasibility.md",
+    "docs/research/synthetic-data-feasibility.md",
+    "docs/research/tinyvision-final-synthesis.md"
+  ],
+  "data_problem": {
+    "independence_hierarchy": [
+      {"unit": "frame", "independence": "not an information unit"},
+      {"unit": "video", "independence": "not independent of its camera environment"},
+      {"unit": "printer_run", "independence": "correlated within a fixed camera environment"},
+      {"unit": "printer", "independence": "observed only through the camera's view; a component of the environment"},
+      {"unit": "camera_environment", "independence": "TRUE independent unit"}
+    ],
+    "independent_unit": "camera environment (stationary camera + printer + site/background/lighting; bundles sensor, optics, view, lighting, background, printer-appearance)",
+    "measured_evidence": {
+      "printing_errors": "151 recordings, 1 creator site, 1 camera model (ELP), 1 naming/site pattern -> temporal diversity, zero environmental diversity",
+      "stage13_normal": "333 frames from 7 sources collapsed held-out normal FPR 1.000 -> 0.258 (largest measured single effect)",
+      "stage14_failure": "100 frames from 2 cameras caused environment overfitting in Exp4",
+      "lesson": "frames/videos are not the unit; environment count measures generalization; class balance must be struck across environments, not frames"
+    },
+    "requirements": [
+      "independent printers (multiple models)",
+      "independent cameras (no single sensor/optics model clustering)",
+      "camera position variety (side/front/overhead/bed-mounted)",
+      "lighting variety (day/night, enclosure LEDs, white balance)",
+      "background/bed/plate variety",
+      "filament color/material variety",
+      "healthy continuous printing (full unattended runs)",
+      "failure footage with onset and development (continuous, fixed camera)",
+      "source-level independent splits (never frame-random)"
+    ],
+    "counting_rule": "per-environment frame cap sampled evenly across run duration; environment count is the target, not frame count"
+  },
+  "public_footage": {
+    "study": "docs/research/youtube-footage-feasibility.md",
+    "independent_normal_environments_continuous": "~5-8 discoverable, ~3-5 active; ceiling ~8-12 across all platforms",
+    "independent_failure_environments_continuous": "~1-3; none reliably provide onset-from-stationary-camera footage",
+    "printers_cameras_identifiable": "yes for well-documented channels; mostly not otherwise",
+    "frames_extractable": "yes for normal live streams; mostly no for failures (short clips, timelapses, compilations, tutorials)",
+    "license": "Standard YouTube License default; downloading violates ToS; redistribution clearly prohibited; training use unsettled",
+    "third_party_training_mechanism": "Dec-2024 YouTube third-party-AI setting targets large AI companies, not open-source projects",
+    "scalability": "cannot scale past Stage 13/14 as-is; supplemental normal source only"
+  },
+  "existing_datasets": {
+    "note": "Trier, Bambu, Bed-Adhesion verified directly during this study; others per subagent research flagged for verification",
+    "datasets": [
+      {"name": "Trier FFF QC Dataset v2", "url": "https://zenodo.org/records/18628777", "license": "CC BY 4.0", "license_verified": true, "environments": "single site, 3 fixed camera angles (exact count UNVERIFIED)", "format": "high-res images + crops, train/test zips", "normal": "yes", "failures": ["extrusion errors", "layer shifts", "stringing"], "size": "~48 GB, exact frame count TO VERIFY", "domain_match": "HIGH", "tier": 1},
+      {"name": "Bambu Timelapse Dataset", "url": "https://huggingface.co/datasets/v2thegreat/bambu-timelapse-dataset", "license": "CC BY 4.0", "license_verified": true, "environments": "~3 contributors", "format": "627 timelapses + 81 full-length videos + metadata (~36 GB)", "normal": "yes (unlabeled)", "failures": "none labeled", "size": "36.1 GB total", "domain_match": "VERY HIGH (normal)", "tier": 1, "note": "contribution-based growth model to replicate; timelapses are skimmed"},
+      {"name": "Bed-Adhesion Failure-Onset", "url": "https://github.com/EmptyDeck/3DPrint-Failure-Video-Dataset", "license": "CC BY-NC 4.0 (annotations/masks); videos hosted externally (YouTube)", "license_verified": true, "environments": "2 (P1 1024x768, P2 1920x1080, bed-mounted 1fps)", "format": "30 sequences, 261,583 frames, onset GT + 300 masks", "normal": "yes (pre-onset baseline)", "failures": ["bed adhesion/fallover"], "size": "30 sequences", "domain_match": "VERY HIGH", "tier": 1, "note": "only onset-annotated failure corpus; NC license + YT-hosted videos require containment"},
+      {"name": "UTFPR / Wartronick", "url": "https://github.com/Wartronick/3D-Printer-Failure-Detection", "license": "MIT", "license_verified": false, "environments": "1 (RPi 5 + ActionCam)", "format": "505 images 2-class", "normal": "yes (290)", "failures": ["binary"], "size": "tiny", "domain_match": "HIGH hardware match", "tier": 2},
+      {"name": "Multi-material PLA/ABS layerwise (Zenodo)", "url": "https://zenodo.org/records/19200472", "license": "UNVERIFIED; files RESTRICTED login-gated", "license_verified": false, "environments": "1 (Delta printer + RPi HQ cam)", "format": "11,593 images, DoE-varied", "normal": "yes (balanced)", "failures": ["warping", "stringing", "cracking"], "size": "11,593", "domain_match": "HIGH", "tier": 2, "note": "access-gated; unusable until access granted"},
+      {"name": "FT3D FFF defects", "url": "https://zenodo.org/records/20379284", "license": "MIT (stated; details to verify)", "license_verified": false, "environments": "UNVERIFIED", "format": "defect images", "normal": "UNVERIFIED", "failures": "UNVERIFIED", "size": "UNVERIFIED", "domain_match": "UNVERIFIED", "tier": 2},
+      {"name": "3DVis layer-wise faults", "url": "https://www.kaggle.com/datasets/adiparamartha/3d-vis", "license": "CC BY-SA 4.0 (Kaggle)", "license_verified": false, "environments": "UNVERIFIED", "format": "timelapse layer images, 4 fault classes", "normal": "UNVERIFIED", "failures": "4 classes (names unverified)", "size": "2,297 raw / 4,261 aug", "domain_match": "MED-HIGH", "tier": 3},
+      {"name": "Minds-R-Lab 3D-Printing-Dataset", "url": "https://github.com/Minds-R-Lab/3D-Printing-Dataset", "license": "permissive (READ ME to verify)", "license_verified": false, "environments": "1 (Prusa MK4)", "format": "2,638 images 9 classes (post-print photos)", "normal": "UNVERIFIED", "failures": "9 classes", "size": "2,638", "domain_match": "MED (post-print, not in-print webcam)", "tier": 3},
+      {"name": "YOLO-Strings", "url": "https://zenodo.org/records/14711320", "license": "UNVERIFIED", "license_verified": false, "environments": "UNVERIFIED", "format": "camera + microscope stringing images", "normal": "no", "failures": ["stringing"], "size": "UNVERIFIED", "domain_match": "MED-LOW", "tier": 3},
+      {"name": "3D-ADAM", "url": "https://huggingface.co/datasets/wuzhao73/3D-ADAM", "license": "CC BY-NC-SA 4.0", "license_verified": false, "environments": "217 parts, 4 industrial depth sensors (post-print cell)", "format": "RGB+3D scans + pixel masks", "normal": "yes (unsupervised protocol)", "failures": "12 classes incl. over/under-extrusion", "size": "14,120 scans", "domain_match": "MOD-LOW (post-print)", "tier": 3, "note": "highest annotation quality, NC"},
+      {"name": "small already-recorded sets", "url": "docs/research/datasets/*.md", "license": "mixed (Hu MIT 1,912; Roboflow seprinder/syLucauc CC BY 4.0; Kaggle 3D-printer-defected unverified; Javiai unknown)", "license_verified": false, "environments": "mostly UNVERIFIED community", "format": "det/multi-class", "normal": "mixed", "failures": "spaghetti/stringing/etc.", "size": "~500-5k each", "domain_match": "MED", "tier": 3, "note": "provenance risk (re-uploads)"}
+    ],
+    "observations": [
+      "Trier is the only large permissively-licensed in-production corpus (CC BY 4.0, ~48 GB, 3 fixed angles)",
+      "Bambu: 627 timelapses from ~3 contributors ~= 3 environments (volume != environments)",
+      "Bed-Adhesion is the only onset-annotated failure corpus; bed-adhesion-only and NC",
+      "Academic papers recycle the same tiny Kaggle/Roboflow sets; more papers != more environments",
+      "Obico/Spaghetti Detective ~90M printing hours monitored but NO public dataset",
+      "no dataset fills continuous under-extrusion / multi-env spaghetti onset"
+    ]
+  },
+  "synthetic": {
+    "study": "docs/research/synthetic-data-feasibility.md",
+    "fmd_defect_rendering": "no verified Blender/simulator pipeline exists for spaghetti/stringing/under-extrusion; novel research not a tool",
+    "photometric_augmentation_gap": "refuted for environment diversity; Xiao et al. 2024 leaves persistent 4-14% accuracy gap vs real diversity",
+    "cutpaste_compositing": "best evidence (steel NEU-DET): peaks at n=50/class (mAP@50 +6.2pp), Poisson n=100, monotonic degradation beyond (features shift toward augmented distribution); ControlNet-underperforms-cut-paste",
+    "generative_defect_synthesis": "promising on MVTec-AD/NEU-DET; zero verified 3D-print evidence; SynSur: synthetic-only never replaces real data",
+    "decisions": [
+      "cannot fix environmental diversity (requires real footage from more real environments)",
+      "can modestly help defect diversity via volume-capped cut/paste of real failure pixels onto real normal backgrounds",
+      "pursue ONLY as later bounded augmentation after real environment targets met; no rendering/generative pipelines now"
+    ]
+  },
+  "better_use_of_existing_footage": {
+    "environment_ceiling_hard": true,
+    "non_reusable": ["7-video holdout", "Stage 13 eval normals", "SKZ eval"],
+    "within_corpus_levers": [
+      "source/run-level stratification with per-environment frame caps",
+      "temporal spread sampling (stride full run duration)",
+      "hard-normal mining from frozen train normals + SKZ candidate normals (after human verification)",
+      "failure-onset preservation (Stage 14 already has onset windows)"
+    ],
+    "verdict": "bounded gain; rebalances and hardens but cannot add environments; not a standalone strategy"
+  },
+  "decision_matrix": {
+    "legend": "high/med/low qualitative",
+    "rows": [
+      {"strategy": "Public real footage", "diversity": "med_low (5-8 normal envs, 1-3 failure)", "scale": "med (~8-12 envs ceiling)", "licensing": "high_risk", "cost": "low", "effort": "med", "usefulness": "med (supplemental normals)", "risk": "high"},
+      {"strategy": "Existing datasets", "diversity": "med", "scale": "high (Trier ~48 GB, Bambu ~36 GB)", "licensing": "low_risk (mostly CC BY/MIT; two NC)", "cost": "low", "effort": "low", "usefulness": "high (normals + some defects)", "risk": "med_low"},
+      {"strategy": "Synthetic", "diversity": "high in defect appearance, low for real environments", "scale": "high (any volume)", "licensing": "none", "cost": "low", "effort": "med_high", "usefulness": "low_med (bounded defect augmentation only)", "risk": "med (artifact overfitting, strict optimum)"},
+      {"strategy": "Combination", "diversity": "high", "scale": "med_high", "licensing": "med (manage mix; NC held eval-only)", "cost": "med", "effort": "high", "usefulness": "high", "risk": "med (integration/data-hygiene)"}
+    ],
+    "conclusion": "only combination addresses the measured blocker (environment count) at attainable cost"
+  },
+  "dataset_design": {
+    "unit": "camera environment; no frame-random splits",
+    "normal": {
+      "train_environments_min": 16,
+      "train_environments_target": 24,
+      "composition": {"trier_block": "1 station x 3 angles (~1-3 env units)", "bambu": "<=3 contributor envs", "contributor_new": "8-12 genuinely new envs (load-bearing)", "permissioned_channels": "1-2 if CC BY granted"},
+      "printer_camera_diversity": ">=3-4 printer models; cameras not a single model; >=2 of bed/front/side/overhead layouts",
+      "continuous_requirement": "per env >=1 complete healthy run or >=2 h continuous ~1 fps (~>=7200 raw frames), sampled to per-env cap",
+      "per_env_cap_frames": "1000-1600 stride-sampled",
+      "pool_size": "~25-40k frames across >=16 envs",
+      "covariate_spread": "bed types, colors, lighting, filament colors/materials deliberately diversified"
+    },
+    "failure": {
+      "train_environments_min": 9,
+      "train_environments_target": 12,
+      "by_type_min_sources": {"spaghetti": 3, "under_extrusion": 3, "stringing": 2, "bed_adhesion_warping": 2},
+      "current_holdings": {"spaghetti": "1 (ZYfXWJN2k4); need >=2 new", "under_extrusion": "none; largest gap", "stringing": "partial (SP001/STR001; Trier per-image)", "adhesion": "2 (Bed-Adhesion, onset-labeled, NC-contained)"},
+      "onset_coverage": "every failure env: continuous onset + development window, not aftermath stills",
+      "per_env_cap_frames": "500-1200 stride-sampled",
+      "pool_size": "~6-12k frames across >=9 envs"
+    },
+    "evaluation": {
+      "frozen_test": "Kaggle, unchanged",
+      "seven_video_holdout": "frozen, external, never trained",
+      "stage13_eval": "locked evaluation-only (2 envs, 120 frames)",
+      "skz_eval": "locked (16 held-out groups)",
+      "new_holdouts": "2-3 new normal envs + 2-3 new failure envs frozen before training"
+    },
+    "credibility": "first design where independent-unit count (~25-35 envs) is the explicit target; ~40% of normals and ~5-6 failure envs already in hand"
+  },
+  "licensing": {
+    "training_data": [
+      {"source": "printing-errors", "license": "Apache 2.0 (recorded)", "note": "in use; frozen"},
+      {"source": "Trier v2", "license": "CC BY 4.0", "note": "training + redistribution with attribution"},
+      {"source": "Bambu", "license": "CC BY 4.0", "note": "training + redistribution with credit"},
+      {"source": "Hu FDM-Defect", "license": "MIT"},
+      {"source": "UTFPR/Wartronick", "license": "MIT"},
+      {"source": "3DVis", "license": "CC BY-SA 4.0", "note": "share-alike on included derived set"},
+      {"source": "Roboflow seprinder/syLucauc", "license": "CC BY 4.0 (page-stated)", "note": "PROVENANCE RISK - verify original capture"},
+      {"source": "FT3D", "license": "MIT", "note": "verify content"},
+      {"source": "Bed-Adhesion", "license": "CC BY-NC 4.0", "note": "non-commercial scope only"},
+      {"source": "3D-ADAM", "license": "CC BY-NC-SA 4.0", "note": "non-commercial only if included"},
+      {"source": "Stage 13/14 + SKZ frames", "license": "Standard YouTube License", "note": "non-redistributable; re-verify each uploader"},
+      {"source": "own/community", "license": "we license CC BY 4.0", "note": "per-contributor permission record"}
+    ],
+    "evaluation_only": ["7-video holdout", "Stage 13 eval normals", "SKZ eval groups", "Bed-Adhesion sequences (if NC kept out of release)", "permissioned channels unless grant covers redistribution"],
+    "redistribution_compatible": ["printing-errors subset (Apache 2.0)", "Trier (CC BY)", "Bambu (CC BY)", "Hu (MIT)", "UTFPR (MIT)", "3DVis (CC BY-SA)", "own collected (CC BY 4.0)"],
+    "manual_verification_required": [
+      "Trier exact frame/printer metadata",
+      "Roboflow capture provenance",
+      "FT3D content/details",
+      "Kaggle 3D-Printer-Defected license",
+      "Multi-material Delta access/license",
+      "Minds-R-Lab license wording",
+      "YouTube videoTrainability state + written per-uploader grant for any channel"
+    ]
+  },
+  "salvageability": {
+    "q1_build_dataset_without_owning_printer": "yes, via permissive corpora + contributor program; cannot fabricate failures at will; socially driven and slower",
+    "q2_public_footage_enough_normals": "only with permission; ~8-12 envs absolute ceiling; supplemental not sufficient",
+    "q3_public_footage_enough_failures": "no; ~1-3 envs and essentially no continuous onset footage; binding constraint",
+    "q4_research_datasets_fill_gaps": "partially; Trier bulk, Bed-Adhesion 2 onset envs, Bambu normals; NOT continuous under-extrusion or multi-env spaghetti onset",
+    "q5_synthetic_worth_pursuing": "only cut-paste compositing as bounded augmentation after real targets; rendering/generative not evidence-backed",
+    "q6_hybrid_most_realistic": "yes",
+    "q7_min_acquisition_for_training_run": "train-side env count ~doubles (~10 -> ~20), >=5 new verified failure envs (>=2 spaghetti, >=3 under-extrusion), 2 normal + 2 failure new holdouts frozen; until then do not train"
+  },
+  "recommendation": {
+    "strategy": "Hybrid — permissive research datasets (Trier, Bambu, Bed-Adhesion-contained, small MIT sets) as bulk backbone, PLUS contributor/self-collection for genuinely new camera environments, PLUS permissioned YouTube as supplemental normal source, PLUS (after real targets met) volume-capped real-defect cut-paste compositing",
+    "why": "attacks the measured blocker (camera-environment count) at attainable cost and licensing; alternatives fail on license/scarcity/gap/evidence respectively",
+    "data_to_collect": "6-10 new normal envs + 4-6 new failure envs (>=2 spaghetti, >=3 under-extrusion) continuous-onset, human-verified, CC BY 4.0",
+    "data_to_reuse": "Trier v2, Bambu, Bed-Adhesion (NC-contained), Stage 13/14 + SKZ where already split, printing-errors frozen",
+    "still_missing": "continuous under-extrusion footage, multi-env spaghetti onset, independent normals beyond existing corpora",
+    "estimated_scale": "~25-35 independent environments; ~30-50k annotated frames at ~1 fps",
+    "licensing_considerations": "provenance ledger per dataset policy; NC data in eval/training-only trenches; only CC BY/MIT/Apache in redistribution artifact; own data CC BY 4.0",
+    "next_implementation_task": "build dataset-staging + contributor-intake pipeline: characterize Trier v2 (counts/license/checksums), verify Bambu envs, extend Stage-12D review manifest + environment-manifest schema, ship contributor intake kit; freeze new holdouts; NO training"
+  },
+  "do_not_pursue": [
+    "scraping YouTube/platform footage for training without per-uploader permission",
+    "including Standard-YouTube-License frames in the redistribution release",
+    "generative/diffusion or rendered synthetic FDM data as primary source",
+    "full-scene FDM defect rendering (unproven, high-cost research)",
+    "frame-random train/eval splits at any level",
+    "re-using 7-video holdout / Stage-13 eval / SKZ eval for training",
+    "another training run before min-acquisition conditions met",
+    "arbitrary frame-count inflation from any single environment"
+  ]
+}

@@ -1,0 +1,73 @@
+experiment_id: exp4_target_balanced_shufflenet_v2_x1_0
+model: shufflenet_v2_x1_0
+task: classification
+dataset:
+  name: printing-errors+stage13-normal+stage14-failure
+  version: '1.0'
+  data_dir: datasets/processed/external-aug-exp4-balanced
+  image_size: 224
+  source_mode: directory
+  split_ratios:
+  - 0.7
+  - 0.15
+  - 0.15
+data:
+  num_workers: 4
+  batch_size: 32
+  pin_memory: true
+train:
+  epochs: 30
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  augmentation:
+    horizontal_flip: true
+    random_rotation: 15
+    color_jitter: 0.2
+    random_crop: false
+    normalize: true
+  precision: fp32
+  seed: 42
+  early_stopping_patience: 10
+evaluation:
+  metrics:
+  - precision
+  - recall
+  - f1
+  - fnr
+  - fpr
+  - auroc
+  decision_threshold: 0.5
+export:
+  format: onnx
+  quantization: int8
+  dynamic_axes: false
+hardware:
+  machine: arm64 (arm)
+  gpu: None
+software:
+  python: 3.11.15
+  torch: !!python/object/new:torch.torch_version.TorchVersion
+  - 2.14.0
+  torchvision: 0.29.0
+  ultralytics: 8.4.138
+  opencv: 5.0.0
+  os: Darwin 25.6.0
+created_at: '2026-09-07T14:25:57.880729'
+notes: 'Experiment 4: target-domain failure-balancing augmentation. Identical training
+
+  setup to the baseline and Exp3. Adds 100 VLM-verified target-domain FAILING
+
+  frames (2 independent fixed-cam sources: ZYfXW0JN2k4 spaghetti 70, 3zXQrw0E-Ag
+
+  blob 30) to the Stage-13 normal-augmented mix. Key question: does a small
+
+  diverse failure set
+
+  restore failure sensitivity without losing the Stage-13 normal FP improvement?
+
+  All evaluations use the validated config (sample-fps 1, warmup 8, confirm 2,
+
+  threshold 0.5); no threshold tuning. Failure labels are VLM-screened
+
+  (pending human review).'

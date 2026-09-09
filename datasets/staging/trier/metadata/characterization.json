@@ -1,0 +1,56 @@
+{
+  "schema": "tinyvision-trier-characterization",
+  "source": "zenodo-api",
+  "record_id": 18628777,
+  "conceptrecid": "14712896",
+  "doi": "10.5281/zenodo.18628777",
+  "title": "Quality Control in Additive Manufacturing: Image Dataset for Defect Detection in Fused Filament Fabrication",
+  "version": "2.0.0",
+  "publication_date": "2026-02-13",
+  "first_published": "2026-02-13",
+  "modified": "2026-03-19",
+  "license": "cc-by-4.0",
+  "creators": [
+    "Bast, Sebastian",
+    "Scherer, Kai",
+    "Wahl, Michael",
+    "Naumann, Stefan",
+    "Dartmann, Guido",
+    "Didas, Stephan"
+  ],
+  "description_excerpt": "This image dataset was created to support the development of image-based defect detection and quality control systems in additive manufacturing, particularly in fused filament fabrication. It includes high resolution images as well as cropped images of 3D printed objects with production defects, such as extrusion errors and layershifts and stringing errors, as well as images of defect-free prints. The data was captured from three different camera angles during production.&nbsp; \n Please cite this repository if you use the dataset in your work.",
+  "files": [
+    {
+      "key": "additional_defect_data.zip",
+      "size_bytes": 16129011133,
+      "size_human": "15.0 GiB",
+      "checksum": "md5:11ea08432cd0306b93ab880f8d0493be"
+    },
+    {
+      "key": "test_data.zip",
+      "size_bytes": 12630419031,
+      "size_human": "11.8 GiB",
+      "checksum": "md5:3d6e8295621bd033d193a196f11025e3"
+    },
+    {
+      "key": "base_data.zip",
+      "size_bytes": 19632181220,
+      "size_human": "18.3 GiB",
+      "checksum": "md5:b5b3354970c0a229ea63334b1346da07"
+    }
+  ],
+  "observed_claims": {
+    "captured_during_production": true,
+    "n_camera_angles": 3,
+    "defects": [
+      "extrusion_error",
+      "layer_shift",
+      "stringing"
+    ],
+    "has_defect_free": true
+  },
+  "environment_units": null,
+  "environment_verified": false,
+  "note": "Environment units cannot be counted from metadata alone. The characterization must be completed with index_trier_tree() against an extracted local copy once one is available.",
+  "retrieved_at_utc": "2026-09-07T15:17:53Z"
+}

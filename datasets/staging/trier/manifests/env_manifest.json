@@ -1,0 +1,971 @@
+{
+  "dataset": {
+    "acquisition_method": "public repository download",
+    "dataset_id": "trier-fff-qc-v2",
+    "evaluation_allowed": true,
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "name": "Quality Control in Additive Manufacturing: Image Dataset for Defect Detection in Fused Filament Fabrication",
+    "notes": "Selective subsampled full-resolution extraction; see datasets/staging/trier/extraction_plan.json",
+    "provenance": "downloaded from Zenodo record 18628777 (v2.0.0); checksums verified against API",
+    "redistribution_allowed": true,
+    "retrieval_date": "2026-09-08",
+    "training_allowed": true,
+    "url": "https://doi.org/10.5281/zenodo.18628777"
+  },
+  "environments": [
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera1"
+      },
+      "contributor": "trier-team",
+      "environment_group": "no_stringing_error",
+      "environment_id": "9f54bd7f-74e8-5a38-9ece-f23a6ded1405",
+      "environment_key": "env_trier_trier-team_camera1_camera1-no_stringing_error-additional_defect_data",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera1",
+        "failure_type": "none",
+        "print_type": "no_stringing_error",
+        "zip_group": "additional_defect_data"
+      },
+      "notes": "Trier no_stringing_error captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera1 of no_stringing_error (additional_defect_data); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera2"
+      },
+      "contributor": "trier-team",
+      "environment_group": "no_stringing_error",
+      "environment_id": "35fddd7e-25ab-543f-98a5-806195655823",
+      "environment_key": "env_trier_trier-team_camera2_camera2-no_stringing_error-additional_defect_data",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera2",
+        "failure_type": "none",
+        "print_type": "no_stringing_error",
+        "zip_group": "additional_defect_data"
+      },
+      "notes": "Trier no_stringing_error captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera2 of no_stringing_error (additional_defect_data); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera3"
+      },
+      "contributor": "trier-team",
+      "environment_group": "no_stringing_error",
+      "environment_id": "007b8e86-bcc2-554a-8bdc-0e5a1213d4ff",
+      "environment_key": "env_trier_trier-team_camera3_camera3-no_stringing_error-additional_defect_data",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera3",
+        "failure_type": "none",
+        "print_type": "no_stringing_error",
+        "zip_group": "additional_defect_data"
+      },
+      "notes": "Trier no_stringing_error captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera3 of no_stringing_error (additional_defect_data); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera1"
+      },
+      "contributor": "trier-team",
+      "environment_group": "stringing_error",
+      "environment_id": "a84e7cf8-ed0b-55bf-8c78-6f2bbf618ac1",
+      "environment_key": "env_trier_trier-team_camera1_camera1-stringing_error-additional_defect_data",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera1",
+        "failure_type": "stringing",
+        "print_type": "stringing_error",
+        "zip_group": "additional_defect_data"
+      },
+      "notes": "Trier stringing_error captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera1 of stringing_error (additional_defect_data); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera2"
+      },
+      "contributor": "trier-team",
+      "environment_group": "stringing_error",
+      "environment_id": "0cae4282-3be6-5e56-9621-b4224421d30b",
+      "environment_key": "env_trier_trier-team_camera2_camera2-stringing_error-additional_defect_data",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera2",
+        "failure_type": "stringing",
+        "print_type": "stringing_error",
+        "zip_group": "additional_defect_data"
+      },
+      "notes": "Trier stringing_error captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera2 of stringing_error (additional_defect_data); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera3"
+      },
+      "contributor": "trier-team",
+      "environment_group": "stringing_error",
+      "environment_id": "db13b600-f17f-514f-9a66-8d6347be3bc1",
+      "environment_key": "env_trier_trier-team_camera3_camera3-stringing_error-additional_defect_data",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera3",
+        "failure_type": "stringing",
+        "print_type": "stringing_error",
+        "zip_group": "additional_defect_data"
+      },
+      "notes": "Trier stringing_error captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera3 of stringing_error (additional_defect_data); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera1"
+      },
+      "contributor": "trier-team",
+      "environment_group": "extrusion_error_print",
+      "environment_id": "27d94c09-4b51-52b0-a516-1370a5957421",
+      "environment_key": "env_trier_trier-team_camera1_camera1-extrusion_error_print-base",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera1",
+        "failure_type": "extrusion_error",
+        "print_type": "extrusion_error_print",
+        "zip_group": "base"
+      },
+      "notes": "Trier extrusion_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera1 of extrusion_error_print (base); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera2"
+      },
+      "contributor": "trier-team",
+      "environment_group": "extrusion_error_print",
+      "environment_id": "d7525f7d-6238-584e-8f62-4e751bb8777d",
+      "environment_key": "env_trier_trier-team_camera2_camera2-extrusion_error_print-base",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera2",
+        "failure_type": "extrusion_error",
+        "print_type": "extrusion_error_print",
+        "zip_group": "base"
+      },
+      "notes": "Trier extrusion_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera2 of extrusion_error_print (base); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera3"
+      },
+      "contributor": "trier-team",
+      "environment_group": "extrusion_error_print",
+      "environment_id": "7cf37592-ce09-5da9-99f4-fed93be240d6",
+      "environment_key": "env_trier_trier-team_camera3_camera3-extrusion_error_print-base",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera3",
+        "failure_type": "extrusion_error",
+        "print_type": "extrusion_error_print",
+        "zip_group": "base"
+      },
+      "notes": "Trier extrusion_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera3 of extrusion_error_print (base); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera1"
+      },
+      "contributor": "trier-team",
+      "environment_group": "layershift_error_print",
+      "environment_id": "672404f4-6ddd-5ec8-bde8-2045ee4bb403",
+      "environment_key": "env_trier_trier-team_camera1_camera1-layershift_error_print-base",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera1",
+        "failure_type": "layer_shift",
+        "print_type": "layershift_error_print",
+        "zip_group": "base"
+      },
+      "notes": "Trier layershift_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera1 of layershift_error_print (base); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera2"
+      },
+      "contributor": "trier-team",
+      "environment_group": "layershift_error_print",
+      "environment_id": "8e551d29-9c67-5a4b-82d9-f041c2c511c2",
+      "environment_key": "env_trier_trier-team_camera2_camera2-layershift_error_print-base",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera2",
+        "failure_type": "layer_shift",
+        "print_type": "layershift_error_print",
+        "zip_group": "base"
+      },
+      "notes": "Trier layershift_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera2 of layershift_error_print (base); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera3"
+      },
+      "contributor": "trier-team",
+      "environment_group": "layershift_error_print",
+      "environment_id": "1fba723b-ecc3-5a22-9745-5255338255ca",
+      "environment_key": "env_trier_trier-team_camera3_camera3-layershift_error_print-base",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera3",
+        "failure_type": "layer_shift",
+        "print_type": "layershift_error_print",
+        "zip_group": "base"
+      },
+      "notes": "Trier layershift_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera3 of layershift_error_print (base); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera1"
+      },
+      "contributor": "trier-team",
+      "environment_group": "no_error_print",
+      "environment_id": "2afbc389-a14f-50fd-868a-03024fcb7cdf",
+      "environment_key": "env_trier_trier-team_camera1_camera1-no_error_print-base",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera1",
+        "failure_type": "none",
+        "print_type": "no_error_print",
+        "zip_group": "base"
+      },
+      "notes": "Trier no_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera1 of no_error_print (base); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera2"
+      },
+      "contributor": "trier-team",
+      "environment_group": "no_error_print",
+      "environment_id": "30555150-b4e9-5d58-b3e5-5af2931b9dca",
+      "environment_key": "env_trier_trier-team_camera2_camera2-no_error_print-base",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera2",
+        "failure_type": "none",
+        "print_type": "no_error_print",
+        "zip_group": "base"
+      },
+      "notes": "Trier no_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera2 of no_error_print (base); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera3"
+      },
+      "contributor": "trier-team",
+      "environment_group": "no_error_print",
+      "environment_id": "ad485c07-1ede-5a02-9678-cd41c0091b5d",
+      "environment_key": "env_trier_trier-team_camera3_camera3-no_error_print-base",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera3",
+        "failure_type": "none",
+        "print_type": "no_error_print",
+        "zip_group": "base"
+      },
+      "notes": "Trier no_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "train",
+      "view": "camera3 of no_error_print (base); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera1"
+      },
+      "contributor": "trier-team",
+      "environment_group": "extrusion_error_print",
+      "environment_id": "beb24c82-7008-5125-a6d9-c577a38efc3f",
+      "environment_key": "env_trier_trier-team_camera1_camera1-extrusion_error_print-test",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera1",
+        "failure_type": "extrusion_error",
+        "print_type": "extrusion_error_print",
+        "zip_group": "test"
+      },
+      "notes": "Trier extrusion_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "external_holdout",
+      "view": "camera1 of extrusion_error_print (test); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera2"
+      },
+      "contributor": "trier-team",
+      "environment_group": "extrusion_error_print",
+      "environment_id": "f0161e26-1850-5538-8547-abdee42434e4",
+      "environment_key": "env_trier_trier-team_camera2_camera2-extrusion_error_print-test",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera2",
+        "failure_type": "extrusion_error",
+        "print_type": "extrusion_error_print",
+        "zip_group": "test"
+      },
+      "notes": "Trier extrusion_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "external_holdout",
+      "view": "camera2 of extrusion_error_print (test); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera3"
+      },
+      "contributor": "trier-team",
+      "environment_group": "extrusion_error_print",
+      "environment_id": "6a9157e0-3e1e-5da8-81e9-b7cddaddbb87",
+      "environment_key": "env_trier_trier-team_camera3_camera3-extrusion_error_print-test",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera3",
+        "failure_type": "extrusion_error",
+        "print_type": "extrusion_error_print",
+        "zip_group": "test"
+      },
+      "notes": "Trier extrusion_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "external_holdout",
+      "view": "camera3 of extrusion_error_print (test); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera1"
+      },
+      "contributor": "trier-team",
+      "environment_group": "layershift_error_print",
+      "environment_id": "e293d644-7e28-53f7-a2e4-7325b56be7d7",
+      "environment_key": "env_trier_trier-team_camera1_camera1-layershift_error_print-test",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera1",
+        "failure_type": "layer_shift",
+        "print_type": "layershift_error_print",
+        "zip_group": "test"
+      },
+      "notes": "Trier layershift_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "external_holdout",
+      "view": "camera1 of layershift_error_print (test); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera2"
+      },
+      "contributor": "trier-team",
+      "environment_group": "layershift_error_print",
+      "environment_id": "ff1e325a-6ba5-5d18-ad61-285dada5a7cf",
+      "environment_key": "env_trier_trier-team_camera2_camera2-layershift_error_print-test",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera2",
+        "failure_type": "layer_shift",
+        "print_type": "layershift_error_print",
+        "zip_group": "test"
+      },
+      "notes": "Trier layershift_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "external_holdout",
+      "view": "camera2 of layershift_error_print (test); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera3"
+      },
+      "contributor": "trier-team",
+      "environment_group": "layershift_error_print",
+      "environment_id": "d4f52851-98f1-5048-b695-bad6af1f7ee8",
+      "environment_key": "env_trier_trier-team_camera3_camera3-layershift_error_print-test",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera3",
+        "failure_type": "layer_shift",
+        "print_type": "layershift_error_print",
+        "zip_group": "test"
+      },
+      "notes": "Trier layershift_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "external_holdout",
+      "view": "camera3 of layershift_error_print (test); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera1"
+      },
+      "contributor": "trier-team",
+      "environment_group": "no_error_print",
+      "environment_id": "699c0050-3bc4-5a7c-9215-d53a6b04a07a",
+      "environment_key": "env_trier_trier-team_camera1_camera1-no_error_print-test",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera1",
+        "failure_type": "none",
+        "print_type": "no_error_print",
+        "zip_group": "test"
+      },
+      "notes": "Trier no_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "external_holdout",
+      "view": "camera1 of no_error_print (test); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera2"
+      },
+      "contributor": "trier-team",
+      "environment_group": "no_error_print",
+      "environment_id": "51572c43-59c6-5067-871b-4c80a3e0354c",
+      "environment_key": "env_trier_trier-team_camera2_camera2-no_error_print-test",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera2",
+        "failure_type": "none",
+        "print_type": "no_error_print",
+        "zip_group": "test"
+      },
+      "notes": "Trier no_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "external_holdout",
+      "view": "camera2 of no_error_print (test); physical angle unstated"
+    },
+    {
+      "background_notes": null,
+      "camera": {
+        "angle": "unstated in source",
+        "id": "camera3"
+      },
+      "contributor": "trier-team",
+      "environment_group": "no_error_print",
+      "environment_id": "0f2d1d04-0c65-5669-80d4-da379fc061de",
+      "environment_key": "env_trier_trier-team_camera3_camera3-no_error_print-test",
+      "lighting_notes": null,
+      "metadata": {
+        "camera": "camera3",
+        "failure_type": "none",
+        "print_type": "no_error_print",
+        "zip_group": "test"
+      },
+      "notes": "Trier no_error_print captured with three fixed camera views; physical angle not stated by authors",
+      "printer": {},
+      "source_dataset": "trier-fff-qc-v2",
+      "split_assignment": "external_holdout",
+      "view": "camera3 of no_error_print (test); physical angle unstated"
+    }
+  ],
+  "license_consents": [
+    {
+      "attribution": "Bast, Scherer, Wahl, Naumann, Dartmann, Didas (CC BY 4.0)",
+      "consent_date": "2026-09-08",
+      "contributor": "trier-team",
+      "evaluation_allowed": true,
+      "notes": null,
+      "preferred_credit": "doi:10.5281/zenodo.18628777",
+      "redistribution_allowed": true,
+      "training_allowed": true,
+      "verification": "public CC BY 4.0 license; no individual consent form required"
+    }
+  ],
+  "recordings": [
+    {
+      "continuous_realtime": true,
+      "duration_s": 1000.0,
+      "environment_id": "9f54bd7f-74e8-5a38-9ece-f23a6ded1405",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 1000
+      },
+      "recording_id": "trier-additional_defect_data-no_stringing_error-camera1",
+      "source": "additional_defect_data/no_stringing_error/full_res/camera1/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1000.0,
+      "environment_id": "35fddd7e-25ab-543f-98a5-806195655823",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 1000
+      },
+      "recording_id": "trier-additional_defect_data-no_stringing_error-camera2",
+      "source": "additional_defect_data/no_stringing_error/full_res/camera2/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1000.0,
+      "environment_id": "007b8e86-bcc2-554a-8bdc-0e5a1213d4ff",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 1000
+      },
+      "recording_id": "trier-additional_defect_data-no_stringing_error-camera3",
+      "source": "additional_defect_data/no_stringing_error/full_res/camera3/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1000.0,
+      "environment_id": "a84e7cf8-ed0b-55bf-8c78-6f2bbf618ac1",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 1000
+      },
+      "recording_id": "trier-additional_defect_data-stringing_error-camera1",
+      "source": "additional_defect_data/stringing_error/full_res/camera1/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1000.0,
+      "environment_id": "0cae4282-3be6-5e56-9621-b4224421d30b",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 1000
+      },
+      "recording_id": "trier-additional_defect_data-stringing_error-camera2",
+      "source": "additional_defect_data/stringing_error/full_res/camera2/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1000.0,
+      "environment_id": "db13b600-f17f-514f-9a66-8d6347be3bc1",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 1000
+      },
+      "recording_id": "trier-additional_defect_data-stringing_error-camera3",
+      "source": "additional_defect_data/stringing_error/full_res/camera3/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 987.0,
+      "environment_id": "27d94c09-4b51-52b0-a516-1370a5957421",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 987
+      },
+      "recording_id": "trier-base-extrusion_error_print-camera1",
+      "source": "base/full_res/extrusion_error_print/camera1/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 996.0,
+      "environment_id": "d7525f7d-6238-584e-8f62-4e751bb8777d",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 996
+      },
+      "recording_id": "trier-base-extrusion_error_print-camera2",
+      "source": "base/full_res/extrusion_error_print/camera2/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 990.0,
+      "environment_id": "7cf37592-ce09-5da9-99f4-fed93be240d6",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 990
+      },
+      "recording_id": "trier-base-extrusion_error_print-camera3",
+      "source": "base/full_res/extrusion_error_print/camera3/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 943.0,
+      "environment_id": "672404f4-6ddd-5ec8-bde8-2045ee4bb403",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 943
+      },
+      "recording_id": "trier-base-layershift_error_print-camera1",
+      "source": "base/full_res/layershift_error_print/camera1/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 943.0,
+      "environment_id": "8e551d29-9c67-5a4b-82d9-f041c2c511c2",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 943
+      },
+      "recording_id": "trier-base-layershift_error_print-camera2",
+      "source": "base/full_res/layershift_error_print/camera2/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 933.0,
+      "environment_id": "1fba723b-ecc3-5a22-9745-5255338255ca",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 933
+      },
+      "recording_id": "trier-base-layershift_error_print-camera3",
+      "source": "base/full_res/layershift_error_print/camera3/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1768.0,
+      "environment_id": "2afbc389-a14f-50fd-868a-03024fcb7cdf",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 1768
+      },
+      "recording_id": "trier-base-no_error_print-camera1",
+      "source": "base/full_res/no_error_print/camera1/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1748.0,
+      "environment_id": "30555150-b4e9-5d58-b3e5-5af2931b9dca",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 1748
+      },
+      "recording_id": "trier-base-no_error_print-camera2",
+      "source": "base/full_res/no_error_print/camera2/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1777.0,
+      "environment_id": "ad485c07-1ede-5a02-9678-cd41c0091b5d",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 5,
+        "frame_count": 1777
+      },
+      "recording_id": "trier-base-no_error_print-camera3",
+      "source": "base/full_res/no_error_print/camera3/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1186.0,
+      "environment_id": "beb24c82-7008-5125-a6d9-c577a38efc3f",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 2,
+        "frame_count": 1186
+      },
+      "recording_id": "trier-test-extrusion_error_print-camera1",
+      "source": "test/full_res/extrusion_error_print/camera1/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1156.0,
+      "environment_id": "f0161e26-1850-5538-8547-abdee42434e4",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 2,
+        "frame_count": 1156
+      },
+      "recording_id": "trier-test-extrusion_error_print-camera2",
+      "source": "test/full_res/extrusion_error_print/camera2/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1160.0,
+      "environment_id": "6a9157e0-3e1e-5da8-81e9-b7cddaddbb87",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 2,
+        "frame_count": 1160
+      },
+      "recording_id": "trier-test-extrusion_error_print-camera3",
+      "source": "test/full_res/extrusion_error_print/camera3/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1117.0,
+      "environment_id": "e293d644-7e28-53f7-a2e4-7325b56be7d7",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 2,
+        "frame_count": 1117
+      },
+      "recording_id": "trier-test-layershift_error_print-camera1",
+      "source": "test/full_res/layershift_error_print/camera1/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1116.0,
+      "environment_id": "ff1e325a-6ba5-5d18-ad61-285dada5a7cf",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 2,
+        "frame_count": 1116
+      },
+      "recording_id": "trier-test-layershift_error_print-camera2",
+      "source": "test/full_res/layershift_error_print/camera2/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1117.0,
+      "environment_id": "d4f52851-98f1-5048-b695-bad6af1f7ee8",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 2,
+        "frame_count": 1117
+      },
+      "recording_id": "trier-test-layershift_error_print-camera3",
+      "source": "test/full_res/layershift_error_print/camera3/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1069.0,
+      "environment_id": "699c0050-3bc4-5a7c-9215-d53a6b04a07a",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 2,
+        "frame_count": 1069
+      },
+      "recording_id": "trier-test-no_error_print-camera1",
+      "source": "test/full_res/no_error_print/camera1/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1075.0,
+      "environment_id": "51572c43-59c6-5067-871b-4c80a3e0354c",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 2,
+        "frame_count": 1075
+      },
+      "recording_id": "trier-test-no_error_print-camera2",
+      "source": "test/full_res/no_error_print/camera2/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    },
+    {
+      "continuous_realtime": true,
+      "duration_s": 1073.0,
+      "environment_id": "0f2d1d04-0c65-5669-80d4-da379fc061de",
+      "fps": 1.0,
+      "height": null,
+      "md5": null,
+      "metadata": {
+        "extraction_stride": 2,
+        "frame_count": 1073
+      },
+      "recording_id": "trier-test-no_error_print-camera3",
+      "source": "test/full_res/no_error_print/camera3/",
+      "temporal_note": "1 frame per sampled instance; source fps unknown, frames assumed sequential seconds for review",
+      "width": null
+    }
+  ],
+  "schema": "tinyvision-env-manifest",
+  "schema_version": 1
+}

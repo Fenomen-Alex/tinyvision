@@ -1,0 +1,69 @@
+# Experiment 3 — Target-domain normal-print training augmentation (Stage 13).
+# Same binary architecture/hyperparameters as the Experiment-1 baseline
+# (shufflenet_v2_x1_0, seed 42, epochs 30) on printing-errors train + verified
+# normal target-domain frames (7 independent YouTube/stream sources).
+#
+# question: does augmenting normal diversity reduce the persistent
+# false-positive rate on independent normal live footage?
+#
+# dataset.data_dir (datasets/processed/external-aug-exp3-normal) is a DERIVED
+# split dir created by scripts/stage13_manifest.py:
+#   train.csv = printing-errors train + 333 target-domain NORMAL frames
+#               (VLM-screened decision==normal AND part_visible==True,
+#                pending human review; absolute paths).
+#   val.csv/test.csv are byte-identical copies of frozen printing-errors splits.
+# External normal eval holdout = 2 sources (LY3jlcO34f4, zkJgLanCSUw), 120
+# frames, evaluation-only, never in training.
+experiment_id: exp3_target_normal_aug_shufflenet_v2_x1_0
+model: shufflenet_v2_x1_0
+task: classification
+dataset:
+  name: printing-errors+stage13-target-normal
+  version: '1.0'
+  data_dir: datasets/processed/external-aug-exp3-normal
+  image_size: 224
+  source_mode: directory
+  split_ratios: [0.7, 0.15, 0.15]
+data:
+  num_workers: 4
+  batch_size: 32
+  pin_memory: true
+train:
+  epochs: 30
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  augmentation:
+    horizontal_flip: true
+    random_rotation: 15
+    color_jitter: 0.2
+    random_crop: false
+    normalize: true
+  precision: fp32
+  seed: 42
+  early_stopping_patience: 10
+evaluation:
+  metrics: [precision, recall, f1, fnr, fpr, auroc]
+  decision_threshold: 0.5
+export:
+  format: onnx
+  quantization: int8
+  dynamic_axes: false
+hardware:
+  machine: ''
+  gpu: ''
+software:
+  python: ''
+  torch: ''
+  torchvision: ''
+  ultralytics: ''
+  opencv: ''
+  os: ''
+created_at: ''
+notes: |-
+  Experiment 3: target-domain normal augmentation. Identical training setup to
+  the baseline (shufflenet_v2_x1_0_printing-errors_cdc9e2cad4, seed 42, epochs 30).
+  Evaluation key question: does the normal FP rate on independent live footage
+  drop without destroying failure detection? All evaluations use the validated
+  config (sample-fps 1, warmup 8, confirm 2, threshold 0.5); no threshold tuning.
+  Normal augmentation labels are VLM-screened (pending human review).

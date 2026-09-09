@@ -1,0 +1,220 @@
+{
+  "schema": "stage13-experiment",
+  "schema_version": 1,
+  "created": "2026-09-07",
+  "baseline_checkpoint": "/Users/alex/Projects/tinyvision/experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt",
+  "exp3_checkpoint": "/Users/alex/Projects/tinyvision/experiments/exp3_target_normal_aug_shufflenet_v2_x1_0/artifacts/best.pt",
+  "frozen_original_test": {
+    "baseline": {
+      "accuracy": 0.8359566281916754,
+      "precision_failing": 0.9177,
+      "recall_failing": 0.8385,
+      "f1_failing": 0.8763,
+      "fpr": 0.16153457849570924,
+      "fnr": 0.16970387243735763,
+      "auroc": 0.9003833686536907,
+      "confusion_matrix": [
+        [
+          1661,
+          320
+        ],
+        [
+          149,
+          729
+        ]
+      ],
+      "checkpoint": "/Users/alex/Projects/tinyvision/experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt"
+    },
+    "exp3": {
+      "accuracy": 0.7859391395592865,
+      "precision_failing": 0.9265,
+      "recall_failing": 0.7506,
+      "f1_failing": 0.8293,
+      "fpr": 0.24936900555275113,
+      "fnr": 0.13439635535307518,
+      "auroc": 0.877439030700539,
+      "confusion_matrix": [
+        [
+          1487,
+          494
+        ],
+        [
+          118,
+          760
+        ]
+      ],
+      "checkpoint": "/Users/alex/Projects/tinyvision/experiments/exp3_target_normal_aug_shufflenet_v2_x1_0/artifacts/best.pt"
+    }
+  },
+  "external_normal_holdout": {
+    "baseline": {
+      "frames": 120,
+      "predicted_failing": 120,
+      "normal_fpr": 1.0,
+      "per_source": {
+        "LY3jlcO34f4": {
+          "frames": 60,
+          "fpr": 1.0,
+          "predicted_failing": 60
+        },
+        "zkJgLanCSUw": {
+          "frames": 60,
+          "fpr": 1.0,
+          "predicted_failing": 60
+        }
+      }
+    },
+    "exp3": {
+      "frames": 120,
+      "predicted_failing": 31,
+      "normal_fpr": 0.2583,
+      "per_source": {
+        "LY3jlcO34f4": {
+          "frames": 60,
+          "fpr": 0.1,
+          "predicted_failing": 6
+        },
+        "zkJgLanCSUw": {
+          "frames": 60,
+          "fpr": 0.4167,
+          "predicted_failing": 25
+        }
+      }
+    }
+  },
+  "external_7_video": {
+    "nbkf372s_cA": {
+      "vlm": "normal",
+      "baseline": {
+        "frames": 516,
+        "first_event": 8,
+        "last_state": "FAILING",
+        "fsm_failing": 508,
+        "raw_failing": 496,
+        "raw_failing_frac": 0.9612
+      },
+      "exp3": {
+        "frames": 516,
+        "first_event": 8,
+        "last_state": "PAUSED",
+        "fsm_failing": 43,
+        "raw_failing": 57,
+        "raw_failing_frac": 0.1105
+      }
+    },
+    "UzULqvGoi1Y": {
+      "vlm": "normal",
+      "baseline": {
+        "frames": 1053,
+        "first_event": 11,
+        "last_state": "FAILING",
+        "fsm_failing": 1042,
+        "raw_failing": 916,
+        "raw_failing_frac": 0.8699
+      },
+      "exp3": {
+        "frames": 1053,
+        "first_event": 67,
+        "last_state": "PAUSED",
+        "fsm_failing": 34,
+        "raw_failing": 148,
+        "raw_failing_frac": 0.1406
+      }
+    },
+    "0TY6LVvMpUo": {
+      "vlm": "normal",
+      "baseline": {
+        "frames": 484,
+        "first_event": 8,
+        "last_state": "FAILING",
+        "fsm_failing": 476,
+        "raw_failing": 448,
+        "raw_failing_frac": 0.9256
+      },
+      "exp3": {
+        "frames": 484,
+        "first_event": 15,
+        "last_state": "PAUSED",
+        "fsm_failing": 146,
+        "raw_failing": 55,
+        "raw_failing_frac": 0.1136
+      }
+    },
+    "38gnsbGqcx4": {
+      "vlm": "normal (no failure per VLM)",
+      "baseline": {
+        "frames": 225,
+        "first_event": 9,
+        "last_state": "FAILING",
+        "fsm_failing": 216,
+        "raw_failing": 177,
+        "raw_failing_frac": 0.7867
+      },
+      "exp3": {
+        "frames": 225,
+        "first_event": 159,
+        "last_state": "FAILING",
+        "fsm_failing": 66,
+        "raw_failing": 8,
+        "raw_failing_frac": 0.0356
+      }
+    },
+    "G56LQfQCUnA": {
+      "vlm": "normal (no failure per VLM)",
+      "baseline": {
+        "frames": 706,
+        "first_event": 8,
+        "last_state": "FAILING",
+        "fsm_failing": 698,
+        "raw_failing": 598,
+        "raw_failing_frac": 0.847
+      },
+      "exp3": {
+        "frames": 706,
+        "first_event": 9,
+        "last_state": "PAUSED",
+        "fsm_failing": 70,
+        "raw_failing": 290,
+        "raw_failing_frac": 0.4108
+      }
+    },
+    "87gsL-Luvis": {
+      "vlm": "spaghetti failure (VLM)",
+      "baseline": {
+        "frames": 33,
+        "first_event": 8,
+        "last_state": "FAILING",
+        "fsm_failing": 25,
+        "raw_failing": 27,
+        "raw_failing_frac": 0.8182
+      },
+      "exp3": {
+        "frames": 33,
+        "first_event": -1,
+        "last_state": "NORMAL",
+        "fsm_failing": 0,
+        "raw_failing": 0,
+        "raw_failing_frac": 0.0
+      }
+    },
+    "mGH3p3AF1YY": {
+      "vlm": "spaghetti/stringing failure (VLM)",
+      "baseline": {
+        "frames": 16,
+        "first_event": 8,
+        "last_state": "FAILING",
+        "fsm_failing": 8,
+        "raw_failing": 16,
+        "raw_failing_frac": 1.0
+      },
+      "exp3": {
+        "frames": 16,
+        "first_event": 9,
+        "last_state": "FAILING",
+        "fsm_failing": 7,
+        "raw_failing": 9,
+        "raw_failing_frac": 0.5625
+      }
+    }
+  }
+}

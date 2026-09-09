@@ -1,0 +1,14 @@
+{
+  "schema": "tinyvision-env-review-units",
+  "version": 1,
+  "provenance": "human:release-review",
+  "decision_vocab": [
+    "normal",
+    "failing",
+    "uncertain"
+  ],
+  "n_units": 0,
+  "n_sequence_units": 0,
+  "n_frame_units": 0,
+  "units": []
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "poc-inference",
+  "schema_version": 1,
+  "runtime": "cpp-onnxruntime",
+  "model": {"path": "experiments/rc1_release_candidate_shufflenet_v2_x1_0/artifacts/model.onnx", "image_size": 224, "threshold": 0.5000, "backend": "onnxruntime-cpu"},
+  "source": {"input": "datasets/external/real-world-eval/mGH3p3AF1YY/video.mp4", "resolution": "640x480", "native_fps": 25.000, "total_frames_in_video": 433, "sample_fps": 1.000, "skip": 25},
+  "temporal": {"alpha": 0.150000, "baseline_window": 60, "warmup": 8, "suspect_threshold": 0.050000, "fail_threshold": 0.300000, "recover_threshold": 0.010000, "fail_threshold_abs": 0.650000, "confirm": 2, "use_delta": false},
+  "summary": {"frames": 16, "interrupted": false, "state_counts": {"OBSERVING": 7, "NORMAL": 1, "SUSPECT": 1, "FAILING": 7, "PAUSED": 0}, "first_failing_event_frame": 9, "failing_frames": 7, "last_state": "FAILING", "cadence_fps": 106.640},
+  "timing": {"processed_frames": 16, "stream_seconds": 0.1500, "cadence_fps": 106.640, "decode_ms": {"count": 16, "mean_ms": 5.8533, "p50_ms": 5.3580, "p95_ms": 8.8410, "max_ms": 8.8410}, "preprocess_ms": {"count": 16, "mean_ms": 1.2004, "p50_ms": 1.0630, "p95_ms": 2.4350, "max_ms": 2.4350}, "inference_ms": {"count": 16, "mean_ms": 2.1349, "p50_ms": 2.1100, "p95_ms": 2.5420, "max_ms": 2.5420}},
+  "annotated_output": null,
+  "per_frame": [
+    {"frame": 0, "frame_idx": 26, "raw": 0.028116, "signal": 0.004217, "baseline": 0.004217, "delta": 0.000000, "state": "OBSERVING", "raw_decision": "normal", "event": null},
+    {"frame": 1, "frame_idx": 52, "raw": 0.026502, "signal": 0.007560, "baseline": 0.005889, "delta": 0.001671, "state": "OBSERVING", "raw_decision": "normal", "event": null},
+    {"frame": 2, "frame_idx": 78, "raw": 0.454092, "signal": 0.074540, "baseline": 0.028772, "delta": 0.045767, "state": "OBSERVING", "raw_decision": "normal", "event": null},
+    {"frame": 3, "frame_idx": 104, "raw": 0.000525, "signal": 0.063438, "baseline": 0.037439, "delta": 0.025999, "state": "OBSERVING", "raw_decision": "normal", "event": null},
+    {"frame": 4, "frame_idx": 130, "raw": 0.577370, "signal": 0.140527, "baseline": 0.058056, "delta": 0.082471, "state": "OBSERVING", "raw_decision": "failing", "event": null},
+    {"frame": 5, "frame_idx": 156, "raw": 0.000687, "signal": 0.119551, "baseline": 0.068306, "delta": 0.051246, "state": "OBSERVING", "raw_decision": "normal", "event": null},
+    {"frame": 6, "frame_idx": 182, "raw": 0.002186, "signal": 0.101947, "baseline": 0.073111, "delta": 0.028835, "state": "OBSERVING", "raw_decision": "normal", "event": null},
+    {"frame": 7, "frame_idx": 208, "raw": 0.010256, "signal": 0.088193, "baseline": 0.074997, "delta": 0.013196, "state": "NORMAL", "raw_decision": "normal", "event": null},
+    {"frame": 8, "frame_idx": 234, "raw": 0.997635, "signal": 0.224609, "baseline": 0.091620, "delta": 0.132989, "state": "SUSPECT", "raw_decision": "failing", "event": null},
+    {"frame": 9, "frame_idx": 260, "raw": 0.998584, "signal": 0.340705, "baseline": 0.116529, "delta": 0.224177, "state": "FAILING", "raw_decision": "failing", "event": "failing_event"},
+    {"frame": 10, "frame_idx": 286, "raw": 0.999968, "signal": 0.439595, "baseline": 0.145898, "delta": 0.293696, "state": "FAILING", "raw_decision": "failing", "event": null},
+    {"frame": 11, "frame_idx": 312, "raw": 0.999936, "signal": 0.523646, "baseline": 0.177377, "delta": 0.346269, "state": "FAILING", "raw_decision": "failing", "event": null},
+    {"frame": 12, "frame_idx": 338, "raw": 0.998658, "signal": 0.594898, "baseline": 0.209494, "delta": 0.385403, "state": "FAILING", "raw_decision": "failing", "event": null},
+    {"frame": 13, "frame_idx": 364, "raw": 0.999962, "signal": 0.655657, "baseline": 0.241363, "delta": 0.414294, "state": "FAILING", "raw_decision": "failing", "event": null},
+    {"frame": 14, "frame_idx": 390, "raw": 0.999924, "signal": 0.707297, "baseline": 0.272425, "delta": 0.434872, "state": "FAILING", "raw_decision": "failing", "event": null},
+    {"frame": 15, "frame_idx": 416, "raw": 0.999982, "signal": 0.751200, "baseline": 0.302349, "delta": 0.448851, "state": "FAILING", "raw_decision": "failing", "event": null}
+  ]
+}
