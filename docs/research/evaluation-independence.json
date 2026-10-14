@@ -1,0 +1,85 @@
+{
+  "schema": "tinyvision-eval-independence",
+  "generated": "2026-10-13",
+  "suite": "training/configs/reliability/suite.yaml",
+  "dataset_root": "datasets/processed/printing-errors",
+  "surfaces": {
+    "dev_val": {
+      "role": "dev_validation",
+      "csv": "datasets/processed/printing-errors/splits/val.csv",
+      "n_recording_units": 22,
+      "recording_units": [
+        "Recording_01122022_17_44_58",
+        "Recording_03012023_15_07_03",
+        "Recording_04012023_16_25_12",
+        "Recording_05012023_11_08_00",
+        "Recording_05012023_11_27_16",
+        "Recording_05012023_15_08_31",
+        "Recording_07122022_09_01_08",
+        "Recording_08012023_13_05_05",
+        "Recording_10012023_18_46_21",
+        "Recording_11012023_11_03_20",
+        "Recording_11012023_11_58_26",
+        "Recording_11012023_12_28_37",
+        "Recording_13122022_14_51_28",
+        "Recording_14.02.2023_20_02_21",
+        "Recording_14.02.2023_22_23_42",
+        "Recording_17.02.2023_12_53_20",
+        "Recording_20122022_20_06_10",
+        "Recording_21122022_19_03_19",
+        "Recording_22122022_18_48_47",
+        "Recording_23.02.2023_15_09_16",
+        "Recording_23.02.2023_21_33_10",
+        "Recording_29112022_20_11_16"
+      ]
+    },
+    "frozen_test": {
+      "role": "locked_test",
+      "csv": "datasets/processed/printing-errors/splits/test.csv",
+      "n_recording_units": 24,
+      "recording_units": [
+        "Recording_01122022_16_06_44",
+        "Recording_03012023_15_32_58",
+        "Recording_03012023_15_48_43",
+        "Recording_03012023_19_32_03",
+        "Recording_05012023_13_10_42",
+        "Recording_05012023_17_24_05",
+        "Recording_06012023_12_17_19",
+        "Recording_06012023_12_43_32",
+        "Recording_06122022_14_49_53",
+        "Recording_06122022_19_29_09",
+        "Recording_07122022_20_17_29",
+        "Recording_08012023_13_31_14",
+        "Recording_10012023_20_09_14",
+        "Recording_10012023_22_39_52",
+        "Recording_14.02.2023_17_38_44",
+        "Recording_14.02.2023_20_17_41",
+        "Recording_14.02.2023_21_04_55",
+        "Recording_14.02.2023_21_24_41",
+        "Recording_15.02.2023_13_19_52",
+        "Recording_16.02.2023_17_27_18",
+        "Recording_17.02.2023_14_11_25",
+        "Recording_17.02.2023_15_18_59",
+        "Recording_20122022_17_05_36",
+        "Recording_29112022_22_13_20"
+      ]
+    },
+    "target_normal_holdout": {
+      "role": "normal_holdout",
+      "format": "manifest_json",
+      "unit_analysis": "not-analysed (non-CSV surface)"
+    }
+  },
+  "pairwise": [
+    {
+      "a": "dev_val",
+      "b": "frozen_test",
+      "recording_overlap": 0,
+      "overlap_units": [],
+      "recording_disjoint": true
+    }
+  ],
+  "total_distinct_recording_units": 46,
+  "environment_independent": false,
+  "verdict": "Recording-disjoint surfaces drawn from a single camera venue are NOT an environment-independent test. Treat cross-venue/cross-normal generalization (Trier, stage13 holdout) as a separate, currently unavailable surface."
+}

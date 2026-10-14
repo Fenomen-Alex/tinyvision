@@ -1,0 +1,27 @@
+# DIAGNOSTIC ONLY. Not a release policy.
+#
+# The rc2 real-domain surfaces use weak/VLM labels that are NOT human-verified,
+# so no gate may pass: everything here is optional and the run is explicitly
+# non-releasing. Use it to obtain frame-level metrics (P/R/F1/AUROC) from the
+# same audited evaluator, and to confirm the evaluator reports the missing
+# human-verified normal holdout as INCONCLUSIVE. It must never be used to
+# declare a release.
+id: tinyvision-realdomain-diagnostic
+policy_version: 1
+status: diagnostic
+
+gates:
+  dev_validation:
+    required: false
+    min_samples: 1
+  locked_test:
+    required: false
+    min_samples: 1
+  normal_holdout:
+    required: false
+    min_samples: 1
+  parity:
+    required: false
+    require_onnx: false
+  deployment:
+    required: false

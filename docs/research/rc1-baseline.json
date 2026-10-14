@@ -1,0 +1,54 @@
+{
+  "schema": "rc1-baseline",
+  "schema_version": 1,
+  "repository": {
+    "branch": "main",
+    "head": "1c9e8f46fd2bc7597af3664ff584812c880e7785",
+    "head_subject": "release: finalize TinyVision RC1"
+  },
+  "experiment_id": "rc1_release_candidate_shufflenet_v2_x1_0",
+  "model": "shufflenet_v2_x1_0",
+  "task": "classification",
+  "positive_class": 0,
+  "decision_threshold": 0.5,
+  "dataset": {
+    "name": "release-candidate-1",
+    "version": "1.0",
+    "data_dir": "datasets/processed/release-rc1",
+    "splits_root": "datasets/processed/printing-errors",
+    "note": "release-rc1/splits/{val,test}.csv are byte-identical to printing-errors/splits/{val,test}.csv (hashes below)."
+  },
+  "artifact_sha256": {
+    "best.pt": "780d20ad1781a6c2f7c5756a24ea2a075657deee949ef1b80020fc27feeca279",
+    "model.onnx": "c46537bd1b591b93fef46fd1b7cf5cd9cdbbfaf336a31a0f0b8b73d510f04548",
+    "model_int8.onnx": "d8ab7b98d358b292f5053561f9b0c754055e9db5b1196628cc7d251e61af01ef"
+  },
+  "artifact_bytes": {
+    "best.pt": 15359069,
+    "model.onnx": 5053216,
+    "model_int8.onnx": 1454746
+  },
+  "input_sha256": {
+    "datasets/processed/printing-errors/splits/val.csv": "0c552f89a5200f34383486376e5a8299d7bcb0c37632974b584ec057a457e1e3",
+    "datasets/processed/printing-errors/splits/test.csv": "18155da2f4d466b8f96fb75052f84aa83dba3b862cdfe664e1f26a4aff60f7f1",
+    "datasets/processed/release-rc1/splits/val.csv": "0c552f89a5200f34383486376e5a8299d7bcb0c37632974b584ec057a457e1e3",
+    "datasets/processed/release-rc1/splits/test.csv": "18155da2f4d466b8f96fb75052f84aa83dba3b862cdfe664e1f26a4aff60f7f1",
+    "training/configs/reliability/suite.yaml": "ffe1576942c61ba8103ce4d0f0703d5d9352e546bead7542fa40f1408d90a84d",
+    "training/configs/reliability/policy.yaml": "e368089d45a295ea1d869571c3395a0f7a1e2ded582e81050ed056ce824e5042"
+  },
+  "frozen_test_metrics_at_0.5": {
+    "n": 2859,
+    "confusion": {"tn": 798, "fp": 80, "fn": 372, "tp": 1609},
+    "precision": 0.9526,
+    "recall": 0.8122,
+    "fpr": 0.0911,
+    "source": "docs/research/rc1-core-eval.json (reproduced by scripts/reliability_repro_rc1.py)"
+  },
+  "known_training_environment": {
+    "python": "3.11.15",
+    "torch": "2.14.0",
+    "torchvision": "0.29.0",
+    "ultralytics": "8.4.138",
+    "opencv": "5.0.0"
+  }
+}

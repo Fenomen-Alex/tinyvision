@@ -1,0 +1,45 @@
+{
+  "threshold": 0.5,
+  "n_streams": 3,
+  "n_normal": 2,
+  "n_failing": 1,
+  "video_far_median": 1.0,
+  "video_detection_median": 1.0,
+  "video_far_any": 1.0,
+  "video_detection_any": 1.0,
+  "per_stream": {
+    "0TY6LVvMpUo": {
+      "label": "normal",
+      "n": 20,
+      "median": 0.7733,
+      "mean": 0.6904,
+      "max": 0.9999,
+      "min": 0.1131,
+      "frac_ge": 0.7,
+      "decision_median": "failing",
+      "decision_any": "failing"
+    },
+    "LE3PO8pwwR8": {
+      "label": "normal",
+      "n": 11,
+      "median": 0.9977,
+      "mean": 0.9257,
+      "max": 0.9999,
+      "min": 0.6414,
+      "frac_ge": 1.0,
+      "decision_median": "failing",
+      "decision_any": "failing"
+    },
+    "188yo59MbbU": {
+      "label": "failing",
+      "n": 20,
+      "median": 0.7858,
+      "mean": 0.7036,
+      "max": 0.9886,
+      "min": 0.1708,
+      "frac_ge": 0.8,
+      "decision_median": "failing",
+      "decision_any": "failing"
+    }
+  }
+}

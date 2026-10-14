@@ -1,0 +1,85 @@
+{
+  "prediction_disagreement": 0.032199,
+  "max_score_abs_drift": 0.716802,
+  "mean_score_abs_drift": 0.035101,
+  "framework_metrics": {
+    "positive_class": 0,
+    "n": 2174,
+    "n_positive": 1417,
+    "n_negative": 757,
+    "tp": 1186,
+    "fp": 99,
+    "tn": 658,
+    "fn": 231,
+    "precision": 0.922957,
+    "recall": 0.83698,
+    "f1": 0.877868,
+    "accuracy": 0.848206,
+    "fpr": 0.130779,
+    "fnr": 0.16302,
+    "auroc": 0.930953,
+    "fpr_ci95": [
+      0.108614,
+      0.156674
+    ],
+    "fnr_ci95": [
+      0.144703,
+      0.18316
+    ],
+    "undefined": [],
+    "confusion_matrix": [
+      [
+        658,
+        99
+      ],
+      [
+        231,
+        1186
+      ]
+    ]
+  },
+  "other_metrics": {
+    "positive_class": 0,
+    "n": 2174,
+    "n_positive": 1417,
+    "n_negative": 757,
+    "tp": 1187,
+    "fp": 130,
+    "tn": 627,
+    "fn": 230,
+    "precision": 0.901291,
+    "recall": 0.837685,
+    "f1": 0.868325,
+    "accuracy": 0.834407,
+    "fpr": 0.171731,
+    "fnr": 0.162315,
+    "auroc": 0.925191,
+    "fpr_ci95": [
+      0.146538,
+      0.200238
+    ],
+    "fnr_ci95": [
+      0.144032,
+      0.182423
+    ],
+    "undefined": [],
+    "confusion_matrix": [
+      [
+        627,
+        130
+      ],
+      [
+        230,
+        1187
+      ]
+    ]
+  },
+  "metric_degradation": {
+    "fpr_delta": 0.040952,
+    "fnr_delta": -0.000705,
+    "recall_delta": -0.000705
+  },
+  "surface": "dev_val",
+  "other_artifact": "experiments/rc1_release_candidate_shufflenet_v2_x1_0/artifacts/model_int8.onnx",
+  "other_format": "int8"
+}

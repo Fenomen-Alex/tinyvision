@@ -107,13 +107,17 @@ def record_software() -> SoftwareConfig:
     import torchvision
     import ultralytics
 
+    # ``str(...)`` is required: some versions (e.g. ``torch.__version__``, a
+    # ``torch.torch_version.TorchVersion``) are ``str`` subclasses that PyYAML
+    # would otherwise serialize with a ``!!python/object/new:`` tag, producing a
+    # config that ``yaml.safe_load`` (used by :func:`load_config`) cannot read.
     return SoftwareConfig(
-        python=sys.version.split()[0],
-        torch=__import__("torch").__version__,
-        torchvision=torchvision.__version__,
-        ultralytics=ultralytics.__version__,
-        opencv=cv2.__version__,
-        os=f"{platform.system()} {platform.release()}",
+        python=str(sys.version.split()[0]),
+        torch=str(__import__("torch").__version__),
+        torchvision=str(torchvision.__version__),
+        ultralytics=str(ultralytics.__version__),
+        opencv=str(cv2.__version__),
+        os=str(f"{platform.system()} {platform.release()}"),
     )
 
 
@@ -201,9 +205,31 @@ def _dict_to_dataclass(cls, d: dict):
     return cls(**kwargs)
 
 
+class _ConfigLoader(yaml.SafeLoader):
+    """SafeLoader that also understands the legacy ``TorchVersion`` tag.
+
+    Configurations written before software versions were coerced to ``str``
+    serialized ``torch.__version__`` (a ``str`` subclass) as
+    ``!!python/object/new:torch.torch_version.TorchVersion``. This maps exactly
+    that one tag back to the wrapped version string; nothing is imported or
+    executed, and every other unsafe tag still raises.
+    """
+
+
+def _construct_legacy_torch_version(loader: yaml.SafeLoader, node: yaml.Node) -> str:
+    values = loader.construct_sequence(node, deep=True)
+    return str(values[0]) if values else ""
+
+
+_ConfigLoader.add_constructor(
+    "tag:yaml.org,2002:python/object/new:torch.torch_version.TorchVersion",
+    _construct_legacy_torch_version,
+)
+
+
 def load_config(path: Path) -> ExperimentConfig:
     with open(path) as f:
-        raw = yaml.safe_load(f) or {}
+        raw = yaml.load(f, Loader=_ConfigLoader) or {}
     config = _dict_to_dataclass(ExperimentConfig, raw)
     if not config.software.python:
         config.software = record_software()
@@ -218,4 +244,7 @@ def load_config(path: Path) -> ExperimentConfig:
 def save_config(config: ExperimentConfig, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w") as f:
-        yaml.dump(asdict(config), f, default_flow_style=False, sort_keys=False)
+        # ``safe_dump`` guarantees the file is readable by ``load_config`` and
+        # fails loudly if a non-plain type slips in, instead of emitting a
+        # ``!!python/object`` tag that ``safe_load`` would reject.
+        yaml.safe_dump(asdict(config), f, default_flow_style=False, sort_keys=False)

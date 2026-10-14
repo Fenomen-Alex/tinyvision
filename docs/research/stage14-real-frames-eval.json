@@ -1,0 +1,86 @@
+{
+  "schema": "stage14-real-frames-eval",
+  "schema_version": 1,
+  "model": "experiments/rc1_release_candidate_shufflenet_v2_x1_0/artifacts/best.pt",
+  "model_sha256": "780d20ad1781a6c2f7c5756a24ea2a075657deee949ef1b80020fc27feeca279",
+  "label_provenance": {
+    "source": "datasets/external/stage14-failure/manifest.json",
+    "verification": "VLM-verified, pending_human_review=true (NOT human-verified)",
+    "note": "weak labels; treat as a real-data diagnostic, not a benchmark"
+  },
+  "positive_class": 0,
+  "window_stats": {
+    "fail": {
+      "n": 89,
+      "min": 0.1793,
+      "median": 0.7738,
+      "mean": 0.7194,
+      "p90": 0.9924,
+      "max": 0.9983,
+      "frac_ge_0.5": 0.7528,
+      "frac_ge_0.9": 0.3258
+    },
+    "final": {
+      "n": 11,
+      "min": 0.706,
+      "median": 0.9195,
+      "mean": 0.8948,
+      "p90": 0.9886,
+      "max": 0.9987,
+      "frac_ge_0.5": 1.0,
+      "frac_ge_0.9": 0.5455
+    }
+  },
+  "source_stats": {
+    "3zXQrw0E-Ag": {
+      "n": 30,
+      "min": 0.1793,
+      "median": 0.9225,
+      "mean": 0.7937,
+      "p90": 0.9965,
+      "max": 0.9983,
+      "frac_ge_0.5": 0.8333,
+      "frac_ge_0.9": 0.5667
+    },
+    "ZYfXW0JN2k4": {
+      "n": 70,
+      "min": 0.2965,
+      "median": 0.7669,
+      "mean": 0.7151,
+      "p90": 0.9655,
+      "max": 0.9987,
+      "frac_ge_0.5": 0.7571,
+      "frac_ge_0.9": 0.2571
+    }
+  },
+  "failure_type_stats": {
+    "blob": {
+      "n": 30,
+      "min": 0.1793,
+      "median": 0.9225,
+      "mean": 0.7937,
+      "p90": 0.9965,
+      "max": 0.9983,
+      "frac_ge_0.5": 0.8333,
+      "frac_ge_0.9": 0.5667
+    },
+    "spaghetti": {
+      "n": 70,
+      "min": 0.2965,
+      "median": 0.7669,
+      "mean": 0.7151,
+      "p90": 0.9655,
+      "max": 0.9987,
+      "frac_ge_0.5": 0.7571,
+      "frac_ge_0.9": 0.2571
+    }
+  },
+  "detection": {
+    "threshold": 0.5,
+    "fail_frames": 89,
+    "fail_frames_above_threshold": 67,
+    "fail_frame_detection_rate": 0.7528089887640449,
+    "final_idle_frames": 11,
+    "final_idle_above_threshold": 11
+  }
+}

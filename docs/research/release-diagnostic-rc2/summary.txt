@@ -1,0 +1,12 @@
+TinyVision reliability evaluation — suite 'rc2-realdomain'
+
+Model: rc2
+  threshold selection: INCONCLUSIVE (threshold=0.5) — objective requires both normal and failing samples on validation data
+  [dev_val] role=dev_validation n=51 FPR=0.1935 FNR=0.1000 P=0.7500 R=0.9000 F1=0.8182 AUROC=0.9710
+  [locked_test] role=locked_test n=57 FPR=0.0000 FNR=1.0000 P=n/a R=0.0000 F1=n/a AUROC=0.9662 undefined=['f1', 'precision']
+  RELEASE GATE: PASS (blocks_release=False)
+    - dev_validation: PASS
+    - locked_test: PASS
+    - normal_holdout: WARN — normal_holdout: optional evaluation surface is missing or could not run
+    - parity: WARN — parity: no ONNX/INT8 artifacts were evaluated against the framework model
+    - deployment: PASS

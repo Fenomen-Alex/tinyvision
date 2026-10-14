@@ -1,0 +1,50 @@
+# Reliability suite: rc1 (release-candidate) surfaces.
+#
+# Run from the repository root:
+#   training/.venv/bin/python -m tv.cli reliability validate-suite \
+#       --suite training/configs/reliability/suite.yaml
+#   training/.venv/bin/python -m tv.cli reliability evaluate \
+#       --suite training/configs/reliability/suite.yaml \
+#       --policy training/configs/reliability/policy.yaml \
+#       --model rc1=experiments/rc1_release_candidate_shufflenet_v2_x1_0/artifacts/best.pt
+#
+# Score convention: failing is the positive class (index 0), score = P(failing),
+# predicted failing iff score >= threshold. See docs/reliability-evaluation.md.
+name: rc1-reliability
+version: 1
+positive_class: 0
+dataset_root: datasets/processed/printing-errors
+
+surfaces:
+  - id: dev_val
+    role: dev_validation
+    format: csv
+    path: splits/val.csv
+    label_map: {failing: 0, normal: 1}
+    provenance: "printing-errors split v1, val fold"
+    verified: true
+    license: "printing-errors dataset (see datasets/processed/printing-errors/splits.json)"
+
+  - id: frozen_test
+    role: locked_test
+    format: csv
+    path: splits/test.csv
+    label_map: {failing: 0, normal: 1}
+    provenance: "printing-errors split v1, locked test fold (2859 frames)"
+    verified: true
+    license: "printing-errors dataset (see datasets/processed/printing-errors/splits.json)"
+
+  - id: target_normal_holdout
+    role: normal_holdout
+    format: manifest_json
+    path: datasets/external/stage13-normal/manifest.json
+    entries_key: entries
+    image_key: image_path
+    label_key: class
+    source_key: source_id
+    label_map: {normal: 1, failing: 0}
+    filter: {field: split, equals: eval_holdout}
+    provenance: "Stage 13 source-level holdout: 120 normal frames, 2 held-out sources (LY3jlcO34f4, zkJgLanCSUw)"
+    verified: true
+    license: "CC-BY / YouTube-attribution per manifest entries (see manifest.json)"
+    notes: "Source of the documented FPR=1.0 failure at threshold 0.5. Data intentionally not committed."

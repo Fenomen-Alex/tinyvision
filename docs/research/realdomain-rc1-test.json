@@ -1,0 +1,45 @@
+{
+  "threshold": 0.5,
+  "n_streams": 3,
+  "n_normal": 2,
+  "n_failing": 1,
+  "video_far_median": 1.0,
+  "video_detection_median": 0.0,
+  "video_far_any": 1.0,
+  "video_detection_any": 1.0,
+  "per_stream": {
+    "nbkf372s_cA": {
+      "label": "normal",
+      "n": 20,
+      "median": 0.9951,
+      "mean": 0.9928,
+      "max": 0.9968,
+      "min": 0.9455,
+      "frac_ge": 1.0,
+      "decision_median": "failing",
+      "decision_any": "failing"
+    },
+    "38gnsbGqcx4": {
+      "label": "normal",
+      "n": 20,
+      "median": 0.9998,
+      "mean": 0.9998,
+      "max": 1.0,
+      "min": 0.9996,
+      "frac_ge": 1.0,
+      "decision_median": "failing",
+      "decision_any": "failing"
+    },
+    "mGH3p3AF1YY": {
+      "label": "failing",
+      "n": 17,
+      "median": 0.3761,
+      "mean": 0.5191,
+      "max": 0.9999,
+      "min": 0.0007,
+      "frac_ge": 0.4706,
+      "decision_median": "normal",
+      "decision_any": "failing"
+    }
+  }
+}

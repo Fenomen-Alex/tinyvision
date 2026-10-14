@@ -76,3 +76,6 @@ datasets/staging/rc1_train.log
 # Environment
 .env
 .env.*
+
+# Research-only acquired footage cache (real-domain pipeline; never redistributed)
+datasets/external-cache/

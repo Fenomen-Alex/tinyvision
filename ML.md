@@ -376,3 +376,5 @@ End-to-end smoke test (train → evaluate → export → INT8) passed on CPU.
 | Open-source projects | `docs/research/open-source-projects.md` |
 | Lightweight models | `docs/research/lightweight-models-comparison.md` |
 | Dataset records | `docs/research/datasets/` |
+| Reliability audit (FPR=1.0 trace) | `docs/research/reliability-audit.md` |
+| Reliability evaluation & release gates | `docs/reliability-evaluation.md` |

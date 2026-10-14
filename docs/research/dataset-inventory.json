@@ -1,0 +1,143 @@
+{
+  "schema": "tinyvision-dataset-inventory",
+  "generated": "2026-10-13",
+  "datasets_dir": "/Users/alex/Projects/tinyvision/datasets",
+  "note": "Facts only. Licensing verdicts and usability classification are editorial and documented in docs/research/dataset-inventory.md.",
+  "top_level": [
+    {
+      "path": "/Users/alex/Projects/tinyvision/datasets/Printing_Errors",
+      "name": "Printing_Errors",
+      "size_bytes": 1658118048,
+      "size_mb": 1581.3,
+      "n_files": 19485,
+      "n_images": 19478,
+      "n_videos": 0,
+      "git_tracked_files": 0,
+      "manifests": []
+    },
+    {
+      "path": "/Users/alex/Projects/tinyvision/datasets/external",
+      "name": "external",
+      "size_bytes": 8196,
+      "size_mb": 0.01,
+      "n_files": 1,
+      "n_images": 0,
+      "n_videos": 0,
+      "git_tracked_files": 183,
+      "manifests": []
+    },
+    {
+      "path": "/Users/alex/Projects/tinyvision/datasets/processed",
+      "name": "processed",
+      "size_bytes": 1377599301,
+      "size_mb": 1313.78,
+      "n_files": 16318,
+      "n_images": 16287,
+      "n_videos": 0,
+      "git_tracked_files": 0,
+      "manifests": [
+        "processed/external-aug-exp4-balanced/derived_manifest.json",
+        "processed/skz-aux-expB/derived_manifest.json",
+        "processed/external-aug-exp2/derived_manifest.json",
+        "processed/release-rc1/derived_manifest.json",
+        "processed/external-aug-exp3-normal/derived_manifest.json"
+      ]
+    },
+    {
+      "path": "/Users/alex/Projects/tinyvision/datasets/raw",
+      "name": "raw",
+      "size_bytes": 6148,
+      "size_mb": 0.01,
+      "n_files": 1,
+      "n_images": 0,
+      "n_videos": 0,
+      "git_tracked_files": 0,
+      "manifests": []
+    },
+    {
+      "path": "/Users/alex/Projects/tinyvision/datasets/staging",
+      "name": "staging",
+      "size_bytes": 700327829,
+      "size_mb": 667.88,
+      "n_files": 2978,
+      "n_images": 2898,
+      "n_videos": 0,
+      "git_tracked_files": 93,
+      "manifests": [
+        "staging/bambu/manifests/env_manifest.json",
+        "staging/readiness/canonical_holdings.json",
+        "staging/trier/manifests/env_manifest.json"
+      ]
+    }
+  ],
+  "recorded_holdings": {
+    "schema": "tinyvision-canonical-holdings",
+    "updated": "2026-09-07",
+    "assets": [
+      {
+        "name": "printing-errors-frozen",
+        "kind": "train",
+        "normal_envs": 1,
+        "failure_envs": 0,
+        "note": "Single ELP camera venue (original train/val/test splits were recording-level, predate environment-level staging; the venue counts as 1 environment)."
+      },
+      {
+        "name": "stage13-train",
+        "kind": "train",
+        "normal_envs": 7,
+        "failure_envs": 0,
+        "note": "7 normal train sources, 333 frames, Standard YouTube License, pending human review."
+      },
+      {
+        "name": "stage14-train",
+        "kind": "train",
+        "normal_envs": 0,
+        "failure_envs": 2,
+        "failure_types": {
+          "spaghetti": 1,
+          "other": 1
+        },
+        "note": "2 failing sources (ZYfXW0JN2k4, 3zXQrw0E-Ag), 100 frames, pending human review."
+      },
+      {
+        "name": "external-pilot-verified-failing",
+        "kind": "train",
+        "normal_envs": 0,
+        "failure_envs": 1,
+        "failure_types": {
+          "spaghetti": 1
+        },
+        "note": "44 human-verified failing frames (NORMAL001/SP001) from the external pilot; treated as 1 failure environment."
+      },
+      {
+        "name": "seven-video-holdout",
+        "kind": "holdout",
+        "normal_envs": 7,
+        "failure_envs": 0,
+        "note": "Frozen 753-frame holdout; do not modify."
+      },
+      {
+        "name": "stage13-eval",
+        "kind": "holdout",
+        "normal_envs": 2,
+        "failure_envs": 0,
+        "note": "2 eval sources, 120 frames, Standard YouTube License."
+      },
+      {
+        "name": "skz-eval",
+        "kind": "holdout",
+        "normal_envs": 1,
+        "failure_envs": 0,
+        "note": "SKZ nozzle-cam probe; 1 camera environment, 16 groups."
+      },
+      {
+        "name": "external-pilot-normal-eval",
+        "kind": "holdout",
+        "normal_envs": 1,
+        "failure_envs": 0,
+        "note": "UE003 normal evaluation footage."
+      }
+    ],
+    "notes": "Environment counts summarize already-owned frozen assets for the readiness gate. New environments added through the staging pipeline are tracked separately in manifest files under datasets/staging/<dataset>/."
+  }
+}

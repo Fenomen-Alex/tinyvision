@@ -1,0 +1,99 @@
+# Real-domain acquisition sources for the rc2 real-domain diagnostic run.
+#
+# These are public YouTube ids. The media itself is NOT committed and must not be
+# redistributed; only derived, non-redistributable caches are produced locally
+# under datasets/external-cache/ (gitignored). Video-level labels below are the
+# best available weak labels; the VLM re-derives frame-level labels and its
+# video-level majority overrides these in the streams step.
+#
+# `known_*` ids were used in the committed real-footage evaluation and their
+# video-level labels are from docs/research/real-footage-vlm-labels.json.
+sources:
+  # --- known normal (committed real-footage eval) ---
+  - id: 0TY6LVvMpUo
+    url: 0TY6LVvMpUo
+    weak_label: normal
+    max_seconds: 20
+  - id: 38gnsbGqcx4
+    url: 38gnsbGqcx4
+    weak_label: normal
+    max_seconds: 20
+  - id: G56LQfQCUnA
+    url: G56LQfQCUnA
+    weak_label: normal
+    max_seconds: 20
+  - id: nbkf372s_cA
+    url: nbkf372s_cA
+    weak_label: normal
+    max_seconds: 20
+  - id: UzULqvGoi1Y
+    url: UzULqvGoi1Y
+    weak_label: normal
+    max_seconds: 20
+  # --- known failing (committed real-footage eval) ---
+  - id: 87gsL-Luvis
+    url: 87gsL-Luvis
+    weak_label: failing
+    failure_type: spaghetti
+    max_seconds: 20
+  - id: mGH3p3AF1YY
+    url: mGH3p3AF1YY
+    weak_label: failing
+    failure_type: spaghetti
+    max_seconds: 20
+
+  # --- search expansion: single-print normal timelapses ---
+  - id: NM8z7j7yUHE
+    url: NM8z7j7yUHE
+    weak_label: normal
+    max_seconds: 20
+  - id: hrv0sDACB7M
+    url: hrv0sDACB7M
+    weak_label: normal
+    max_seconds: 20
+  - id: m_QhY1aABsE
+    url: m_QhY1aABsE
+    weak_label: normal
+    max_seconds: 20
+  - id: tneMHQrGz3U
+    url: tneMHQrGz3U
+    weak_label: normal
+    max_seconds: 20
+  - id: 9cLFAI1_fmU
+    url: 9cLFAI1_fmU
+    weak_label: normal
+    max_seconds: 20
+  - id: m-mGoqh7Kgc
+    url: m-mGoqh7Kgc
+    weak_label: normal
+    max_seconds: 20
+  - id: LE3PO8pwwR8
+    url: LE3PO8pwwR8
+    weak_label: normal
+    max_seconds: 20
+
+  # --- search expansion: single-print fail timelapses ---
+  - id: 188yo59MbbU
+    url: 188yo59MbbU
+    weak_label: failing
+    max_seconds: 20
+  - id: 6FoHkBggrWI
+    url: 6FoHkBggrWI
+    weak_label: failing
+    max_seconds: 20
+  - id: uzKMV_O42SY
+    url: uzKMV_O42SY
+    weak_label: failing
+    max_seconds: 20
+  - id: Ts-lEqkJv0A
+    url: Ts-lEqkJv0A
+    weak_label: failing
+    max_seconds: 20
+  - id: bzSkPgX8m5s
+    url: bzSkPgX8m5s
+    weak_label: failing
+    max_seconds: 20
+  - id: squUJUnyW6I
+    url: squUJUnyW6I
+    weak_label: failing
+    max_seconds: 20

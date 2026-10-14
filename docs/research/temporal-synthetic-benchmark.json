@@ -1,0 +1,170 @@
+{
+  "schema": "tinyvision-temporal-synthetic-benchmark",
+  "generated": "2026-10-13",
+  "configs": {
+    "default_delta_only": {
+      "params": {
+        "alpha": 0.15,
+        "baseline_window": 60,
+        "warmup": 30,
+        "suspect_threshold": 0.05,
+        "fail_threshold": 0.2,
+        "recover_threshold": 0.05,
+        "confirm": 3,
+        "use_delta": true
+      },
+      "results": [
+        {
+          "scenario": "steady_normal",
+          "n_frames": 200,
+          "expect_fire": false,
+          "fired": false,
+          "n_events": 0,
+          "first_event_frame": null,
+          "onset_frame": null,
+          "latency_frames": null,
+          "correct": true
+        },
+        {
+          "scenario": "sustained_fail",
+          "n_frames": 200,
+          "expect_fire": true,
+          "fired": true,
+          "n_events": 1,
+          "first_event_frame": 62,
+          "onset_frame": 60,
+          "latency_frames": 2,
+          "correct": true
+        },
+        {
+          "scenario": "single_blip",
+          "n_frames": 200,
+          "expect_fire": false,
+          "fired": false,
+          "n_events": 0,
+          "first_event_frame": null,
+          "onset_frame": null,
+          "latency_frames": null,
+          "correct": true
+        },
+        {
+          "scenario": "spike_train",
+          "n_frames": 200,
+          "expect_fire": false,
+          "fired": false,
+          "n_events": 0,
+          "first_event_frame": null,
+          "onset_frame": null,
+          "latency_frames": null,
+          "correct": true
+        },
+        {
+          "scenario": "gradual_drift",
+          "n_frames": 200,
+          "expect_fire": true,
+          "fired": false,
+          "n_events": 0,
+          "first_event_frame": null,
+          "onset_frame": 60,
+          "latency_frames": null,
+          "correct": false
+        },
+        {
+          "scenario": "recovery",
+          "n_frames": 200,
+          "expect_fire": true,
+          "fired": true,
+          "n_events": 1,
+          "first_event_frame": 62,
+          "onset_frame": 60,
+          "latency_frames": 2,
+          "correct": true
+        }
+      ],
+      "all_correct": false
+    },
+    "with_abs_floor": {
+      "params": {
+        "alpha": 0.15,
+        "baseline_window": 60,
+        "warmup": 30,
+        "suspect_threshold": 0.05,
+        "fail_threshold": 0.2,
+        "recover_threshold": 0.05,
+        "confirm": 3,
+        "use_delta": true,
+        "fail_threshold_abs": 0.6
+      },
+      "results": [
+        {
+          "scenario": "steady_normal",
+          "n_frames": 200,
+          "expect_fire": false,
+          "fired": false,
+          "n_events": 0,
+          "first_event_frame": null,
+          "onset_frame": null,
+          "latency_frames": null,
+          "correct": true
+        },
+        {
+          "scenario": "sustained_fail",
+          "n_frames": 200,
+          "expect_fire": true,
+          "fired": true,
+          "n_events": 1,
+          "first_event_frame": 62,
+          "onset_frame": 60,
+          "latency_frames": 2,
+          "correct": true
+        },
+        {
+          "scenario": "single_blip",
+          "n_frames": 200,
+          "expect_fire": false,
+          "fired": false,
+          "n_events": 0,
+          "first_event_frame": null,
+          "onset_frame": null,
+          "latency_frames": null,
+          "correct": true
+        },
+        {
+          "scenario": "spike_train",
+          "n_frames": 200,
+          "expect_fire": false,
+          "fired": false,
+          "n_events": 0,
+          "first_event_frame": null,
+          "onset_frame": null,
+          "latency_frames": null,
+          "correct": true
+        },
+        {
+          "scenario": "gradual_drift",
+          "n_frames": 200,
+          "expect_fire": true,
+          "fired": true,
+          "n_events": 1,
+          "first_event_frame": 152,
+          "onset_frame": 60,
+          "latency_frames": 92,
+          "correct": true
+        },
+        {
+          "scenario": "recovery",
+          "n_frames": 200,
+          "expect_fire": true,
+          "fired": true,
+          "n_events": 1,
+          "first_event_frame": 62,
+          "onset_frame": 60,
+          "latency_frames": 2,
+          "correct": true
+        }
+      ],
+      "all_correct": true
+    }
+  },
+  "note": "Synthetic ground truth for the decision layer only. A 'fire' means the FSM emitted FAILING_EVENT at least once; correct scenarios fire exactly once when failure is expected and never when it is not."
+}

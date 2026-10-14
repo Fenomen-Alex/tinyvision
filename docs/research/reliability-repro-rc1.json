@@ -1,0 +1,65 @@
+{
+  "schema": "reliability-repro-rc1",
+  "schema_version": 1,
+  "generated": "2026-10-13",
+  "model": {
+    "path": "experiments/rc1_release_candidate_shufflenet_v2_x1_0/artifacts/best.pt",
+    "sha256": "780d20ad1781a6c2f7c5756a24ea2a075657deee949ef1b80020fc27feeca279"
+  },
+  "frozen_original_test": {
+    "dataset_csv": "datasets/processed/printing-errors/splits/test.csv",
+    "dataset_csv_sha256": "18155da2f4d466b8f96fb75052f84aa83dba3b862cdfe664e1f26a4aff60f7f1",
+    "positive_class": 0,
+    "score_convention": "score=P(failing)=softmax(logits)[0]; failing iff score>=threshold",
+    "threshold": 0.5,
+    "image_size": 224,
+    "sample_count": 2859,
+    "class_support": {
+      "failing": 1981,
+      "normal": 878
+    },
+    "confusion": {
+      "tp": 1609,
+      "fp": 80,
+      "tn": 798,
+      "fn": 372
+    },
+    "metrics_failing_positive": {
+      "precision": 0.952635,
+      "recall": 0.812216,
+      "f1": 0.876839,
+      "fpr": 0.091116,
+      "fnr": 0.187784,
+      "auroc": 0.892171,
+      "fpr_ci95": [
+        0.07382,
+        0.111975
+      ],
+      "fnr_ci95": [
+        0.171196,
+        0.20558
+      ]
+    },
+    "matches_committed_rc1_core_eval": {
+      "sample_count": true,
+      "confusion": true,
+      "precision": true,
+      "recall": true,
+      "fpr": true,
+      "fnr": true,
+      "auroc": true
+    },
+    "all_match": true
+  },
+  "independent_normal_holdout": {
+    "manifest_present": false,
+    "frames_on_disk": 0,
+    "eval_holdout_frames": 120,
+    "reproducible_from_clean_checkout": false,
+    "evidence_status": "confirmed-by-artifact (docs/research/rc1-core-eval.json); not re-executable offline (frames uncommitted, source non-redistributable)"
+  },
+  "evidence_classification": {
+    "frozen_test": "verified through a reproducible local test",
+    "fpr_1_0_holdout": "confirmed from existing artifact; not yet verified through a reproducible local test (data unavailable)"
+  }
+}

@@ -1,0 +1,89 @@
+# TinyVision CI
+#
+# Two independent jobs:
+#   * python    - fully self-contained; unit tests + synthetic release-gate
+#                 coverage. External/holdout dataset tests skip automatically
+#                 (they never fail on missing data), so no large downloads.
+#   * cpp-build - compiles the C++ runtime against ONNX Runtime + OpenCV.
+#                 The C++ parity/integration tests load a frozen ONNX model
+#                 that is intentionally git-ignored, so those tests run only
+#                 when the artifact is present; otherwise the job is build-only.
+#                 This is stated explicitly rather than faking a pass.
+#
+# A missing dataset or model must never turn into a passing real-world
+# evaluation: the reliability gate exits non-zero when required evidence is
+# absent, and that behaviour is asserted below.
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install training package + test deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e "training[test]"
+      - name: Unit tests (external-data tests skip, never fail)
+        run: pytest training/tests -q
+      - name: Release gate blocks on missing required evidence (strict validate)
+        run: |
+          set +e
+          python -m tv.cli reliability validate-suite \
+            --suite training/configs/reliability/suite.yaml --strict
+          code=$?
+          echo "validate-suite --strict exit=$code"
+          test "$code" -eq 1
+      - name: Release gate never passes the real suite on missing evidence
+        run: |
+          set +e
+          python -m tv.cli reliability evaluate \
+            --suite training/configs/reliability/suite.yaml \
+            --policy training/configs/reliability/policy.yaml \
+            --model rc1=experiments/rc1_release_candidate_shufflenet_v2_x1_0/artifacts/best.pt
+          code=$?
+          echo "evaluate exit=$code"
+          # 3 = INCONCLUSIVE (required evidence missing); 2 would be FAIL.
+          test "$code" -ne 0
+
+  cpp-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build tools + OpenCV
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build libopencv-dev
+      - name: Fetch ONNX Runtime (CPU, linux-x64)
+        run: |
+          ORT=onnxruntime-linux-x64-1.20.1
+          curl -fsSL -o ort.tgz \
+            "https://github.com/microsoft/onnxruntime/releases/download/v1.20.1/${ORT}.tgz"
+          tar -xzf ort.tgz
+          echo "ORT_DIR=$PWD/${ORT}" >> "$GITHUB_ENV"
+      - name: Configure
+        run: |
+          cmake -S runtime -B runtime/build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -Donnxruntime_DIR="$ORT_DIR/cmake" \
+            -DOpenCV_DIR="$(dirname "$(find /usr -name OpenCVConfig.cmake 2>/dev/null | head -1)")" \
+            || cmake -S runtime -B runtime/build -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build runtime/build
+      - name: C++ tests (only when the git-ignored ONNX model is present)
+        run: |
+          MODEL=experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/model.onnx
+          if [ -f "$MODEL" ]; then
+            ctest --test-dir runtime/build --output-on-failure
+          else
+            echo "ONNX model artifact '$MODEL' not present in CI checkout;"
+            echo "compiled only. Model-gated C++ parity tests run where the"
+            echo "artifact exists (see docs/research/cpp-runtime-parity.md)."
+          fi

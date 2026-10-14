@@ -1,0 +1,3164 @@
+{
+  "schema": "tinyvision-reliability-eval",
+  "schema_version": 1,
+  "suite": {
+    "name": "rc2-realdomain",
+    "version": 1,
+    "path": "training/configs/reliability/suite-realdomain.yaml",
+    "sha256": "09ed32ef2503da032426e3872dafe68f7edcc46934b72ea1f9518ef8632db4e2",
+    "positive_class": 0,
+    "score_convention": "score = P(failing); predicted failing iff score >= threshold"
+  },
+  "policy": {
+    "id": "tinyvision-realdomain-diagnostic",
+    "policy_version": 1,
+    "status": "diagnostic",
+    "path": "training/configs/reliability/policy-realdomain-diagnostic.yaml",
+    "sha256": "42663bd7ef29a4478e2c91400645500dac282de35057338bd4c6e765f2141bf8"
+  },
+  "config": null,
+  "software": {
+    "python": "3.11.15",
+    "torch": "2.14.0",
+    "torchvision": "0.29.0",
+    "numpy": "2.4.6",
+    "sklearn": "1.9.0",
+    "onnx": "1.22.0",
+    "onnxruntime": "1.29.0"
+  },
+  "surfaces": [
+    {
+      "id": "dev_val",
+      "role": "dev_validation",
+      "provenance": "stream-grouped holdout from weak/VLM labels (real internet footage)",
+      "verified": false,
+      "license": "research-only; non-redistributable (YouTube)",
+      "n_loaded": 51,
+      "error": null
+    },
+    {
+      "id": "locked_test",
+      "role": "locked_test",
+      "provenance": "stream-grouped holdout from weak/VLM labels (real internet footage)",
+      "verified": false,
+      "license": "research-only; non-redistributable (YouTube)",
+      "n_loaded": 57,
+      "error": null
+    },
+    {
+      "id": "real_normal_holdout",
+      "role": "normal_holdout",
+      "provenance": "normal streams reserved entirely for holdout (weak/VLM labels)",
+      "verified": false,
+      "license": "research-only; non-redistributable (YouTube)",
+      "n_loaded": 0,
+      "error": "surface 'real_normal_holdout': data not found (tried: datasets/external-cache/rc2-realdomain/holdout_normal.csv, /Users/alex/Projects/tinyvision/holdout_normal.csv, holdout_normal.csv). Set the suite's dataset_root or pass --dataset-root pointing at the directory that contains 'holdout_normal.csv'. (External/holdout datasets are intentionally not committed.)"
+    }
+  ],
+  "leakage": [],
+  "models": {
+    "rc2": {
+      "model": "rc2",
+      "artifacts": {
+        "framework": "experiments/rc2_realdomain_shufflenet_v2_x1_0/artifacts/best.pt",
+        "onnx": null,
+        "int8": null
+      },
+      "artifact_sha256": {
+        "framework": "9862f9306e2e092ef567efd077cab77740991e08d310102383d4a938aa919c06"
+      },
+      "threshold_selection": {
+        "threshold": null,
+        "status": "INCONCLUSIVE",
+        "reason": "objective requires both normal and failing samples on validation data"
+      },
+      "selected_threshold": 0.5,
+      "surfaces": {
+        "dev_val": {
+          "role": "dev_validation",
+          "at_selected_threshold": {
+            "threshold": 0.5,
+            "positive_class": 0,
+            "n_samples": 51,
+            "n_sources": 3,
+            "n_environments": 0,
+            "sources": [
+              "0TY6LVvMpUo",
+              "188yo59MbbU",
+              "LE3PO8pwwR8"
+            ],
+            "environments": [],
+            "metrics": {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 18,
+              "fp": 6,
+              "tn": 25,
+              "fn": 2,
+              "precision": 0.75,
+              "recall": 0.9,
+              "f1": 0.818182,
+              "accuracy": 0.843137,
+              "fpr": 0.193548,
+              "fnr": 0.1,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.091869,
+                0.362806
+              ],
+              "fnr_ci95": [
+                0.027866,
+                0.301038
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  25,
+                  6
+                ],
+                [
+                  2,
+                  18
+                ]
+              ]
+            },
+            "per_source": {
+              "0TY6LVvMpUo": {
+                "n": 20,
+                "positive_class": 0,
+                "n_positive": 0,
+                "n_negative": 20,
+                "tp": 0,
+                "fp": 6,
+                "tn": 14,
+                "fn": 0,
+                "precision": 0.0,
+                "recall": null,
+                "f1": null,
+                "accuracy": 0.7,
+                "fpr": 0.3,
+                "fnr": null,
+                "auroc": null,
+                "fpr_ci95": [
+                  0.145475,
+                  0.518977
+                ],
+                "fnr_ci95": null,
+                "undefined": [
+                  "auroc",
+                  "f1",
+                  "fnr",
+                  "recall"
+                ],
+                "confusion_matrix": [
+                  [
+                    14,
+                    6
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ]
+              },
+              "188yo59MbbU": {
+                "n": 20,
+                "positive_class": 0,
+                "n_positive": 20,
+                "n_negative": 0,
+                "tp": 18,
+                "fp": 0,
+                "tn": 0,
+                "fn": 2,
+                "precision": 1.0,
+                "recall": 0.9,
+                "f1": 0.947368,
+                "accuracy": 0.9,
+                "fpr": null,
+                "fnr": 0.1,
+                "auroc": null,
+                "fpr_ci95": null,
+                "fnr_ci95": [
+                  0.027866,
+                  0.301038
+                ],
+                "undefined": [
+                  "auroc",
+                  "fpr"
+                ],
+                "confusion_matrix": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    2,
+                    18
+                  ]
+                ]
+              },
+              "LE3PO8pwwR8": {
+                "n": 11,
+                "positive_class": 0,
+                "n_positive": 0,
+                "n_negative": 11,
+                "tp": 0,
+                "fp": 0,
+                "tn": 11,
+                "fn": 0,
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "accuracy": 1.0,
+                "fpr": 0.0,
+                "fnr": null,
+                "auroc": null,
+                "fpr_ci95": [
+                  0.0,
+                  0.25884
+                ],
+                "fnr_ci95": null,
+                "undefined": [
+                  "auroc",
+                  "f1",
+                  "fnr",
+                  "precision",
+                  "recall"
+                ],
+                "confusion_matrix": [
+                  [
+                    11,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ]
+              }
+            },
+            "per_environment": {},
+            "score_stats": {
+              "failing_true_mean": 0.773234,
+              "normal_true_mean": 0.14634
+            }
+          },
+          "at_fixed_threshold": {
+            "threshold": 0.5,
+            "positive_class": 0,
+            "n_samples": 51,
+            "n_sources": 3,
+            "n_environments": 0,
+            "sources": [
+              "0TY6LVvMpUo",
+              "188yo59MbbU",
+              "LE3PO8pwwR8"
+            ],
+            "environments": [],
+            "metrics": {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 18,
+              "fp": 6,
+              "tn": 25,
+              "fn": 2,
+              "precision": 0.75,
+              "recall": 0.9,
+              "f1": 0.818182,
+              "accuracy": 0.843137,
+              "fpr": 0.193548,
+              "fnr": 0.1,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.091869,
+                0.362806
+              ],
+              "fnr_ci95": [
+                0.027866,
+                0.301038
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  25,
+                  6
+                ],
+                [
+                  2,
+                  18
+                ]
+              ]
+            },
+            "per_source": {
+              "0TY6LVvMpUo": {
+                "n": 20,
+                "positive_class": 0,
+                "n_positive": 0,
+                "n_negative": 20,
+                "tp": 0,
+                "fp": 6,
+                "tn": 14,
+                "fn": 0,
+                "precision": 0.0,
+                "recall": null,
+                "f1": null,
+                "accuracy": 0.7,
+                "fpr": 0.3,
+                "fnr": null,
+                "auroc": null,
+                "fpr_ci95": [
+                  0.145475,
+                  0.518977
+                ],
+                "fnr_ci95": null,
+                "undefined": [
+                  "auroc",
+                  "f1",
+                  "fnr",
+                  "recall"
+                ],
+                "confusion_matrix": [
+                  [
+                    14,
+                    6
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ]
+              },
+              "188yo59MbbU": {
+                "n": 20,
+                "positive_class": 0,
+                "n_positive": 20,
+                "n_negative": 0,
+                "tp": 18,
+                "fp": 0,
+                "tn": 0,
+                "fn": 2,
+                "precision": 1.0,
+                "recall": 0.9,
+                "f1": 0.947368,
+                "accuracy": 0.9,
+                "fpr": null,
+                "fnr": 0.1,
+                "auroc": null,
+                "fpr_ci95": null,
+                "fnr_ci95": [
+                  0.027866,
+                  0.301038
+                ],
+                "undefined": [
+                  "auroc",
+                  "fpr"
+                ],
+                "confusion_matrix": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    2,
+                    18
+                  ]
+                ]
+              },
+              "LE3PO8pwwR8": {
+                "n": 11,
+                "positive_class": 0,
+                "n_positive": 0,
+                "n_negative": 11,
+                "tp": 0,
+                "fp": 0,
+                "tn": 11,
+                "fn": 0,
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "accuracy": 1.0,
+                "fpr": 0.0,
+                "fnr": null,
+                "auroc": null,
+                "fpr_ci95": [
+                  0.0,
+                  0.25884
+                ],
+                "fnr_ci95": null,
+                "undefined": [
+                  "auroc",
+                  "f1",
+                  "fnr",
+                  "precision",
+                  "recall"
+                ],
+                "confusion_matrix": [
+                  [
+                    11,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ]
+              }
+            },
+            "per_environment": {},
+            "score_stats": {
+              "failing_true_mean": 0.773234,
+              "normal_true_mean": 0.14634
+            }
+          },
+          "threshold_sweep": [
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 20,
+              "fp": 13,
+              "tn": 18,
+              "fn": 0,
+              "precision": 0.606061,
+              "recall": 1.0,
+              "f1": 0.754717,
+              "accuracy": 0.745098,
+              "fpr": 0.419355,
+              "fnr": 0.0,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.264153,
+                0.59234
+              ],
+              "fnr_ci95": [
+                0.0,
+                0.16113
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  18,
+                  13
+                ],
+                [
+                  0,
+                  20
+                ]
+              ],
+              "threshold": 0.05
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 19,
+              "fp": 10,
+              "tn": 21,
+              "fn": 1,
+              "precision": 0.655172,
+              "recall": 0.95,
+              "f1": 0.77551,
+              "accuracy": 0.784314,
+              "fpr": 0.322581,
+              "fnr": 0.05,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.185692,
+                0.498593
+              ],
+              "fnr_ci95": [
+                0.008881,
+                0.236136
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  21,
+                  10
+                ],
+                [
+                  1,
+                  19
+                ]
+              ],
+              "threshold": 0.1
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 19,
+              "fp": 8,
+              "tn": 23,
+              "fn": 1,
+              "precision": 0.703704,
+              "recall": 0.95,
+              "f1": 0.808511,
+              "accuracy": 0.823529,
+              "fpr": 0.258065,
+              "fnr": 0.05,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.137015,
+                0.432465
+              ],
+              "fnr_ci95": [
+                0.008881,
+                0.236136
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  23,
+                  8
+                ],
+                [
+                  1,
+                  19
+                ]
+              ],
+              "threshold": 0.15
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 19,
+              "fp": 7,
+              "tn": 24,
+              "fn": 1,
+              "precision": 0.730769,
+              "recall": 0.95,
+              "f1": 0.826087,
+              "accuracy": 0.843137,
+              "fpr": 0.225806,
+              "fnr": 0.05,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.11395,
+                0.398128
+              ],
+              "fnr_ci95": [
+                0.008881,
+                0.236136
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  24,
+                  7
+                ],
+                [
+                  1,
+                  19
+                ]
+              ],
+              "threshold": 0.2
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 18,
+              "fp": 6,
+              "tn": 25,
+              "fn": 2,
+              "precision": 0.75,
+              "recall": 0.9,
+              "f1": 0.818182,
+              "accuracy": 0.843137,
+              "fpr": 0.193548,
+              "fnr": 0.1,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.091869,
+                0.362806
+              ],
+              "fnr_ci95": [
+                0.027866,
+                0.301038
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  25,
+                  6
+                ],
+                [
+                  2,
+                  18
+                ]
+              ],
+              "threshold": 0.25
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 18,
+              "fp": 6,
+              "tn": 25,
+              "fn": 2,
+              "precision": 0.75,
+              "recall": 0.9,
+              "f1": 0.818182,
+              "accuracy": 0.843137,
+              "fpr": 0.193548,
+              "fnr": 0.1,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.091869,
+                0.362806
+              ],
+              "fnr_ci95": [
+                0.027866,
+                0.301038
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  25,
+                  6
+                ],
+                [
+                  2,
+                  18
+                ]
+              ],
+              "threshold": 0.3
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 18,
+              "fp": 6,
+              "tn": 25,
+              "fn": 2,
+              "precision": 0.75,
+              "recall": 0.9,
+              "f1": 0.818182,
+              "accuracy": 0.843137,
+              "fpr": 0.193548,
+              "fnr": 0.1,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.091869,
+                0.362806
+              ],
+              "fnr_ci95": [
+                0.027866,
+                0.301038
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  25,
+                  6
+                ],
+                [
+                  2,
+                  18
+                ]
+              ],
+              "threshold": 0.35
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 18,
+              "fp": 6,
+              "tn": 25,
+              "fn": 2,
+              "precision": 0.75,
+              "recall": 0.9,
+              "f1": 0.818182,
+              "accuracy": 0.843137,
+              "fpr": 0.193548,
+              "fnr": 0.1,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.091869,
+                0.362806
+              ],
+              "fnr_ci95": [
+                0.027866,
+                0.301038
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  25,
+                  6
+                ],
+                [
+                  2,
+                  18
+                ]
+              ],
+              "threshold": 0.4
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 18,
+              "fp": 6,
+              "tn": 25,
+              "fn": 2,
+              "precision": 0.75,
+              "recall": 0.9,
+              "f1": 0.818182,
+              "accuracy": 0.843137,
+              "fpr": 0.193548,
+              "fnr": 0.1,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.091869,
+                0.362806
+              ],
+              "fnr_ci95": [
+                0.027866,
+                0.301038
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  25,
+                  6
+                ],
+                [
+                  2,
+                  18
+                ]
+              ],
+              "threshold": 0.45
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 18,
+              "fp": 6,
+              "tn": 25,
+              "fn": 2,
+              "precision": 0.75,
+              "recall": 0.9,
+              "f1": 0.818182,
+              "accuracy": 0.843137,
+              "fpr": 0.193548,
+              "fnr": 0.1,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.091869,
+                0.362806
+              ],
+              "fnr_ci95": [
+                0.027866,
+                0.301038
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  25,
+                  6
+                ],
+                [
+                  2,
+                  18
+                ]
+              ],
+              "threshold": 0.5
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 18,
+              "fp": 5,
+              "tn": 26,
+              "fn": 2,
+              "precision": 0.782609,
+              "recall": 0.9,
+              "f1": 0.837209,
+              "accuracy": 0.862745,
+              "fpr": 0.16129,
+              "fnr": 0.1,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.070925,
+                0.326347
+              ],
+              "fnr_ci95": [
+                0.027866,
+                0.301038
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  26,
+                  5
+                ],
+                [
+                  2,
+                  18
+                ]
+              ],
+              "threshold": 0.55
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 17,
+              "fp": 1,
+              "tn": 30,
+              "fn": 3,
+              "precision": 0.944444,
+              "recall": 0.85,
+              "f1": 0.894737,
+              "accuracy": 0.921569,
+              "fpr": 0.032258,
+              "fnr": 0.15,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.005717,
+                0.161945
+              ],
+              "fnr_ci95": [
+                0.052368,
+                0.360423
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  30,
+                  1
+                ],
+                [
+                  3,
+                  17
+                ]
+              ],
+              "threshold": 0.6
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 17,
+              "fp": 1,
+              "tn": 30,
+              "fn": 3,
+              "precision": 0.944444,
+              "recall": 0.85,
+              "f1": 0.894737,
+              "accuracy": 0.921569,
+              "fpr": 0.032258,
+              "fnr": 0.15,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.005717,
+                0.161945
+              ],
+              "fnr_ci95": [
+                0.052368,
+                0.360423
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  30,
+                  1
+                ],
+                [
+                  3,
+                  17
+                ]
+              ],
+              "threshold": 0.65
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 16,
+              "fp": 0,
+              "tn": 31,
+              "fn": 4,
+              "precision": 1.0,
+              "recall": 0.8,
+              "f1": 0.888889,
+              "accuracy": 0.921569,
+              "fpr": 0.0,
+              "fnr": 0.2,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.0,
+                0.110259
+              ],
+              "fnr_ci95": [
+                0.080656,
+                0.416022
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  31,
+                  0
+                ],
+                [
+                  4,
+                  16
+                ]
+              ],
+              "threshold": 0.7
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 14,
+              "fp": 0,
+              "tn": 31,
+              "fn": 6,
+              "precision": 1.0,
+              "recall": 0.7,
+              "f1": 0.823529,
+              "accuracy": 0.882353,
+              "fpr": 0.0,
+              "fnr": 0.3,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.0,
+                0.110259
+              ],
+              "fnr_ci95": [
+                0.145475,
+                0.518977
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  31,
+                  0
+                ],
+                [
+                  6,
+                  14
+                ]
+              ],
+              "threshold": 0.75
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 12,
+              "fp": 0,
+              "tn": 31,
+              "fn": 8,
+              "precision": 1.0,
+              "recall": 0.6,
+              "f1": 0.75,
+              "accuracy": 0.843137,
+              "fpr": 0.0,
+              "fnr": 0.4,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.0,
+                0.110259
+              ],
+              "fnr_ci95": [
+                0.218804,
+                0.613422
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  31,
+                  0
+                ],
+                [
+                  8,
+                  12
+                ]
+              ],
+              "threshold": 0.8
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 11,
+              "fp": 0,
+              "tn": 31,
+              "fn": 9,
+              "precision": 1.0,
+              "recall": 0.55,
+              "f1": 0.709677,
+              "accuracy": 0.823529,
+              "fpr": 0.0,
+              "fnr": 0.45,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.0,
+                0.110259
+              ],
+              "fnr_ci95": [
+                0.258195,
+                0.657918
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  31,
+                  0
+                ],
+                [
+                  9,
+                  11
+                ]
+              ],
+              "threshold": 0.85
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 7,
+              "fp": 0,
+              "tn": 31,
+              "fn": 13,
+              "precision": 1.0,
+              "recall": 0.35,
+              "f1": 0.518519,
+              "accuracy": 0.745098,
+              "fpr": 0.0,
+              "fnr": 0.65,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.0,
+                0.110259
+              ],
+              "fnr_ci95": [
+                0.432851,
+                0.81881
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  31,
+                  0
+                ],
+                [
+                  13,
+                  7
+                ]
+              ],
+              "threshold": 0.9
+            },
+            {
+              "positive_class": 0,
+              "n": 51,
+              "n_positive": 20,
+              "n_negative": 31,
+              "tp": 1,
+              "fp": 0,
+              "tn": 31,
+              "fn": 19,
+              "precision": 1.0,
+              "recall": 0.05,
+              "f1": 0.095238,
+              "accuracy": 0.627451,
+              "fpr": 0.0,
+              "fnr": 0.95,
+              "auroc": 0.970968,
+              "fpr_ci95": [
+                0.0,
+                0.110259
+              ],
+              "fnr_ci95": [
+                0.763864,
+                0.991119
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  31,
+                  0
+                ],
+                [
+                  19,
+                  1
+                ]
+              ],
+              "threshold": 0.95
+            }
+          ],
+          "predictions": [
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0000.jpg",
+              "label": 1,
+              "score": 0.196291,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0001.jpg",
+              "label": 1,
+              "score": 0.00219,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0002.jpg",
+              "label": 1,
+              "score": 0.005225,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0003.jpg",
+              "label": 1,
+              "score": 0.005247,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0004.jpg",
+              "label": 1,
+              "score": 0.004644,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0005.jpg",
+              "label": 1,
+              "score": 0.004543,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0006.jpg",
+              "label": 1,
+              "score": 0.55233,
+              "pred": 0,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0007.jpg",
+              "label": 1,
+              "score": 0.576889,
+              "pred": 0,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0008.jpg",
+              "label": 1,
+              "score": 0.577869,
+              "pred": 0,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0009.jpg",
+              "label": 1,
+              "score": 0.582745,
+              "pred": 0,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0010.jpg",
+              "label": 1,
+              "score": 0.538123,
+              "pred": 0,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0011.jpg",
+              "label": 1,
+              "score": 0.661735,
+              "pred": 0,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0012.jpg",
+              "label": 1,
+              "score": 0.005253,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0013.jpg",
+              "label": 1,
+              "score": 0.007401,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0014.jpg",
+              "label": 1,
+              "score": 0.006195,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0015.jpg",
+              "label": 1,
+              "score": 0.008484,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0016.jpg",
+              "label": 1,
+              "score": 0.016408,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0017.jpg",
+              "label": 1,
+              "score": 0.009765,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0018.jpg",
+              "label": 1,
+              "score": 0.017394,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/0TY6LVvMpUo/frames/frame_0019.jpg",
+              "label": 1,
+              "score": 0.028554,
+              "pred": 1,
+              "source_id": "0TY6LVvMpUo",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0000.jpg",
+              "label": 1,
+              "score": 0.004561,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0001.jpg",
+              "label": 1,
+              "score": 0.05365,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0002.jpg",
+              "label": 1,
+              "score": 0.229321,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0003.jpg",
+              "label": 1,
+              "score": 0.149566,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0004.jpg",
+              "label": 1,
+              "score": 0.106057,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0005.jpg",
+              "label": 1,
+              "score": 0.031783,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0006.jpg",
+              "label": 1,
+              "score": 0.0627,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0007.jpg",
+              "label": 1,
+              "score": 0.03614,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0008.jpg",
+              "label": 1,
+              "score": 0.050022,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0009.jpg",
+              "label": 1,
+              "score": 0.002713,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/LE3PO8pwwR8/frames/frame_0010.jpg",
+              "label": 1,
+              "score": 0.002741,
+              "pred": 1,
+              "source_id": "LE3PO8pwwR8",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0000.jpg",
+              "label": 0,
+              "score": 0.774297,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0001.jpg",
+              "label": 0,
+              "score": 0.715234,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0002.jpg",
+              "label": 0,
+              "score": 0.897126,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0003.jpg",
+              "label": 0,
+              "score": 0.924283,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0004.jpg",
+              "label": 0,
+              "score": 0.858887,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0005.jpg",
+              "label": 0,
+              "score": 0.0816,
+              "pred": 1,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0006.jpg",
+              "label": 0,
+              "score": 0.746893,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0007.jpg",
+              "label": 0,
+              "score": 0.899548,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0008.jpg",
+              "label": 0,
+              "score": 0.763153,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0009.jpg",
+              "label": 0,
+              "score": 0.95455,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0010.jpg",
+              "label": 0,
+              "score": 0.930316,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0011.jpg",
+              "label": 0,
+              "score": 0.589613,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0012.jpg",
+              "label": 0,
+              "score": 0.936609,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0013.jpg",
+              "label": 0,
+              "score": 0.825035,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0014.jpg",
+              "label": 0,
+              "score": 0.897297,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0015.jpg",
+              "label": 0,
+              "score": 0.928059,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0016.jpg",
+              "label": 0,
+              "score": 0.916565,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0017.jpg",
+              "label": 0,
+              "score": 0.934263,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0018.jpg",
+              "label": 0,
+              "score": 0.666922,
+              "pred": 0,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/188yo59MbbU/frames/frame_0019.jpg",
+              "label": 0,
+              "score": 0.224427,
+              "pred": 1,
+              "source_id": "188yo59MbbU",
+              "environment_id": null
+            }
+          ]
+        },
+        "locked_test": {
+          "role": "locked_test",
+          "at_selected_threshold": {
+            "threshold": 0.5,
+            "positive_class": 0,
+            "n_samples": 57,
+            "n_sources": 3,
+            "n_environments": 0,
+            "sources": [
+              "38gnsbGqcx4",
+              "mGH3p3AF1YY",
+              "nbkf372s_cA"
+            ],
+            "environments": [],
+            "metrics": {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ]
+            },
+            "per_source": {
+              "38gnsbGqcx4": {
+                "n": 20,
+                "positive_class": 0,
+                "n_positive": 0,
+                "n_negative": 20,
+                "tp": 0,
+                "fp": 0,
+                "tn": 20,
+                "fn": 0,
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "accuracy": 1.0,
+                "fpr": 0.0,
+                "fnr": null,
+                "auroc": null,
+                "fpr_ci95": [
+                  0.0,
+                  0.16113
+                ],
+                "fnr_ci95": null,
+                "undefined": [
+                  "auroc",
+                  "f1",
+                  "fnr",
+                  "precision",
+                  "recall"
+                ],
+                "confusion_matrix": [
+                  [
+                    20,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ]
+              },
+              "mGH3p3AF1YY": {
+                "n": 17,
+                "positive_class": 0,
+                "n_positive": 17,
+                "n_negative": 0,
+                "tp": 0,
+                "fp": 0,
+                "tn": 0,
+                "fn": 17,
+                "precision": null,
+                "recall": 0.0,
+                "f1": null,
+                "accuracy": 0.0,
+                "fpr": null,
+                "fnr": 1.0,
+                "auroc": null,
+                "fpr_ci95": null,
+                "fnr_ci95": [
+                  0.815676,
+                  1.0
+                ],
+                "undefined": [
+                  "auroc",
+                  "f1",
+                  "fpr",
+                  "precision"
+                ],
+                "confusion_matrix": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    17,
+                    0
+                  ]
+                ]
+              },
+              "nbkf372s_cA": {
+                "n": 20,
+                "positive_class": 0,
+                "n_positive": 0,
+                "n_negative": 20,
+                "tp": 0,
+                "fp": 0,
+                "tn": 20,
+                "fn": 0,
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "accuracy": 1.0,
+                "fpr": 0.0,
+                "fnr": null,
+                "auroc": null,
+                "fpr_ci95": [
+                  0.0,
+                  0.16113
+                ],
+                "fnr_ci95": null,
+                "undefined": [
+                  "auroc",
+                  "f1",
+                  "fnr",
+                  "precision",
+                  "recall"
+                ],
+                "confusion_matrix": [
+                  [
+                    20,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ]
+              }
+            },
+            "per_environment": {},
+            "score_stats": {
+              "failing_true_mean": 0.116981,
+              "normal_true_mean": 0.018997
+            }
+          },
+          "at_fixed_threshold": {
+            "threshold": 0.5,
+            "positive_class": 0,
+            "n_samples": 57,
+            "n_sources": 3,
+            "n_environments": 0,
+            "sources": [
+              "38gnsbGqcx4",
+              "mGH3p3AF1YY",
+              "nbkf372s_cA"
+            ],
+            "environments": [],
+            "metrics": {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ]
+            },
+            "per_source": {
+              "38gnsbGqcx4": {
+                "n": 20,
+                "positive_class": 0,
+                "n_positive": 0,
+                "n_negative": 20,
+                "tp": 0,
+                "fp": 0,
+                "tn": 20,
+                "fn": 0,
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "accuracy": 1.0,
+                "fpr": 0.0,
+                "fnr": null,
+                "auroc": null,
+                "fpr_ci95": [
+                  0.0,
+                  0.16113
+                ],
+                "fnr_ci95": null,
+                "undefined": [
+                  "auroc",
+                  "f1",
+                  "fnr",
+                  "precision",
+                  "recall"
+                ],
+                "confusion_matrix": [
+                  [
+                    20,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ]
+              },
+              "mGH3p3AF1YY": {
+                "n": 17,
+                "positive_class": 0,
+                "n_positive": 17,
+                "n_negative": 0,
+                "tp": 0,
+                "fp": 0,
+                "tn": 0,
+                "fn": 17,
+                "precision": null,
+                "recall": 0.0,
+                "f1": null,
+                "accuracy": 0.0,
+                "fpr": null,
+                "fnr": 1.0,
+                "auroc": null,
+                "fpr_ci95": null,
+                "fnr_ci95": [
+                  0.815676,
+                  1.0
+                ],
+                "undefined": [
+                  "auroc",
+                  "f1",
+                  "fpr",
+                  "precision"
+                ],
+                "confusion_matrix": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    17,
+                    0
+                  ]
+                ]
+              },
+              "nbkf372s_cA": {
+                "n": 20,
+                "positive_class": 0,
+                "n_positive": 0,
+                "n_negative": 20,
+                "tp": 0,
+                "fp": 0,
+                "tn": 20,
+                "fn": 0,
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "accuracy": 1.0,
+                "fpr": 0.0,
+                "fnr": null,
+                "auroc": null,
+                "fpr_ci95": [
+                  0.0,
+                  0.16113
+                ],
+                "fnr_ci95": null,
+                "undefined": [
+                  "auroc",
+                  "f1",
+                  "fnr",
+                  "precision",
+                  "recall"
+                ],
+                "confusion_matrix": [
+                  [
+                    20,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ]
+              }
+            },
+            "per_environment": {},
+            "score_stats": {
+              "failing_true_mean": 0.116981,
+              "normal_true_mean": 0.018997
+            }
+          },
+          "threshold_sweep": [
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 11,
+              "fp": 0,
+              "tn": 40,
+              "fn": 6,
+              "precision": 1.0,
+              "recall": 0.647059,
+              "f1": 0.785714,
+              "accuracy": 0.894737,
+              "fpr": 0.0,
+              "fnr": 0.352941,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.173095,
+                0.587
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  6,
+                  11
+                ]
+              ],
+              "threshold": 0.05
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 7,
+              "fp": 0,
+              "tn": 40,
+              "fn": 10,
+              "precision": 1.0,
+              "recall": 0.411765,
+              "f1": 0.583334,
+              "accuracy": 0.824561,
+              "fpr": 0.0,
+              "fnr": 0.588235,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.360051,
+                0.783892
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  10,
+                  7
+                ]
+              ],
+              "threshold": 0.1
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 6,
+              "fp": 0,
+              "tn": 40,
+              "fn": 11,
+              "precision": 1.0,
+              "recall": 0.352941,
+              "f1": 0.521739,
+              "accuracy": 0.807018,
+              "fpr": 0.0,
+              "fnr": 0.647059,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.413,
+                0.826905
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  11,
+                  6
+                ]
+              ],
+              "threshold": 0.15
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 5,
+              "fp": 0,
+              "tn": 40,
+              "fn": 12,
+              "precision": 1.0,
+              "recall": 0.294118,
+              "f1": 0.454546,
+              "accuracy": 0.789474,
+              "fpr": 0.0,
+              "fnr": 0.705882,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.468665,
+                0.867202
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  12,
+                  5
+                ]
+              ],
+              "threshold": 0.2
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 1,
+              "fp": 0,
+              "tn": 40,
+              "fn": 16,
+              "precision": 1.0,
+              "recall": 0.058824,
+              "f1": 0.111112,
+              "accuracy": 0.719298,
+              "fpr": 0.0,
+              "fnr": 0.941176,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.730175,
+                0.98954
+              ],
+              "undefined": [],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  16,
+                  1
+                ]
+              ],
+              "threshold": 0.25
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.3
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.35
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.4
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.45
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.5
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.55
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.6
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.65
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.7
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.75
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.8
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.85
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.9
+            },
+            {
+              "positive_class": 0,
+              "n": 57,
+              "n_positive": 17,
+              "n_negative": 40,
+              "tp": 0,
+              "fp": 0,
+              "tn": 40,
+              "fn": 17,
+              "precision": null,
+              "recall": 0.0,
+              "f1": null,
+              "accuracy": 0.701754,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "auroc": 0.966176,
+              "fpr_ci95": [
+                0.0,
+                0.087625
+              ],
+              "fnr_ci95": [
+                0.815676,
+                1.0
+              ],
+              "undefined": [
+                "f1",
+                "precision"
+              ],
+              "confusion_matrix": [
+                [
+                  40,
+                  0
+                ],
+                [
+                  17,
+                  0
+                ]
+              ],
+              "threshold": 0.95
+            }
+          ],
+          "predictions": [
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0000.jpg",
+              "label": 1,
+              "score": 0.015183,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0001.jpg",
+              "label": 1,
+              "score": 0.015286,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0002.jpg",
+              "label": 1,
+              "score": 0.014931,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0003.jpg",
+              "label": 1,
+              "score": 0.015576,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0004.jpg",
+              "label": 1,
+              "score": 0.015844,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0005.jpg",
+              "label": 1,
+              "score": 0.015844,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0006.jpg",
+              "label": 1,
+              "score": 0.015635,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0007.jpg",
+              "label": 1,
+              "score": 0.016374,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0008.jpg",
+              "label": 1,
+              "score": 0.016441,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0009.jpg",
+              "label": 1,
+              "score": 0.021667,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0010.jpg",
+              "label": 1,
+              "score": 0.021262,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0011.jpg",
+              "label": 1,
+              "score": 0.022175,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0012.jpg",
+              "label": 1,
+              "score": 0.021889,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0013.jpg",
+              "label": 1,
+              "score": 0.022308,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0014.jpg",
+              "label": 1,
+              "score": 0.022252,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0015.jpg",
+              "label": 1,
+              "score": 0.021762,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0016.jpg",
+              "label": 1,
+              "score": 0.019409,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0017.jpg",
+              "label": 1,
+              "score": 0.016554,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0018.jpg",
+              "label": 1,
+              "score": 0.016061,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/nbkf372s_cA/frames/frame_0019.jpg",
+              "label": 1,
+              "score": 0.022306,
+              "pred": 1,
+              "source_id": "nbkf372s_cA",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0000.jpg",
+              "label": 1,
+              "score": 0.011981,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0001.jpg",
+              "label": 1,
+              "score": 0.023757,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0002.jpg",
+              "label": 1,
+              "score": 0.039905,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0003.jpg",
+              "label": 1,
+              "score": 0.019845,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0004.jpg",
+              "label": 1,
+              "score": 0.019806,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0005.jpg",
+              "label": 1,
+              "score": 0.014856,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0006.jpg",
+              "label": 1,
+              "score": 0.014859,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0007.jpg",
+              "label": 1,
+              "score": 0.015386,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0008.jpg",
+              "label": 1,
+              "score": 0.012728,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0009.jpg",
+              "label": 1,
+              "score": 0.019429,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0010.jpg",
+              "label": 1,
+              "score": 0.024839,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0011.jpg",
+              "label": 1,
+              "score": 0.01909,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0012.jpg",
+              "label": 1,
+              "score": 0.018746,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0013.jpg",
+              "label": 1,
+              "score": 0.023767,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0014.jpg",
+              "label": 1,
+              "score": 0.01971,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0015.jpg",
+              "label": 1,
+              "score": 0.014358,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0016.jpg",
+              "label": 1,
+              "score": 0.019711,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0017.jpg",
+              "label": 1,
+              "score": 0.019545,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0018.jpg",
+              "label": 1,
+              "score": 0.021871,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/38gnsbGqcx4/frames/frame_0019.jpg",
+              "label": 1,
+              "score": 0.016949,
+              "pred": 1,
+              "source_id": "38gnsbGqcx4",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0000.jpg",
+              "label": 0,
+              "score": 0.222173,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0001.jpg",
+              "label": 0,
+              "score": 0.236898,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0002.jpg",
+              "label": 0,
+              "score": 0.01701,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0003.jpg",
+              "label": 0,
+              "score": 0.051639,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0004.jpg",
+              "label": 0,
+              "score": 0.049416,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0005.jpg",
+              "label": 0,
+              "score": 0.109545,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0006.jpg",
+              "label": 0,
+              "score": 0.046388,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0007.jpg",
+              "label": 0,
+              "score": 0.037025,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0008.jpg",
+              "label": 0,
+              "score": 0.041245,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0009.jpg",
+              "label": 0,
+              "score": 0.094703,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0010.jpg",
+              "label": 0,
+              "score": 0.160796,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0011.jpg",
+              "label": 0,
+              "score": 0.218477,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0012.jpg",
+              "label": 0,
+              "score": 0.078486,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0013.jpg",
+              "label": 0,
+              "score": 0.056783,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0014.jpg",
+              "label": 0,
+              "score": 0.040526,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0015.jpg",
+              "label": 0,
+              "score": 0.281842,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            },
+            {
+              "image_path": "/Users/alex/Projects/tinyvision/datasets/external-cache/mGH3p3AF1YY/frames/frame_0016.jpg",
+              "label": 0,
+              "score": 0.24573,
+              "pred": 1,
+              "source_id": "mGH3p3AF1YY",
+              "environment_id": null
+            }
+          ]
+        }
+      },
+      "parity": {},
+      "deployment": {
+        "model_size_mb": 14.6475,
+        "artifacts": {
+          "framework": "experiments/rc2_realdomain_shufflenet_v2_x1_0/artifacts/best.pt",
+          "onnx": null,
+          "int8": null
+        }
+      },
+      "gates": {
+        "overall_status": "PASS",
+        "gates": [
+          {
+            "gate": "dev_validation",
+            "status": "PASS",
+            "reasons": [],
+            "details": {
+              "n_samples": 51,
+              "n_sources": 3,
+              "fpr": 0.193548,
+              "fnr": 0.1,
+              "recall": 0.9,
+              "precision": 0.75
+            }
+          },
+          {
+            "gate": "locked_test",
+            "status": "PASS",
+            "reasons": [],
+            "details": {
+              "n_samples": 57,
+              "n_sources": 3,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "recall": 0.0,
+              "precision": null
+            }
+          },
+          {
+            "gate": "normal_holdout",
+            "status": "WARN",
+            "reasons": [
+              "normal_holdout: optional evaluation surface is missing or could not run"
+            ],
+            "details": {}
+          },
+          {
+            "gate": "parity",
+            "status": "WARN",
+            "reasons": [
+              "parity: no ONNX/INT8 artifacts were evaluated against the framework model"
+            ],
+            "details": {}
+          },
+          {
+            "gate": "deployment",
+            "status": "PASS",
+            "reasons": [],
+            "details": {
+              "model_size_mb": 14.6475,
+              "artifacts": {
+                "framework": "experiments/rc2_realdomain_shufflenet_v2_x1_0/artifacts/best.pt",
+                "onnx": null,
+                "int8": null
+              }
+            }
+          }
+        ],
+        "blocks_release": false
+      }
+    }
+  }
+}

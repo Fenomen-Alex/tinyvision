@@ -27,15 +27,38 @@ BASELINE_CKPT = (
     / "artifacts" / "best.pt"
 )
 
+# External experiment-2 inputs (label JSONs + extracted frames) are not
+# committed (see .gitignore). When absent these tests skip explicitly instead
+# of erroring, matching test_skz_experiment.py. A skip means "unavailable
+# data", never "passing".
+EXT_LABELS = REPO / "datasets" / "external" / "video-frames" / "labels"
+EXT_VERIFIED = EXT_LABELS / "verified_labels.json"
+EXT_MANIFEST = EXT_LABELS / "review_manifest.json"
+
+
+def _skip_if_external_unavailable(*paths: Path) -> None:
+    missing = [p for p in paths if not Path(p).exists()]
+    if missing:
+        shown = ", ".join(str(m.relative_to(REPO)) for m in missing)
+        pytest.skip(f"external experiment-2 data unavailable: {shown}")
+
 
 @pytest.fixture(scope="module")
 def training_rows():
-    return verified_training_rows()
+    _skip_if_external_unavailable(EXT_VERIFIED)
+    try:
+        return verified_training_rows()
+    except FileNotFoundError as exc:
+        pytest.skip(f"external experiment-2 frames unavailable: {exc}")
 
 
 @pytest.fixture(scope="module")
 def normal_rows():
-    return external_normal_rows()
+    _skip_if_external_unavailable(EXT_MANIFEST)
+    try:
+        return external_normal_rows()
+    except FileNotFoundError as exc:
+        pytest.skip(f"external experiment-2 frames unavailable: {exc}")
 
 
 def test_verified_training_rows_counts(training_rows):
@@ -129,8 +152,12 @@ def test_prepare_exp2_does_not_touch_originals(tmp_path):
     printing = REPO / "datasets" / "processed" / "printing-errors"
     if not (printing / "splits" / "train.csv").exists():
         pytest.skip("printing-errors splits not present")
+    _skip_if_external_unavailable(EXT_VERIFIED, EXT_MANIFEST)
     before = (printing / "splits" / "train.csv").read_bytes()
-    prepare_exp2_splits(printing, tmp_path / "exp2b")
+    try:
+        prepare_exp2_splits(printing, tmp_path / "exp2b")
+    except FileNotFoundError as exc:
+        pytest.skip(f"external experiment-2 frames unavailable: {exc}")
     assert (printing / "splits" / "train.csv").read_bytes() == before
 
 

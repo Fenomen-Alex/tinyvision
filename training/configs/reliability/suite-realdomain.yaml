@@ -1,0 +1,53 @@
+# Reliability suite: rc2 real-domain (weak/VLM-labelled internet footage).
+#
+# Run from the repository root:
+#   training/.venv/bin/python -m tv.cli reliability validate-suite \
+#       --suite training/configs/reliability/suite-realdomain.yaml
+#   training/.venv/bin/python -m tv.cli reliability evaluate \
+#       --suite training/configs/reliability/suite-realdomain.yaml \
+#       --policy training/configs/reliability/policy.yaml \
+#       --model rc2=experiments/rc2_realdomain_shufflenet_v2_x1_0/artifacts/best.pt
+#
+# Surfaces are produced by the automated pipeline (`tv streams --split-dir`).
+# Frames live under the research-only cache (datasets/external-cache/), which is
+# never committed or redistributed. Labels are weak/VLM proposals, not verified
+# human ground truth: results here are diagnostic and CANNOT by themselves
+# satisfy the release policy's normal_holdout gate.
+name: rc2-realdomain
+version: 1
+positive_class: 0
+dataset_root: datasets/external-cache/rc2-realdomain
+
+surfaces:
+  - id: dev_val
+    role: dev_validation
+    format: csv
+    path: splits/val.csv
+    label_map: {failing: 0, normal: 1}
+    source_key: stream
+    provenance: "stream-grouped holdout from weak/VLM labels (real internet footage)"
+    verified: false
+    license: "research-only; non-redistributable (YouTube)"
+    notes: "Threshold selection surface. Labels not human-verified."
+
+  - id: locked_test
+    role: locked_test
+    format: csv
+    path: splits/test.csv
+    label_map: {failing: 0, normal: 1}
+    source_key: stream
+    provenance: "stream-grouped holdout from weak/VLM labels (real internet footage)"
+    verified: false
+    license: "research-only; non-redistributable (YouTube)"
+    notes: "Never used for model/threshold selection."
+
+  - id: real_normal_holdout
+    role: normal_holdout
+    format: csv
+    path: holdout_normal.csv
+    label_map: {failing: 0, normal: 1}
+    source_key: stream
+    provenance: "normal streams reserved entirely for holdout (weak/VLM labels)"
+    verified: false
+    license: "research-only; non-redistributable (YouTube)"
+    notes: "Provisional: labels not human-verified, so the release normal_holdout gate remains INCONCLUSIVE."

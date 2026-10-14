@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 from pathlib import Path
 
 
@@ -600,6 +601,269 @@ def cmd_list_models(args: argparse.Namespace) -> None:
         print(f"  {name:25s}  task={spec.task:15s}  license={spec.license}")
 
 
+def _parse_model_specs(specs: list[str]) -> dict[str, dict[str, str | None]]:
+    """Parse repeatable ``--model NAME=PATH`` into an artifact map.
+
+    ONNX/INT8 exports are auto-discovered beside each checkpoint.
+    """
+    from tv.reliability import discover_artifacts
+
+    models: dict[str, dict[str, str | None]] = {}
+    for spec in specs:
+        if "=" not in spec:
+            raise SystemExit(f"expected NAME=PATH for --model, got {spec!r}")
+        name, path = spec.split("=", 1)
+        if name in models:
+            raise SystemExit(f"duplicate model name {name!r}")
+        models[name] = discover_artifacts(path)
+    return models
+
+
+def _gate_exit(code: int) -> None:
+    """Exit with ``code`` without running interpreter finalization.
+
+    Scoring a gate loads PyTorch and ONNX Runtime in the same process. On some
+    platforms their native thread pools abort during teardown (observed on
+    macOS as ``recursive_mutex lock failed`` / exit 134) *after* the decision
+    has been computed and the reports written. A release gate must report its
+    decision, not a native crash, so we flush and hard-exit.
+    """
+    import os
+
+    sys.stdout.flush()
+    sys.stderr.flush()
+    os._exit(int(code))
+
+
+def cmd_reliability_evaluate(args: argparse.Namespace) -> None:
+    from tv.reliability import evaluate, format_summary, load_policy, load_suite, overall_exit_code
+
+    suite = load_suite(Path(args.suite))
+    policy = load_policy(Path(args.policy)) if args.policy else None
+    models = _parse_model_specs(args.model)
+    if not models:
+        raise SystemExit("at least one --model NAME=PATH is required")
+
+    thresholds = None
+    if args.thresholds:
+        thresholds = sorted({float(x) for x in args.thresholds.split(",")})
+
+    report = evaluate(
+        suite,
+        models,
+        policy=policy,
+        dataset_root=args.dataset_root,
+        thresholds=thresholds,
+        default_threshold=args.threshold,
+        output_dir=args.output_dir,
+        config_path=args.config,
+        policy_path=args.policy,
+        image_size=args.image_size,
+        batch_size=args.batch_size,
+    )
+    print(format_summary(report))
+    if args.output_dir:
+        print(f"\nReports written to {args.output_dir}/summary.json and summary.txt")
+    _gate_exit(overall_exit_code(report))
+
+
+def cmd_reliability_parity(args: argparse.Namespace) -> None:
+    import numpy as np
+
+    from tv.reliability import (
+        compare_formats,
+        load_samples,
+        load_suite,
+        score_framework,
+        score_onnx,
+    )
+
+    suite = load_suite(Path(args.suite))
+    if args.surface:
+        surface = next((s for s in suite.surfaces if s.id == args.surface), None)
+        if surface is None:
+            raise SystemExit(f"surface {args.surface!r} not in suite {suite.name!r}")
+    else:
+        surface = suite.surfaces[0]
+
+    samples = load_samples(surface, args.dataset_root or suite.dataset_root)
+    fw = score_framework(args.framework, samples, args.image_size, args.batch_size)
+    is_int8 = "int8" in Path(args.other).name.lower()
+    other = score_onnx(args.other, samples, args.image_size, args.batch_size, int8=is_int8)
+    y_true = np.asarray([s.label for s in samples])
+    block = compare_formats(fw, other, y_true, args.threshold, suite.positive_class)
+    block["surface"] = surface.id
+    block["other_artifact"] = args.other
+    block["other_format"] = "int8" if is_int8 else "onnx"
+    print(json.dumps(block, indent=2))
+    if args.output_json:
+        with open(args.output_json, "w") as f:
+            json.dump(block, f, indent=2)
+        print(f"\nJSON report written to {args.output_json}")
+    _gate_exit(0)
+
+
+def cmd_reliability_validate_suite(args: argparse.Namespace) -> None:
+    from tv.reliability import (
+        INDEPENDENT_ROLES,
+        ROLE_DEV_VALIDATION,
+        ROLE_LOCKED_TEST,
+        MissingDataError,
+        check_source_leakage,
+        load_samples,
+        load_suite,
+    )
+
+    suite = load_suite(Path(args.suite))
+    samples_by_surface: dict[str, list] = {}
+    errors: list[str] = []
+    roles = {s.id: s.role for s in suite.surfaces}
+    print(f"suite: {suite.name} v{suite.version} (positive_class={suite.positive_class})")
+    for surface in suite.surfaces:
+        try:
+            samples = load_samples(surface, args.dataset_root or suite.dataset_root)
+        except MissingDataError as exc:
+            errors.append(f"{surface.id}: {exc}")
+            samples_by_surface[surface.id] = []
+            print(f"  [MISSING] {surface.id:22s} role={surface.role:18s} {exc}")
+            continue
+        labels: dict[int, int] = {}
+        for s in samples:
+            labels[s.label] = labels.get(s.label, 0) + 1
+        samples_by_surface[surface.id] = samples
+        print(f"  [ok]      {surface.id:22s} role={surface.role:18s} n={len(samples)} labels={labels}")
+
+    for role in (ROLE_DEV_VALIDATION, ROLE_LOCKED_TEST):
+        if role not in set(roles.values()):
+            print(f"  [WARN]    no surface with role {role}")
+    if not (set(roles.values()) & INDEPENDENT_ROLES):
+        print("  [WARN]    no independent holdout surface (normal/failure/cross-env/locked)")
+
+    leaks = check_source_leakage(samples_by_surface, roles)
+    for leak in leaks:
+        print(f"  [LEAK]    {leak.code}: {leak.message}")
+    if leaks or (errors and args.strict):
+        sys.exit(1)
+    if errors:
+        print(f"suite validation: INCOMPLETE — {len(errors)} surface(s) missing "
+              f"(pass --strict to exit non-zero; missing evidence blocks release)")
+    else:
+        print("suite validation: OK")
+
+
+def cmd_acquire(args: argparse.Namespace) -> None:
+    import yaml
+    from tv.data.acquire import acquire_source
+    from tv.data.manifest import Manifest, load_manifest, save_manifest, validate_manifest
+    from datetime import date
+
+    spec = yaml.safe_load(Path(args.sources).read_text())
+    entries = spec.get("sources", spec) if isinstance(spec, dict) else spec
+    cache = Path(args.cache_dir)
+    manifest_path = Path(args.manifest) if args.manifest else cache / "manifest.json"
+    manifest = load_manifest(manifest_path) if manifest_path.is_file() else Manifest(
+        version=1, created_at=date.today().isoformat(), sources=[])
+    have = {s.id: s for s in manifest.sources}
+
+    from tv.data.acquire import AcquireError
+
+    failures = []
+    for e in entries:
+        sid = str(e["id"])
+        if sid in have and not args.force:
+            print(f"  skip (already acquired): {sid}")
+            continue
+        meta = {"title": e.get("title", ""), "uploader": e.get("uploader", ""),
+                "weak_label": e.get("weak_label", "uncertain")}
+        try:
+            src = acquire_source(
+                e.get("url", sid), cache,
+                max_seconds=e.get("max_seconds", args.max_seconds),
+                fps=e.get("fps", args.fps), meta=meta)
+        except AcquireError as err:
+            failures.append(sid)
+            print(f"  [FAIL] {sid}: {str(err).splitlines()[0]}")
+            continue
+        if e.get("failure_type"):
+            src.failure_type = e["failure_type"]
+        have[sid] = src
+        print(f"  acquired {sid}: {src.frame_count} frames, "
+              f"label={src.weak_label}, {src.width}x{src.height}")
+
+    manifest.sources = list(have.values())
+    save_manifest(manifest, manifest_path)
+    warnings = validate_manifest(manifest)
+    for w in warnings:
+        print(f"  [WARN] {w}")
+    print(f"manifest: {manifest_path} ({len(manifest.sources)} sources)")
+
+
+def cmd_autolabel(args: argparse.Namespace) -> None:
+    from tv.data.autolabel import autolabel_source
+    from tv.data.manifest import load_manifest
+    from tv.vlm_review import DEFAULT_ENDPOINT, DEFAULT_MODEL
+
+    manifest = load_manifest(Path(args.manifest))
+    endpoint = args.endpoint or DEFAULT_ENDPOINT
+    model = args.model or DEFAULT_MODEL
+    out_sources = []
+    for src in manifest.sources:
+        frames = sorted(Path(src.frames_dir).glob("frame_*.jpg"))
+        if args.limit:
+            frames = frames[: args.limit]
+        if not frames:
+            print(f"  [WARN] no frames for {src.id}; skipping")
+            continue
+        result = autolabel_source(
+            src.id, frames, endpoint=endpoint, model=model,
+            max_side=args.max_side,
+            sleep=(lambda s: time.sleep(args.sleep)) if args.sleep else None)
+        out_sources.append(result)
+        print(f"  {src.id}: video_label={result['video_label']} "
+              f"counts={result['counts']}")
+
+    out = Path(args.out) if args.out else Path(args.manifest).parent / "autolabel.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps({"model": model, "endpoint": endpoint,
+                               "sources": out_sources}, indent=2) + "\n")
+    print(f"autolabel proposals: {out} ({len(out_sources)} sources)")
+
+
+def cmd_streams(args: argparse.Namespace) -> None:
+    from tv.data.manifest import load_manifest
+    from tv.data.streams import (
+        build_streams,
+        split_streams,
+        stream_summary,
+        write_streams,
+    )
+
+    manifest = load_manifest(Path(args.manifest))
+    proposals = None
+    if args.proposals and Path(args.proposals).is_file():
+        proposals = json.loads(Path(args.proposals).read_text())
+    streams = build_streams(manifest, proposals=proposals,
+                            include_uncertain=args.include_uncertain)
+    if not streams:
+        print("streams: none (no labelled sources)")
+        sys.exit(1)
+    csv_path = Path(args.csv) if args.csv else Path(args.manifest).parent / "streams.csv"
+    json_path = Path(args.json) if args.json else Path(args.manifest).parent / "streams.json"
+    write_streams(streams, csv_path, json_path)
+    summary = stream_summary(streams)
+    print(f"streams: {summary['n_streams']} streams, {summary['n_frames']} frames")
+    print(f"  by_label:  {summary['by_label']}")
+    print(f"  by_source: {summary['by_source']}")
+    print(f"  csv:  {csv_path}")
+    print(f"  json: {json_path}")
+
+    if args.split_dir:
+        ratios = tuple(float(x) for x in args.ratios.split(","))
+        stats = split_streams(streams, args.split_dir, ratios=ratios,
+                              seed=args.seed, data_dir=args.data_dir)
+        print(f"  splits -> {args.split_dir}: {stats} (data_dir={args.data_dir})")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="tv",
@@ -1024,6 +1288,97 @@ def build_parser() -> argparse.ArgumentParser:
                        help="Consecutive frames at/above fail threshold to confirm")
     p_poc.add_argument("--output-json", default=None, help="Write full report to JSON")
     p_poc.set_defaults(func=cmd_poc)
+
+    p_reliability = sub.add_parser(
+        "reliability",
+        help="Repeatable, auditable reliability evaluation and release acceptance gates",
+    )
+    reliability_sub = p_reliability.add_subparsers(dest="reliability_command", required=True)
+
+    r_eval = reliability_sub.add_parser(
+        "evaluate", help="Evaluate models over a named suite and apply the acceptance policy"
+    )
+    r_eval.add_argument("--suite", required=True, help="Suite YAML (see docs/reliability-evaluation.md)")
+    r_eval.add_argument(
+        "--policy", required=True,
+        help="Acceptance policy YAML (required: a release decision needs criteria)")
+    r_eval.add_argument(
+        "--model", action="append", default=[], metavar="NAME=PATH",
+        help="Frozen checkpoint; repeatable. model.onnx/model_int8.onnx are auto-discovered.",
+    )
+    r_eval.add_argument("--config", default=None, help="Experiment config YAML (recorded by hash)")
+    r_eval.add_argument("--dataset-root", default=None, help="Override suite dataset_root")
+    r_eval.add_argument("--threshold", type=float, default=0.5,
+                        help="Fixed decision threshold on P(failing) (default 0.5)")
+    r_eval.add_argument("--thresholds", default=None,
+                        help="Comma-separated threshold grid for sweeps/selection")
+    r_eval.add_argument("--image-size", type=int, default=224, help="Resize target")
+    r_eval.add_argument("--batch-size", type=int, default=32, help="Inference batch size")
+    r_eval.add_argument("--output-dir", default=None, help="Write summary.json/summary.txt here")
+    r_eval.set_defaults(func=cmd_reliability_evaluate)
+
+    r_parity = reliability_sub.add_parser(
+        "parity", help="Compare framework vs ONNX/INT8 scores on one suite surface"
+    )
+    r_parity.add_argument("--suite", required=True, help="Suite YAML")
+    r_parity.add_argument("--surface", default=None, help="Surface id (default: first surface)")
+    r_parity.add_argument("--framework", required=True, help="PyTorch checkpoint (best.pt)")
+    r_parity.add_argument("--other", required=True, help="ONNX or INT8 artifact to compare")
+    r_parity.add_argument("--dataset-root", default=None, help="Override suite dataset_root")
+    r_parity.add_argument("--threshold", type=float, default=0.5, help="Decision threshold")
+    r_parity.add_argument("--image-size", type=int, default=224, help="Resize target")
+    r_parity.add_argument("--batch-size", type=int, default=32, help="Inference batch size")
+    r_parity.add_argument("--output-json", default=None, help="Write report to JSON")
+    r_parity.set_defaults(func=cmd_reliability_parity)
+
+    r_validate = reliability_sub.add_parser(
+        "validate-suite", help="Dry-run a suite: check data presence, roles and leakage"
+    )
+    r_validate.add_argument("--suite", required=True, help="Suite YAML")
+    r_validate.add_argument("--dataset-root", default=None, help="Override suite dataset_root")
+    r_validate.add_argument("--strict", action="store_true",
+                            help="Exit non-zero if any required surface data is missing")
+    r_validate.set_defaults(func=cmd_reliability_validate_suite)
+
+    p_acquire = sub.add_parser(
+        "acquire", help="Acquire real video footage + frames (yt-dlp/ffmpeg)"
+    )
+    p_acquire.add_argument("--sources", required=True, help="YAML list of sources")
+    p_acquire.add_argument("--cache-dir", default="datasets/external-cache",
+                           help="Local research-only cache root")
+    p_acquire.add_argument("--manifest", default=None, help="Manifest path (default <cache>/manifest.json)")
+    p_acquire.add_argument("--max-seconds", type=int, default=60, help="Clip cap per source")
+    p_acquire.add_argument("--fps", type=float, default=1.0, help="Frame sampling rate")
+    p_acquire.add_argument("--force", action="store_true", help="Re-acquire existing sources")
+    p_acquire.set_defaults(func=cmd_acquire)
+
+    p_autolabel = sub.add_parser(
+        "autolabel", help="VLM-assisted frame labelling proposals for an acquired manifest"
+    )
+    p_autolabel.add_argument("--manifest", required=True, help="Acquired manifest.json")
+    p_autolabel.add_argument("--out", default=None, help="Proposals JSON (default <manifest dir>/autolabel.json)")
+    p_autolabel.add_argument("--endpoint", default=None, help="LM Studio endpoint")
+    p_autolabel.add_argument("--model", default=None, help="VLM model id")
+    p_autolabel.add_argument("--max-side", type=int, default=512, help="Downscale longest side")
+    p_autolabel.add_argument("--limit", type=int, default=0, help="Max frames per source (0 = all)")
+    p_autolabel.add_argument("--sleep", type=float, default=0.0, help="Seconds between frames")
+    p_autolabel.set_defaults(func=cmd_autolabel)
+
+    p_streams = sub.add_parser(
+        "streams", help="Build temporal streams (CSV+JSON) from an acquired manifest"
+    )
+    p_streams.add_argument("--manifest", required=True, help="Acquired manifest.json")
+    p_streams.add_argument("--proposals", default=None, help="autolabel.json proposals")
+    p_streams.add_argument("--csv", default=None, help="Output CSV (default <manifest dir>/streams.csv)")
+    p_streams.add_argument("--json", default=None, help="Output JSON (default <manifest dir>/streams.json)")
+    p_streams.add_argument("--include-uncertain", action="store_true",
+                           help="Keep streams with no usable label")
+    p_streams.add_argument("--split-dir", default=None,
+                           help="Also write leakage-free splits here")
+    p_streams.add_argument("--ratios", default="0.7,0.15,0.15", help="train,val,test ratios")
+    p_streams.add_argument("--seed", type=int, default=42)
+    p_streams.add_argument("--data-dir", default=None, help="data_dir recorded in splits.json")
+    p_streams.set_defaults(func=cmd_streams)
 
     return parser
 

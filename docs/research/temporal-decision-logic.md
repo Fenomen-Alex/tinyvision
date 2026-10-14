@@ -1,6 +1,6 @@
 # Temporal Smoothing and Decision Logic for Video-Based Monitoring
 
-**Status:** Research (not implemented)
+**Status:** Implemented (`training/tv/temporal.py`, `training/tv/temporaleval.py`); validated on synthetic streams
 **Applies to:** 3D-print failure detection (and by extension other video monitoring tasks)
 **Related open question:** `problem-selection.md` § "Must resolve during implementation" item 7 (temporal smoothing)
 
@@ -441,3 +441,47 @@ hyper-parameters to be recorded and tuned per the experiment policy.
 
 These are research notes for internal decision-making; parameter values should be
 re-derived and recorded during implementation, per the experiment policy.
+
+---
+
+## Implementation status and synthetic validation
+
+The decision layer is implemented as a pure, model-free module
+(`training/tv/temporal.py`) and an offline evaluator over a frozen classifier
+(`training/tv/temporaleval.py`):
+
+* `EwmaBaseline` — EWMA signal + long causal baseline; `delta = signal - baseline`.
+* `FailureFsm` — states `OBSERVING → NORMAL → SUSPECT → FAILING → PAUSED`,
+  hysteresis (entry > exit), multi-frame `confirm`, fire-once action, `PAUSED`
+  terminal per print.
+
+Unit tests: `training/tests/test_temporal.py`.
+
+### Synthetic-stream benchmark
+
+`scripts/temporal_synthetic_benchmark.py` drives the layer with streams whose
+ground truth is known (no model/data/hardware), writing
+[`temporal-synthetic-benchmark.json`](temporal-synthetic-benchmark.json). Two
+configurations are compared: the shipped default (baseline-relative only) and
+one that also honours an absolute signal floor.
+
+| Scenario | Expect fire | Default (delta only) | + absolute floor (`fail_threshold_abs=0.6`) |
+|---|---|---|---|
+| steady normal | no | no fire ✓ | no fire ✓ |
+| sustained failure | yes | fire once, latency **2 frames** ✓ | fire once, latency 2 ✓ |
+| single blip | no | no fire ✓ | no fire ✓ |
+| spike train (every 10 frames) | no | no fire ✓ | no fire ✓ |
+| **gradual drift** | yes | **no fire ✗** | fire once, latency 92 frames ✓ |
+| failure then recovery | yes | fire once, then latched ✓ | fire once, then latched ✓ |
+
+**Finding:** a purely baseline-relative detector **misses a slow gradual drift**
+exactly as the low-FPR EWMA literature warns (see "slow-drift pitfall" above).
+Enabling `fail_threshold_abs` closes the gap at the cost of a higher alarm floor.
+This parameter is **not** changed in the shipped default: turning it on is a
+decision that must be made with real footage and recorded, not silently.
+
+The offline evaluator (`temporaleval.py`) computes sequence-level detection rate,
+per-recording false-alarm rate, and proxy-relative detection delay on cached
+frozen scores; it separates `normal_confirmed` (reliable negative) from
+`normal_ambiguous` recordings so false-alarm rates are not inflated by
+folder-label conflicts.

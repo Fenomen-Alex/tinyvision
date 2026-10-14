@@ -155,3 +155,55 @@ def test_fsm_title_case_no_event_before_warmup():
             first_event_frame = i
             break
     assert first_event_frame is not None and first_event_frame >= 100
+
+
+# ---------------------------------------------------------------------------
+# Synthetic-stream behaviour (decision layer only; see
+# scripts/temporal_synthetic_benchmark.py).
+# ---------------------------------------------------------------------------
+
+DEFAULT = dict(alpha=0.15, baseline_window=60, warmup=30, suspect_threshold=0.05,
+               fail_threshold=0.2, recover_threshold=0.05, confirm=3, use_delta=True)
+
+
+def _events(scores, **over):
+    params = {**DEFAULT, **over}
+    out = run_temporal_pipeline(scores, **params)
+    return [o["frame"] for o in out if o.get("event") == FAILING_EVENT]
+
+
+def test_synthetic_sustained_failure_fires_once_with_low_latency():
+    scores = [0.05] * 60 + [0.92] * 140
+    ev = _events(scores)
+    assert len(ev) == 1
+    assert ev[0] - 60 <= 10  # fires within ~10 frames of the onset
+
+
+def test_synthetic_single_blip_does_not_fire():
+    scores = [0.05] * 200
+    scores[100] = 0.97
+    assert _events(scores) == []
+
+
+def test_synthetic_spike_train_does_not_fire():
+    scores = [0.05] * 200
+    for i in range(60, 200, 10):
+        scores[i] = 0.9
+    assert _events(scores) == []
+
+
+def test_synthetic_gradual_drift_needs_absolute_floor():
+    drift = [min(0.05 + 0.9 * max(0, i - 60) / 140, 0.95) for i in range(200)]
+    # Default (baseline-relative only) can miss a slow drift...
+    assert _events(drift) == []
+    # ...adding an absolute signal floor recovers it.
+    ev = _events(drift, fail_threshold_abs=0.6)
+    assert len(ev) == 1
+    assert ev[0] >= 60
+
+
+def test_synthetic_recovery_fires_once_then_latches():
+    scores = [0.05] * 60 + [0.92] * 40 + [0.05] * 100
+    ev = _events(scores)
+    assert len(ev) == 1
+

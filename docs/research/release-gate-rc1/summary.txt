@@ -1,0 +1,16 @@
+TinyVision reliability evaluation — suite 'rc1-reliability'
+
+Model: rc1
+  threshold selection: PASS (threshold=0.3) — max recall with FPR <= 0.2 on validation data
+  [dev_val] role=dev_validation n=2174 FPR=0.1744 FNR=0.1397 P=0.9023 R=0.8603 F1=0.8808 AUROC=0.9310
+  [frozen_test] role=locked_test n=2859 FPR=0.1298 FNR=0.1570 P=0.9361 R=0.8430 F1=0.8871 AUROC=0.8922
+  parity[onnx] on frozen_test n=512 disagreement=0.0 max|dscore|=3e-06
+  parity[int8] on frozen_test n=512 disagreement=0.013672 max|dscore|=0.583879
+  RELEASE GATE: FAIL (blocks_release=True)
+    - dev_validation: FAIL — dev_validation: recall 0.8603 < min 0.9
+    - locked_test: FAIL — locked_test: recall 0.8430 < min 0.9
+    - normal_holdout: INCONCLUSIVE — normal_holdout: required evaluation surface is missing or could not run
+    - failure_holdout: WARN — failure_holdout: optional evaluation surface is missing or could not run
+    - cross_environment: WARN — cross_environment: optional evaluation surface is missing or could not run
+    - parity: PASS
+    - deployment: PASS

@@ -1,0 +1,73 @@
+# Reliability acceptance policy. See docs/reliability-evaluation.md.
+#
+# STATUS: DRAFT / PROVISIONAL. The metric floors below (min_recall, max_fpr,
+# max_fnr, size/latency budgets) are provisional engineering targets, not
+# empirically derived requirements. They must NOT be loosened to make a
+# particular model pass; if a model misses a floor, either the model is fixed
+# or the floor is changed through an explicit, documented decision with a
+# stated justification. Missing evidence is INCONCLUSIVE and always blocks
+# release, regardless of floors.
+#
+# Semantics:
+#   required -> its gate must PASS for the release; if the evidence is missing
+#               or insufficient the gate is INCONCLUSIVE and release is blocked
+#               (missing evidence can never count as passing).
+#   limit keys as thresholds on metrics for surfaces holding the relevant class
+#   (e.g. max_fpr on a normal-only holdout).
+id: tinyvision-rc1-policy
+policy_version: 1
+status: draft
+
+threshold_selection:
+  # Threshold selection is allowed ONLY on the dev_validation surface.
+  objective: max_recall_subject_to_max_fpr
+  max_fpr: 0.2
+  grid: [0.3, 0.4, 0.5, 0.6, 0.7]
+  min_samples: 500
+
+gates:
+  dev_validation:
+    required: true
+    min_samples: 1000
+    max_fpr: 0.3
+    min_recall: 0.9
+
+  locked_test:
+    required: true
+    min_samples: 1000
+    max_fpr: 0.3
+    min_recall: 0.9
+
+  normal_holdout:
+    required: true
+    min_samples: 100
+    min_sources: 2
+    # The documented normal-source false-alarm failure was FPR=1.0; this gate
+    # exists so that regression can never silently return.
+    max_fpr: 0.1
+
+  failure_holdout:
+    # No verified independent failing holdout exists yet; keep it optional until
+    # the Stage-14 failing augmentation is human-reviewed and held out.
+    required: false
+    min_samples: 100
+    min_sources: 2
+    max_fnr: 0.1
+    min_recall: 0.9
+
+  cross_environment:
+    required: false
+    min_samples: 50
+    min_sources: 2
+    min_environments: 2
+
+  parity:
+    required: true
+    require_onnx: true
+    max_onnx_prediction_disagreement: 0.01
+    max_onnx_score_abs_drift: 0.05
+
+  deployment:
+    required: false
+    max_model_size_mb: 25
+    max_latency_ms: 500

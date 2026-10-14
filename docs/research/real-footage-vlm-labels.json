@@ -1,0 +1,17 @@
+{
+  "schema": "real-footage-labels",
+  "schema_version": 1,
+  "provenance": "VLM (qwen/qwen3-vl-8b) video-level judgements from datasets/external/real-world-eval/vlm_proposals.json (git HEAD)",
+  "verification": "UNVERIFIED — machine-generated, not human-reviewed. Use only as a weak reference, never as a benchmark.",
+  "decision_field": "eventstrip (continuous-playback view) decision",
+  "note": "The 7 source videos are not committed; only derived per-frame runtime outputs and these VLM proposals are. Labels are therefore not independently re-checkable from the repository alone.",
+  "videos": {
+    "0TY6LVvMpUo": {"decision": "normal", "confidence": 0.95},
+    "38gnsbGqcx4": {"decision": "normal", "confidence": 0.95},
+    "87gsL-Luvis": {"decision": "failing", "confidence": 0.95, "failure_type": "spaghetti"},
+    "G56LQfQCUnA": {"decision": "normal", "confidence": 0.95},
+    "UzULqvGoi1Y": {"decision": "normal", "confidence": 0.95},
+    "mGH3p3AF1YY": {"decision": "failing", "confidence": 0.95, "failure_type": "spaghetti"},
+    "nbkf372s_cA": {"decision": "normal", "confidence": 0.95}
+  }
+}

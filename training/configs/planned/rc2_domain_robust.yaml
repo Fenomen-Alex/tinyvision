@@ -1,0 +1,48 @@
+# PLANNED (not run). rc2 domain-robust augmentation candidate.
+#
+# Hypothesis H1: stronger appearance/domain-shift augmentation improves
+# normal-holdout FPR without hurting within-venue recall. See
+# docs/research/model-improvement-plan.md. This is a PROPOSAL; it has not been
+# trained. The augmentation block is illustrative of the intended stack and is
+# subject to the AugmentationConfig schema (only the fields below are supported
+# today; adding fields requires a config-schema change, recorded in the plan).
+experiment_id: rc2_domain_robust_shufflenet_v2_x1_0
+model: shufflenet_v2_x1_0
+task: classification
+dataset:
+  name: release-candidate-2-domain-robust
+  version: '1.0'
+  data_dir: datasets/processed/release-rc2
+  image_size: 224
+  source_mode: directory
+  split_ratios: [0.7, 0.15, 0.15]
+data:
+  num_workers: 4
+  batch_size: 32
+  pin_memory: true
+train:
+  epochs: 30
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  augmentation:
+    horizontal_flip: true
+    random_rotation: 15
+    color_jitter: 0.4        # raised from 0.2
+    random_crop: true        # enabled (was false)
+    normalize: true
+  precision: fp32
+  seed: 42
+  early_stopping_patience: 10
+evaluation:
+  metrics: [precision, recall, f1, fnr, fpr, auroc]
+  decision_threshold: 0.5
+export:
+  format: onnx
+  quantization: int8
+  dynamic_axes: false
+created_at: ''
+notes: |-
+  PLANNED, NOT RUN. Difference vs rc1: stronger color_jitter (0.4) and enabled
+  random_crop. Requires datasets/processed/release-rc2 and an
+  environment-independent validation surface before it is meaningful.
