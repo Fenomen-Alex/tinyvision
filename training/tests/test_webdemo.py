@@ -238,8 +238,12 @@ def test_analyze_invalid_setting_400(server, tmp_path):
     httpd, client = server
     video = tmp_path / "v.mp4"
     video.write_bytes(b"x")
+    # Use an existing checkpoint stub so the request reaches the settings
+    # validation (range checks run before any model is loaded).
+    ckpt = tmp_path / "model.pt"
+    ckpt.write_bytes(b"stub")
     status, body = client.post_json("/api/analyze", {
-        "video_path": str(video), "checkpoint": str(BASELINE_CKPT),
+        "video_path": str(video), "checkpoint": str(ckpt),
         "settings": {"threshold": 5.0}})
     assert status == 400 and "threshold" in body["error"]
 

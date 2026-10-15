@@ -28,7 +28,52 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 find_package(OpenCV REQUIRED)
-find_package(onnxruntime REQUIRED)
+
+# ONNX Runtime ---------------------------------------------------------------
+# The official prebuilt tarballs (e.g. onnxruntime-linux-x64-<ver>.tgz) ship a
+# CMake package config, but it hardcodes a `lib64/` libdir that the tarball does
+# not contain, so `find_package(onnxruntime)` fails against them. Locate the
+# header and shared library directly first (rooted at -Donnxruntime_ROOT /
+# -Donnxruntime_DIR / $ONNXRUNTIME_ROOT, plus common prefixes), and fall back to
+# a package config for Homebrew / vcpkg / source installs.
+set(_onnxruntime_hints)
+foreach(_onnxruntime_root_var onnxruntime_ROOT ONNXRUNTIME_ROOT)
+  if(DEFINED ${_onnxruntime_root_var})
+    list(APPEND _onnxruntime_hints "${${_onnxruntime_root_var}}")
+  endif()
+  if(DEFINED ENV{${_onnxruntime_root_var}})
+    list(APPEND _onnxruntime_hints "$ENV{${_onnxruntime_root_var}}")
+  endif()
+endforeach()
+if(DEFINED onnxruntime_DIR)
+  get_filename_component(_onnxruntime_prefix "${onnxruntime_DIR}" DIRECTORY)
+  list(APPEND _onnxruntime_hints "${_onnxruntime_prefix}" "${onnxruntime_DIR}")
+endif()
+if(APPLE)
+  list(APPEND _onnxruntime_hints /opt/homebrew /usr/local /opt/local)
+endif()
+
+find_path(onnxruntime_INCLUDE_DIR
+  NAMES onnxruntime_c_api.h
+  HINTS ${_onnxruntime_hints}
+  PATH_SUFFIXES include include/onnxruntime
+)
+find_library(onnxruntime_LIBRARY
+  NAMES onnxruntime
+  HINTS ${_onnxruntime_hints}
+  PATH_SUFFIXES lib lib64
+)
+
+if(onnxruntime_INCLUDE_DIR AND onnxruntime_LIBRARY)
+  if(NOT TARGET onnxruntime::onnxruntime)
+    add_library(onnxruntime::onnxruntime UNKNOWN IMPORTED)
+    set_target_properties(onnxruntime::onnxruntime PROPERTIES
+      IMPORTED_LOCATION "${onnxruntime_LIBRARY}"
+      INTERFACE_INCLUDE_DIRECTORIES "${onnxruntime_INCLUDE_DIR}")
+  endif()
+else()
+  find_package(onnxruntime REQUIRED CONFIG)
+endif()
 
 add_library(tinyvision_core STATIC
   src/cli.cpp

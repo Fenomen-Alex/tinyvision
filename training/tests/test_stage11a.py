@@ -4,6 +4,8 @@ from __future__ import annotations
 from collections import Counter
 from pathlib import Path
 
+import pytest
+
 from tv.stage11a import (
     Cluster,
     ExperimentalRun,
@@ -17,6 +19,14 @@ from tv.stage11a import (
     run_leakage_audit,
     generate_run_csvs,
     build_design,
+)
+
+# Real-data tests read the git-ignored processed dataset CSVs; skip when absent.
+_REPO = Path(__file__).resolve().parents[2]
+_SPLITS = _REPO / "datasets" / "processed" / "printing-errors" / "splits"
+_requires_splits = pytest.mark.skipif(
+    not (_SPLITS / "train.csv").exists(),
+    reason="printing-errors splits not present (git-ignored)",
 )
 
 
@@ -52,6 +62,7 @@ def test_extract_recording_id_short():
 # load_all_recordings (real data)
 # ---------------------------------------------------------------------------
 
+@_requires_splits
 def test_load_all_recordings_real():
     data = load_all_recordings()
     assert "train" in data
@@ -62,12 +73,14 @@ def test_load_all_recordings_real():
     assert len(data["test"]) > 10
 
 
+@_requires_splits
 def test_train_stringing_count_real():
     data = load_all_recordings()
     str_recs = [r for r in data["train"] if r.has_stringing]
     assert len(str_recs) == 23
 
 
+@_requires_splits
 def test_recording_info_composition():
     data = load_all_recordings()
     for rec in data["train"]:
@@ -79,6 +92,7 @@ def test_recording_info_composition():
 # define_stringing_clusters (real data)
 # ---------------------------------------------------------------------------
 
+@_requires_splits
 def test_stringing_clusters_real():
     data = load_all_recordings()
     clusters = define_stringing_clusters(data["train"])
@@ -95,6 +109,7 @@ def test_stringing_clusters_real():
     assert clusters["15.02.2023"].exploratory is True
 
 
+@_requires_splits
 def test_stringing_cluster_dates():
     data = load_all_recordings()
     clusters = define_stringing_clusters(data["train"])
@@ -106,6 +121,7 @@ def test_stringing_cluster_dates():
 # define_under_extrusion_clusters (real data)
 # ---------------------------------------------------------------------------
 
+@_requires_splits
 def test_under_extrusion_clusters_real():
     data = load_all_recordings()
     clusters = define_under_extrusion_clusters(data["train"])
@@ -122,6 +138,7 @@ def test_under_extrusion_clusters_real():
 # design_runs (real data)
 # ---------------------------------------------------------------------------
 
+@_requires_splits
 def test_design_runs_real():
     data = load_all_recordings()
     str_cl = define_stringing_clusters(data["train"])
@@ -136,6 +153,7 @@ def test_design_runs_real():
     assert "ue_control_05012023" in run_ids
 
 
+@_requires_splits
 def test_run_held_out_recordings():
     data = load_all_recordings()
     str_cl = define_stringing_clusters(data["train"])
@@ -147,6 +165,7 @@ def test_run_held_out_recordings():
     assert run_22.train_recording_count == 96  # 105 - 9
 
 
+@_requires_splits
 def test_run_train_excludes_held_out():
     data = load_all_recordings()
     str_cl = define_stringing_clusters(data["train"])
@@ -165,6 +184,7 @@ def test_run_train_excludes_held_out():
 # leakage audit (real data)
 # ---------------------------------------------------------------------------
 
+@_requires_splits
 def test_leakage_audit_passes():
     data = load_all_recordings()
     str_cl = define_stringing_clusters(data["train"])
@@ -176,6 +196,7 @@ def test_leakage_audit_passes():
         assert len(audit.checks) == 8
 
 
+@_requires_splits
 def test_leakage_audit_catches_held_out_in_train():
     """Verify audit would catch a held-out recording if it leaked into held-in train."""
     data = load_all_recordings()
@@ -207,6 +228,7 @@ def test_leakage_audit_catches_held_out_in_train():
 # generate_run_csvs (real data)
 # ---------------------------------------------------------------------------
 
+@_requires_splits
 def test_generate_run_csvs(tmp_path):
     data = load_all_recordings()
     str_cl = define_stringing_clusters(data["train"])
@@ -244,6 +266,7 @@ def test_generate_run_csvs(tmp_path):
 # build_design (real data, end-to-end)
 # ---------------------------------------------------------------------------
 
+@_requires_splits
 def test_build_design_structure():
     d = build_design()
     assert d["stage"] == "11A"
@@ -261,6 +284,7 @@ def test_build_design_structure():
     assert "execution_plan" in d
 
 
+@_requires_splits
 def test_build_design_data_bounds():
     d = build_design()
     inv = d["recording_inventory"]["train"]
@@ -269,6 +293,7 @@ def test_build_design_data_bounds():
     assert inv["under_extrusion_recordings"] == 37
 
 
+@_requires_splits
 def test_build_design_clusters_correct():
     d = build_design()
     str_cl = d["stringing_clusters"]
@@ -278,6 +303,7 @@ def test_build_design_clusters_correct():
     assert str_cl["15.02.2023"]["exploratory"] is True
 
 
+@_requires_splits
 def test_build_design_runs_correct():
     d = build_design()
     runs = d["experimental_runs"]
@@ -287,12 +313,14 @@ def test_build_design_runs_correct():
     assert r22["train_recording_count"] == 96
 
 
+@_requires_splits
 def test_build_design_leakage_all_pass():
     d = build_design()
     for run_id, audit in d["leakage_audits"].items():
         assert audit["passed"] is True, f"Leakage failed for {run_id}"
 
 
+@_requires_splits
 def test_build_design_training_config_matches_experiment1():
     d = build_design()
     tc = d["training_config"]

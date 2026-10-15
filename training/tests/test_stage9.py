@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 from collections import Counter
 
+import pytest
+
 from tv.stage9 import (
     RecordingInfo,
     build_inventory,
@@ -18,6 +20,14 @@ from tv.stage9 import (
     run_stage9,
     _extract_recording_id,
     _extract_date,
+)
+
+# Real-data tests read the git-ignored processed dataset CSVs; skip when absent.
+_REPO = Path(__file__).resolve().parents[2]
+_SPLITS = _REPO / "datasets" / "processed" / "printing-errors" / "splits"
+_requires_splits = pytest.mark.skipif(
+    not (_SPLITS / "train.csv").exists(),
+    reason="printing-errors splits not present (git-ignored)",
 )
 
 
@@ -103,6 +113,7 @@ def test_frame_concentration():
     assert fc["train"]["top5_frame_fraction"] == 1.0  # only 3 recordings, top5 includes all
 
 
+@_requires_splits
 def test_frame_concentration_real_data():
     inv = build_inventory()
     fc = frame_concentration(inv)
@@ -227,6 +238,7 @@ def test_split_distribution_comparison():
 # Tests: run_stage9 end-to-end (real data)
 # ---------------------------------------------------------------------------
 
+@_requires_splits
 def test_run_stage9_end_to_end():
     result = run_stage9()
     assert result["stage"] == 9
@@ -246,6 +258,7 @@ def test_run_stage9_end_to_end():
     assert result["retraining_gate"]["A_is_evidence_sufficient_for_immediate_retraining"] is False
 
 
+@_requires_splits
 def test_stringing_investigation_real_data():
     result = run_stage9()
     si = result["stringing_investigation"]
@@ -254,6 +267,7 @@ def test_stringing_investigation_real_data():
     assert len(si["large_session_ids"]) > 10
 
 
+@_requires_splits
 def test_normal_domain_investigation_real_data():
     result = run_stage9()
     nd = result["normal_domain_investigation"]
@@ -266,6 +280,7 @@ def test_normal_domain_investigation_real_data():
     assert abs(train_bright - test_bright) > 50
 
 
+@_requires_splits
 def test_failure_type_diversity_real_data():
     result = run_stage9()
     ft = result["failure_type_diversity"]
@@ -275,6 +290,7 @@ def test_failure_type_diversity_real_data():
     assert ft["under_extrusion"]["train"]["n_recordings"] >= 30
 
 
+@_requires_splits
 def test_retraining_gate_structure():
     result = run_stage9()
     rg = result["retraining_gate"]
@@ -286,6 +302,7 @@ def test_retraining_gate_structure():
     assert len(rg["priority_order"]) >= 4
 
 
+@_requires_splits
 def test_future_experiment_structure():
     result = run_stage9()
     fe = result["future_experiment"]

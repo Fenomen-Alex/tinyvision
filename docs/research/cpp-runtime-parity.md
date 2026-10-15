@@ -14,7 +14,9 @@ through the same preprocessing contract and the same temporal decision logic as
 `tv poc`.
 
 Build requirements / stack: C++17, OpenCV (`find_package(OpenCV)`), ONNX Runtime
-CPU EP (`find_package(onnxruntime)`), CMake + Ninja. The runtime has no
+CPU EP (prebuilt header + shared library located directly via
+`onnxruntime_ROOT` / `onnxruntime_DIR`, with a `find_package` config fallback for
+Homebrew/vcpkg/source installs), CMake + Ninja. The runtime has no
 dependency on the Python environment.
 
 ## Components

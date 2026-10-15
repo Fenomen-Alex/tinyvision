@@ -88,13 +88,16 @@ jobs:
             "https://github.com/microsoft/onnxruntime/releases/download/v1.20.1/${ORT}.tgz"
           tar -xzf ort.tgz
           echo "ORT_DIR=$PWD/${ORT}" >> "$GITHUB_ENV"
+          echo "ONNXRUNTIME_ROOT=$PWD/${ORT}" >> "$GITHUB_ENV"
       - name: Configure
         run: |
+          # ONNXRUNTIME_ROOT (exported above) makes the runtime locate the
+          # prebuilt header + shared library directly; the tarball's own CMake
+          # config hardcodes a lib64/ dir it does not ship, so it is not used.
           cmake -S runtime -B runtime/build -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
-            -Donnxruntime_DIR="$ORT_DIR/cmake" \
-            -DOpenCV_DIR="$(dirname "$(find /usr -name OpenCVConfig.cmake 2>/dev/null | head -1)")" \
-            || cmake -S runtime -B runtime/build -G Ninja -DCMAKE_BUILD_TYPE=Release
+            -Donnxruntime_ROOT="$ORT_DIR" \
+            -DOpenCV_DIR="$(dirname "$(find /usr -name OpenCVConfig.cmake 2>/dev/null | head -1)")"
       - name: Build
         run: cmake --build runtime/build
       - name: C++ tests (only when the git-ignored ONNX model is present)

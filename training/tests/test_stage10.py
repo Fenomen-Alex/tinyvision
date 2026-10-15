@@ -4,6 +4,8 @@ from __future__ import annotations
 import numpy as np
 from pathlib import Path
 
+import pytest
+
 from tv.stage10 import (
     Frame,
     Recording,
@@ -22,6 +24,15 @@ from tv.stage10 import (
     retraining_gate,
     run_stage10,
     load_recordings,
+)
+
+# Real-data tests read the git-ignored model-inference trajectory caches; skip
+# when absent.
+_REPO = Path(__file__).resolve().parents[2]
+_CACHE = _REPO / "docs" / "research" / "evalcaches"
+_requires_cache = pytest.mark.skipif(
+    not (_CACHE / "frozen_train_trajectories.json").exists(),
+    reason="trajectory caches not present (git-ignored)",
 )
 
 
@@ -162,6 +173,7 @@ def test_extract_date_single_part():
 # Real-data integration tests
 # ---------------------------------------------------------------------------
 
+@_requires_cache
 def test_load_recordings_real():
     recs = load_recordings(("train", "val"))
     assert "train" in recs
@@ -170,6 +182,7 @@ def test_load_recordings_real():
     assert len(recs["val"]) > 10
 
 
+@_requires_cache
 def test_stringing_cluster_analysis_real():
     recs = load_recordings(("train", "val"))
     result = stringing_cluster_analysis(recs)
@@ -181,6 +194,7 @@ def test_stringing_cluster_analysis_real():
     assert c["fnr_mean"] > 0.1
 
 
+@_requires_cache
 def test_stringing_variation_real():
     recs = load_recordings(("train", "val"))
     result = stringing_variation(recs)
@@ -189,6 +203,7 @@ def test_stringing_variation_real():
     assert len(result["rows"]) > 20
 
 
+@_requires_cache
 def test_darkness_audit_real():
     recs = load_recordings(("train", "val"))
     result = darkness_audit(recs)
@@ -198,6 +213,7 @@ def test_darkness_audit_real():
     assert result["brightness_fpr_correlation"] > -0.5
 
 
+@_requires_cache
 def test_brightness_buckets_real():
     recs = load_recordings(("train", "val"))
     result = brightness_buckets(recs)
@@ -212,6 +228,7 @@ def test_brightness_buckets_real():
     assert dark["framewise_fpr"] <= medium["framewise_fpr"]
 
 
+@_requires_cache
 def test_under_extrusion_analysis_real():
     recs = load_recordings(("train", "val"))
     result = under_extrusion_analysis(recs)
@@ -221,6 +238,7 @@ def test_under_extrusion_analysis_real():
     assert result["fnr_mean"] < 0.2  # overall mean should be low
 
 
+@_requires_cache
 def test_spaghetti_limitation_real():
     recs = load_recordings(("train", "val"))
     result = spaghetti_limitation(recs)
@@ -230,6 +248,7 @@ def test_spaghetti_limitation_real():
     assert result["conclusions"]["valid_spaghetti_generalization_conclusion"] is False
 
 
+@_requires_cache
 def test_documented_test_observations_real():
     result = documented_test_observations()
     assert "catastrophic_fn" in result
@@ -269,6 +288,7 @@ def test_retraining_gate_structure():
 # end-to-end
 # ---------------------------------------------------------------------------
 
+@_requires_cache
 def test_run_stage10_end_to_end():
     result = run_stage10()
     assert result["stage"] == 10

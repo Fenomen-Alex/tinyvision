@@ -38,7 +38,7 @@ sudo apt-get install -y build-essential cmake ninja-build libopencv-dev
 ORT=onnxruntime-linux-aarch64-1.20.1
 curl -fsSL -o ort.tgz \
   "https://github.com/microsoft/onnxruntime/releases/download/v1.20.1/${ORT}.tgz"
-tar -xzf ort.tgz && export ORT_DIR="$PWD/${ORT}"
+tar -xzf ort.tgz && export ONNXRUNTIME_ROOT="$PWD/${ORT}"
 ```
 
 ## Build
@@ -46,7 +46,7 @@ tar -xzf ort.tgz && export ORT_DIR="$PWD/${ORT}"
 ```bash
 cmake -S runtime -B runtime/build -G Ninja \
   -DCMAKE_BUILD_TYPE=Release \
-  -Donnxruntime_DIR="$ORT_DIR/cmake" \
+  -Donnxruntime_ROOT="$ONNXRUNTIME_ROOT" \
   -DOpenCV_DIR="$(dirname "$(find /usr -name OpenCVConfig.cmake | head -1)")"
 cmake --build runtime/build
 ctest --test-dir runtime/build --output-on-failure   # requires a frozen model.onnx
