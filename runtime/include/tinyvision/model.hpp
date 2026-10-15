@@ -1,6 +1,7 @@
 // Minimal ONNX Runtime session wrapper for the frozen binary classifier.
 #pragma once
 
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>

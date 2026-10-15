@@ -1,5 +1,7 @@
 #include "harness.hpp"
 
+#include <stdexcept>
+
 #include <opencv2/imgproc.hpp>
 
 #include "tinyvision/preprocess.hpp"

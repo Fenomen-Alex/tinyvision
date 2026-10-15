@@ -1,6 +1,7 @@
 #include "tinyvision/temporal.hpp"
 
 #include <algorithm>
+#include <stdexcept>
 
 namespace tinyvision {
 
