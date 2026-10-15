@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import json
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, fields
 from pathlib import Path
 
 
@@ -21,13 +21,33 @@ class Source:
     frames_dir: str
     frame_count: int
     failure_type: str | None = None
+    # Optional glob for frame files inside ``frames_dir``; empty means the
+    # conventional ``frame_*.jpg`` (acquire.extract_frames). Lets datasets whose
+    # frames are named differently (e.g. timestamp snapshots) reuse the tooling.
+    frame_glob: str = ""
+    # Provenance / licensing (added for real-world acquisition; optional so
+    # older manifests keep loading). ``license`` is the dataset's actual license
+    # as stated by the source, never inferred from the code host or platform.
+    source_dataset: str = ""
+    license: str = ""
+    license_url: str = ""
+    attribution: str = ""
+    capture_environment: str = ""
+    session_id: str = ""
+    video_sha256: str = ""
+    noncommercial: bool = False
+    redistributable: bool = False
+    split: str = ""
+    notes: str = ""
 
     def to_dict(self) -> dict:
         return asdict(self)
 
     @classmethod
     def from_dict(cls, d: dict) -> "Source":
-        return cls(**d)
+        # Tolerate manifests written before newer optional fields existed.
+        known = {f.name for f in fields(cls)}
+        return cls(**{k: v for k, v in d.items() if k in known})
 
 
 @dataclass

@@ -9,12 +9,50 @@ from torchvision import transforms
 from torchvision.datasets import ImageFolder
 
 
+IMAGENET_MEAN = [0.485, 0.456, 0.406]
+IMAGENET_STD = [0.229, 0.224, 0.225]
+
+
+class _AddGaussianNoise:
+    """Additive Gaussian noise on a ``[0, 1]`` float tensor (train-only)."""
+
+    def __init__(self, std: float):
+        self.std = float(std)
+
+    def __call__(self, tensor: torch.Tensor) -> torch.Tensor:
+        if self.std <= 0:
+            return tensor
+        return torch.clamp(tensor + torch.randn_like(tensor) * self.std, 0.0, 1.0)
+
+
+def normalize_stats(augmentation: dict | None = None) -> tuple[list[float], list[float]]:
+    """Return the (mean, std) normalisation used by :func:`_build_transforms`.
+
+    Custom statistics (``normalize_mean``/``normalize_std``) take precedence;
+    otherwise ImageNet statistics are used. A single source of truth keeps the
+    training and inference transforms identical.
+    """
+    aug = augmentation or {}
+    mean = aug.get("normalize_mean")
+    std = aug.get("normalize_std")
+    if mean and std:
+        return list(mean), list(std)
+    return list(IMAGENET_MEAN), list(IMAGENET_STD)
+
+
 def _build_transforms(
     image_size: int,
     augmentation: dict | None = None,
     is_train: bool = True,
 ) -> transforms.Compose:
-    """Build image transforms from config."""
+    """Build image transforms from config.
+
+    Custom ``normalize_mean``/``normalize_std`` (fit on training data) replace
+    the ImageNet defaults for *both* training and evaluation, so deterministic
+    preprocessing is identical across train/val/inference. Appearance
+    augmentations (``appear_*``, ``blur_*``, ``noise_std``) apply only when
+    ``is_train``.
+    """
     aug = augmentation or {}
     ops: list[transforms.Transform] = []
 
@@ -27,16 +65,41 @@ def _build_transforms(
         cj = aug.get("color_jitter", 0.2)
         if cj:
             ops.append(transforms.ColorJitter(brightness=cj, contrast=cj, saturation=cj))
+
+        ab = aug.get("appear_brightness", 0.0)
+        ac = aug.get("appear_contrast", 0.0)
+        asat = aug.get("appear_saturation", 0.0)
+        ah = aug.get("appear_hue", 0.0)
+        if any(v for v in (ab, ac, asat, ah)):
+            ops.append(
+                transforms.ColorJitter(
+                    brightness=ab, contrast=ac, saturation=asat, hue=ah
+                )
+            )
+
+        blur_prob = aug.get("blur_prob", 0.0)
+        blur_sigma = aug.get("blur_sigma", 0.0)
+        if blur_prob > 0 and blur_sigma > 0:
+            ops.append(
+                transforms.RandomApply(
+                    [transforms.GaussianBlur(kernel_size=3, sigma=(0.1, blur_sigma))],
+                    p=blur_prob,
+                )
+            )
+
         if aug.get("random_crop", False):
             ops.append(transforms.RandomResizedCrop(image_size, scale=(0.7, 1.0)))
 
     ops.append(transforms.Resize((image_size, image_size)))
     ops.append(transforms.ToTensor())
 
+    noise_std = aug.get("noise_std", 0.0)
+    if is_train and noise_std > 0:
+        ops.append(_AddGaussianNoise(noise_std))
+
     if aug.get("normalize", True):
-        ops.append(
-            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-        )
+        mean, std = normalize_stats(aug)
+        ops.append(transforms.Normalize(mean=mean, std=std))
 
     return transforms.Compose(ops)
 

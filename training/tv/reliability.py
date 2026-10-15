@@ -503,7 +503,10 @@ def select_threshold(y_true: np.ndarray, scores: np.ndarray,
         if not feasible:
             return {"threshold": None, "status": STATUS_INCONCLUSIVE,
                     "reason": f"no threshold in grid satisfies FPR <= {max_fpr}"}
-        # Highest recall; tie-break on higher threshold (fewer false positives).
+        # Highest recall; among those, the LOWEST threshold (most sensitive).
+        # The FPR ceiling is already enforced by the feasible filter, so the
+        # tie-break maximises sensitivity, matching the project priority that
+        # false negatives matter most for failure detection.
         best = sorted(feasible, key=lambda s: (-(s["recall"] or 0.0), s["threshold"]))[0]
         return {"threshold": best["threshold"], "status": STATUS_PASS,
                 "reason": f"max recall with FPR <= {max_fpr} on validation data",
@@ -733,17 +736,22 @@ def discover_artifacts(framework_path: str | Path) -> dict[str, str | None]:
     return out
 
 
-def _eval_transform(image_size: int):
+def _eval_transform(image_size: int, mean=None, std=None):
     from .data.loaders import _build_transforms
 
-    return _build_transforms(image_size, augmentation={}, is_train=False)
+    aug = {}
+    if mean and std:
+        aug["normalize_mean"] = list(mean)
+        aug["normalize_std"] = list(std)
+    return _build_transforms(image_size, augmentation=aug, is_train=False)
 
 
-def _tensor_batches(image_paths: list[str], image_size: int, batch_size: int):
+def _tensor_batches(image_paths: list[str], image_size: int, batch_size: int,
+                    mean=None, std=None):
     import torch
     from PIL import Image
 
-    tfm = _eval_transform(image_size)
+    tfm = _eval_transform(image_size, mean, std)
     for i in range(0, len(image_paths), batch_size):
         chunk = image_paths[i:i + batch_size]
         yield torch.stack([tfm(Image.open(p).convert("RGB")) for p in chunk])
@@ -763,9 +771,15 @@ def score_framework(checkpoint_path: str | Path, samples: list[Sample],
     model.load_state_dict(ckpt["model_state_dict"])
     model.eval()
 
+    # Reuse the exact normalisation the checkpoint was trained with; ``None``
+    # falls back to ImageNet statistics (identical to the legacy behaviour).
+    mean = ckpt.get("normalize_mean")
+    std = ckpt.get("normalize_std")
+
     scores: list[float] = []
     with torch.no_grad():
-        for batch in _tensor_batches([s.image_path for s in samples], image_size, batch_size):
+        for batch in _tensor_batches([s.image_path for s in samples], image_size,
+                                     batch_size, mean=mean, std=std):
             probs = torch.softmax(model(batch), dim=1).numpy()
             scores.extend(float(p[FAIL_IDX]) for p in probs)
     return np.asarray(scores, dtype=float)

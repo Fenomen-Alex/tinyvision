@@ -1,0 +1,374 @@
+{
+  "schema": "tinyvision-realworld-acquisition",
+  "generated": "2026-10-14",
+  "task": "Acquire real-world data to resolve the RC2 data bottleneck (independent normal vs failing streams)",
+  "data_root": "/Users/alex/tinyvision-data",
+  "external_drive_present": false,
+  "target": {
+    "min_independent_normal_streams": 16,
+    "min_independent_failing_streams": 4,
+    "human_verified_required": true,
+    "independence_rules": [
+      "adjacent clips from one print do not count as independent",
+      "a failing print's pre-failure segment does not count as an independent normal stream",
+      "static images never count as evidence of video-level false-alarm rates"
+    ]
+  },
+  "sources_evaluated": [
+    {
+      "key": "emptydeck",
+      "name": "EmptyDeck \u2014 Bed-Adhesion Failure-Onset Dataset for FDM 3D Printing",
+      "source": "GitHub (EmptyDeck), videos hosted on YouTube",
+      "url": "https://github.com/EmptyDeck/3DPrint-Failure-Video-Dataset",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "license_verified": true,
+      "license_verification": "Repo README states CC BY-NC 4.0 for annotations/masks/metadata; videos 'provided for research use under the same terms'. GitHub API license field is null (not authoritative).",
+      "modality": "video (timelapse, fps=1)",
+      "image_count": 30,
+      "image_count_unit": "prints/sequences",
+      "annotation_format": "per-sequence change point (onset_frame); ground-truth masks in [0,onset)",
+      "classes": [
+        "bed_adhesion onset (normal-baseline vs failing)"
+      ],
+      "resolution": "P1 1024x768 (20 prints), P2 1920x1080 (10 prints)",
+      "collection_methodology": "Bed-mounted camera timelapses of FDM prints; onset of bed-adhesion failure annotated by frame index.",
+      "known_limitations": [
+        "All failures are bed-adhesion (single failure type)",
+        "Only 2 capture environments",
+        "normal baseline is the same print's pre-onset segment -> NOT independent normal",
+        "CC BY-NC (noncommercial)"
+      ],
+      "intended_usage": "research-only independent failing streams; never in a release/training split",
+      "retrieval_date": "2026-10-14",
+      "usable_here": true,
+      "acquired": true
+    },
+    {
+      "key": "wengmhu",
+      "name": "FDM-3D-Printing-Defect-Dataset (wengmhu)",
+      "source": "GitHub (wengmhu); mirror on Kaggle",
+      "url": "https://github.com/wengmhu/FDM-3D-Printing-Defect-Dataset",
+      "license": "MIT",
+      "license_url": "https://opensource.org/licenses/MIT",
+      "license_verified": true,
+      "license_verification": "LICENSE file in the GitHub repository (MIT).",
+      "modality": "static image",
+      "image_count": 1912,
+      "class_counts_actual_from_archive": {
+        "Cracking": 472,
+        "Layer_shifting": 364,
+        "Off_platform": 91,
+        "Stringing": 447,
+        "Warping": 538
+      },
+      "annotation_format": "image classification by folder (single class per image)",
+      "classes": [
+        "cracking",
+        "layer_shifting",
+        "off_platform",
+        "stringing",
+        "warping"
+      ],
+      "resolution": "not stated; raw photos ~3.3 MB each",
+      "collection_methodology": "FFF/FDM printer defect photos (per accompanying paper).",
+      "known_limitations": [
+        "static images only (no video -> no FAR evidence)",
+        "no normal class",
+        "off_platform underrepresented (91)"
+      ],
+      "intended_usage": "supplemental training / exploratory failure-type coverage only",
+      "retrieval_date": "2026-10-14",
+      "usable_here": true,
+      "acquired": true
+    },
+    {
+      "key": "trier",
+      "name": "Trier FFF-QC v2 \u2014 Quality Control in Additive Manufacturing",
+      "source": "Zenodo record 18628777 (Trier University of Applied Sciences)",
+      "url": "https://doi.org/10.5281/zenodo.18628777",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_verified": true,
+      "license_verification": "Zenodo API 2026-09-07 (recorded in dataset-inventory).",
+      "modality": "static image",
+      "image_count": 27154,
+      "annotation_format": "folder/class",
+      "classes": [
+        "layer_shift",
+        "extrusion_error",
+        "stringing",
+        "unknown/no_stringing_error"
+      ],
+      "resolution": "full_res per camera",
+      "collection_methodology": "3 cameras, static defect/normal images",
+      "known_limitations": [
+        "static only",
+        "partial selective subsample staged"
+      ],
+      "intended_usage": "strong independent static holdout / training",
+      "retrieval_date": "2026-09-08",
+      "usable_here": true,
+      "acquired": true,
+      "already_present": true
+    },
+    {
+      "key": "caxton",
+      "name": "Caxton (University of Cambridge)",
+      "source": "Cambridge Apollo repository",
+      "url": "https://doi.org/10.17863/CAM.84082",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_verified": true,
+      "license_verification": "Repository 'Rights and licensing' field.",
+      "modality": "nozzle-camera images (video-derived)",
+      "image_count": 1272273,
+      "annotation_format": "continuous process parameters (flow, lateral speed, Z offset, hotend/bed temp, timestamps, nozzle x/y) + anomaly status",
+      "classes": "none (not discrete failure labels)",
+      "resolution": "not stated",
+      "collection_methodology": "automated fleet of 8 extrusion printers; 192 parts",
+      "known_limitations": [
+        "no discrete failure labels",
+        "repository hosts only CSVs (~110-144 MB); images hosted elsewhere"
+      ],
+      "intended_usage": "evaluated only",
+      "retrieval_date": "2026-10-14",
+      "usable_here": false,
+      "acquired": false,
+      "blocked_reason": "no failure labels; images not hosted in the repository"
+    },
+    {
+      "key": "roboflow_g4f6l",
+      "name": "3d-printing-errors (Roboflow Universe)",
+      "source": "Roboflow Universe",
+      "url": "https://universe.roboflow.com/3d-printing-errors/3d-printing-errors-g4f6l",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_verified": true,
+      "license_verification": "Dataset page license field (community dataset; underlying-image provenance caution).",
+      "modality": "static image (object detection)",
+      "image_count": 224,
+      "annotation_format": "bounding boxes (object detection)",
+      "classes": [
+        "normal",
+        "fail spaghetti",
+        "layer-shift",
+        "spaghetti",
+        "stringing",
+        "under-extrusion",
+        "warping"
+      ],
+      "resolution": "not stated",
+      "collection_methodology": "community-contributed",
+      "known_limitations": [
+        "static only",
+        "small (224)",
+        "community provenance"
+      ],
+      "intended_usage": "supplemental",
+      "retrieval_date": "2026-10-14",
+      "usable_here": false,
+      "acquired": false,
+      "blocked_reason": "download requires Roboflow account/API key (HTTP 403 anonymous)"
+    },
+    {
+      "key": "kaggle_early_detection",
+      "name": "Early detection of 3D printing issues (Kaggle competition)",
+      "source": "Kaggle",
+      "url": "https://www.kaggle.com/competitions/early-detection-of-3d-printing-issues",
+      "license": "competition rules (not CC)",
+      "license_url": "",
+      "license_verified": false,
+      "license_verification": "Governed by competition rules; requires account + rule acceptance to view/download.",
+      "modality": "image snapshots (series)",
+      "image_count": null,
+      "image_count_unit": "7 printers, 6-20 prints each, print = series of snapshots",
+      "annotation_format": "per-print series (grouped by printer/print)",
+      "classes": "unknown (normal presence unconfirmed)",
+      "resolution": "unknown",
+      "collection_methodology": "pictures from 7 different 3D printers",
+      "known_limitations": [
+        "licence unverified",
+        "normal-print presence unconfirmed",
+        "requires auth"
+      ],
+      "intended_usage": "highest-value untapped external source (candidate independent environments)",
+      "retrieval_date": "2026-10-14",
+      "usable_here": false,
+      "acquired": false,
+      "blocked_reason": "no Kaggle credentials / competition rules not accepted"
+    }
+  ],
+  "acquired": {
+    "emptydeck_subset": {
+      "dataset_key": "emptydeck",
+      "path": "/Users/alex/tinyvision-data/emptydeck-3dprint-run",
+      "manifest": "/Users/alex/tinyvision-data/emptydeck-3dprint-run/manifest.json",
+      "size_bytes": 1600000000,
+      "size_bytes_approx": true,
+      "n_independent_failing_prints": 11,
+      "environments": {
+        "P1": 6,
+        "P2": 5
+      },
+      "n_frames": 28469,
+      "fps": 1,
+      "video_format": "yt-dlp 134/160 (360p) mp4",
+      "license": "CC BY-NC 4.0",
+      "noncommercial": true,
+      "redistributable": false,
+      "sequences": [
+        {
+          "id": "P1__PinkNetriti_Early",
+          "env": "P1",
+          "frames": 270,
+          "onset_frame": 49
+        },
+        {
+          "id": "P1__YellowEarly",
+          "env": "P1",
+          "frames": 391,
+          "onset_frame": 120
+        },
+        {
+          "id": "P1__BlackTilt_noz",
+          "env": "P1",
+          "frames": 1207,
+          "onset_frame": 312
+        },
+        {
+          "id": "P1__WhiteNeitiri_SupportFail",
+          "env": "P1",
+          "frames": 2140,
+          "onset_frame": 1865
+        },
+        {
+          "id": "P1__YellowOval_still",
+          "env": "P1",
+          "frames": 4232,
+          "onset_frame": 2994
+        },
+        {
+          "id": "P1__WhiteBoat",
+          "env": "P1",
+          "frames": 4309,
+          "onset_frame": 3991
+        },
+        {
+          "id": "P2__RedSkullEarly",
+          "env": "P2",
+          "frames": 741,
+          "onset_frame": 317
+        },
+        {
+          "id": "P2__GreenSkullEarly",
+          "env": "P2",
+          "frames": 1166,
+          "onset_frame": 460
+        },
+        {
+          "id": "P2__GreenCase",
+          "env": "P2",
+          "frames": 3816,
+          "onset_frame": 688
+        },
+        {
+          "id": "P2__BlackFrancesco",
+          "env": "P2",
+          "frames": 3417,
+          "onset_frame": 2876
+        },
+        {
+          "id": "P2__PinkPenholder",
+          "env": "P2",
+          "frames": 6780,
+          "onset_frame": 1863
+        }
+      ]
+    },
+    "wengmhu_subset": {
+      "dataset_key": "wengmhu",
+      "path": "/Users/alex/tinyvision-data/wengmhu-fdm/subset",
+      "manifest": "/Users/alex/tinyvision-data/wengmhu-fdm/subset_manifest.json",
+      "size_bytes": 645000000,
+      "size_bytes_approx": true,
+      "n_images": 200,
+      "subset_per_class": 40,
+      "class_totals_actual": {
+        "Cracking": 472,
+        "Layer_shifting": 364,
+        "Off_platform": 91,
+        "Stringing": 447,
+        "Warping": 538
+      },
+      "license": "MIT",
+      "has_normal_class": false,
+      "note": "bulk 6.29 GB zip deleted after extracting the subset"
+    },
+    "trier_staged": {
+      "dataset_key": "trier",
+      "path": "datasets/staging/trier",
+      "size_bytes": 673000000,
+      "size_bytes_approx": true,
+      "n_images": 27154,
+      "n_environments": 24,
+      "license": "CC BY 4.0",
+      "note": "already staged in-repo; reused, not re-downloaded"
+    }
+  },
+  "validation": {
+    "manifest_validate_warnings": [],
+    "build_streams": {
+      "n_streams": 11,
+      "n_frames": 28469,
+      "by_label": {
+        "failing": 11
+      },
+      "by_source": {
+        "title": 11
+      }
+    },
+    "unit_tests": "training/tests/test_manifest.py + test_streams.py: 7 passed",
+    "human_verified": false,
+    "human_verification_note": "agent has no vision; labels are the dataset's weak video-level labels + published onset_frame"
+  },
+  "gap_assessment": {
+    "independent_normal_streams_acquired": 0,
+    "independent_normal_streams_target": 16,
+    "independent_failing_streams_acquired": 11,
+    "independent_failing_streams_target": 4,
+    "normal_gap_unresolved": true,
+    "reason": "no accessible source provides independent normal multi-frame streams; pre-onset baselines are non-independent; other sources are static or blocked"
+  },
+  "single_highest_value_next_action": {
+    "action": "Accept the Kaggle 'early-detection-of-3d-printing-issues' competition rules and download its data; verify normal-print presence and its actual licence.",
+    "rationale": "only remaining external source plausibly containing many independent snapshot-sequences (7 printers x 6-20 prints) in a distinct camera domain",
+    "fallback": "own collection: one fixed camera, >=16 normal prints + >=4 induced failures on a target printer"
+  },
+  "acquired_data": [
+    {
+      "dataset": "kaggle-early-detection-of-3d-printing-issues",
+      "license": "Subject to Competition Rules (research-only, non-redistributable)",
+      "units": "labeled print streams + unlabeled test",
+      "streams_normal_labeled": 27,
+      "streams_failing_labeled": 25,
+      "environments_printers": 7,
+      "labeled_printers_env": 5,
+      "unlabeled_test_prints": 44,
+      "images_total": 106339,
+      "disk_gb": 12.29,
+      "path": "/Users/alex/tinyvision-data/kaggle-early-detection/",
+      "manifest": "/Users/alex/tinyvision-data/kaggle-early-detection/manifest.json",
+      "splits": "/Users/alex/tinyvision-data/kaggle-early-detection/splits/",
+      "index_csv": "/Users/alex/tinyvision-data/kaggle-early-detection/index.csv",
+      "grouped_by": "print_id (stream), printer_id (env, held-out)",
+      "validation": {
+        "validate_manifest": "ok",
+        "build_streams": "ok",
+        "env_disjoint": true,
+        "print_level_consistent": true
+      },
+      "notes": "Under-extrusion only; nozzle camera; leakage-safe by print."
+    }
+  ]
+}

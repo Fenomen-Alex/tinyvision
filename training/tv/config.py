@@ -34,6 +34,18 @@ class AugmentationConfig:
     color_jitter: float = 0.2
     random_crop: bool = False
     normalize: bool = True
+    # Custom per-channel normalisation (fit on training data). ``None`` keeps
+    # the ImageNet defaults, so leaving these unset reproduces old behaviour.
+    normalize_mean: list[float] | None = None
+    normalize_std: list[float] | None = None
+    # Train-only appearance augmentations (applied on top of the baseline).
+    appear_brightness: float = 0.0
+    appear_contrast: float = 0.0
+    appear_saturation: float = 0.0
+    appear_hue: float = 0.0
+    blur_prob: float = 0.0
+    blur_sigma: float = 0.0
+    noise_std: float = 0.0
 
 
 @dataclass
@@ -105,7 +117,15 @@ class ExperimentConfig:
 def record_software() -> SoftwareConfig:
     import cv2
     import torchvision
-    import ultralytics
+
+    # ultralytics is an optional extra (AGPL-3.0); the validated torchvision
+    # path does not need it, so record an empty string when it is absent.
+    try:
+        import ultralytics
+
+        ultralytics_version = str(ultralytics.__version__)
+    except ImportError:
+        ultralytics_version = ""
 
     # ``str(...)`` is required: some versions (e.g. ``torch.__version__``, a
     # ``torch.torch_version.TorchVersion``) are ``str`` subclasses that PyYAML
@@ -115,7 +135,7 @@ def record_software() -> SoftwareConfig:
         python=str(sys.version.split()[0]),
         torch=str(__import__("torch").__version__),
         torchvision=str(torchvision.__version__),
-        ultralytics=str(ultralytics.__version__),
+        ultralytics=ultralytics_version,
         opencv=str(cv2.__version__),
         os=str(f"{platform.system()} {platform.release()}"),
     )
@@ -146,6 +166,10 @@ def _experiment_identity(config: "ExperimentConfig") -> str:
         str(config.train.early_stopping_patience),
         str(a.horizontal_flip), str(a.random_rotation), str(a.color_jitter),
         str(a.random_crop), str(a.normalize),
+        str(a.normalize_mean), str(a.normalize_std),
+        str(a.appear_brightness), str(a.appear_contrast),
+        str(a.appear_saturation), str(a.appear_hue),
+        str(a.blur_prob), str(a.blur_sigma), str(a.noise_std),
     ])
     data_blob = "|".join([
         str(config.data.batch_size), str(config.data.num_workers),

@@ -162,3 +162,212 @@ All five are covered by tests; full suite: **438 passed, 17 skipped**.
 3. Re-check the VLM teacher at higher frame counts/resolution before relying on
    it, or keep it as an advisory layer only.
 4. Only then re-run the RC2 domain-robust configuration and the release gate.
+
+---
+
+# Follow-up — calibration and failure-recall investigation (2026-10-14)
+
+This section answers *why* RC2 makes zero video-level false alarms on the
+held-out normals yet misses the one held-out failing stream at threshold 0.5,
+and whether a defensible operating point exists. Everything below is a
+**diagnostic**; the labels stay weak/VLM and none of it satisfies the release
+policy.
+
+## Reproduction (exact)
+
+All committed artifacts were reproduced byte-for-byte on this tree
+(`feat/realdomain-automated-pipeline` @ `b52cf74`); only
+`datasets/external-cache/` (gitignored) was read.
+
+| artifact | check |
+|---|---|
+| `realdomain-rc2-{test,val}.json`, `realdomain-rc1-{test,val}.json` | `scripts/realdomain_report.py` output `diff`s **identical** |
+| `release-diagnostic-rc2/summary.txt` | `tv reliability evaluate` output `diff`s **identical** |
+| `release-diagnostic-rc2/summary.json` | equal (incl. software versions) |
+
+```bash
+S=datasets/external-cache/rc2-realdomain/splits
+training/.venv/bin/python scripts/realdomain_report.py \
+  --split $S/test.csv \
+  --checkpoint experiments/rc2_realdomain_shufflenet_v2_x1_0/artifacts/best.pt \
+  --out /tmp/rc2-test.json
+
+training/.venv/bin/python -m tv.cli reliability evaluate \
+  --suite training/configs/reliability/suite-realdomain.yaml \
+  --policy training/configs/reliability/policy-realdomain-diagnostic.yaml \
+  --model rc2=experiments/rc2_realdomain_shufflenet_v2_x1_0/artifacts/best.pt \
+  --output-dir /tmp/diag-rc2
+```
+
+Exact inputs:
+
+| item | value |
+|---|---|
+| RC2 checkpoint | `experiments/rc2_realdomain_shufflenet_v2_x1_0/artifacts/best.pt` |
+| RC2 sha256 | `9862f9306e2e092ef567efd077cab77740991e08d310102383d4a938aa919c06` |
+| RC2 meta | epoch 18, val_loss 0.267234, `class_to_idx={failing:0, normal:1}`, `shufflenet_v2_x1_0` |
+| RC1 checkpoint sha256 | `780d20ad1781a6c2f7c5756a24ea2a075657deee949ef1b80020fc27feeca279` |
+| config | `training/configs/planned/rc2_realdomain.yaml` (image_size 224, decision_threshold 0.5) |
+| preprocessing | `Resize((224,224))` → `ToTensor` → ImageNet `Normalize` — **identical** in `realdomain_report.py` and `tv.reliability` (`_build_transforms(.., is_train=False)`) |
+| val split | `splits/val.csv` sha256 `7dd2606199d1a9a41339c422fa58b19d78fbf6c9a1deb8fd16bb76ec92823f04`, n=51 (31 normal / 20 failing, 3 streams) |
+| test split | `splits/test.csv` sha256 `ddc3257267b7809da1b85800838c99010bdb1aeb125bbf116ea98222ec1d4758`, n=57 (40 normal / 17 failing, 3 streams) |
+| threshold | report default 0.5; diagnostic evaluator also 0.5 (selection INCONCLUSIVE — see below) |
+
+Threshold selection in the diagnostic is INCONCLUSIVE and falls back to 0.5
+because the diagnostic policy declares no `threshold_selection.max_fpr`
+(`select_threshold`'s message names the wrong cause — a cosmetic defect left
+unchanged to keep the committed `summary.txt` reproducible).
+
+## Held-out scores (the decisive detail)
+
+Video-level = median frame score; a stream is flagged failing iff median ≥ 0.5.
+`scripts/realdomain_threshold_sweep.py` (new) exports per-frame scores.
+
+| stream | label | split | n | median | max | first frame ≥ 0.06 |
+|---|---|---|---|---|---|---|
+| `0TY6LVvMpUo` | normal | val | 20 | 0.0131 | 0.6617 | — |
+| `LE3PO8pwwR8` | normal | val | 11 | 0.0500 | 0.2293 | — |
+| `188yo59MbbU` | failing | val | 20 | 0.8780 | 0.9546 | 0 |
+| `nbkf372s_cA` | normal | test | 20 | 0.0165 | 0.0223 | — |
+| `38gnsbGqcx4` | normal | test | 20 | 0.0195 | 0.0399 | — |
+| **`mGH3p3AF1YY`** | **failing** | **test** | 17 | **0.0785** | **0.2818** | **0** |
+
+`mGH3p3AF1YY` per-frame P(failing) over time (1 fps, first 17 s):
+
+```
+0.222 0.237 0.017 0.052 0.049 0.110 0.046 0.037 0.041 0.095 0.161 0.218 0.078 0.057 0.041 0.282 0.246
+```
+
+Every frame is **below 0.5** (max 0.282): the model's argmax for all 17 frames
+is `normal`. Frame-level AUROC is still 0.966 on test (0.971 on val) because
+those frames still rank above the held-out normals — RC2 ranks the failure
+correctly but with a **compressed absolute scale**.
+
+## Source separation audit (no leakage)
+
+* Splits are source-isolated: train/val/test stream sets are pairwise disjoint
+  (`train∩val = train∩test = val∩test = ∅`); each stream is the suite
+  `source_key`. Verified with the split CSVs and `check_source_leakage`.
+* Threshold sweeping and calibration below use the **validation split only**.
+  Test is scored for reporting only and is never used to pick a value.
+* Label provenance: each stream's label is the **hand-assigned `weak_label`**
+  from `realdomain-sources.yaml` (surfaced in `streams.json` as
+  `label_source: "title"` — a legacy tag); the manifest `title`/`uploader`
+  fields are empty (no metadata was actually parsed). This is weak supervision,
+  not verified ground truth; all suite surfaces are `verified: false`. The VLM
+  re-derives frame labels but its video-level majority does not override the
+  weak label here (the weak label is present).
+
+## Missed failure: root cause
+
+The missed failure is a **generalization/representation gap at the fixed
+operating point — not a temporal-filtering issue and not fixable by monotonic
+calibration**:
+
+1. **Not temporal.** The decision unit is a per-stream median; there is no
+   temporal filter in this diagnostic path. The VLM (which can see) labels
+   13/17 `mGH3p3AF1YY` frames `failing / spaghetti` with high confidence, so the
+   failure is genuinely visible; the model simply scores it low.
+2. **Ranking is fine; scale is not.** AUROC is 0.966 (test) / 0.971 (val). Every
+   held-out failing frame is ranked above the normals yet sits below 0.5.
+3. **Calibration cannot fix it.** Temperature scaling is monotonic, so it
+   preserves argmax for every `T > 0`. Fitting `T` on validation gives
+   `T* = 0.850` and **0/17** `mGH` frames become `argmax = failing` for any
+   `T ∈ {0.2, 0.5, 1, 2, 5}` (max P(failing) is 0.453 even at `T = 5`). A fixed
+   0.5 boundary cannot be rescued by temperature scaling.
+4. **The validation split is not identifiable.** Its only failing stream sits at
+   median 0.878, ~0.83 above the highest validation normal (0.050). A wide band
+   of thresholds (0.06–0.86) all give *perfect* validation performance, so
+   validation cannot reveal that failures can score as low as 0.078.
+
+## Threshold sweep (validation-selected)
+
+`--max-fpr 0.0`, grid 0.02…0.98. Validation: 2 normals (0.0131, 0.0500), 1
+failing (0.8780).
+
+| selection rule (validation only) | threshold | val FAR | val recall | held-out FAR | held-out detection |
+|---|---|---|---|---|---|
+| repository `select_threshold` (max recall, then **lowest** threshold) | **0.06** | 0/2 | 1/1 | **0/2** | **1/1** |
+| conservative (highest feasible threshold) | 0.86 | 0/2 | 1/1 | 0/2 | 0/1 |
+| midpoint margin `(0.0500+0.8780)/2` | 0.464 | 0/2 | 1/1 | 0/2 | 0/1 |
+
+Held-out (test) separation, evaluation-only: highest normal median 0.0195,
+failing median 0.0785 — **separable** for any threshold in (0.0195, 0.0785).
+Detection delay at the repository threshold 0.06: first `mGH` frame ≥ 0.06 is
+frame **0** (median rule flags the stream anyway).
+
+**The repository rule with a fine grid does select 0.06 and *would* catch the
+held-out failure** (`docs/research/realdomain-rc2-threshold-sweep.json`). The
+original miss happened because (a) the diagnostic ran no selection → fixed 0.5,
+and (b) the release-policy grid is `[0.3 … 0.7]`, whose floor is far above the
+failure's 0.078.
+
+## Can a defensible operating point be claimed? — No.
+
+A threshold satisfying both requirements **on the point estimates** exists and is
+reachable by a legitimate validation-only rule (0.06: val FAR 0/2 & recall 1/1;
+held-out FAR 0/2 & detection 1/1). But it **cannot be claimed**, because the
+evidence is too thin and not identifiable:
+
+* **Normal sample too small.** Held-out independent normals n = 2; with the two
+  validation normals, n = 4. Wilson 95% upper bound on FAR: **0.66** (n=2) or
+  **0.49** (n=4). To bound video FAR ≤ 0.2 at 95% confidence you need **≈16
+  normal streams with zero alarms**.
+* **Failing sample too small.** Held-out failing n = 1; recall 1/1 has Wilson
+  95% lower bound **0.21**. ≈4 all-detected failing streams are needed for a
+  lower bound ≥ 0.5.
+* **Threshold not identifiable.** On validation, 0.06 and 0.86 are equally
+  consistent (both FAR 0/2, recall 1/1). The 0.06 choice has only **0.010**
+  margin above the highest validation normal.
+* **Weak labels.** The "failing" normal/failing labels are hand-assigned and
+  VLM-corroborated, not human-verified, so the normal-holdout gate stays
+  INCONCLUSIVE regardless of the threshold.
+
+**Smallest additional labeled recording needed:** to make the FAR ≤ 0.2 claim
+supportable, **≈16 human-verified normal streams (≥2 venues) with zero false
+alarms**, plus **≥4 human-verified failing streams** to bound recall. This is a
+data problem, not a calibration one.
+
+## Calibration (validation-only) — evaluated, not adopted
+
+Temperature scaling fit on validation (min-NLL): `T* = 0.850`.
+
+| | T = 1 | T = 0.85 |
+|---|---|---|
+| val NLL | 0.2672 | 0.2643 |
+| val ECE | 0.0853 | 0.0747 |
+| val AUROC | 0.9710 | 0.9710 (invariant) |
+| val failing median | 0.878 | 0.910 |
+| test failing median (`mGH`) | 0.0785 | 0.052 |
+
+The NLL-optimal temperature is `< 1`, i.e. it *sharpens* and pushes the
+already-low failing scores **lower**, moving the failure further from any fixed
+threshold. Calibration is therefore **not adopted**; the module
+`training/tv/calibration.py` exists only to make the result reproducible and is
+not wired into the gate.
+
+## Regression tests added
+
+`training/tests/test_realdomain_calibration.py` (9 tests, all synthetic guards —
+not real-world evidence):
+
+* temperature preserves argmax for any `T > 0`; a below-0.5 failing frame cannot
+  be flipped by any temperature;
+* `fit_temperature` never worsens validation NLL;
+* ECE bounds;
+* `select_threshold` is most-sensitive/lowest-feasible on a real-like val
+  surface, and the perfect-performance band is wide (non-identifiable);
+* the release policy requires `normal_holdout` + ONNX parity while the
+  diagnostic policy is all-optional, and every real-domain suite surface is
+  `verified: false` (a weak-label surface can never satisfy release).
+
+Also corrected a stale comment in `training/tv/reliability.py` that claimed the
+threshold tie-break picks the *higher* threshold (it picks the lowest).
+
+## Artifacts
+
+* `docs/research/realdomain-rc2-threshold-sweep.json` — per-frame scores, all
+  operating points, held-out evaluation and oracle band.
+* `scripts/realdomain_threshold_sweep.py` — regenerates it (selection on val
+  only).
+* `training/tv/calibration.py`, `training/tests/test_realdomain_calibration.py`.

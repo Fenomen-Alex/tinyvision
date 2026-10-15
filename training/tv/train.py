@@ -204,6 +204,11 @@ def train_classification(
                     "class_to_idx": class_to_idx,
                     "config_model": config.model,
                     "num_classes": num_classes,
+                    # Deterministic preprocessing: inference must reuse the exact
+                    # normalisation the model was trained with.
+                    "normalize_mean": config.train.augmentation.normalize_mean,
+                    "normalize_std": config.train.augmentation.normalize_std,
+                    "image_size": image_size,
                 },
                 filename="best.pt",
             )

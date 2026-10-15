@@ -56,6 +56,14 @@ results to make a gate pass. See
 * Never split at frame/recording level — split at **environment** level.
 * Never mix datasets without recording provenance.
 
+## Licensing
+
+Contributions are accepted under the [Apache License 2.0](LICENSE). Third-party
+dependency licenses are listed in [THIRD_PARTY.md](THIRD_PARTY.md). The YOLO
+model families require the optional AGPL-3.0 `ultralytics` extra
+(`pip install -e "training[yolo]"`); the default install and the validated
+torchvision path do not.
+
 ## Pull requests
 
 * Keep the change minimal and focused; don't rewrite working components without

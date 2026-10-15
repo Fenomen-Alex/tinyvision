@@ -1,0 +1,150 @@
+{
+  "schema": "tinyvision-rc2-domain-shift-ablation",
+  "git_head": "b52cf74031b2af409e329967be8212d88a56cbae",
+  "seed_first": 42,
+  "seed_second": 43,
+  "data_license": "Subject to Competition Rules (research-only, non-redistributable)",
+  "checkpoint_distributable": false,
+  "splits": {
+    "train_printers": [
+      "101",
+      "102",
+      "104"
+    ],
+    "val_printer": "022",
+    "heldout_printer": "103"
+  },
+  "note": "holdout103_combined concatenates the class-disjoint printer-103 surfaces (locked_test fails + normal_holdout normals) so AUROC is defined on the held-out printer.",
+  "runs": {
+    "baseline": {
+      "checkpoint_sha256": "4552aa1342caa5fdfe5ce47f772753c3292aa013a276b0faf3b1841ac3e9097b",
+      "val_selected_threshold": 0.98,
+      "best_val_loss": 1.471287,
+      "dev_val_auroc": 0.381653,
+      "heldout103_auroc": 0.707632,
+      "per_stream_at_0.5": {
+        "dev_val_far": 0.6,
+        "dev_val_recall": 0.5714285714285714,
+        "p103_far": 0.0,
+        "p103_recall": 0.0,
+        "p103_far_ci": [
+          0.0,
+          0.4899
+        ],
+        "p103_recall_ci": [
+          0.0,
+          0.4899
+        ]
+      },
+      "per_stream_at_val_threshold": {
+        "dev_val_fpr": 0.065433,
+        "p103_recall": 0.0,
+        "p103_far": 0.0
+      }
+    },
+    "photometric": {
+      "checkpoint_sha256": "15460109626f0bb5b61644a4dc26b439153d0b68e6a94b33c047f9846c2bb8a5",
+      "val_selected_threshold": 0.9,
+      "best_val_loss": 1.317663,
+      "dev_val_auroc": 0.225107,
+      "heldout103_auroc": 0.886627,
+      "per_stream_at_0.5": {
+        "dev_val_far": 1.0,
+        "dev_val_recall": 0.7142857142857143,
+        "p103_far": 0.0,
+        "p103_recall": 0.25,
+        "p103_far_ci": [
+          0.0,
+          0.4899
+        ],
+        "p103_recall_ci": [
+          0.045586,
+          0.699364
+        ]
+      },
+      "per_stream_at_val_threshold": {
+        "dev_val_fpr": 0.099052,
+        "p103_recall": 0.0,
+        "p103_far": 0.0
+      }
+    },
+    "appearance": {
+      "checkpoint_sha256": "36b8653901df7169b4f8684357555f11400db61e6df5ae00d5fb831466eb9adf",
+      "val_selected_threshold": 0.98,
+      "best_val_loss": 1.786386,
+      "dev_val_auroc": 0.345151,
+      "heldout103_auroc": 0.933075,
+      "per_stream_at_0.5": {
+        "dev_val_far": 1.0,
+        "dev_val_recall": 1.0,
+        "p103_far": 0.25,
+        "p103_recall": 1.0,
+        "p103_far_ci": [
+          0.045586,
+          0.699364
+        ],
+        "p103_recall_ci": [
+          0.5101,
+          1.0
+        ]
+      },
+      "per_stream_at_val_threshold": {
+        "dev_val_fpr": 0.070848,
+        "p103_recall": 0.0,
+        "p103_far": 0.0
+      }
+    },
+    "photometric_s43": {
+      "checkpoint_sha256": "e29d29f6ed7ef814c15f5eb3f6f6b30355fdc9dc9008f4f7c0c625ecb8f66a34",
+      "val_selected_threshold": 0.95,
+      "best_val_loss": 1.412273,
+      "dev_val_auroc": 0.326705,
+      "heldout103_auroc": 0.808538,
+      "per_stream_at_0.5": {
+        "dev_val_far": 0.9,
+        "dev_val_recall": 0.5714285714285714,
+        "p103_far": 0.0,
+        "p103_recall": 0.0,
+        "p103_far_ci": [
+          0.0,
+          0.4899
+        ],
+        "p103_recall_ci": [
+          0.0,
+          0.4899
+        ]
+      },
+      "per_stream_at_val_threshold": {
+        "dev_val_fpr": 0.073105,
+        "p103_recall": 0.0,
+        "p103_far": 0.0
+      }
+    },
+    "appearance_s43": {
+      "checkpoint_sha256": "4e4390361c5107e6869ba895090ba5b9830de71e46e24a5106cfeab48b569695",
+      "val_selected_threshold": 0.92,
+      "best_val_loss": 1.22973,
+      "dev_val_auroc": 0.299822,
+      "heldout103_auroc": 0.851182,
+      "per_stream_at_0.5": {
+        "dev_val_far": 1.0,
+        "dev_val_recall": 1.0,
+        "p103_far": 0.0,
+        "p103_recall": 0.25,
+        "p103_far_ci": [
+          0.0,
+          0.4899
+        ],
+        "p103_recall_ci": [
+          0.045586,
+          0.699364
+        ]
+      },
+      "per_stream_at_val_threshold": {
+        "dev_val_fpr": 0.075361,
+        "p103_recall": 0.0,
+        "p103_far": 0.0
+      }
+    }
+  }
+}

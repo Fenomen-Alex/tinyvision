@@ -12,6 +12,8 @@ Usage:
     tv env-split --dir STAGING_DIR [--assign key=split,... | --ratios R,R,R] [--seed N]
     tv env-readiness [--holdings PATH] [--datasets-dir DIR]
     tv env-index --kind trier|bambu [--root PATH] [--metadata JSON]
+    tv sessions validate --spec SHEET.yaml [--probe]
+    tv sessions build    --spec SHEET.yaml --out CALIB_SPEC.yaml [--checkpoint PATH]
 """
 from __future__ import annotations
 
@@ -319,32 +321,190 @@ def cmd_exp4_eval(args: argparse.Namespace) -> None:
         print(f"\nJSON report written to {args.output_json}")
 
 
-def cmd_poc(args: argparse.Namespace) -> None:
-    from tv.poc import PocConfig, run_poc
+def _default_poc_report_path(result: dict, args: argparse.Namespace) -> str:
+    """Default JSON path for a POC report: beside the input video, else CWD.
 
-    config = PocConfig(
-        source=args.input if args.input else args.camera,
-        checkpoint=args.checkpoint,
-        image_size=args.image_size,
-        sample_fps=args.sample_fps,
-        max_frames=args.max_frames,
-        threshold=args.threshold,
-        annotated_output=args.annotated_output,
-        alpha=args.alpha,
-        baseline_window=args.baseline_window,
-        warmup=args.warmup,
-        suspect_threshold=args.suspect_threshold,
-        fail_threshold=args.fail_threshold,
-        recover_threshold=args.recover_threshold,
-        fail_threshold_abs=args.fail_threshold_abs,
-        confirm=args.confirm,
-    )
-    result = run_poc(config)
-    print(json.dumps(result, indent=2))
-    if args.output_json:
-        with open(args.output_json, "w") as f:
+    Keeps generated reports next to the footage (outside the repository when
+    the footage lives outside it) rather than polluting the working tree.
+    """
+    src = result.get("source", {}).get("input")
+    if isinstance(src, str) and not src.isdigit():
+        p = Path(src)
+        return str(p.with_name(p.stem + ".poc.json"))
+    return "poc_report.json"
+
+
+def cmd_poc(args: argparse.Namespace) -> None:
+    from tv.poc import PocConfig, PocError, format_summary, run_poc
+
+    if args.input and args.camera is not None:
+        print("error: provide either --input FILE or --camera INDEX, not both",
+              file=sys.stderr)
+        sys.exit(2)
+
+    try:
+        config = PocConfig(
+            source=args.input if args.input else args.camera,
+            checkpoint=args.checkpoint,
+            image_size=args.image_size,
+            sample_fps=args.sample_fps,
+            max_frames=args.max_frames,
+            threshold=args.threshold,
+            annotated_output=args.annotated_output,
+            alpha=args.alpha,
+            baseline_window=args.baseline_window,
+            warmup=args.warmup,
+            suspect_threshold=args.suspect_threshold,
+            fail_threshold=args.fail_threshold,
+            recover_threshold=args.recover_threshold,
+            fail_threshold_abs=args.fail_threshold_abs,
+            confirm=args.confirm,
+        )
+        result = run_poc(config)
+    except PocError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        sys.exit(2)
+
+    print(format_summary(result))
+
+    out_path = args.output_json or _default_poc_report_path(result, args)
+    try:
+        Path(out_path).parent.mkdir(parents=True, exist_ok=True)
+        with open(out_path, "w") as f:
             json.dump(result, f, indent=2)
-        print(f"\nJSON report written to {args.output_json}")
+    except OSError as exc:
+        print(f"error: could not write JSON report to {out_path}: {exc}",
+              file=sys.stderr)
+        sys.exit(2)
+    print(f"\nJSON report written to {out_path}")
+
+
+def cmd_calibrate(args: argparse.Namespace) -> None:
+    from tv.calibrate import (
+        CalibrationError,
+        calibrate,
+        format_summary,
+        load_clip_spec,
+    )
+
+    try:
+        spec = load_clip_spec(args.clips)
+        thresholds = None
+        if args.thresholds:
+            try:
+                thresholds = [float(x) for x in args.thresholds.split(",") if x.strip()]
+            except ValueError:
+                raise CalibrationError(
+                    f"--thresholds must be comma-separated numbers, got {args.thresholds!r}"
+                )
+        report = calibrate(
+            spec,
+            checkpoint=args.checkpoint or spec.get("checkpoint"),
+            image_size=args.image_size if args.image_size is not None else spec.get("image_size"),
+            sample_fps=args.sample_fps,
+            thresholds=thresholds,
+            confirm=args.confirm,
+            fpr_ceiling=args.fpr_ceiling,
+            max_frames=args.max_frames,
+        )
+    except CalibrationError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        sys.exit(2)
+
+    print(format_summary(report))
+
+    out_path = args.output_json or str(Path(args.clips).with_suffix(".calibration.json"))
+    try:
+        Path(out_path).parent.mkdir(parents=True, exist_ok=True)
+        with open(out_path, "w") as f:
+            json.dump(report, f, indent=2)
+    except OSError as exc:
+        print(f"error: could not write JSON report to {out_path}: {exc}", file=sys.stderr)
+        sys.exit(2)
+    print(f"\nJSON report written to {out_path}")
+
+
+def cmd_sessions_validate(args: argparse.Namespace) -> None:
+    from tv.sessions import (
+        SessionSheetError,
+        describe_sheet,
+        load_session_sheet,
+        validate_sessions,
+    )
+
+    try:
+        sheet = load_session_sheet(args.spec)
+    except SessionSheetError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        sys.exit(2)
+    v = validate_sessions(sheet, probe=args.probe)
+    report = v.report()
+    report["sheet"] = describe_sheet(sheet)
+    print(json.dumps(report, indent=2))
+    if args.output_json:
+        try:
+            Path(args.output_json).parent.mkdir(parents=True, exist_ok=True)
+            with open(args.output_json, "w") as f:
+                json.dump(report, f, indent=2)
+        except OSError as exc:
+            print(f"error: could not write report to {args.output_json}: {exc}",
+                  file=sys.stderr)
+            sys.exit(2)
+        print(f"\nIntake report written to {args.output_json}")
+    if not v.passes():
+        print(f"\nsession intake FAILED: {len(v.errors())} error(s)", file=sys.stderr)
+        sys.exit(1)
+    print("\nsession intake OK")
+
+
+def cmd_sessions_build(args: argparse.Namespace) -> None:
+    from tv.sessions import (
+        SessionSheetError,
+        build_calibrate_spec,
+        load_session_sheet,
+        validate_sessions,
+        write_calibrate_spec,
+    )
+
+    try:
+        sheet = load_session_sheet(args.spec)
+    except SessionSheetError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        sys.exit(2)
+    v = validate_sessions(sheet, probe=args.probe)
+    if not v.passes():
+        print(json.dumps(v.report(), indent=2))
+        print(f"\nsession intake FAILED: {len(v.errors())} error(s); "
+              "no calibrate spec written (fail closed)", file=sys.stderr)
+        sys.exit(1)
+    spec = build_calibrate_spec(sheet)
+    if args.checkpoint:
+        spec["checkpoint"] = args.checkpoint
+    if not spec["clips"]:
+        print("error: no calibration/validation sessions to emit", file=sys.stderr)
+        sys.exit(1)
+    try:
+        write_calibrate_spec(spec, args.out)
+    except OSError as exc:
+        print(f"error: could not write calibrate spec to {args.out}: {exc}",
+              file=sys.stderr)
+        sys.exit(2)
+    n_cal = sum(1 for c in spec["clips"] if c["split"] == "calibration")
+    n_hold = sum(1 for c in spec["clips"] if c["split"] == "holdout")
+    print(f"Wrote calibrate spec to {args.out} "
+          f"({n_cal} calibration, {n_hold} validation/holdout clips). "
+          "Locked-holdout and uncertain sessions were excluded.")
+
+
+def cmd_demo(args: argparse.Namespace) -> None:
+    from tv.launcher import check_dependencies, run
+
+    if getattr(args, "check", False):
+        sys.exit(check_dependencies(strict=True))
+    code = run(host=args.host, port=args.port, data_dir=args.data_dir,
+               open_browser=args.open_browser)
+    if code:
+        sys.exit(code)
 
 
 def cmd_env_validate(args: argparse.Namespace) -> None:
@@ -1262,7 +1422,10 @@ def build_parser() -> argparse.ArgumentParser:
         default="experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt",
         help="Path to a frozen best.pt checkpoint",
     )
-    p_poc.add_argument("--image-size", type=int, default=224, help="Resize target")
+    p_poc.add_argument(
+        "--image-size", type=int, default=None,
+        help="Resize target (default: the size stored in the checkpoint)",
+    )
     p_poc.add_argument(
         "--sample-fps", type=float, default=None,
         help="Sampling cadence (process every Nth frame to emulate this FPS)",
@@ -1288,6 +1451,100 @@ def build_parser() -> argparse.ArgumentParser:
                        help="Consecutive frames at/above fail threshold to confirm")
     p_poc.add_argument("--output-json", default=None, help="Write full report to JSON")
     p_poc.set_defaults(func=cmd_poc)
+
+    p_cal = sub.add_parser(
+        "calibrate",
+        help="Calibrate a per-frame P(failing) threshold from normal+failing "
+             "clips of ONE target printer/camera (session-level split, no training)",
+    )
+    p_cal.add_argument(
+        "--clips", required=True,
+        help="Calibration spec (YAML/JSON): printer, camera, checkpoint, clips[]",
+    )
+    p_cal.add_argument(
+        "--checkpoint", default=None,
+        help="Frozen best.pt (overrides the spec's 'checkpoint')",
+    )
+    p_cal.add_argument(
+        "--image-size", type=int, default=None,
+        help="Resize target (default: the size stored in the checkpoint)",
+    )
+    p_cal.add_argument(
+        "--sample-fps", type=float, default=None,
+        help="Sampling cadence for video clips (default: every frame)",
+    )
+    p_cal.add_argument(
+        "--thresholds", default=None,
+        help="Comma-separated threshold grid (default 0.05..0.95 step 0.05)",
+    )
+    p_cal.add_argument(
+        "--confirm", type=int, default=1,
+        help="Consecutive frames above threshold required to alarm a session",
+    )
+    p_cal.add_argument(
+        "--fpr-ceiling", type=float, default=0.1,
+        help="Maximum false-alarm rate per normal print allowed during selection",
+    )
+    p_cal.add_argument(
+        "--max-frames", type=int, default=None,
+        help="Stop scoring each clip after this many sampled frames",
+    )
+    p_cal.add_argument("--output-json", default=None,
+                       help="Write full report to JSON (default <clips>.calibration.json)")
+    p_cal.set_defaults(func=cmd_calibrate)
+
+    p_sessions = sub.add_parser(
+        "sessions",
+        help="Register + validate real-world footage sessions and convert them "
+             "into calibration/holdout inputs (no training)",
+    )
+    sessions_sub = p_sessions.add_subparsers(dest="sessions_command", required=True)
+
+    s_val = sessions_sub.add_parser(
+        "validate",
+        help="Validate a footage session sheet; fail closed on errors "
+             "(missing/unreadable media, bad metadata, duplicates, split "
+             "leakage, missing classes, missing/contaminated locked holdout)",
+    )
+    s_val.add_argument("--spec", required=True,
+                       help="Session sheet (YAML/JSON): printer, camera, sessions[]")
+    s_val.add_argument("--probe", action="store_true",
+                       help="Open local video files to check readability/attributes "
+                            "and detect byte-identical duplicates")
+    s_val.add_argument("--output-json", default=None, help="Write the report to JSON")
+    s_val.set_defaults(func=cmd_sessions_validate)
+
+    s_build = sessions_sub.add_parser(
+        "build",
+        help="Validate a session sheet and emit a `tv calibrate` clips spec "
+             "(calibration + validation->holdout; locked holdout excluded)",
+    )
+    s_build.add_argument("--spec", required=True, help="Session sheet (YAML/JSON)")
+    s_build.add_argument("--out", required=True,
+                         help="Output calibrate spec (.yaml/.json)")
+    s_build.add_argument("--checkpoint", default=None,
+                         help="Frozen best.pt recorded into the spec")
+    s_build.add_argument("--probe", action="store_true",
+                         help="Probe local media during validation")
+    s_build.set_defaults(func=cmd_sessions_build)
+
+    p_demo = sub.add_parser(
+        "demo",
+        help="Launch a local web UI to run inference on a video file "
+             "(no printer/camera/cloud/paid API; experimental)",
+    )
+    p_demo.add_argument("--host", default="127.0.0.1",
+                        help="Bind address (default 127.0.0.1; loopback only)")
+    p_demo.add_argument("--port", type=int, default=8000,
+                        help="Port (default 8000; 0 = pick a free port)")
+    p_demo.add_argument("--data-dir", default=None,
+                        help="Data dir for uploads/reports (default: a per-user "
+                             "directory; env TINYVISION_DEMO_DATA)")
+    p_demo.add_argument("--open-browser", action="store_true",
+                        help="Open the demo in the default browser")
+    p_demo.add_argument("--check", action="store_true",
+                        help="Only verify inference dependencies, then exit")
+    p_demo.set_defaults(func=cmd_demo)
 
     p_reliability = sub.add_parser(
         "reliability",

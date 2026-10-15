@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TinyVision — local failure-detection demo</title>
+<style>
+  :root {
+    --bg: #0f1216; --panel: #171b21; --panel-2: #1e242c; --line: #2b333d;
+    --text: #e6eaef; --muted: #97a3b0; --accent: #4f9cf9; --warn: #f4b942;
+    --fail: #ef5b5b; --ok: #47c98a; --susp: #d98a3d;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  header { padding: 18px 24px; border-bottom: 1px solid var(--line); }
+  h1 { margin: 0; font-size: 19px; }
+  h1 span { color: var(--muted); font-weight: 400; }
+  .banner { margin: 12px 24px 0; padding: 10px 14px; border-radius: 8px;
+    background: rgba(244,185,66,.12); border: 1px solid rgba(244,185,66,.45);
+    color: var(--warn); font-size: 13px; }
+  main { display: grid; grid-template-columns: 380px 1fr; gap: 20px;
+    padding: 20px 24px 60px; align-items: start; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 16px; }
+  .panel h2 { margin: 0 0 12px; font-size: 14px; text-transform: uppercase;
+    letter-spacing: .06em; color: var(--muted); }
+  label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
+  input, select, button { width: 100%; padding: 8px 10px; border-radius: 7px;
+    border: 1px solid var(--line); background: var(--panel-2); color: var(--text);
+    font-size: 13px; }
+  input[type=file] { padding: 6px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hint { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  button { cursor: pointer; border: none; background: var(--accent); color: #06121f;
+    font-weight: 600; margin-top: 16px; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  button.secondary { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); }
+  .seg { display: flex; gap: 6px; margin-top: 4px; }
+  .seg button { margin: 0; font-weight: 500; padding: 7px; }
+  .seg button.active { background: var(--accent); color: #06121f; }
+  .error { margin-top: 12px; padding: 10px 12px; border-radius: 8px;
+    background: rgba(239,91,91,.12); border: 1px solid rgba(239,91,91,.5);
+    color: #ffb4b4; font-size: 13px; white-space: pre-wrap; }
+  .bar { height: 10px; background: var(--panel-2); border-radius: 6px; overflow: hidden;
+    border: 1px solid var(--line); }
+  .bar > i { display: block; height: 100%; width: 0%; background: var(--accent);
+    transition: width .15s ease; }
+  .stats { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 12px; font-size: 13px; }
+  .stats b { color: var(--text); }
+  .stats span { color: var(--muted); }
+  canvas { width: 100%; height: 180px; background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 8px; margin-top: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 8px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 500; }
+  .pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11px;
+    border: 1px solid var(--line); }
+  .pill.FAILING { color: var(--fail); border-color: var(--fail); }
+  .pill.SUSPECT { color: var(--susp); border-color: var(--susp); }
+  .pill.NORMAL { color: var(--ok); border-color: var(--ok); }
+  .pill.OBSERVING, .pill.PAUSED { color: var(--muted); }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 4px 0 8px; }
+  .card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+  .card .v { font-size: 20px; font-weight: 600; }
+  .card .k { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .scroll { max-height: 320px; overflow: auto; }
+  .muted { color: var(--muted); }
+  .tag { font-size: 11px; color: var(--muted); }
+  a.dl { display: inline-block; margin-top: 10px; color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>TinyVision <span>— local 3D-print failure-detection demo</span></h1>
+</header>
+<div class="banner">
+  <b>EXPERIMENTAL — not validated for production use.</b>
+  This runs a research prototype classifier over a video recording on your machine.
+  Outputs are for inspection and software testing only; they are not a validated
+  failure detector and may be wrong. No printer, camera, cloud account or paid API
+  is used.
+</div>
+
+<main>
+  <section class="panel">
+    <h2>Input</h2>
+    <label for="model">Model checkpoint</label>
+    <select id="model"><option value="">loading…</option></select>
+    <div class="hint" id="modelHint"></div>
+    <label for="modelPath">…or checkpoint path (.pt)</label>
+    <input type="text" id="modelPath" placeholder="/path/to/experiments/run/artifacts/best.pt" />
+    <div class="hint">Leave blank to use the selection above. Set <code>TINYVISION_MODELS_DIR</code>
+      to discover checkpoints kept outside this repo.</div>
+
+    <label>Video source</label>
+    <div class="seg">
+      <button id="tabUpload" class="active" type="button">Upload file</button>
+      <button id="tabPath" class="secondary" type="button">Local path</button>
+    </div>
+
+    <div id="paneUpload">
+      <input type="file" id="file" accept="video/*,.mp4,.avi,.mov,.mkv,.m4v,.webm" />
+      <div class="hint">The file is copied to a local data dir and analyzed on this machine.</div>
+    </div>
+    <div id="panePath" style="display:none">
+      <input type="text" id="path" placeholder="/Users/you/prints/bracket_timelapse.mp4" />
+      <div class="hint">Absolute path to a video already on this machine (no upload).</div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="sampleFps">Sample FPS</label>
+        <input type="number" id="sampleFps" value="5" min="0.1" step="0.5" />
+        <div class="hint">Frames analyzed per second (blank = every frame).</div>
+      </div>
+      <div>
+        <label for="threshold">Threshold</label>
+        <input type="number" id="threshold" value="0.5" min="0" max="1" step="0.05" />
+        <div class="hint">Raw P(failing) cut for a frame.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="maxFrames">Max frames</label>
+        <input type="number" id="maxFrames" value="" min="1" step="1" placeholder="all" />
+        <div class="hint">Cap analyzed frames (speed).</div>
+      </div>
+      <div>
+        <label for="warmup">Warm-up frames</label>
+        <input type="number" id="warmup" value="30" min="0" step="1" />
+        <div class="hint">Frames ignored before decisions start.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="confirm">Confirm frames</label>
+        <input type="number" id="confirm" value="3" min="1" step="1" />
+        <div class="hint">Consecutive frames to confirm FAILING.</div>
+      </div>
+      <div>
+        <label for="imageSize">Image size</label>
+        <input type="number" id="imageSize" value="" min="1" step="1" placeholder="from model" />
+        <div class="hint">Resize target (blank = from model).</div>
+      </div>
+    </div>
+
+    <button id="run" type="button">Analyze video</button>
+    <button id="reset" type="button" class="secondary" style="display:none">New analysis</button>
+    <div id="error" class="error" style="display:none"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Progress</h2>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="stats">
+      <div><span>status</span> <b id="stStatus">idle</b></div>
+      <div><span>frames</span> <b id="stFrames">0</b></div>
+      <div><span>last P(failing)</span> <b id="stScore">–</b></div>
+      <div><span>state</span> <b id="stState">–</b></div>
+    </div>
+    <canvas id="chart" width="900" height="180"></canvas>
+    <div class="tag">Live P(failing) and EWMA signal over the analyzed frames.</div>
+
+    <div id="results" style="display:none">
+      <h2 style="margin-top:20px">Summary</h2>
+      <div class="cards">
+        <div class="card"><div class="k">Frames</div><div class="v" id="cFrames">–</div></div>
+        <div class="card"><div class="k">Duration</div><div class="v" id="cDur">–</div></div>
+        <div class="card"><div class="k">First failing</div><div class="v" id="cFirst">–</div></div>
+        <div class="card"><div class="k">FAILING frames</div><div class="v" id="cFailFrames">–</div></div>
+      </div>
+      <div id="stateRoll" class="tag"></div>
+      <div id="runDetails" class="tag" style="margin-top:6px"></div>
+
+      <h2 style="margin-top:18px">Detected failure intervals / events</h2>
+      <div id="detWrap" class="scroll"></div>
+
+      <h2 style="margin-top:18px">Per-frame scores</h2>
+      <div id="frameWrap" class="scroll"></div>
+      <a class="dl" id="dl" href="#">Download JSON report</a>
+    </div>
+  </section>
+</main>
+
+<footer id="footer" class="tag" style="padding:0 24px 40px"></footer>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let mode = "upload";
+let pollTimer = null;
+
+function setTab(next) {
+  mode = next;
+  $("tabUpload").classList.toggle("active", next === "upload");
+  $("tabUpload").classList.toggle("secondary", next !== "upload");
+  $("tabPath").classList.toggle("active", next === "path");
+  $("tabPath").classList.toggle("secondary", next !== "path");
+  $("paneUpload").style.display = next === "upload" ? "" : "none";
+  $("panePath").style.display = next === "path" ? "" : "none";
+}
+$("tabUpload").onclick = () => setTab("upload");
+$("tabPath").onclick = () => setTab("path");
+
+function showError(msg) { const e = $("error"); e.textContent = msg; e.style.display = "block"; }
+function clearError() { $("error").style.display = "none"; }
+
+async function loadModels() {
+  try {
+    const r = await fetch("/api/models");
+    const data = await r.json();
+    const sel = $("model");
+    sel.innerHTML = "";
+    for (const m of data.models) {
+      const o = document.createElement("option");
+      o.value = m.path; o.textContent = m.label;
+      if (m.path === data.default) o.selected = true;
+      sel.appendChild(o);
+    }
+    if (!data.models.length) {
+      sel.innerHTML = '<option value="">no local checkpoints found</option>';
+    }
+    $("modelHint").textContent =
+      (data.models.length
+        ? data.models.length + " local checkpoint(s). Default is the frozen baseline."
+        : "No checkpoints discovered. Enter a checkpoint path below, or set "
+          + "TINYVISION_MODELS_DIR and restart.");
+  } catch (e) { showError("could not load models: " + e); }
+}
+
+async function loadHealth() {
+  try {
+    const r = await fetch("/api/health");
+    const h = await r.json();
+    $("footer").textContent =
+      "Local only · data stored in " + h.data_dir
+      + " · " + (h.retention || "")
+      + " Uploaded videos are copied next to the reports there.";
+  } catch (e) { /* footer is optional */ }
+}
+
+function settingsFromForm() {
+  const g = (id) => { const v = $(id).value.trim(); return v === "" ? null : v; };
+  return {
+    sample_fps: g("sampleFps"), threshold: g("threshold"),
+    max_frames: g("maxFrames"), warmup: g("warmup"),
+    confirm: g("confirm"), image_size: g("imageSize"),
+  };
+}
+
+const pill = (s) => `<span class="pill ${s}">${s}</span>`;
+const fmt = (v, d = 3) => (v === null || v === undefined) ? "–" : Number(v).toFixed(d);
+
+function drawChart(samples) {
+  const cv = $("chart"), ctx = cv.getContext("2d");
+  const W = cv.width, H = cv.height, pad = 26;
+  ctx.clearRect(0, 0, W, H);
+  ctx.strokeStyle = "#2b333d"; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad + (H - 2 * pad) * i / 4;
+    ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(W - 8, y); ctx.stroke();
+  }
+  ctx.fillStyle = "#97a3b0"; ctx.font = "10px sans-serif";
+  ctx.fillText("1.0", 4, pad + 3); ctx.fillText("0.0", 4, H - pad + 3);
+  if (!samples.length) return;
+  const t0 = samples[0].t ?? 0, t1 = samples[samples.length - 1].t ?? 1;
+  const span = Math.max(t1 - t0, 1e-6);
+  const X = (t) => pad + (W - pad - 8) * (((t ?? 0) - t0) / span);
+  const Y = (p) => H - pad - (H - 2 * pad) * Math.max(0, Math.min(1, p ?? 0));
+  const line = (key, color, width) => {
+    ctx.strokeStyle = color; ctx.lineWidth = width; ctx.beginPath();
+    samples.forEach((s, i) => { const x = X(s.t), y = Y(s[key]); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+    ctx.stroke();
+  };
+  line("signal", "#4f9cf9", 1.5);
+  line("score", "#ef5b5b", 1);
+  // Shade FAILING spans.
+  ctx.fillStyle = "rgba(239,91,91,.10)";
+  let start = null;
+  samples.forEach((s, i) => {
+    const failing = s.state === "FAILING";
+    if (failing && start === null) start = X(s.t);
+    if (!failing && start !== null) { ctx.fillRect(start, pad, X(s.t) - start, H - 2 * pad); start = null; }
+    if (i === samples.length - 1 && start !== null) ctx.fillRect(start, pad, X(s.t) - start, H - 2 * pad);
+  });
+}
+
+function renderResult(report) {
+  const s = report.summary || {}, m = report.model || {}, src = report.source || {};
+  $("cFrames").textContent = s.frames ?? "–";
+  $("cDur").textContent = (s.video_duration_s != null) ? s.video_duration_s + "s" : "–";
+  $("cFirst").textContent = (s.first_failing_event_timestamp_s != null)
+    ? s.first_failing_event_timestamp_s + "s" : "none";
+  $("cFailFrames").textContent = s.failing_frames ?? "–";
+
+  const counts = s.state_counts || {};
+  $("stateRoll").textContent = "states: " + Object.entries(counts).map(([k, v]) => `${k}=${v}`).join(", ")
+    + `  ·  threshold=${m.threshold}  ·  norm=${m.normalization ? m.normalization.source : "?"}`
+    + `  ·  sampling=${src.sample_fps ? src.sample_fps + " fps (stride " + src.stride + ")" : "every frame"}`;
+
+  $("runDetails").textContent =
+    "checkpoint: " + (m.checkpoint || "?")
+    + "  ·  model: " + (m.model_name || "?") + "  ·  image_size=" + (m.image_size ?? "?")
+    + "  ·  input: " + (src.input || "?") + " (" + (src.resolution || "?")
+    + ", " + (src.native_fps ?? "?") + " fps native)";
+
+  const dets = report.detections || [];
+  if (!dets.length) {
+    $("detWrap").innerHTML = '<p class="muted">No FAILING event. The stream stayed in NORMAL/OBSERVING (or only reached SUSPECT) under these settings.</p>';
+  } else {
+    let h = '<table><thead><tr><th>#</th><th>event</th><th>time</th><th>frame</th><th>P(failing)</th><th>state</th></tr></thead><tbody>';
+    dets.forEach((d, i) => {
+      h += `<tr><td>${i + 1}</td><td>${d.kind}</td><td>${fmt(d.timestamp_s, 2)}s</td>`
+        + `<td>${d.frame_idx ?? d.frame}</td><td>${fmt(d.score)}</td><td>${pill(d.state)}</td></tr>`;
+    });
+    $("detWrap").innerHTML = h + "</tbody></table>";
+  }
+
+  const rows = report.per_frame || [];
+  const max = Math.min(rows.length, 2000);
+  let h = `<table><thead><tr><th>#</th><th>t (s)</th><th>P(failing)</th><th>signal</th><th>state</th><th>event</th></tr></thead><tbody>`;
+  for (let i = 0; i < max; i++) {
+    const r = rows[i];
+    h += `<tr><td>${r.frame_idx ?? r.frame}</td><td>${fmt(r.timestamp_s, 2)}</td>`
+      + `<td>${fmt(r.raw)}</td><td>${fmt(r.signal)}</td><td>${pill(r.state)}</td>`
+      + `<td>${r.event || ""}</td></tr>`;
+  }
+  h += "</tbody></table>";
+  if (rows.length > max) h += `<p class="muted">Showing first ${max} of ${rows.length} frames; the JSON report has all of them.</p>`;
+  $("frameWrap").innerHTML = h;
+
+  $("dl").href = "/api/jobs/" + currentJobId + "/report";
+  $("results").style.display = "block";
+}
+
+let currentJobId = null;
+
+async function startJob() {
+  clearError();
+  const checkpoint = ($("modelPath").value.trim() || $("model").value);
+  if (!checkpoint) {
+    showError("Select a model checkpoint, or enter a checkpoint path."); return;
+  }
+  const settings = settingsFromForm();
+
+  let resp;
+  try {
+    if (mode === "upload") {
+      const f = $("file").files[0];
+      if (!f) { showError("Choose a video file to upload (or switch to Local path)."); return; }
+      resp = await fetch("/api/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/octet-stream",
+          "X-Filename": f.name,
+          "X-Checkpoint": checkpoint,
+          "X-Settings": JSON.stringify(settings),
+        },
+        body: f,
+      });
+    } else {
+      const video_path = $("path").value.trim();
+      if (!video_path) { showError("Enter a local video path (or switch to Upload file)."); return; }
+      resp = await fetch("/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ video_path, checkpoint, settings }),
+      });
+    }
+  } catch (e) { showError("request failed: " + e); return; }
+
+  let data;
+  try { data = await resp.json(); } catch (e) { showError("bad server response"); return; }
+  if (!resp.ok) { showError(data.error || ("HTTP " + resp.status)); return; }
+
+  currentJobId = data.job.id;
+  $("run").disabled = true; $("reset").style.display = "block";
+  $("results").style.display = "none";
+  $("stStatus").textContent = "running";
+  pollJob();
+}
+
+async function pollJob() {
+  if (!currentJobId) return;
+  let resp, data;
+  try { resp = await fetch("/api/jobs/" + currentJobId); data = await resp.json(); }
+  catch (e) { pollTimer = setTimeout(pollJob, 800); return; }
+
+  if (!resp.ok) { showError(data.error || "job not found"); finish(false); return; }
+
+  const p = data.progress || {};
+  const pct = p.fraction != null ? (p.fraction * 100) : (p.total ? 0 : 0);
+  $("bar").style.width = (pct || 0) + "%";
+  $("stStatus").textContent = data.status;
+  $("stFrames").textContent = p.total ? (p.processed + " / " + p.total) : String(p.processed ?? 0);
+  $("stScore").textContent = fmt(p.last_score);
+  $("stState").textContent = p.last_state ?? "–";
+  if (p.samples) drawChart(p.samples);
+
+  if (data.status === "done") {
+    const rr = await fetch("/api/jobs/" + currentJobId + "/report");
+    renderResult(await rr.json());
+    $("bar").style.width = "100%";
+    finish(true);
+    return;
+  }
+  if (data.status === "error") { showError(data.error || "inference failed"); finish(false); return; }
+  pollTimer = setTimeout(pollJob, 700);
+}
+
+function finish(ok) {
+  $("run").disabled = false;
+  $("stStatus").textContent = ok ? "done" : "error";
+}
+
+$("run").onclick = startJob;
+$("reset").onclick = () => {
+  if (pollTimer) clearTimeout(pollTimer);
+  currentJobId = null;
+  $("reset").style.display = "none";
+  $("results").style.display = "none";
+  $("stStatus").textContent = "idle"; $("stFrames").textContent = "0";
+  $("stScore").textContent = "–"; $("stState").textContent = "–";
+  $("bar").style.width = "0%";
+  drawChart([]);
+  clearError();
+};
+
+drawChart([]);
+loadModels();
+loadHealth();
+</script>
+</body>
+</html>

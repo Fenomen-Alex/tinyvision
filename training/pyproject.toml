@@ -1,9 +1,21 @@
 [project]
 name = "tinyvision-training"
 version = "0.1.0"
-description = "TinyVision training pipeline"
+description = "TinyVision training and evaluation pipeline (research preview)"
 readme = "README.md"
 requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [{ name = "The TinyVision Authors" }]
+keywords = ["computer-vision", "edge", "3d-printing", "failure-detection", "onnx"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
 dependencies = [
     "matplotlib>=3.11.1",
     "numpy>=2.4.6",
@@ -12,14 +24,22 @@ dependencies = [
     "onnxscript>=0.2.0",
     "opencv-python>=5.0.0.93",
     "pandas>=3.0.5",
+    "pillow>=10.0.0",
     "pyyaml>=6.0",
     "scikit-learn>=1.9.0",
     "torch>=2.14.0",
     "torchvision>=0.29.0",
-    "ultralytics>=8.4.138",
 ]
 
+[project.urls]
+Homepage = "https://github.com/Fenomen-Alex/tinyvision"
+Repository = "https://github.com/Fenomen-Alex/tinyvision"
+Issues = "https://github.com/Fenomen-Alex/tinyvision/issues"
+
 [project.optional-dependencies]
+# Optional: YOLO model families (yolov8*/yolov11*). These are AGPL-3.0 and are
+# NOT required by the validated torchvision path or the inference runtime.
+yolo = ["ultralytics>=8.4.138"]
 test = ["pytest>=8.0"]
 
 [dependency-groups]
@@ -27,6 +47,7 @@ dev = ["pytest>=8.0"]
 
 [project.scripts]
 tv = "tv.cli:main"
+tinyvision-demo = "tv.launcher:main"
 
 [build-system]
 requires = ["setuptools>=68.0"]
@@ -34,3 +55,6 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 include = ["tv*"]
+
+[tool.setuptools.package-data]
+tv = ["demo_ui.html"]

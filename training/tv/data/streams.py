@@ -37,7 +37,7 @@ def build_streams(manifest: Manifest, proposals: dict | None = None,
     streams: list[Stream] = []
     for src in manifest.sources:
         frames = sorted(str(p.resolve())
-                        for p in Path(src.frames_dir).glob("frame_*.jpg"))
+                        for p in Path(src.frames_dir).glob(src.frame_glob or "frame_*.jpg"))
         # Prefer the video-level weak (title) label; single-frame VLM video
         # labels proved noisy on 20-frame/256px sampling, so they are a fallback
         # only. (See docs/research/rc2-realdomain-results.md.)

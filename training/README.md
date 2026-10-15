@@ -28,6 +28,46 @@ uv run tv <command> [options]
 | `tv export --config <yaml>` | Export to ONNX and optionally INT8 |
 | `tv capture --output-dir DIR` | Capture webcam frames for data collection |
 | `tv list-models` | List registered model architectures |
+| `tv demo` | Launch the local web UI for inspecting a video recording |
+| `tv poc --input CLIP --checkpoint CKPT` | Headless per-frame inference / temporal decision |
+| `tv calibrate --clips SPEC.yaml` | Per-printer threshold calibration |
+| `tv sessions validate\|build` | Validate a footage session sheet / build a calibration spec |
+| `tv reliability evaluate\|validate-suite` | Apply the release acceptance policy (PASS/FAIL/INCONCLUSIVE) |
+
+## Local demo (`tv demo` / `tinyvision-demo`)
+
+`tv demo` starts a small local web UI (stdlib HTTP server, no extra framework)
+that runs the **same** inference path as `tv poc` on a video file and streams
+per-frame `P(failing)` progress to the browser. It is **experimental and not
+validated for production use**, and it needs a checkpoint (`.pt`).
+
+```
+tv demo [--host 127.0.0.1] [--port 8000] [--data-dir DIR] [--open-browser] [--check]
+```
+
+`--check` only verifies the inference dependencies and exits. The installable
+console script `tinyvision-demo` (declared in `pyproject.toml`) is the
+recommended entry point for non-developers because it reports missing
+dependencies with actionable install instructions:
+
+```
+uv pip install -e .          # or: python -m pip install -e .
+tinyvision-demo --check      # "All inference dependencies are present (...)"
+tinyvision-demo --open-browser
+```
+
+- **Data dir** (uploads + exported reports) defaults to a per-user directory
+  (`~/Library/Application Support/TinyVision/demo` on macOS,
+  `~/.local/share/tinyvision/demo` on Linux,
+  `%LOCALAPPDATA%\TinyVision\demo` on Windows). Override with `--data-dir` or
+  `TINYVISION_DEMO_DATA`.
+- **Checkpoints** are discovered under `experiments/*/artifacts/best.pt` and any
+  directories in `TINYVISION_MODELS_DIR`; the UI also accepts a typed path.
+- Binds **loopback** by default; a non-loopback `--host` prints a warning. A busy
+  port raises an actionable error (use `--port 0` for a free port).
+- The UI asset ships with the package
+  (`[tool.setuptools.package-data] tv = ["demo_ui.html"]`), so a wheel install
+  serves it without the source tree.
 
 ## Workflow
 
@@ -139,4 +179,4 @@ recall, and F1.
   legacy (`dynamo=False`) exporter at opset 17 for maximum onnxruntime
   quantization compatibility.
 - INT8 quantization uses ONNX Runtime dynamic quantization.
-- Pillow is used for image loading (transitively available via torchvision).
+- Pillow is used for image loading and is a declared dependency (`pillow`).

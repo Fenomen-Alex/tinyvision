@@ -2,7 +2,8 @@
 #
 # Two independent jobs:
 #   * python    - fully self-contained; unit tests + synthetic release-gate
-#                 coverage. External/holdout dataset tests skip automatically
+#                 coverage, plus an sdist/wheel build. Runs on Python 3.11 and
+#                 3.12. External/holdout dataset tests skip automatically
 #                 (they never fail on missing data), so no large downloads.
 #   * cpp-build - compiles the C++ runtime against ONNX Runtime + OpenCV.
 #                 The C++ parity/integration tests load a frozen ONNX model
@@ -18,21 +19,40 @@ name: ci
 on:
   push:
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   python:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
       - name: Install training package + test deps
         run: |
           python -m pip install --upgrade pip
           pip install -e "training[test]"
+      - name: Install dependencies are present (demo self-check)
+        run: tinyvision-demo --check
       - name: Unit tests (external-data tests skip, never fail)
         run: pytest training/tests -q
+      - name: Build sdist + wheel (validate packaging metadata)
+        if: matrix.python-version == '3.11'
+        run: |
+          pip install build
+          python -m build --outdir dist training
       - name: Release gate blocks on missing required evidence (strict validate)
         run: |
           set +e

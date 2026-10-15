@@ -4,17 +4,25 @@ Runs the frozen binary frame classifier in a real-time-style loop over a video
 file or webcam source, feeds the per-frame P(failing) stream through the
 existing Stage-3 temporal decision logic (EWMA + Failure-FSM), and produces:
 
-  * a per-frame decision log (raw threshold, EWMA signal, FSM state, event),
+  * a timestamped per-frame decision log (raw threshold, EWMA signal, FSM
+    state, event) and a timestamped ``detections`` list,
   * state/event summaries (did the stream enter FAILING? when? how often?),
   * process timing (decode / preprocess / inference per-frame, cadence FPS),
   * an optional annotated MP4/AVI (overlaid state) for eyeballing.
 
 Everything here reuses the canonical inference path as-is:
   * checkpoint loading + ``build_classifier`` (models.factory),
-  * the eval-time transform from ``_build_transforms(image_size, {}, False)``
-    so train/deploy preprocessing never drifts,
+  * the eval-time transform from ``_build_transforms`` built with the exact
+    normalisation stored in the checkpoint (custom train-time statistics when
+    present, otherwise ImageNet), so train/deploy preprocessing never drifts,
   * ``EwmaBaseline`` / ``FailureFsm`` (temporal.py) so the POC uses exactly the
     decision logic already validated in Stage 3 offline eval.
+
+The path is deterministic: identical input video + checkpoint + config yields
+an identical report (timing fields aside).
+
+Errors are surfaced as :class:`PocError` with an actionable message for
+unreadable/empty videos, invalid checkpoints and invalid configuration.
 
 This is architecture/plumbing verification, NOT a benchmark: POC smoke numbers
 are qualitative and labeled accordingly.
@@ -22,11 +30,15 @@ are qualitative and labeled accordingly.
 from __future__ import annotations
 
 import time
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Callable, Iterator, Optional
 
 from .temporal import EwmaBaseline, FailureFsm
+
+
+class PocError(Exception):
+    """Actionable, user-facing error on the end-to-end inference path."""
 
 
 @dataclass
@@ -37,7 +49,9 @@ class PocConfig:
     checkpoint: str | Path = (
         "experiments/shufflenet_v2_x1_0_printing-errors_cdc9e2cad4/artifacts/best.pt"
     )
-    image_size: int = 224
+    # ``None`` means "use the image size stored in the checkpoint" (falls back
+    # to 224 when the checkpoint predates that field).
+    image_size: Optional[int] = None
     device: str = "auto"
     sample_fps: float | None = None
     max_frames: int | None = None
@@ -54,9 +68,49 @@ class PocConfig:
     confirm: int = 3
     use_delta: bool = False
 
-
-def _eta(value: float | None) -> float | None:
-    return None if value is None else round(float(value), 4)
+    def validate(self) -> None:
+        """Raise :class:`PocError` for invalid configuration with a fix hint."""
+        errors: list[str] = []
+        if not isinstance(self.threshold, (int, float)) or not 0.0 <= float(self.threshold) <= 1.0:
+            errors.append(f"threshold must be in [0, 1], got {self.threshold!r}")
+        if self.sample_fps is not None and not (
+            isinstance(self.sample_fps, (int, float)) and float(self.sample_fps) > 0
+        ):
+            errors.append(f"sample_fps must be > 0 or null, got {self.sample_fps!r}")
+        if self.max_frames is not None and not (
+            isinstance(self.max_frames, int) and self.max_frames > 0
+        ):
+            errors.append(f"max_frames must be a positive integer or null, got {self.max_frames!r}")
+        if self.image_size is not None and not (
+            isinstance(self.image_size, int) and self.image_size > 0
+        ):
+            errors.append(f"image_size must be a positive integer or null, got {self.image_size!r}")
+        if not 0.0 < float(self.alpha) <= 1.0:
+            errors.append(f"alpha must be in (0, 1], got {self.alpha!r}")
+        if not (isinstance(self.baseline_window, int) and self.baseline_window >= 1):
+            errors.append(f"baseline_window must be >= 1, got {self.baseline_window!r}")
+        if not (isinstance(self.warmup, int) and self.warmup >= 0):
+            errors.append(f"warmup must be >= 0, got {self.warmup!r}")
+        if not (isinstance(self.confirm, int) and self.confirm >= 1):
+            errors.append(f"confirm must be >= 1, got {self.confirm!r}")
+        for name in ("suspect_threshold", "fail_threshold", "recover_threshold"):
+            v = getattr(self, name)
+            if not (isinstance(v, (int, float)) and 0.0 <= float(v) <= 1.0):
+                errors.append(f"{name} must be in [0, 1], got {v!r}")
+        if float(self.recover_threshold) >= float(self.fail_threshold):
+            errors.append(
+                "recover_threshold must be < fail_threshold (hysteresis): "
+                f"got recover={self.recover_threshold}, fail={self.fail_threshold}"
+            )
+        if self.fail_threshold_abs is not None and not (
+            isinstance(self.fail_threshold_abs, (int, float))
+            and 0.0 <= float(self.fail_threshold_abs) <= 1.0
+        ):
+            errors.append(
+                f"fail_threshold_abs must be in [0, 1] or null, got {self.fail_threshold_abs!r}"
+            )
+        if errors:
+            raise PocError("invalid configuration:\n  - " + "\n  - ".join(errors))
 
 
 @dataclass
@@ -65,28 +119,50 @@ class ModelInfo:
     num_classes: int
     fail_idx: int
     checkpoint: str
+    image_size: int = 224
+    normalize_mean: list[float] | None = None
+    normalize_std: list[float] | None = None
 
 
 def load_model(
     checkpoint: str | Path,
-    image_size: int = 224,
+    image_size: Optional[int] = None,
     device: str = "auto",
     threshold: float = 0.5,
 ):
     """Load the frozen binary classifier + its eval-time transform.
 
     Returns ``(model, transform, device, info)``. The transform is the exact
-    eval path used by ``tv eval-deep`` (``_build_transforms(..., is_train=False)``),
-    so the POC's preprocessing is byte-identical to offline evaluation.
+    eval path used by ``tv eval-deep`` / ``tv reliability`` built with the
+    normalisation stored in the checkpoint, so the POC's preprocessing is
+    identical to offline evaluation and to training.
+
+    ``image_size=None`` uses the size stored in the checkpoint (224 fallback).
+    Raises :class:`PocError` for a missing or malformed checkpoint.
     """
     import torch
+
+    ckpt_path = Path(checkpoint)
+    if not ckpt_path.exists():
+        raise PocError(f"checkpoint not found: {ckpt_path}")
+    try:
+        ckpt = torch.load(ckpt_path, map_location="cpu", weights_only=False)
+    except Exception as exc:  # noqa: BLE001 - surface any load failure actionably
+        raise PocError(
+            f"could not read checkpoint {ckpt_path}: {exc} "
+            "(expected a TinyVision best.pt saved by `tv train`)"
+        ) from exc
+    if not isinstance(ckpt, dict) or "model_state_dict" not in ckpt:
+        raise PocError(
+            f"checkpoint {ckpt_path} is not a TinyVision checkpoint "
+            "(missing 'model_state_dict'); pass a best.pt produced by `tv train`"
+        )
 
     if device == "auto":
         from .deepeval import _get_device
 
         device = _get_device()
 
-    ckpt = torch.load(Path(checkpoint), map_location=device, weights_only=False)
     num_classes = int(ckpt.get("num_classes", 2))
     model_name = ckpt.get("config_model", "shufflenet_v2_x1_0")
 
@@ -99,21 +175,41 @@ def load_model(
     if fail_idx is None:
         fail_idx = 0  # frozen binary convention: failing=0, normal=1
 
+    resolved_size = int(image_size) if image_size else int(ckpt.get("image_size", 224) or 224)
+
+    # Reuse the exact normalisation the checkpoint was trained with; ``None``
+    # falls back to ImageNet statistics (keeps legacy checkpoints identical).
+    normalize_mean = ckpt.get("normalize_mean")
+    normalize_std = ckpt.get("normalize_std")
+
     from .models.factory import build_classifier
 
     model = build_classifier(model_name, num_classes, pretrained=False)
-    model.load_state_dict(ckpt["model_state_dict"])
+    try:
+        model.load_state_dict(ckpt["model_state_dict"])
+    except Exception as exc:  # noqa: BLE001
+        raise PocError(
+            f"checkpoint {ckpt_path} state_dict does not match model "
+            f"{model_name!r} ({num_classes} classes): {exc}"
+        ) from exc
     model = model.to(device).eval()
 
     from .data.loaders import _build_transforms
 
-    transform = _build_transforms(image_size, augmentation={}, is_train=False)
+    aug: dict[str, Any] = {}
+    if normalize_mean and normalize_std:
+        aug["normalize_mean"] = list(normalize_mean)
+        aug["normalize_std"] = list(normalize_std)
+    transform = _build_transforms(resolved_size, augmentation=aug, is_train=False)
 
     info = ModelInfo(
         model_name=model_name,
         num_classes=num_classes,
         fail_idx=fail_idx,
-        checkpoint=str(Path(checkpoint).resolve()),
+        checkpoint=str(ckpt_path.resolve()),
+        image_size=resolved_size,
+        normalize_mean=list(normalize_mean) if normalize_mean else None,
+        normalize_std=list(normalize_std) if normalize_std else None,
     )
     return model, transform, device, info
 
@@ -164,7 +260,8 @@ class DecisionTracker:
         self.threshold = config.threshold
         self._rows: list[dict] = []
 
-    def step(self, fail_score: float) -> dict:
+    def step(self, fail_score: float, frame_idx: int | None = None,
+             timestamp_s: float | None = None) -> dict:
         st = self.ew.step(fail_score)
         d = self.fsm.step(st["signal"], st["baseline"])
         row = {
@@ -177,6 +274,10 @@ class DecisionTracker:
             "raw_decision": "failing" if fail_score >= self.threshold else "normal",
             "event": d.events[-1] if d.events else None,
         }
+        if frame_idx is not None:
+            row["frame_idx"] = frame_idx
+        if timestamp_s is not None:
+            row["timestamp_s"] = round(float(timestamp_s), 6)
         self._rows.append(row)
         return row
 
@@ -188,11 +289,13 @@ class DecisionTracker:
         states: dict[str, int] = {}
         events = []
         first_failing = None
+        first_failing_ts = None
         failing_frames = 0
         for r in rows:
             states[r["state"]] = states.get(r["state"], 0) + 1
             if r["event"] == "failing_event" and first_failing is None:
                 first_failing = r["frame"]
+                first_failing_ts = r.get("timestamp_s")
             if r["state"] == "FAILING":
                 failing_frames += 1
             if r["event"]:
@@ -202,34 +305,39 @@ class DecisionTracker:
             "state_counts": states,
             "events": events,
             "first_failing_event_frame": first_failing,
+            "first_failing_event_timestamp_s": first_failing_ts,
             "failing_frames": failing_frames,
             "last_state": rows[-1]["state"] if rows else "NONE",
         }
 
 
-def _open_capture(source: str | int):
-    import cv2
+def _iter_sampled_frames(
+    cap, stride: int, max_frames: int | None
+) -> Iterator[tuple[int, Any, float]]:
+    """Yield ``(frame_index, frame_bgr, decode_ms)`` for 1 of every ``stride`` frames.
 
-    cap = cv2.VideoCapture(source)
-    if not cap.isOpened():
-        raise RuntimeError(f"Cannot open video source: {source}")
-    return cap
-
-
-def _next_frame(cap, skip: int, frame_idx: int):
-    """Read frames from ``cap``, skipping to honour the sampling cadence."""
-    import cv2
-
-    for _ in range(skip):
+    ``stride=1`` processes every frame; the frame index is the true 0-based
+    index in the source video (so ``index / native_fps`` is the video
+    timestamp). Frames are decoded sequentially to keep indices exact, and
+    ``decode_ms`` is the wall time spent decoding the frames consumed since the
+    previous yield (including any skipped frames).
+    """
+    idx = 0
+    produced = 0
+    pending_ms = 0.0
+    while True:
+        t0 = time.perf_counter()
         ret, frame = cap.read()
+        pending_ms += (time.perf_counter() - t0) * 1000
         if not ret or frame is None:
-            return None, frame_idx
-        frame_idx += 1
-    ret, frame = cap.read()
-    if not ret or frame is None:
-        return None, frame_idx
-    frame_idx += 1
-    return frame, frame_idx
+            return
+        if idx % stride == 0:
+            if max_frames is not None and produced >= max_frames:
+                return
+            yield idx, frame, pending_ms
+            produced += 1
+            pending_ms = 0.0
+        idx += 1
 
 
 def _stats_ms(values: list[float]) -> dict:
@@ -246,26 +354,73 @@ def _stats_ms(values: list[float]) -> dict:
     }
 
 
-def run_poc(config: PocConfig) -> dict:
-    """Run the end-to-end POC over a video file or webcam source.
-
-    Returns a report dict (per-frame log, summary, timing). ``config.source``
-    is a path (file) or an int (camera index). Raises ``FileNotFoundError`` /
-    ``RuntimeError`` for missing checkpoints or unopenable sources.
-    """
+def _resolve_source(source: str | int | None) -> str | int:
+    """Resolve a path/glob/int source. Raises :class:`PocError` if unmatched."""
     import glob
     import os
 
+    if source is None or source == "":
+        raise PocError("no input source: pass --input FILE or --camera INDEX")
+    if isinstance(source, int) or (isinstance(source, str) and source.isdigit()):
+        return int(source)
+    if os.path.exists(source):
+        return source
+    matches = sorted(glob.glob(source))
+    if not matches:
+        raise PocError(f"video source not found: {source}")
+    return matches[0]
+
+
+def _open_capture(source: str | int):
     import cv2
-    import numpy as np
+
+    cap = cv2.VideoCapture(source)
+    if not cap.isOpened():
+        raise PocError(
+            f"cannot open video source: {source!r} "
+            "(unreadable file, unsupported codec, or empty/corrupt video)"
+        )
+    return cap
+
+
+def _detections_from_rows(rows: list[dict]) -> list[dict]:
+    """Timestamped detections (temporal FAILING events + raw threshold crossings)."""
+    detections: list[dict] = []
+    for r in rows:
+        if r["event"]:
+            detections.append({
+                "frame": r["frame"],
+                "frame_idx": r.get("frame_idx"),
+                "timestamp_s": r.get("timestamp_s"),
+                "kind": r["event"],
+                "score": r["raw"],
+                "state": r["state"],
+            })
+    return detections
+
+
+def run_poc(config: PocConfig, on_frame: "Callable[[int, dict, int | None], None] | None" = None) -> dict:
+    """Run the end-to-end POC over a video file or webcam source.
+
+    Returns a report dict (timestamped per-frame log, detections, summary,
+    timing). ``config.source`` is a path (file/glob) or an int (camera index).
+
+    ``on_frame`` (optional) is called after each processed frame as
+    ``on_frame(processed_count, row, total_estimate)`` so a caller (e.g. the
+    local demo) can report progress without a second inference implementation.
+    ``total_estimate`` is the number of frames expected to be processed
+    (``None`` for live sources). Exceptions from ``on_frame`` propagate.
+
+    Raises :class:`PocError` for invalid configuration, missing/invalid
+    checkpoints, and unreadable or empty video sources.
+    """
+    import math
+
+    import cv2
     from PIL import Image
 
-    source = config.source
-    if isinstance(source, str) and not os.path.exists(source) and not str(source).isdigit():
-        matches = glob.glob(source)
-        if not matches:
-            raise FileNotFoundError(f"Video source not found: {source}")
-        source = matches[0]
+    config.validate()
+    source = _resolve_source(config.source)
 
     model, transform, device, info = load_model(
         config.checkpoint, config.image_size, config.device, config.threshold
@@ -274,47 +429,51 @@ def run_poc(config: PocConfig) -> dict:
     track = DecisionTracker(config)
     cap = _open_capture(source)
 
-    native_fps = cap.get(cv2.CAP_PROP_FPS)
+    native_fps = float(cap.get(cv2.CAP_PROP_FPS) or 0.0)
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-    skip = 1
+    # ``stride`` = number of frames between processed samples (1 = every frame).
     if config.sample_fps is not None and native_fps > 0:
-        skip = max(1, round(native_fps / config.sample_fps))
+        stride = max(1, int(round(native_fps / config.sample_fps)))
+    else:
+        stride = 1
+    effective_fps = native_fps if native_fps > 0 else (config.sample_fps or 1.0)
+
+    total_estimate: int | None = None
+    if isinstance(source, str) and total_frames > 0:
+        total_estimate = int(math.ceil(total_frames / stride))
+        if config.max_frames is not None:
+            total_estimate = min(total_estimate, config.max_frames)
 
     writer = None
     if config.annotated_output:
         fourcc = cv2.VideoWriter_fourcc(*"mp4v")
         out_path = Path(config.annotated_output)
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        writer = cv2.VideoWriter(str(out_path), fourcc, native_fps, (width, height))
+        writer_fps = native_fps if native_fps > 0 else 1.0
+        writer = cv2.VideoWriter(str(out_path), fourcc, writer_fps, (width, height))
         if not writer.isOpened():
             fourcc = cv2.VideoWriter_fourcc(*"XVID")
             out_path = out_path.with_suffix(".avi")
-            writer = cv2.VideoWriter(str(out_path), fourcc, native_fps, (width, height))
+            writer = cv2.VideoWriter(str(out_path), fourcc, writer_fps, (width, height))
             if not writer.isOpened():
-                raise RuntimeError(f"Cannot open VideoWriter for {config.annotated_output}")
+                cap.release()
+                raise PocError(f"cannot open VideoWriter for {config.annotated_output}")
             config.annotated_output = out_path
 
     decode_ms: list[float] = []
     preprocess_ms: list[float] = []
     infer_ms: list[float] = []
-    frame_idx = 0
     t_stream_start = time.perf_counter()
     annotated_path: Optional[str] = None
 
     try:
-        while True:
-            if config.max_frames is not None and len(track.results()) >= config.max_frames:
-                break
-
-            t0 = time.perf_counter()
-            frame, frame_idx = _next_frame(cap, skip, frame_idx)
-            t1 = time.perf_counter()
-            if frame is None:
-                break
-            decode_ms.append((t1 - t0) * 1000)
+        for frame_idx, frame, frame_decode_ms in _iter_sampled_frames(
+            cap, stride, config.max_frames
+        ):
+            decode_ms.append(frame_decode_ms)
 
             t_pre0 = time.perf_counter()
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -328,8 +487,12 @@ def run_poc(config: PocConfig) -> dict:
             t_inf1 = time.perf_counter()
             infer_ms.append((t_inf1 - t_inf0) * 1000)
 
-            row = track.step(pred["fail_score"])
-            row["frame_idx"] = frame_idx
+            timestamp_s = frame_idx / effective_fps
+            row = track.step(pred["fail_score"], frame_idx=frame_idx,
+                             timestamp_s=timestamp_s)
+
+            if on_frame is not None:
+                on_frame(int(row["frame"]) + 1, row, total_estimate)
 
             if writer is not None:
                 state = row["state"]
@@ -351,10 +514,27 @@ def run_poc(config: PocConfig) -> dict:
             writer.release()
             annotated_path = str(config.annotated_output)
 
-    stream_seconds = max(time.perf_counter() - t_stream_start, 1e-9)
     rows = track.results()
+    if not rows:
+        raise PocError(
+            f"no decodable frames in video source: {source!r} "
+            "(the file opened but yielded zero frames; is it empty or truncated?)"
+        )
+
+    stream_seconds = max(time.perf_counter() - t_stream_start, 1e-9)
     summary = track.summary()
-    summary["cadence_fps"] = round(len(rows) / stream_seconds, 3)
+    # NOTE: timing-derived metrics live under ``timing`` only, so ``summary``
+    # (and the whole report apart from ``timing``) is deterministic.
+    summary["video_duration_s"] = round(rows[-1].get("timestamp_s") or 0.0, 6)
+    summary["detections"] = len(_detections_from_rows(rows))
+
+    detections = _detections_from_rows(rows)
+
+    norm_source = "checkpoint" if info.normalize_mean and info.normalize_std else "imagenet"
+    from .data.loaders import IMAGENET_MEAN, IMAGENET_STD
+
+    norm_mean = info.normalize_mean or list(IMAGENET_MEAN)
+    norm_std = info.normalize_std or list(IMAGENET_STD)
 
     return {
         "schema": "poc-inference",
@@ -364,8 +544,13 @@ def run_poc(config: PocConfig) -> dict:
             "model_name": info.model_name,
             "num_classes": info.num_classes,
             "fail_idx": info.fail_idx,
-            "image_size": config.image_size,
+            "image_size": info.image_size,
             "threshold": config.threshold,
+            "normalization": {
+                "mean": [round(float(v), 6) for v in norm_mean],
+                "std": [round(float(v), 6) for v in norm_std],
+                "source": norm_source,
+            },
         },
         "source": {
             "input": str(source),
@@ -373,7 +558,8 @@ def run_poc(config: PocConfig) -> dict:
             "native_fps": round(native_fps, 3),
             "total_frames_in_video": total_frames if isinstance(source, str) else None,
             "sample_fps": config.sample_fps,
-            "skip": skip,
+            "stride": stride,
+            "effective_fps": round(effective_fps, 6),
         },
         "temporal": {
             "alpha": config.alpha,
@@ -387,6 +573,7 @@ def run_poc(config: PocConfig) -> dict:
             "use_delta": config.use_delta,
         },
         "summary": summary,
+        "detections": detections,
         "timing": {
             "processed_frames": len(rows),
             "stream_seconds": round(stream_seconds, 3),
@@ -398,3 +585,34 @@ def run_poc(config: PocConfig) -> dict:
         "annotated_output": annotated_path,
         "per_frame": rows,
     }
+
+
+def format_summary(report: dict) -> str:
+    """Render a concise human-readable summary of a POC report."""
+    s = report["summary"]
+    m = report["model"]
+    src = report["source"]
+    lines = [
+        "TinyVision POC inference summary",
+        f"  checkpoint : {m['checkpoint']}",
+        f"  model      : {m['model_name']}  classes={m['num_classes']}  P(failing) idx={m['fail_idx']}",
+        f"  input      : {src['input']}  ({src['resolution']}, {src['native_fps']} fps"
+        + (f", sampled at {src['sample_fps']} fps (stride {src['stride']})" if src.get("sample_fps") else "")
+        + ")",
+        f"  threshold  : {m['threshold']}   normalization: {m['normalization']['source']}",
+        f"  frames     : {s['frames']} processed"
+        + (f" over {s.get('video_duration_s')}s" if s.get("video_duration_s") else ""),
+        f"  states     : {s['state_counts']}",
+        f"  final      : {s['last_state']}",
+    ]
+    first = s.get("first_failing_event_timestamp_s")
+    if first is not None:
+        lines.append(
+            f"  DETECTED failing at t={first}s (frame {s['first_failing_event_frame']}); "
+            f"{s['failing_frames']} FAILING frames"
+        )
+    else:
+        lines.append("  no FAILING event (stream stayed normal/observing)")
+    if report.get("annotated_output"):
+        lines.append(f"  annotated  : {report['annotated_output']}")
+    return "\n".join(lines)
